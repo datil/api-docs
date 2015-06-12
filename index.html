@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>API Dátil</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell","python"]);
         });
       </script>
   </head>
@@ -29,218 +29,669 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Búscar">
         </div>
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='#'>Para obtener mi llave del API</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id="introducción">Introducción</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Integra tu aplicación con Facturación Electrónica. Este API de Dátil te permite
+emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas
+de crédito, notas de débito y guías de remisión.</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>El API de Dátil está diseñado como un servicio <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>.
+De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
+lenguaje que provea un cliente HTTP, ya que utilizamos el componentes del estándar
+como los verbos y los códigos de respuesta.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Todos las operaciones responden en formato <a href="http://www.json.org/">JSON</a>, 
+incluso los errores.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
+emisión bajo condiciones normales, toma entre 3 a 5 segundos. Luego de ese período
+de tiempo bastará con consultar el comprobante para conocer su estado.</p>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<h1 id="autenticación">Autenticación</h1>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Para obtener tu llave del API, inicia sesión con tu cuenta en 
+<a href="https://app.datil.co">app.datil.co</a>, revisa en la opción <em>Configuración</em> la
+sección &ldquo;API Key&rdquo;.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Dátil utiliza claves de API para autorizar el acceso al API. La llave de API
+debe estar incluída en todos los requerimientos en una cabecera:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">X-Key: api-key</code></p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Para la firma de cada comprobante se requiere también de la clave del certificado
+de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p><code class="prettyprint">X-Password: clave-certificado-firma</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<!--aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside-->
+
+<h1 id="facturas">Facturas</h1>
+
+<h2 id="emisión-de-una-factura">Emisión de una factura</h2>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Requerimiento de ejemplo</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<pre class="highlight shell"><code>curl -v https://app.datil.co/api/facturar <span class="se">\</span>
+-H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "secuencial": 0,
+  "emisor": {
+    "ruc": "string",
+    "razon_social": "string",
+    "nombre_comercial": "string",
+    "direccion": "string",
+    "contribuyente_especial": "string",
+    "obligado_contabilidad": true,
+    "establecimiento": {
+      "codigo": "string",
+      "direccion": "string",
+      "punto_emision": "string"
+    }
+  },
+  "moneda": "string",
+  "id": "string",
+  "ambiente": 0,
+  "totales": {
+    "impuestos": [
+      {
+        "codigo": "string",
+        "codigo_porcentaje": "string"
+      }
+    ]
+  },
+  "comprador": {
+    "razon_social": "string",
+    "identificacion": "string",
+    "tipo_identificacion": "string",
+    "email": "string",
+    "direccion": "string",
+    "telefono": "string"
+  },
+  "tipo_emision": 0,
+  "items": [
+    {
+      "descripcion": "string",
+      "impuestos": [
+        {
+          "codigo": "string",
+          "codigo_porcentaje": "string"
+        }
+      ],
+      "detalles_adicionales": {},
+      "codigo_auxiliar": "string",
+      "codigo_principal": "string"
+    }
+  ],
+  "version": "string",
+  "clave_acceso": "string"
+}'</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"secuencial"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">"emisor"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"ruc"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"nombre_comercial"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"contribuyente_especial"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"obligado_contabilidad"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">"establecimiento"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+      <span class="s">"direccion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+      <span class="s">"punto_emision"</span><span class="p">:</span> <span class="s">"string"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s">"moneda"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"id"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"ambiente"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">"totales"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+        <span class="s">"codigo_porcentaje"</span><span class="p">:</span> <span class="s">"string"</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s">"comprador"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"razon_social"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"identificacion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"tipo_identificacion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"email"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+    <span class="s">"telefono"</span><span class="p">:</span> <span class="s">"string"</span>
+  <span class="p">},</span>
+  <span class="s">"tipo_emision"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">"items"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+      <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+          <span class="s">"codigo_porcentaje"</span><span class="p">:</span> <span class="s">"string"</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+      <span class="s">"codigo_principal"</span><span class="p">:</span> <span class="s">"string"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"version"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+  <span class="s">"clave_acceso"</span><span class="p">:</span> <span class="s">"string"</span>
+<span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'clave-del-api'</span>
+    <span class="s">'x-pasword'</span><span class="p">:</span> <span class="s">'clave-certificado-firma'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://app.datil.co/api/facturar"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
+</code></pre>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://app.datil.co/api/facturar <span class="se">\</span>
+-H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "secuencial": 0,
+  "emisor": {
+    "ruc": "string",
+    "razon_social": "string",
+    "nombre_comercial": "string",
+    "direccion": "string",
+    "contribuyente_especial": "string",
+    "obligado_contabilidad": true,
+    "establecimiento": {
+      "codigo": "string",
+      "direccion": "string",
+      "punto_emision": "string"
+    }
+  },
+  "moneda": "string",
+  "id": "string",
+  "ambiente": 0,
+  "totales": {
+    "impuestos": [
+      {
+        "codigo": "string",
+        "codigo_porcentaje": "string"
+      }
+    ]
+  },
+  "comprador": {
+    "razon_social": "string",
+    "identificacion": "string",
+    "tipo_identificacion": "string",
+    "email": "string",
+    "direccion": "string",
+    "telefono": "string"
+  },
+  "tipo_emision": 0,
+  "items": [
+    {
+      "descripcion": "string",
+      "impuestos": [
+        {
+          "codigo": "string",
+          "codigo_porcentaje": "string"
+        }
+      ],
+      "detalles_adicionales": {},
+      "codigo_auxiliar": "string",
+      "codigo_principal": "string"
+    }
+  ],
+  "version": "string",
+  "clave_acceso": "string"
+}'</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span> <span class="n">respuesta</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="s">"""
+{
+  "id": "abcf12343faad06785",
+  "secuencial": 0,
+  "emisor": {
+    "ruc": "string",
+    "razon_social": "string",
+    "nombre_comercial": "string",
+    "direccion": "string",
+    "contribuyente_especial": "string",
+    "obligado_contabilidad": true,
+    "establecimiento": {
+      "codigo": "string",
+      "direccion": "string",
+      "punto_emision": "string"
+    }
+  },
+  "moneda": "string",
+  "id": "string",
+  "ambiente": 0,
+  "totales": {
+    "impuestos": [
+      {
+        "codigo": "string",
+        "codigo_porcentaje": "string"
+      }
+    ]
+  },
+  "comprador": {
+    "razon_social": "string",
+    "identificacion": "string",
+    "tipo_identificacion": "string",
+    "email": "string",
+    "direccion": "string",
+    "telefono": "string"
+  },
+  "tipo_emision": 0,
+  "items": [
+    {
+      "descripcion": "string",
+      "impuestos": [
+        {
+          "codigo": "string",
+          "codigo_porcentaje": "string"
+        }
+      ],
+      "detalles_adicionales": {},
+      "codigo_auxiliar": "string",
+      "codigo_principal": "string"
+    }
+  ],
+  "version": "string",
+  "clave_acceso": "string"
+}
+"""</span>
+</code></pre>
+
+<h3 id="operación">Operación</h3>
+
+<p><code class="prettyprint">POST /facturar</code></p>
+
+<h3 id="requerimiento">Requerimiento</h3>
+
+<p>Para la emisión de una factura se debe enviar la información completa del
+comprobante en el cuerpo del requerimiento en formato JSON.</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la factura. <em>Requerido</em></td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>emisor</td>
+<td><a href="#emisor">emisor</a></td>
+<td>Información completa del emisor. <em>Requerido</em></td>
+</tr>
+<tr>
+<td>moneda</td>
+<td>string</td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <em>Requerido</em></td>
+</tr>
+<tr>
+<td>ambiente</td>
+<td>integer</td>
+<td>Pruebas: <code class="prettyprint">1</code>. Producción <code class="prettyprint">2</code> <em>Requerido</em></td>
+</tr>
+<tr>
+<td>totales</td>
+<td>objeto <a href="#totales">totales</a></td>
+<td>Listado de totales. <em>Requerido</em></td>
+</tr>
+<tr>
+<td>comprador</td>
+<td>objeto <a href="#comprador">comprador</a></td>
+<td>Información del comprador. <em>Requerido</em></td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><em>Requerido</em></td>
+</tr>
+<tr>
+<td>items</td>
+<td>listado de objetos tipo <a href="#item">item</a></td>
+<td>Items incluídos en la factura. <em>Requerido</em></td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, el API la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
+<!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+</aside-->
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<h3 id="respuesta">Respuesta</h3>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>Retorna un objeto <em><a href="#reqerimiento">factura</a></em> qu incluye un nuevo parámetro <code class="prettyprint">id</code>
+que identifica de manera única a la factura.</p>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<h1 id="clave-de-acceso">Clave de acceso</h1>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herramienta o aplicativo a utilizar por el sujeto pasivo deberá generar de manera automática la clave de acceso, que constituirá un requisito que dará el carácter de único a cada uno de los comprobantes, y la misma servirá para que el SRI indique si el comprobante es autorizado o no; se describe a continuación su conformación:</p>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Campo</th>
+<th>Formato</th>
+<th>Longitud</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>Fecha de Emisión</td>
+<td>ddmmaaaa</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Tipo de Comprobante</td>
+<td>Tabla 4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Número de RUC</td>
+<td>1234567890001</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Tipo de Ambiente</td>
+<td>Tabla 5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Serie</td>
+<td>001001</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Número del Comprobante (secuencial)</td>
+<td>000000001</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Código Numérico</td>
+<td>Numérico</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Tipo de Emisión</td>
+<td>Tabla 2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dígito Verificador (módulo 11 )</td>
+<td>Numérico</td>
+<td>1</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<p><em>Nota:</em> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).</p>
+
+<p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
+
+<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11</p>
+
+<h1 id="objetos-del-api">Objetos del API</h1>
+
+<h2 id="emisor">Emisor</h2>
+
+<p>Información del emisor de un comprobante.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres</td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>boolean</td>
+<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+</tr>
+<tr>
+<td>establecimiento</td>
+<td><a href="#establecimiento">establecimiento</a></td>
+<td>Establecimiento que emite la factura.</td>
+</tr>
+</tbody></table>
+
+<h2 id="establecimiento">Establecimiento</h2>
+
+<p>Representa un establecimiento del comercio.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="comprador">Comprador</h2>
+
+<p>Datos de un comprador.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social del comprador. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres.</td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipo-de-identificación">Tipo de identificación</h2>
+
+<table><thead>
+<tr>
+<th>Tipo de identificación</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RUC</td>
+<td><code class="prettyprint">04</code></td>
+</tr>
+<tr>
+<td>CEDULA</td>
+<td><code class="prettyprint">05</code></td>
+</tr>
+<tr>
+<td>PASAPORTE</td>
+<td><code class="prettyprint">06</code></td>
+</tr>
+<tr>
+<td>VENTA A CONSUMIDOR FINAL*</td>
+<td><code class="prettyprint">07</code></td>
+</tr>
+<tr>
+<td>IDENTIFICACION DELEXTERIOR*</td>
+<td><code class="prettyprint">08</code></td>
+</tr>
+<tr>
+<td>PLACA</td>
+<td><code class="prettyprint">09</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="totales">Totales</h2>
+
+<p>Representa un establecimiento del comercio.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos <a href="#total-impuesto">impuesto</a></td>
+<td>Listado de impuesto totalizados.</td>
+</tr>
+</tbody></table>
+
+<h3 id="total-impuesto">Total impuesto</h3>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del impuesto.</td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del porcentaje.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errores">Errores</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>Códigos de error:</p>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; La información provista está mal formada o incompleta.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized &ndash; Tu clave de API</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash;</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; El recurso especificado no existe.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash;</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Not Acceptable &ndash;</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error &ndash; Error en el sistema.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; Servicio temporalmente fuera de línea. Intenta más tarde.</td>
 </tr>
 </tbody></table>
 
@@ -248,7 +699,6 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
           </div>
       </div>
