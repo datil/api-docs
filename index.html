@@ -28,18 +28,18 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="python">Python</a>
         </div>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Búscar">
+          <input type="text" class="search" id="input-search" placeholder="Buscar">
         </div>
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Para obtener mi llave del API</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#'>Para obtener mi clave del API</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentación gracias a Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -51,26 +51,58 @@
 emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas
 de crédito, notas de débito y guías de remisión.</p>
 
-<p>El API de Dátil está diseñado como un servicio <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>.
+<p>El API de Dátil está diseñado como un servicio web <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>.
 De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
-lenguaje que provea un cliente HTTP, ya que utilizamos el componentes del estándar
-como los verbos y los códigos de respuesta.</p>
+librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos 
+componentes del estándar como los verbos y los códigos de respuesta.</p>
 
 <p>Todos las operaciones responden en formato <a href="http://www.json.org/">JSON</a>, 
 incluso los errores.</p>
 
 <p>Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
 emisión bajo condiciones normales, toma entre 3 a 5 segundos. Luego de ese período
-de tiempo bastará con consultar el comprobante para conocer su estado.</p>
+bastará con consultar el comprobante para conocer su estado.</p>
+
+<h2 id="operaciones">Operaciones</h2>
+
+<p>Una operación REST está formada por la combinación de un verbo HTTP, la URL base
+del servicio y la ruta de la operación. Las cuales se encuentran descritas en cada
+sección donde se describe una función del API. Esta operación, por ejemplo, emite
+una factura:</p>
+
+<p><code class="prettyprint">POST https://api.datil.co/invoices/issue</code></p>
+
+<p>La URI anterior en conjunto con la información en formato JSON como cuerpo del
+requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.</p>
+
+<h2 id="proceso-de-emisión">Proceso de emisión</h2>
+
+<p>Comprende las siguientes fases:</p>
+
+<ol>
+<li><strong>Creación</strong>: Se registra el comprobante para posterior referencia.</li>
+<li><strong>Firmado</strong>: Utilizando el certificado de y un algoritmo de  firma digital, 
+el comprobante es firmado para que el SRI pueda verificar su legitimidad</li>
+<li><strong>Envío</strong>: El comprobante es enviado al SRI para ser procesado y autorizado.</li>
+<li><strong>Consulta de autorización</strong>: Luego de un período de espera, Dátil consulta la
+autorización del comprobante.</li>
+<li><strong>Envío por email</strong>: Se envía el comprobante al correo del destinatario especificado</li>
+</ol>
+
+<aside class="notice">
+<strong>Recuerda:</strong> Que este proceso es administrado completamente por nosotros y para
+emitir un comprobante bastará enviarlo siguiendo la sección pertinente de esta
+documentación.
+</aside>
 
 <h1 id="autenticación">Autenticación</h1>
 
-<p>Para obtener tu llave del API, inicia sesión con tu cuenta en 
-<a href="https://app.datil.co">app.datil.co</a>, revisa en la opción <em>Configuración</em> la
+<p>Para obtener la clave del API, inicia sesión con tu cuenta en 
+<a href="https://app.datil.co">app.datil.co</a>, ve a la opción <em>Configuración</em> la
 sección &ldquo;API Key&rdquo;.</p>
 
-<p>Dátil utiliza claves de API para autorizar el acceso al API. La llave de API
-debe estar incluída en todos los requerimientos en una cabecera:</p>
+<p>Dátil utiliza claves para autorizar el acceso al API. La clave debe estar 
+incluída en todos los requerimientos en una cabecera:</p>
 
 <p><code class="prettyprint">X-Key: api-key</code></p>
 
@@ -79,20 +111,23 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 
 <p><code class="prettyprint">X-Password: clave-certificado-firma</code></p>
 
-<!--aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside-->
-
 <h1 id="facturas">Facturas</h1>
 
 <h2 id="emisión-de-una-factura">Emisión de una factura</h2>
 
+<h3 id="operación">Operación</h3>
+
+<p><code class="prettyprint">POST /invoices/issue</code></p>
+
+<h3 id="requerimiento">Requerimiento</h3>
+
 <blockquote>
-<p>Requerimiento de ejemplo</p>
+<h3 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h3>
 </blockquote>
-<pre class="highlight shell"><code>curl -v https://app.datil.co/api/facturar <span class="se">\</span>
--H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/invoices/issue <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "secuencial": 0,
   "emisor": {
@@ -202,72 +237,138 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="p">}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'clave-del-api'</span>
-    <span class="s">'x-pasword'</span><span class="p">:</span> <span class="s">'clave-certificado-firma'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'clave-certificado-firma'</span><span class="p">,</span>
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://app.datil.co/api/facturar"</span><span class="p">,</span>
+    <span class="s">"https://app.datil.co/invoices/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
 </code></pre>
 
+<p>Para la emisión de una factura se debe enviar la información completa del
+comprobante en el cuerpo del requerimiento en formato JSON.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la factura. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>emisor</td>
+<td><a href="#emisor">emisor</a></td>
+<td>Información completa del emisor. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>moneda</td>
+<td>string</td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>ambiente</td>
+<td>integer</td>
+<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>totales</td>
+<td>objeto <a href="#totales">totales</a></td>
+<td>Listado de totales. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>comprador</td>
+<td>objeto <a href="#comprador">comprador</a></td>
+<td>Información del comprador. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>items</td>
+<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
+<td>Items incluídos en la factura. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+</tbody></table>
+
+<!--aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside-->
+
+<h3 id="respuesta">Respuesta</h3>
+
 <blockquote>
-<p>Respuesta de ejemplo</p>
+<h3 id="respuesta-de-ejemplo">Respuesta de ejemplo</h3>
 </blockquote>
-<pre class="highlight shell"><code>curl -v https://app.datil.co/api/facturar <span class="se">\</span>
--H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--d <span class="s1">'{
-  "secuencial": 0,
-  "emisor": {
-    "ruc": "string",
-    "razon_social": "string",
-    "nombre_comercial": "string",
-    "direccion": "string",
-    "contribuyente_especial": "string",
-    "obligado_contabilidad": true,
-    "establecimiento": {
-      "codigo": "string",
-      "direccion": "string",
-      "punto_emision": "string"
-    }
-  },
-  "moneda": "string",
-  "id": "string",
-  "ambiente": 0,
-  "totales": {
-    "impuestos": [
-      {
-        "codigo": "string",
-        "codigo_porcentaje": "string"
-      }
-    ]
-  },
-  "comprador": {
-    "razon_social": "string",
-    "identificacion": "string",
-    "tipo_identificacion": "string",
-    "email": "string",
-    "direccion": "string",
-    "telefono": "string"
-  },
-  "tipo_emision": 0,
-  "items": [
-    {
-      "descripcion": "string",
-      "impuestos": [
-        {
-          "codigo": "string",
-          "codigo_porcentaje": "string"
-        }
-      ],
-      "detalles_adicionales": {},
-      "codigo_auxiliar": "string",
-      "codigo_principal": "string"
-    }
-  ],
-  "version": "string",
-  "clave_acceso": "string"
-}'</span>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"abcf12343faad06785"</span>,
+  <span class="s2">"secuencial"</span>: 0,
+  <span class="s2">"emisor"</span>: <span class="o">{</span>
+    <span class="s2">"ruc"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"razon_social"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"nombre_comercial"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"direccion"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"contribuyente_especial"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"obligado_contabilidad"</span>: <span class="nb">true</span>,
+    <span class="s2">"establecimiento"</span>: <span class="o">{</span>
+      <span class="s2">"codigo"</span>: <span class="s2">"string"</span>,
+      <span class="s2">"direccion"</span>: <span class="s2">"string"</span>,
+      <span class="s2">"punto_emision"</span>: <span class="s2">"string"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"moneda"</span>: <span class="s2">"string"</span>,
+  <span class="s2">"id"</span>: <span class="s2">"string"</span>,
+  <span class="s2">"ambiente"</span>: 0,
+  <span class="s2">"totales"</span>: <span class="o">{</span>
+    <span class="s2">"impuestos"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"codigo"</span>: <span class="s2">"string"</span>,
+        <span class="s2">"codigo_porcentaje"</span>: <span class="s2">"string"</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"comprador"</span>: <span class="o">{</span>
+    <span class="s2">"razon_social"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"identificacion"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"tipo_identificacion"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"email"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"direccion"</span>: <span class="s2">"string"</span>,
+    <span class="s2">"telefono"</span>: <span class="s2">"string"</span>
+  <span class="o">}</span>,
+  <span class="s2">"tipo_emision"</span>: 0,
+  <span class="s2">"items"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"descripcion"</span>: <span class="s2">"string"</span>,
+      <span class="s2">"impuestos"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">"codigo"</span>: <span class="s2">"string"</span>,
+          <span class="s2">"codigo_porcentaje"</span>: <span class="s2">"string"</span>
+        <span class="o">}</span>
+      <span class="o">]</span>,
+      <span class="s2">"detalles_adicionales"</span>: <span class="o">{}</span>,
+      <span class="s2">"codigo_auxiliar"</span>: <span class="s2">"string"</span>,
+      <span class="s2">"codigo_principal"</span>: <span class="s2">"string"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"version"</span>: <span class="s2">"string"</span>,
+  <span class="s2">"clave_acceso"</span>: <span class="s2">"string"</span>
+<span class="o">}</span>
 </code></pre>
 <pre class="highlight python"><code><span class="k">print</span> <span class="n">respuesta</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="s">"""
@@ -327,14 +428,146 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 """</span>
 </code></pre>
 
+<p>Retorna un objeto <strong><a href="#requerimiento">factura</a></strong> que incluye un nuevo parámetro <code class="prettyprint">id</code>,
+el cual identifica de manera única a la factura. El campo <code class="prettyprint">clave_acceso</code> generado
+también se incluirá como parte de la respuesta.</p>
+
+<h2 id="consulta-de-una-factura">Consulta de una factura</h2>
+
+<p>Consulta una factura para conocer el estado de las fases del proceso de emisión.</p>
+
 <h3 id="operación">Operación</h3>
 
-<p><code class="prettyprint">POST /facturar</code></p>
+<p><code class="prettyprint">GET /invoices/&lt;invoice-ID&gt;</code></p>
 
 <h3 id="requerimiento">Requerimiento</h3>
 
-<p>Para la emisión de una factura se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.</p>
+<blockquote>
+<h3 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h3>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/invoices/abcf12343faad06785 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'clave-del-api'</span>
+    <span class="s">'x-pasword'</span><span class="p">:</span> <span class="s">'clave-certificado-firma'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s">'https://api.datil.co/invoices/abcf12343faad06785'</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
+</code></pre>
+
+<p>Reemplaza en la ruta <code class="prettyprint">&lt;invoice-ID&gt;</code> por el <code class="prettyprint">id</code> de la factura que necesitas consultar.</p>
+
+<h3 id="respuesta">Respuesta</h3>
+
+<blockquote>
+<h3 id="respuesta-de-ejemplo">Respuesta de ejemplo</h3>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">{}</span>
+</code></pre>
+<pre class="highlight python"><code><span class="n">respuesta</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="c"># Respuesta completa de comprobante y sus propiedades relacionadas</span>
+<span class="p">{</span>
+    <span class="s">"secuencial"</span><span class="p">:</span> <span class="s">"16"</span><span class="p">,</span>
+    <span class="s">"fecha_emision"</span><span class="p">:</span> <span class="s">"2015-05-15"</span><span class="p">,</span>
+    <span class="s">"emisor"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"ruc"</span><span class="p">:</span> <span class="s">"0992712554001"</span><span class="p">,</span>
+        <span class="s">"razon_social"</span><span class="p">:</span> <span class="s">"DATILMEDIA S.A."</span><span class="p">,</span>
+        <span class="s">"nombre_comercial"</span><span class="p">:</span> <span class="s">"Dátil"</span><span class="p">,</span>
+        <span class="s">"direccion"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s">"obligado_contabilidad"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s">"contribuyente_especial"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+        <span class="s">"establecimiento"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"001"</span><span class="p">,</span>
+            <span class="s">"direccion"</span><span class="p">:</span> <span class="s">"V.E. 112 Y CIRCUNVALACION NORTE"</span><span class="p">,</span>
+            <span class="s">"punto_emision"</span><span class="p">:</span> <span class="s">"100"</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s">"estado"</span><span class="p">:</span> <span class="s">"AUTORIZADO"</span><span class="p">,</span>
+    <span class="s">"correos_enviados"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s">"fecha_envio"</span><span class="p">:</span> <span class="s">"2015-05-15T16:36:48.274604"</span><span class="p">,</span>
+            <span class="s">"destinatarios"</span><span class="p">:</span> <span class="s">"juanantonioplaza@datilmedia.com"</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s">"guia_remision"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"moneda"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
+    <span class="s">"id"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s">"informacion_adicional"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">"ambiente"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+    <span class="s">"totales"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"total_sin_impuestos"</span><span class="p">:</span> <span class="s">"150.00"</span><span class="p">,</span>
+        <span class="s">"descuento"</span><span class="p">:</span> <span class="s">"0.00"</span><span class="p">,</span>
+        <span class="s">"propina"</span><span class="p">:</span> <span class="s">"0.00"</span><span class="p">,</span>
+        <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"codigo"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s">"codigo_porcentaje"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+                <span class="s">"base_imponible"</span><span class="p">:</span> <span class="s">"150.00"</span><span class="p">,</span>
+                <span class="s">"valor"</span><span class="p">:</span> <span class="s">"18.00"</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"importe_total"</span><span class="p">:</span> <span class="s">"168.00"</span>
+    <span class="p">},</span>
+    <span class="s">"comprador"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"razon_social"</span><span class="p">:</span> <span class="s">"Juan Antonio Plaza Argüello"</span><span class="p">,</span>
+        <span class="s">"identificacion"</span><span class="p">:</span> <span class="s">"0900102222"</span><span class="p">,</span>
+        <span class="s">"tipo_identificacion"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">"email"</span><span class="p">:</span> <span class="s">"juanantonioplaza@datilmedia.com"</span><span class="p">,</span>
+        <span class="s">"direccion"</span><span class="p">:</span> <span class="s">"Calle Uno y Calle Dos"</span><span class="p">,</span>
+        <span class="s">"telefono"</span><span class="p">:</span> <span class="s">"043334445"</span>
+    <span class="p">},</span>
+    <span class="s">"envio_sri"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"mensajes"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"estado"</span><span class="p">:</span> <span class="s">"RECIBIDA"</span><span class="p">,</span>
+        <span class="s">"fecha"</span><span class="p">:</span> <span class="s">""</span>
+    <span class="p">},</span>
+    <span class="s">"tipo_emision"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+    <span class="s">"items"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">"Estadía"</span><span class="p">:</span> <span class="s">"2 noches"</span><span class="p">,</span>
+                <span class="s">"Habitación"</span><span class="p">:</span> <span class="s">"203"</span>
+            <span class="p">},</span>
+            <span class="s">"cantidad"</span><span class="p">:</span> <span class="s">"1.000000"</span><span class="p">,</span>
+            <span class="s">"codigo_principal"</span><span class="p">:</span> <span class="s">"HAB"</span><span class="p">,</span>
+            <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"DOB"</span><span class="p">,</span>
+            <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Habitación doble"</span><span class="p">,</span>
+            <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="s">"150.000000"</span><span class="p">,</span>
+            <span class="s">"descuento"</span><span class="p">:</span> <span class="s">"0.00"</span><span class="p">,</span>
+            <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s">"tarifa"</span><span class="p">:</span> <span class="s">"12.00"</span><span class="p">,</span>
+                    <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+                    <span class="s">"codigo_porcentaje"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+                    <span class="s">"base_imponible"</span><span class="p">:</span> <span class="s">"150.00"</span><span class="p">,</span>
+                    <span class="s">"valor"</span><span class="p">:</span> <span class="s">"18.00"</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s">"version"</span><span class="p">:</span> <span class="s">"1.0.0"</span><span class="p">,</span>
+    <span class="s">"clave_acceso"</span><span class="p">:</span> <span class="s">"1505201501099271255400110011000000000162092727615"</span><span class="p">,</span>
+    <span class="s">"autorizacion"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"estado"</span><span class="p">:</span> <span class="s">"AUTORIZADO"</span><span class="p">,</span>
+        <span class="s">"mensajes"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"identificador"</span><span class="p">:</span> <span class="s">"60"</span><span class="p">,</span>
+                <span class="s">"mensaje"</span><span class="p">:</span> <span class="s">"ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS"</span><span class="p">,</span>
+                <span class="s">"tipo"</span><span class="p">:</span> <span class="s">"INFORMATIVO"</span><span class="p">,</span>
+                <span class="s">"informacion_adicional"</span><span class="p">:</span> <span class="s">""</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"numero"</span><span class="p">:</span> <span class="s">"1505201516323509927125540010266935227"</span><span class="p">,</span>
+        <span class="s">"fecha"</span><span class="p">:</span> <span class="s">"2015-05-15T16:32:35.000380"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
 <table><thead>
 <tr>
@@ -346,42 +579,42 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la factura. <em>Requerido</em></td>
+<td>Número de secuencia de la factura. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>emisor</td>
 <td><a href="#emisor">emisor</a></td>
-<td>Información completa del emisor. <em>Requerido</em></td>
+<td>Información completa del emisor. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <em>Requerido</em></td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>. Producción <code class="prettyprint">2</code> <em>Requerido</em></td>
+<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>totales</td>
 <td>objeto <a href="#totales">totales</a></td>
-<td>Listado de totales. <em>Requerido</em></td>
+<td>Listado de totales. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
 <td>objeto <a href="#comprador">comprador</a></td>
-<td>Información del comprador. <em>Requerido</em></td>
+<td>Información del comprador. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><em>Requerido</em></td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item">item</a></td>
-<td>Items incluídos en la factura. <em>Requerido</em></td>
+<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
+<td>Items incluídos en la factura. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>version</td>
@@ -391,18 +624,19 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, el API la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>envio_sri</td>
+<td>objeto <a href="#envio-sri">envio sri</a></td>
+<td>Información luego de enviar el comprobante.</td>
+</tr>
+<tr>
+<td>autorizacion</td>
+<td>objeto <a href="#autorizacion-sri">autorizacion sri</a></td>
+<td>Información de la autorización.</td>
 </tr>
 </tbody></table>
-
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
-
-<h3 id="respuesta">Respuesta</h3>
-
-<p>Retorna un objeto <em><a href="#reqerimiento">factura</a></em> qu incluye un nuevo parámetro <code class="prettyprint">id</code>
-que identifica de manera única a la factura.</p>
 
 <h1 id="clave-de-acceso">Clave de acceso</h1>
 
@@ -462,15 +696,15 @@ que identifica de manera única a la factura.</p>
 </tr>
 </tbody></table>
 
-<p><em>Nota:</em> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
+<p><strong>Nota:</strong> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
 
 <p>El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).</p>
 
 <p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
 
-<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11</p>
+<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
 
-<h1 id="objetos-del-api">Objetos del API</h1>
+<h1 id="objetos-anidados">Objetos anidados</h1>
 
 <h2 id="emisor">Emisor</h2>
 
@@ -612,7 +846,7 @@ que identifica de manera única a la factura.</p>
 
 <h2 id="totales">Totales</h2>
 
-<p>Representa un establecimiento del comercio.</p>
+<p>Totales del comprobante.</p>
 
 <table><thead>
 <tr>
@@ -622,8 +856,28 @@ que identifica de manera única a la factura.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos.</td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>Suma de los descuentos de cada ítem.</td>
+</tr>
+<tr>
+<td>propina</td>
+<td>float</td>
+<td>Propina total, llamado también servicio.</td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos.</td>
+</tr>
+<tr>
 <td>impuestos</td>
-<td>listado de objetos <a href="#total-impuesto">impuesto</a></td>
+<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
 <td>Listado de impuesto totalizados.</td>
 </tr>
 </tbody></table>
@@ -647,13 +901,115 @@ que identifica de manera única a la factura.</p>
 <td>string</td>
 <td>Código del porcentaje.</td>
 </tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total.</td>
+</tr>
+</tbody></table>
+
+<h2 id="item-de-factura">Item de factura</h2>
+
+<p>Representa un producto o servicio del comercio.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_unitario</td>
+<td>float</td>
+<td>Precio unitario. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>El descuento es aplicado por cada producto. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_total_sin_impuestos</td>
+<td>float</td>
+<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
+<td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>detalles_adicionales</td>
+<td>object</td>
+<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="impuesto-item">Impuesto item</h3>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del impuesto.</td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del porcentaje.</td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total.</td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+</tr>
 </tbody></table>
 
           <h1 id="errores">Errores</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>Códigos de error:</p>
+<p>Listado de posibles códigos de error y su significado.</p>
 
 <table><thead>
 <tr>
@@ -698,8 +1054,8 @@ que identifica de manera única a la factura.</p>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="python">Python</a>
           </div>
       </div>
     </div>
