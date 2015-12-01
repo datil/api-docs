@@ -713,6 +713,27 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 </tr>
 </tbody></table>
 
+<h2 id="re-emisión-de-una-factura">Re-emisión de una factura</h2>
+
+<h3 id="operación">Operación</h3>
+
+<p><code class="prettyprint">POST /invoices/:id/reissue</code></p>
+
+<h3 id="requerimiento">Requerimiento</h3>
+
+<p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
+DEVUELTOS por el Servicio de Rentas Internas.</p>
+
+<p>En la URL de esta opción se debe incluir el <code class="prettyprint">id</code> de la factura recibida al 
+momento de emitirla.</p>
+
+<p>El cuerpo del requerimiento es un objeto <a href="#requerimiento">factura</a> con los 
+datos corregidos para que pueda ser procesado y autorizado.</p>
+
+<h3 id="respuesta">Respuesta</h3>
+
+<p>Retornará un error si el comprobante se encuentra autorizado.</p>
+
       </div>
       <div class="dark-box">
       </div>
