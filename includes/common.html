@@ -247,7 +247,7 @@ estar estructurada la clave de acceso.</p>
 
 <h2 id="totales">Totales</h2>
 
-<p>Totales del comprobante.</p>
+<p>Totales de la factura.</p>
 
 <table><thead>
 <tr>
@@ -259,27 +259,32 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>total_sin_impuestos</td>
 <td>float</td>
-<td>Total antes de los impuestos.</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento_adicional</td>
+<td>float</td>
+<td>Descuento aplicado al subtotal de la factura.</td>
 </tr>
 <tr>
 <td>descuento</td>
 <td>float</td>
-<td>Suma de los descuentos de cada ítem.</td>
+<td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>propina</td>
 <td>float</td>
-<td>Propina total, llamado también servicio.</td>
+<td>Propina total, llamado también servicio. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
 <td>float</td>
-<td>Total incluyendo impuestos.</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>impuestos</td>
 <td>listado de objetos <a href="#impuesto-total">total impuesto</a></td>
-<td>Listado de impuesto totalizados.</td>
+<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
