@@ -2136,6 +2136,24 @@ del comprobante emitido.</p>
 </tr>
 </tbody></table>
 
+<p>El evento <code class="prettyprint">receipt-issued</code> es emitido cuando el proceso de emisión termina
+correctamente. Los posibles estados de un comprobante al terminar de ser
+procesado correctamente pueden ser:</p>
+
+<ul>
+<li>AUTORIZADO</li>
+<li>NO AUTORIZADO</li>
+</ul>
+
+<p>El evento <code class="prettyprint">issue-error</code> es emitido cuando ocurre un error en uno de los pasos
+del proceso de emisión. Los posibles estados de un comprobante al terminar de ser
+procesado correctamente pueden ser:</p>
+
+<ul>
+<li>CREADO (cuando no pudo ser firmado)</li>
+<li>DEVUELTO</li>
+</ul>
+
 <h2 id="eventos">Eventos</h2>
 
 <p>Al ejecutarse un evento se enviará en un requerimiento tipo <em>POST</em>, la información completa del comprobante en
@@ -2430,6 +2448,100 @@ momento de la suscripción.</p>
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="error-en-firma">Error en firma</h3>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="mi">766</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firma"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"bad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Clave de firma incorrecta, por favor inténtalo nuevamente."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">400</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-16T15:38:01-05:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emisor"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"ruc"</span><span class="p">:</span><span class="s2">"1792478103001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="s2">"Dátil"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="s2">"Datilmedia S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Guayaquil Ecuador"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establecimiento"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="s2">"003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Av. Primera 123 y Calle 2da, Guayas, Guayaquil."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"jplaza@datilmedia.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tipo"</span><span class="p">:</span><span class="s2">"factura"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"moneda"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"9d30f85b12435a007ba1235e5007d123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"certificate-password"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totales"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="mf">2274.11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="mf">272.89</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codigo"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="mf">2547.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"propina"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descuento"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descuento_adicional"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"comprador"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"jplaza@datilmedia.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="s2">"0924392929"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="s2">"04"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="s2">"Juan Antonio Plaza"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Mall del Sol Piso 3, Guayaquil"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefono"</span><span class="p">:</span><span class="s2">"099999119"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="s2">"8806085980334"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="s2">"TELEVISORES LED 3D SAMSUNG UN55H6400AHXPA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="mf">0.12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="mf">12.0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"descuento"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="s2">"8806085462113"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="s2">"LED 46 UN46F5500 SMART SAMSUNG"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="mf">1200.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="mf">1200.00</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="mi">144</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"descuento"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="s2">"1612201501179247810300120010030987657662795494211"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"api-key"</span><span class="p">:</span><span class="s2">"1b123043215678b890ce7656780032ce"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
