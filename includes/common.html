@@ -178,9 +178,9 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="comprador">Comprador</h2>
+<h2 id="persona">Persona</h2>
 
-<p>Datos de un comprador.</p>
+<p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
 
 <table><thead>
 <tr>
@@ -192,22 +192,32 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>razon_social</td>
 <td>string</td>
-<td>Razón social del comprador. Máximo 300 caracteres.</td>
+<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>identificacion</td>
 <td>string</td>
-<td>De 5 a 20 caracteres.</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico del cliente.</td>
+<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono.</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
 </tr>
 </tbody></table>
 
@@ -247,7 +257,7 @@ estar estructurada la clave de acceso.</p>
 
 <h2 id="totales">Totales</h2>
 
-<p>Totales de la factura.</p>
+<p>Totales de facturas y notas de crédito.</p>
 
 <table><thead>
 <tr>
@@ -316,6 +326,205 @@ estar estructurada la clave de acceso.</p>
 <td>valor</td>
 <td>float</td>
 <td>Valor del total.</td>
+</tr>
+</tbody></table>
+
+<h3 id="impuesto-item">Impuesto item</h3>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del porcentaje.</td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total.</td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+</tr>
+</tbody></table>
+
+<h2 id="impuesto-retenido">Impuesto Retenido</h2>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible, máximo 2 cifras decimales. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código de <a href="#tipos-de-impuesto-para-la-retención">tipo de impuesto</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td><a href="#retención-iva">Código del porcentaje</a> a aplicar dentro del tipo de impuesto <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>porcentaje</td>
+<td>float</td>
+<td>Porcentaje establecido para el impuesto</td>
+</tr>
+<tr>
+<td>valor_retenido</td>
+<td>float</td>
+<td>Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision_documento_sustento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_sustento</td>
+<td>string</td>
+<td>Número completo del documento sobre el que se aplica la retención. Ejm: 001-002-592738007</td>
+</tr>
+</tbody></table>
+
+<h2 id="destinatario">Destinatario</h2>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social del comprador. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico del destinatario.</td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono.</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>ruta</td>
+<td>string</td>
+<td>Ruta de transporte. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>documento_aduanero_unico</td>
+<td>string</td>
+<td>Máximo 20 caracteres.</td>
+</tr>
+<tr>
+<td>fecha_emision_documento_sustento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_sustento</td>
+<td>string</td>
+<td>Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento_sustento</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>motivo_traslado</td>
+<td>string</td>
+<td>Motivo del traslado. Ejm: Entrega de mercadería. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorizacion_documento_sustento</td>
+<td>string</td>
+<td>Autorización del documento de sustento.</td>
+</tr>
+<tr>
+<td>items</td>
+<td>arreglo de objetos tipo <a href="#item-destinatario">item destinatario</a></td>
+<td>Items transportados</td>
+</tr>
+</tbody></table>
+
+<h3 id="item-destinatario">Item destinatario</h3>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>detalles_adicionales</td>
+<td>object</td>
+<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -469,42 +678,6 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h3 id="impuesto-item">Impuesto item</h3>
-
-<table><thead>
-<tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>codigo</td>
-<td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
-</tr>
-<tr>
-<td>codigo_porcentaje</td>
-<td>string</td>
-<td>Código del porcentaje.</td>
-</tr>
-<tr>
-<td>base_imponible</td>
-<td>float</td>
-<td>Base imponible.</td>
-</tr>
-<tr>
-<td>valor</td>
-<td>float</td>
-<td>Valor del total.</td>
-</tr>
-<tr>
-<td>tarifa</td>
-<td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
-</tr>
-</tbody></table>
-
 <h1 id="catálogo">Catálogo</h1>
 
 <h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
@@ -526,6 +699,130 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>IRBPNR</td>
 <td>5</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-impuesto-para-la-retención">Tipos de impuesto para la retención</h2>
+
+<table><thead>
+<tr>
+<th>Impuesto</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RENTA</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IVA</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ISD</td>
+<td>6</td>
+</tr>
+</tbody></table>
+
+<h2 id="retención-de-iva">Retención de IVA</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>10%</td>
+<td>9</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>10</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>1</td>
+</tr>
+<tr>
+<td>70%</td>
+<td>2</td>
+</tr>
+<tr>
+<td>100%</td>
+<td>3</td>
+</tr>
+</tbody></table>
+
+<p><strong>Retención en cero</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>7</td>
+</tr>
+</tbody></table>
+
+<p><strong>No procede retención</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>8</td>
+</tr>
+</tbody></table>
+
+<h2 id="retención-isd">Retención ISD</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>5%</td>
+<td>4580</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-documentos">Tipos de documentos</h2>
+
+<table><thead>
+<tr>
+<th>Documento</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Factura</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Nota de Crédito</td>
+<td>04</td>
+</tr>
+<tr>
+<td>Nota de Débito</td>
+<td>05</td>
+</tr>
+<tr>
+<td>Guía de Remisión</td>
+<td>06</td>
+</tr>
+<tr>
+<td>Comprobante de Retención</td>
+<td>07</td>
 </tr>
 </tbody></table>
 
