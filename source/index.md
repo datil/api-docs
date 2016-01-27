@@ -30,10 +30,10 @@ emitir todos los tipos de comprobantes electrónicos: facturas, retenciones (pr�
 
 El API de Dátil está diseñado como un servicio web [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
 De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
-librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos 
+librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos
 componentes del estándar como los verbos y los códigos de respuesta.
 
-Todos las operaciones responden en formato [JSON](http://www.json.org/), 
+Todos las operaciones responden en formato [JSON](http://www.json.org/),
 incluso los errores.
 
 Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
@@ -57,7 +57,7 @@ requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
 Comprende las siguientes fases:
 
 1. __Creación__: Se registra el comprobante para posterior referencia.
-2. __Firmado__: Utilizando el certificado de firma electrónica y un algoritmo de firma digital, 
+2. __Firmado__: Utilizando el certificado de firma electrónica y un algoritmo de firma digital,
 el comprobante es firmado para que el SRI pueda verificar su legitimidad.
 3. __Envío SRI__: El comprobante es enviado al SRI para ser procesado.
 4. __Consulta de autorización SRI__: Luego de un período de espera, Dátil consulta la
@@ -72,13 +72,13 @@ documentación.
 
 # Autenticación
 
-Para obtener la clave del API, inicia sesión con tu cuenta en 
+Para obtener la clave del API, inicia sesión con tu cuenta en
 [app.datil.co](https://app.datil.co), ve a la opción _Configuración_ la
 sección "API Key".
 
 <img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
 
-Dátil utiliza claves para autorizar el acceso al API. La clave debe estar 
+Dátil utiliza claves para autorizar el acceso al API. La clave debe estar
 incluída en todos los requerimientos en una cabecera:
 
 `X-Key: <clave-del-api>`
@@ -88,4 +88,54 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 `X-Password: <clave-certificado-firma>`
 
+# Integración con microservicios
 
+Dátil utiliza [JSON Web Tokens (JWT)](http://jwt.io/) para compartir la identidad de un usuario autenticado, entre microservicios de manera distribuida. A estas llaves les llamamos Dátil Web Tokens (DWT).
+
+Los DWT son generados por el servicio de autenticación de Dátil a partir de las credenciales de un usuario. Por ahora, el acceso al servicio de autenticación de Dátil está restringido a aplicaciones de internas.
+
+Próximamente, estará disponible un servicio [OAuth](http://oauth.net/) que permitirá a aplicaciones de terceros autenticar a usuarios Dátil.
+
+## Algoritmo de cifrado
+
+Los DWT están firmados con algoritmo `RSASSA PKCS1 v1_5` con hash `sha256`. Para decodificarlo recomendamos utilizar una de las librerías de clientes listadas en [jwt.io](http://jwt.io/).
+
+## Estructura de datos
+
+El cuerpo de un DWT contiene la siguiente información:
+
+Parámetro   | Tipo      | Descripción
+---------   | --------- | ---------
+iss         | string    | Emisor del token. Siempre será "datil-token".
+exp         | integer   | Fecha de expiración.
+sub         | string    | Identificador del usuario titular del token.
+iat         | integer   | Fecha de emisión.
+datil_user  | [User](#user) | Información del usuario titular del token.
+datil_account | [Account](#account) | Información de la cuenta correspondiente al token.
+
+#### User
+
+Parámetro   | Tipo      | Descripción
+---------   | --------- | ---------
+email       | string    | Correo electrónico.
+first_name  | string    | Primer nombre del usuario.
+last_name   | string    | Apellido del usuario.
+last_updated | integer | Fecha de última actualización.
+created | integer | Fecha de creación.
+confirmed_email | boolean | Estatus de confirmación del correo electrónico.
+active | boolean | Estatus del usuario.
+id | string | Identificador del usuario.
+
+#### Account
+
+Parámetro   | Tipo      | Descripción
+---------   | --------- | ---------
+id          | string    | Identificador único de la cuenta.
+name        | string    | Nombre de la cuenta.
+email       | string    | Correo electrónico de la cuenta.
+street      | string | Dirección principal de la cuenta.
+city        | string | Ciudad principal de la cuenta.
+country     | string | Código de país de la cuenta de acuerdo al estándar [ISO-3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+zip_code    | string | Código postal de la dirección principal de la cuenta.
+phone       | string | Número de teléfono de la cuenta.
+website_url         | string | Sitio web de la cuenta.
