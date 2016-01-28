@@ -2580,17 +2580,52 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la guía de remisión.</td>
+<td>Número de secuencia de la guía de remisión. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>estado</td>
-<td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
+<td>emisor</td>
+<td><a href="#emisor">emisor</a></td>
+<td>Información completa del emisor. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>fecha_emision</td>
+<td>fecha_inicio_transporte</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>fecha_fin_transporte</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>direccion_partida</td>
+<td>string</td>
+<td>Dirección de partida</td>
+</tr>
+<tr>
+<td>transportista</td>
+<td>objeto tipo <a href="#transportista">Transportista</a></td>
+<td>Información de la persona que transporta la carga</td>
+</tr>
+<tr>
+<td>ambiente</td>
+<td>integer</td>
+<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>destinatarios</td>
+<td>listado de objetos tipo <a href="#destinatario">destinatario</a></td>
+<td>Descripción de destinatarios y la mercadería transportada. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
@@ -2605,47 +2640,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <tr>
 <td>autorizacion</td>
 <td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
-<td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
+<td>Información de la autorización.org/html/rfc3339#section-5.6)</td>
 </tr>
 <tr>
-<td>emisor</td>
-<td>objeto tipo <a href="#emisor">emisor</a></td>
-<td>Información completa del emisor.</td>
-</tr>
-<tr>
-<td>moneda</td>
-<td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
-</tr>
-<tr>
-<td>ambiente</td>
-<td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br></td>
-</tr>
-<tr>
-<td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
-<td>Listado de totales.</td>
-</tr>
-<tr>
-<td>comprador</td>
-<td>objeto <a href="#comprador">comprador</a></td>
-<td>Información del comprador.</td>
-</tr>
-<tr>
-<td>tipo_emision</td>
-<td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br></td>
-</tr>
-<tr>
-<td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la guía de remisión.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>string</td>
-<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+<td>informacion_adicional</td>
+<td>objeto</td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code></td>
 </tr>
 </tbody></table>
 
