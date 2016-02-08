@@ -51,6 +51,7 @@
   "secuencial":50,
   "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
   "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -112,6 +113,7 @@
   <span class="s">"secuencial"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
   <span class="s">"fecha_inicio_transporte"</span><span class="p">:</span><span class="s">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span>
   <span class="s">"fecha_fin_transporte"</span><span class="p">:</span><span class="s">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"direccion_partida"</span><span class="p">:</span> <span class="s">"Victor Emilio Estrada"</span><span class="p">,</span>
   <span class="s">"emisor"</span><span class="p">:{</span>
     <span class="s">"ruc"</span><span class="p">:</span><span class="s">"0910000000001"</span><span class="p">,</span>
     <span class="s">"obligado_contabilidad"</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
@@ -198,6 +200,7 @@
         <span class="s">""</span><span class="n">secuencial</span><span class="s">""</span><span class="p">:</span><span class="m">50</span><span class="p">,</span>
         <span class="s">""</span><span class="n">fecha_inicio_transporte</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">02</span><span class="p">-</span><span class="m">28</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
         <span class="s">""</span><span class="n">fecha_fin_transporte</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">02</span><span class="p">-</span><span class="m">28</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">direccion_partida</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Victor</span> <span class="n">Emilio</span> <span class="n">Estrada</span><span class="s">""</span><span class="p">,</span>
         <span class="s">""</span><span class="n">emisor</span><span class="s">""</span><span class="p">:{</span>
           <span class="s">""</span><span class="n">ruc</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0910000000001</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">obligado_contabilidad</span><span class="s">""</span><span class="p">:</span><span class="k">true</span><span class="p">,</span>
@@ -291,6 +294,16 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 <tr>
+<td>direccion_partida</td>
+<td>string</td>
+<td>Dirección de partida</td>
+</tr>
+<tr>
+<td>transportista</td>
+<td>objeto tipo <a href="#transportista">transportista</a></td>
+<td>Información de la persona que transporta la carga</td>
+</tr>
+<tr>
 <td>ambiente</td>
 <td>integer</td>
 <td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
@@ -319,6 +332,169 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>informacion_adicional</td>
 <td>objeto</td>
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h4 id="destinatario">Destinatario</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social del comprador. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico del destinatario.</td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono.</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>ruta</td>
+<td>string</td>
+<td>Ruta de transporte. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>documento_aduanero_unico</td>
+<td>string</td>
+<td>Máximo 20 caracteres.</td>
+</tr>
+<tr>
+<td>fecha_emision_documento_sustento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_sustento</td>
+<td>string</td>
+<td>Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento_sustento</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>motivo_traslado</td>
+<td>string</td>
+<td>Motivo del traslado. Ejm: Entrega de mercadería. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorizacion_documento_sustento</td>
+<td>string</td>
+<td>Autorización del documento de sustento.</td>
+</tr>
+<tr>
+<td>items</td>
+<td>arreglo de objetos tipo <a href="#item-destinatario">item destinatario</a></td>
+<td>Items transportados</td>
+</tr>
+</tbody></table>
+
+<h4 id="item-destinatario">Item destinatario</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>detalles_adicionales</td>
+<td>object</td>
+<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h4 id="transportista">Transportista</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono.</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>placa</td>
+<td>string</td>
+<td>Placa del vehículo</td>
 </tr>
 </tbody></table>
 
@@ -561,17 +737,52 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la guía de remisión.</td>
+<td>Número de secuencia de la guía de remisión. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>estado</td>
-<td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
+<td>emisor</td>
+<td><a href="#emisor">emisor</a></td>
+<td>Información completa del emisor. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>fecha_emision</td>
+<td>fecha_inicio_transporte</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>fecha_fin_transporte</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>direccion_partida</td>
+<td>string</td>
+<td>Dirección de partida</td>
+</tr>
+<tr>
+<td>transportista</td>
+<td>objeto tipo <a href="#transportista">Transportista</a></td>
+<td>Información de la persona que transporta la carga</td>
+</tr>
+<tr>
+<td>ambiente</td>
+<td>integer</td>
+<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>destinatarios</td>
+<td>listado de objetos tipo <a href="#destinatario">destinatario</a></td>
+<td>Descripción de destinatarios y la mercadería transportada. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
@@ -586,47 +797,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <tr>
 <td>autorizacion</td>
 <td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
-<td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
+<td>Información de la autorización.org/html/rfc3339#section-5.6)</td>
 </tr>
 <tr>
-<td>emisor</td>
-<td>objeto tipo <a href="#emisor">emisor</a></td>
-<td>Información completa del emisor.</td>
-</tr>
-<tr>
-<td>moneda</td>
-<td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
-</tr>
-<tr>
-<td>ambiente</td>
-<td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br></td>
-</tr>
-<tr>
-<td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
-<td>Listado de totales.</td>
-</tr>
-<tr>
-<td>comprador</td>
-<td>objeto <a href="#comprador">comprador</a></td>
-<td>Información del comprador.</td>
-</tr>
-<tr>
-<td>tipo_emision</td>
-<td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br></td>
-</tr>
-<tr>
-<td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la guía de remisión.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>string</td>
-<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+<td>informacion_adicional</td>
+<td>objeto</td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code></td>
 </tr>
 </tbody></table>
 

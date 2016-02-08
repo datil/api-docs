@@ -350,12 +350,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
+<td>objeto tipo <a href="#totales-factura">totales</a></td>
 <td>Listado de totales. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto tipo <a href="#comprador">comprador</a></td>
+<td>objeto tipo <a href="#persona">persona</a></td>
 <td>Información del comprador. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -387,6 +387,47 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>retenciones</td>
 <td>Listado de objetos de tipo <a href="#retencion-de-factura">retencion</a></td>
 <td>Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</td>
+</tr>
+</tbody></table>
+
+<h4 id="totales-factura">Totales</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento_adicional</td>
+<td>float</td>
+<td>Descuento aplicado al subtotal de la factura.</td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>propina</td>
+<td>float</td>
+<td>Propina total, llamado también servicio. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
+<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 

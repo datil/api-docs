@@ -83,8 +83,7 @@
         "codigo_porcentaje":"2"
       }
     ],
-    "total":4882.68,
-    "descuento":0.0
+    "importe_total":4882.68
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -163,9 +162,7 @@
         <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"2"</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s">"importe_total"</span><span class="p">:</span><span class="mf">4882.68</span><span class="p">,</span>
-    <span class="s">"propina"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="s">"descuento"</span><span class="p">:</span><span class="mf">0.0</span>
+    <span class="s">"importe_total"</span><span class="p">:</span><span class="mf">4882.68</span>
   <span class="p">},</span>
   <span class="s">"fecha_emision_documento_modificado"</span><span class="p">:</span> <span class="s">"2015-02-27T11:28:56.782Z"</span><span class="p">,</span>
   <span class="s">"numero_documento_modificado"</span><span class="p">:</span> <span class="s">"001-002-000058473"</span><span class="p">,</span>
@@ -269,9 +266,7 @@
               <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
             <span class="p">}</span>
           <span class="p">],</span>
-          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span><span class="m">4882.68</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">propina</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span>
+          <span class="s">""</span><span class="n">importe_total</span><span class="s">""</span><span class="p">:</span><span class="m">4882.68</span>
         <span class="p">},</span>
         <span class="s">""</span><span class="n">comprador</span><span class="s">""</span><span class="p">:{</span>
           <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">juan</span><span class="p">.</span><span class="n">perez@xyz</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
@@ -351,8 +346,13 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
 </tr>
 <tr>
+<td>comprador</td>
+<td>objeto tipo <a href="#persona">persona</a></td>
+<td>Información del comprador.</td>
+</tr>
+<tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
+<td>objeto tipo <a href="#totales-nota-credito">totales</a></td>
 <td>Listado de totales. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -399,6 +399,32 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>informacion_adicional</td>
 <td>objeto</td>
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h4 id="totales-nota-credito">Totales</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
+<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -451,9 +477,7 @@ Remember — a happy kitten is an authenticated kitten!
         </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
@@ -585,8 +609,6 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
     </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -705,12 +727,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
+<td>objeto tipo <a href="#totales-nota-de-crédito">totales</a></td>
 <td>Listado de totales.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto <a href="#comprador">comprador</a></td>
+<td>objeto tipo <a href="#persona">persona</a></td>
 <td>Información del comprador.</td>
 </tr>
 <tr>
