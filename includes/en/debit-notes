@@ -1,38 +1,8 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+<h1 id="notas-de-d-bito">Notas de Débito</h1>
 
-    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="../javascripts/all_nosearch.js" type="text/javascript"></script>
+<h2 id="emisi-n-de-una-nota-de-d-bito">Emisión de una nota de débito</h2>
 
-  </head>
-
-  <body class="includes includes_debit-notes">
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <img src="../images/navbar.png" />
-      </span>
-    </a>
-    <div class="tocify-wrapper">
-      <img src="../images/logo.png" />
-      <div id="toc">
-      </div>
-    </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <h1 id="notas-de-débito">Notas de Débito</h1>
-
-<h2 id="emisión-de-una-nota-de-débito">Emisión de una nota de débito</h2>
-
-<h3 id="operación">Operación</h3>
+<h3 id="operaci-n">Operación</h3>
 
 <p><code class="prettyprint">POST /debit-notes/issue</code></p>
 
@@ -414,80 +384,80 @@ Remember — a happy kitten is an authenticated kitten!
 <h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="mi">148</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2802201501091000000000120010010000100451993736618"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"emisor"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0910000000001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corp"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corporación S.A."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">148</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2802201501091000000000120010010000100451993736618"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emisor"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0910000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corp"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corporación S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"Tiempo de entrega"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 días"</span><span class="w">
+  </span><span class="nt">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Tiempo de entrega"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 días"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+        </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="w">
+        </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="nt">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"propina"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle única Numero 987"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"telefono"</span><span class="p">:</span><span class="w"> </span><span class="s2">"046029400"</span><span class="w">
+  </span><span class="nt">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle única Numero 987"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"telefono"</span><span class="p">:</span><span class="w"> </span><span class="s2">"046029400"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"items"</span><span class="p">:[</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">622.0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"050"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.01</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zanahoria granel  50 Kg."</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
+      </span><span class="nt">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">622.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"050"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.01</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zanahoria granel  50 Kg."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"impuestos"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+          </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Peso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.0000"</span><span class="w">
+      </span><span class="nt">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Peso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.0000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+      </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -497,7 +467,7 @@ Remember — a happy kitten is an authenticated kitten!
 el cual identifica de manera única a la nota de débito. El campo <code class="prettyprint">clave_acceso</code> 
 generado también se incluirá como parte de la respuesta.</p>
 
-<h2 id="consulta-de-una-nota-de-débito">Consulta de una nota de débito</h2>
+<h2 id="consulta-de-una-nota-de-d-bito">Consulta de una nota de débito</h2>
 
 <p>Consulta una nota de débito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
@@ -507,7 +477,7 @@ el estado actual del comprobante.</p>
 <p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
 se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <code class="prettyprint">autorizacion_sri</code> de la respuesta.</p>
 
-<h3 id="operación">Operación</h3>
+<h3 id="operaci-n">Operación</h3>
 
 <p><code class="prettyprint">GET /debit-notes/&lt;invoice-id&gt;</code></p>
 
@@ -558,99 +528,99 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1505201501099271255400110011000000000162092727615"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"emisor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0992712554001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATILMEDIA S.A."</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dátil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V.E. 112 Y CIRCUNVALACION NORTE"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1505201501099271255400110011000000000162092727615"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"emisor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0992712554001"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATILMEDIA S.A."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dátil"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V.E. 112 Y CIRCUNVALACION NORTE"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"correos_enviados"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"correos_enviados"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"fecha_envio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15T16:36:48.274604"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"destinatarios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juanantonioplaza@datilmedia.com"</span><span class="w">
+            </span><span class="nt">"fecha_envio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15T16:36:48.274604"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"destinatarios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juanantonioplaza@datilmedia.com"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"guia_remision"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nt">"guia_remision"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"propina"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
+                </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"168.00"</span><span class="w">
+        </span><span class="nt">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"168.00"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carlos L. Plaza"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0900102222"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cplaza@gye593.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle Uno y Calle Dos"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"telefono"</span><span class="p">:</span><span class="w"> </span><span class="s2">"043334445"</span><span class="w">
+    </span><span class="nt">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carlos L. Plaza"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0900102222"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cplaza@gye593.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle Uno y Calle Dos"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"telefono"</span><span class="p">:</span><span class="w"> </span><span class="s2">"043334445"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"envio_sri"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECIBIDA"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fecha"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="nt">"envio_sri"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECIBIDA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fecha"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nt">"tipo_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"Estadía"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 noches"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Habitación"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203"</span><span class="w">
+            </span><span class="nt">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"Estadía"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 noches"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"Habitación"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HAB"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOB"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Habitación doble"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="nt">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HAB"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOB"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Habitación doble"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
+                    </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"identificador"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"mensaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"tipo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFORMATIVO"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="nt">"identificador"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mensaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"tipo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFORMATIVO"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1505201516323509927125540010266935227"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fecha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15T16:32:35.000380"</span><span class="w">
+        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1505201516323509927125540010266935227"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fecha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15T16:32:35.000380"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -733,10 +703,3 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
 </tr>
 </tbody></table>
-
-      </div>
-      <div class="dark-box">
-      </div>
-    </div>
-  </body>
-</html>

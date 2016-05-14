@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Dátil</title>
+    <title>Datil API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -112,92 +112,76 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Para obtener mi clave del API</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentación gracias a Slate</a></li>
+            <li><a href='#'>Sign up for an API key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introducci-n">Introducción</h1>
+        <h1 id="introduction">Introduction</h1>
 
-<p>Integra tu aplicación con Facturación Electrónica. Este API de Dátil te permite
-emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas de crédito, notas de débito y guías de remisión.</p>
+<p>Integrate e-billing into your internet apps. The Datil API allows you to issue electronic documents in Ecuador including: invoices, withholdings, credit notes, debit notes and waybills.</p>
 
-<p>El API de Dátil está diseñado como un servicio web <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>.
-De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
-librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos
-componentes del estándar como los verbos y los códigos de respuesta.</p>
+<p>The API is designed around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>, leveraging standard HTTP verbs and response codes.</p>
 
-<p>Todos las operaciones responden en formato <a href="http://www.json.org/">JSON</a>,
-incluso los errores.</p>
+<p>Each section of this documentation describes e-billing capabilities available as a resource that you can access via HTTP from any programming language.</p>
 
-<p>Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
-emisión bajo condiciones normales, toma entre 3 a 5 segundos. Luego de ese período
-bastará con consultar el comprobante para conocer su estado.</p>
+<p>Issuing electronic documents is an asynchronous process. This means that although the API responds to your requests immediately, it will execute multiple steps in the background to have your document approved. This process may take up to 5 seconds. Once completed, you can query the status of the document or receive a notification with the result.</p>
 
-<h2 id="operaciones">Operaciones</h2>
+<h2 id="issuance-process">Issuance process</h2>
 
-<p>Una operación REST está formada por la combinación de un verbo HTTP, la URL base
-del servicio y la ruta de la operación. Las cuales se encuentran descritas en cada
-sección donde se describe una función del API. Esta operación, por ejemplo, emite
-una factura:</p>
-
-<p><code class="prettyprint">POST https://link.datil.co/invoices/issue</code></p>
-
-<p>La URI anterior en conjunto con la información en formato JSON como cuerpo del
-requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.</p>
-
-<h2 id="proceso-de-emisi-n">Proceso de emisión</h2>
-
-<p>Comprende las siguientes fases:</p>
+<p>The process includes the following steps:</p>
 
 <ol>
-<li><strong>Creación</strong>: Se registra el comprobante para posterior referencia.</li>
-<li><strong>Firmado</strong>: Utilizando el certificado de firma electrónica y un algoritmo de firma digital,
-el comprobante es firmado para que el SRI pueda verificar su legitimidad.</li>
-<li><strong>Envío SRI</strong>: El comprobante es enviado al SRI para ser procesado.</li>
-<li><strong>Consulta de autorización SRI</strong>: Luego de un período de espera, Dátil consulta la
-autorización del comprobante.</li>
-<li><strong>Envío por email</strong>: Se envía el comprobante al correo del receptor del comprobante, si una dirección de correo electrónico válida fue provista al momento de emitir el comprobante.</li>
+<li><strong>Creation</strong>: The e-document is persisted for future use.</li>
+<li><strong>Signature</strong>: Using a digital certificate, an electronic signature is applied to the e-document according to the cryptographic algorithm specified by each country tax regulations.</li>
+<li><strong>Sending</strong>: The e-document is submitted to the country tax authority for authorization.</li>
+<li><strong>Authorization Query</strong>: The tax authority service is queried for an authorization response.</li>
+<li><strong>Customer notification</strong>: The recipient (customer or supplier) is notified about the new e-document issued. If the authorization fails, the merchant receives a notification detailing the errors. In this case, the receipient does not get notified.</li>
 </ol>
 
 <aside class="notice">
-<strong>Recuerda:</strong> Este proceso es administrado completamente por nosotros y para
-emitir un comprobante bastará enviarlo siguiendo la sección pertinente de esta
-documentación.
+<strong>Remember:</strong> This whole process is executed in the background by Datil after each API request.
 </aside>
 
-<h1 id="autenticaci-n">Autenticación</h1>
+<h2 id="content-type">Content type</h2>
 
-<p>Para obtener la clave del API, inicia sesión con tu cuenta en
-<a href="https://app.datil.co">app.datil.co</a>, ve a la opción <em>Configuración</em> la
-sección &ldquo;API Key&rdquo;.</p>
+<p>All operations receive and return data in <a href="http://www.json.org/">JSON</a> format. You must specify the content type when sending POST requests:</p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>To get an API key, sign in to your account at
+<a href="https://app.datil.co">app.datil.co</a> and look for &ldquo;API key&rdquo; in &ldquo;<em>Configuración</em>&rdquo;.</p>
 
 <p><img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png"></p>
 
-<p>Dátil utiliza claves para autorizar el acceso al API. La clave debe estar
-incluída en todos los requerimientos en una cabecera:</p>
+<p>Include your API key as an HTTP header in all your requests:</p>
 
-<p><code class="prettyprint">X-Key: &lt;clave-del-api&gt;</code></p>
+<p><code class="prettyprint">X-Key: &lt;your-api-key&gt;</code></p>
 
-<p>Para emitir o re-emitir un comprobante se requiere también la clave del certificado
-de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
+<p>To issue or re-issue e-documents you need to send your digital certificate password. This password is provided to the account owner at the time of setup.</p>
 
-<p><code class="prettyprint">X-Password: &lt;clave-certificado-firma&gt;</code></p>
+<p>Include it in every issuance or re-issuance request:</p>
 
-          <h1 id="facturas">Facturas</h1>
+<p><code class="prettyprint">X-Password: &lt;digital-certificate-password&gt;</code></p>
 
-<h2 id="emisi-n-de-una-factura">Emisión de una factura</h2>
+<p>Please, store these credentials in a safe place.</p>
 
-<h3 id="operaci-n">Operación</h3>
+          <h1 id="invoices">Invoices</h1>
+
+<h2 id="issuing-an-invoice">Issuing an invoice</h2>
+
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">POST /invoices/issue</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/invoices/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -355,7 +339,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="p">]</span>
 <span class="p">}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">,</span>
     <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
@@ -373,13 +357,13 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="n">RequestFormat</span> <span class="p">=</span> <span class="n">DataFormat</span><span class="p">.</span><span class="n">Json</span><span class="p">;</span>
@@ -468,137 +452,132 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>Para la emisión de una factura se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.</p>
+<p>An invoice requires the following information:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la factura. <strong>Requerido</strong></td>
+<td>Invoice sequence number.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>emisor</td>
 <td><a href="#emisor">emisor</a></td>
-<td>Información completa del emisor. <strong>Requerido</strong></td>
+<td>Information about the issuer. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> code for the currency. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>guia_remision</td>
 <td>string</td>
-<td>Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})</td>
+<td>Waybill number associated with the invoice in the following format: 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+<td>Execution environment. Test: <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-factura">totales</a></td>
-<td>Listado de totales. <strong>Requerido</strong></td>
+<td><a href="#totales-factura">totales</a> object</td>
+<td>List of totals. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto tipo <a href="#persona">persona</a></td>
-<td>Información del comprador. <strong>Requerido</strong></td>
+<td><a href="#persona">persona</a> object</td>
+<td>Information about the recipient. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la factura. <strong>Requerido</strong></td>
+<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>Line items. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,</td>
+<td>Version of the country e-billing format. Defaults to the latest version.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#clave-de-acceso">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
-<td>objeto</td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>object</td>
+<td>Additional information about the invoice in dictionary form. Example:<br><code class="prettyprint">{&quot;plan&quot;: &quot;pro&quot;, &quot;months&quot;: &quot;1&quot;}</code></td>
 </tr>
 <tr>
 <td>retenciones</td>
-<td>Listado de objetos de tipo <a href="#retencion-de-factura">retencion</a></td>
-<td>Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</td>
+<td>list of <a href="#retencion-de-factura">retencion</a> objects</td>
+<td>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</td>
 </tr>
 </tbody></table>
 
-<h4 id="totales-factura">Totales</h4>
+<h4 id="totales-factura">Totals</h4>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>total_sin_impuestos</td>
 <td>float</td>
-<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+<td>Total before taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>descuento_adicional</td>
 <td>float</td>
-<td>Descuento aplicado al subtotal de la factura.</td>
+<td>Additional discount, applied to the invoice subtotal.</td>
 </tr>
 <tr>
 <td>descuento</td>
 <td>float</td>
-<td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
+<td>Sum of each line item discount and the additiona discount. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>propina</td>
 <td>float</td>
-<td>Propina total, llamado también servicio. <strong>Requerido</strong></td>
+<td>Tip or gratuity. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
 <td>float</td>
-<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+<td>Total including taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
-<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
+<td>list of <a href="#total-impuesto">total impuesto</a> objects</td>
+<td>List of aggregated taxes. <strong>Required</strong></td>
 </tr>
 </tbody></table>
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
-
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
@@ -678,36 +657,29 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retorna un objeto tipo <strong><a href="#requerimiento">factura</a></strong> que incluye un nuevo parámetro <code class="prettyprint">id</code>,
-el cual identifica de manera única a la factura. El campo <code class="prettyprint">clave_acceso</code> generado
-también se incluirá como parte de la respuesta.</p>
+<p>Returns a <strong><a href="#requerimiento">factura</a></strong> object that includes an <code class="prettyprint">id</code> parameter that uniquely identifies the invoice. A generated access code is included as <code class="prettyprint">clave_acceso</code>.</p>
 
-<h2 id="consulta-de-una-factura">Consulta de una factura</h2>
+<h2 id="querying-an-invoice">Querying an invoice</h2>
 
-<p>Consulta una factura para obtener toda la información del comprobante, incluyendo
-el estado del mismo.
-El parámetro <code class="prettyprint">estado</code> de la respuesta obtenida al invocar esta operación, indica 
-el estado actual del comprobante.</p>
+<p>You can query the API for the status of an invoice and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the invoice is authorized or not.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
-se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <code class="prettyprint">autorizacion_sri</code> de la respuesta.</p>
+<p>If you want to know the specific step the invoice is into the <a href="#proceso-de-emisión">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">GET /invoices/&lt;invoice-id&gt;</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/invoices/&lt;id-factura&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/invoices/&lt;id-factura&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
@@ -725,7 +697,7 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">idFactura</span> <span class="p">=</span> <span class="s">"&lt;id-factura&gt;"</span><span class="p">;</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/"</span> <span class="p">+</span> <span class="n">idFactura</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
 
       <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
 
@@ -735,12 +707,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <span class="p">}</span>
 </code></pre>
 
-<p>Reemplaza en la ruta <code class="prettyprint">&lt;invoice-ID&gt;</code> por el <code class="prettyprint">id</code> de la factura que necesitas consultar.</p>
+<p>Replace <code class="prettyprint">&lt;invoice-ID&gt;</code> with the <code class="prettyprint">id</code> of the invoice you to query.</p>
 
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
@@ -842,103 +814,102 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la factura.</td>
+<td>Invoice sequence number.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
+<td>Possible values: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>Access code.</td>
 </tr>
 <tr>
 <td>envio_sri</td>
-<td>objeto tipo <a href="#envío-sri">envio sri</a></td>
-<td>Información luego de enviar el comprobante.</td>
+<td><a href="#envío-sri">envio sri</a> object</td>
+<td>Information about the sending step.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
-<td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
+<td><a href="#autorización-sri">autorizacion sri</a> object</td>
+<td>Information about the authorization step.</td>
 </tr>
 <tr>
 <td>emisor</td>
-<td>objeto tipo <a href="#emisor">emisor</a></td>
-<td>Información completa del emisor.</td>
+<td><a href="#emisor">emisor</a> object</td>
+<td>Information about the issuer.</td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO*4217">ISO</a> of the currency.</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br></td>
+<td>Environment. Test: <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br></td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales">totales</a></td>
-<td>Listado de totales.</td>
+<td><a href="#totales">totales</a> object</td>
+<td>List of totals.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto <a href="#persona">persona</a></td>
-<td>Información del comprador.</td>
+<td><a href="#persona">persona</a> object</td>
+<td>Information about the recipient.</td>
 </tr>
 <tr>
-<td>tipo_emision</td>
+<td>tipo*emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la factura.</td>
+<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>Line items.</td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+<td>Version of the country e-billing format. Valid values: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
 </tr>
 </tbody></table>
 
-<h2 id="re-emisi-n-de-una-factura">Re-emisión de una factura</h2>
+<h2 id="re-issuing-an-invoice">Re-issuing an invoice</h2>
 
 <h3 id="operaci-n">Operación</h3>
 
 <p><code class="prettyprint">POST /invoices/:id/reissue</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
-<p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
-DEVUELTOS por el Servicio de Rentas Internas.</p>
+<p>This operation must be used to correct invoices with authorization status</p>
 
-<p>En la URL de esta opción se debe incluir el <code class="prettyprint">id</code> de la factura recibida al 
-momento de emitirla.</p>
+<p>Esta operación debe ser utilizada para corregir comprobantes <code class="prettyprint">NO AUTORIZADO</code> or <code class="prettyprint">DEVUELTO</code>. This means that the local tax authority did not authorize them.</p>
 
-<p>El cuerpo del requerimiento es un objeto <a href="#requerimiento">factura</a> con los 
-datos corregidos para que pueda ser procesado y autorizado.</p>
+<p>The <code class="prettyprint">id</code> of the invoice to be re-issued must be included in the URL.</p>
 
-<h3 id="respuesta">Respuesta</h3>
+<p>The body must include the <a href="#requerimiento">factura</a> object with the corrected parameters so it can be sent and authorized again.</p>
 
-<p>Retornará un error si el comprobante se encuentra autorizado.</p>
+<h3 id="response">Response</h3>
+
+<p>It may return an error if the invoice is already authorized.</p>
 
           <h1 id="notas-de-cr-dito">Notas de Crédito</h1>
 
