@@ -307,7 +307,7 @@
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (YYYY-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>ambiente</td>
@@ -327,7 +327,7 @@
 <tr>
 <td>fecha_emision_documento_modificado</td>
 <td>string</td>
-<td>Issuance date of the modified document in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).. <strong>Required</strong></td>
+<td>Issuance date of the modified document in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (YYYY-MM-DDHourTimeZone).. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>numero_documento_modificado</td>
@@ -392,7 +392,7 @@
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado of <a href="#total-impuesto">total impuesto</a></td>
+<td>list of <a href="#tax-totals">tax-totals</a></td>
 <td>Listado de impuesto totalizados. <strong>Required</strong></td>
 </tr>
 </tbody></table>
@@ -478,13 +478,13 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a <strong><a href="#credit-note-request">credit-note</a></strong> objectt hat includes an <code class="prettyprint">id</code> parameter that uniquely identifies the invoice. A generated access code is included as <code class="prettyprint">clave_acceso</code>.</p>
+<p>Returns a <strong><a href="#credit-note-request">credit-note</a></strong> object that includes an <code class="prettyprint">id</code> parameter that uniquely identifies the invoice. A generated access code is included as <code class="prettyprint">clave_acceso</code>.</p>
 
 <h2 id="querying-a-credit-note">Querying a credit note</h2>
 
 <p>You can query the API for the status of a credit note and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the e-document is authorized or not.</p>
 
-<p>If you want to know the specific step the invoice is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
+<p>If you want to know the specific step the credit note is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
 <h3 id="operation">Operation</h3>
 
@@ -707,6 +707,6 @@
 <tr>
 <td>version</td>
 <td>string</td>
-<td>version</td>
+<td>Version of the country e-billing format. Valid values: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
 </tr>
 </tbody></table>

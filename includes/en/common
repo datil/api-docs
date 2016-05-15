@@ -13,7 +13,7 @@
 </thead><tbody>
 <tr>
 <td>Issuance date</td>
-<td>ddmmaaaa</td>
+<td>ddmmyyyy</td>
 <td>8</td>
 </tr>
 <tr>
@@ -229,7 +229,7 @@
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td><a href="#tax-types">Invoice type</a> code. <strong>Required</strong></td>
+<td><a href="#invoice-tax-types">tax type</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
@@ -260,12 +260,12 @@
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td><a href="#tax-types">Tax type</a> code.</td>
+<td><a href="#invoice-tax-types">Tax type</a> code.</td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Invoice rate code</td>
+<td>Invoice rate code.</td>
 </tr>
 <tr>
 <td>base_imponible</td>

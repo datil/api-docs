@@ -1,20 +1,20 @@
-<h1 id="notas-de-d-bito">Notas de Débito</h1>
+<h1 id="debit-notes">Debit notes</h1>
 
-<h2 id="emisi-n-de-una-nota-de-d-bito">Emisión de una nota de débito</h2>
+<h2 id="issuing-a-debit-note">Issuing a debit note</h2>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">operation</h3>
 
 <p><code class="prettyprint">POST /debit-notes/issue</code></p>
 
-<h3 id="requerimiento-nota-debito">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/debit-notes/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "ambiente":1,
   "tipo_emision":1,
@@ -124,7 +124,7 @@
 <span class="p">}}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
-    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;your-certificate-password&gt;'</span><span class="p">,</span>
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
     <span class="s">"https://link.datil.co/debit-notes/issue"</span><span class="p">,</span>
@@ -141,14 +141,14 @@
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"debit-notes/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;your-certificate-password&gt;"</span><span class="p">);</span>
 
       <span class="n">request</span><span class="p">.</span><span class="nf">AddBody</span><span class="p">(</span><span class="err">@</span><span class="s">"{
 </span>        <span class="s">""</span><span class="n">ambiente</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
@@ -235,84 +235,83 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>Para la emisión de una nota de débito se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.</p>
+<p>A debit note requires the following information:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la nota de débito. <strong>Requerido</strong></td>
+<td>Debit number sequence number. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a></td>
-<td>Información completa del emisor. <strong>Requerido</strong></td>
+<td><a href="#issuer">issuer</a> object</td>
+<td>Information about the issuer. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (YYYY-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+<td>Environment type. Test <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-nota-debito">totales</a></td>
-<td>Listado de totales. <strong>Requerido</strong></td>
+<td>list of <a href="#debit-note-total">debit note totals</a></td>
+<td>List of debit note totals. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>fecha_emision_documento_modificado</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+<td>Issuance date of the modified e-document in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (YYYY-MM-DDHourTimeZone). <strong>Required</strong></td>
 </tr>
 <tr>
 <td>numero_documento_modificado</td>
 <td>string</td>
-<td>Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+<td>Complete document number of the e-document being modified. Normally invoices. Example: 001-002-010023098 <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_documento_modificado</td>
 <td>string</td>
-<td>Códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+<td><a href="#document-types">document-type</a>. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>motivos</td>
-<td>arreglo de objetos tipo <a href="#motivo">motivo</a></td>
-<td>Motivo o mitivos del débito. Ejm: Interés por mora. <strong>Requerido</strong></td>
+<td>list of <a href="#debit-note-reason">debit-note-reason</a></td>
+<td>Reason for the debit note. Example: Interest on an overdue loan. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,</td>
+<td>Version of the country e-billing format. Defaults to the latest version.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
 <td>objeto</td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>objeto</td>
 </tr>
 </tbody></table>
 
-<h4 id="totales-nota-debito">Totales</h4>
+<h4 id="debit-note-totals">Debit note totals</h4>
 
 <table><thead>
 <tr>
@@ -324,64 +323,60 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>total_sin_impuestos</td>
 <td>float</td>
-<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+<td>Total befor taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
 <td>float</td>
-<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+<td>Total including taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado de objetos <a href="#impuesto-nota-debito">impuesto</a></td>
-<td>Impuestos aplicados al total de cargos. <strong>Requerido</strong></td>
+<td>list of <a href="#debit-note-tax">debit-note-tax</a> objects</td>
+<td>Taxes applied to the amount of the debit note. <strong>Required</strong></td>
 </tr>
 </tbody></table>
 
-<h4 id="impuesto-nota-debito">Impuesto</h4>
+<h4 id="debit-note-tax">Debit note tax</h4>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td><a href="#invoice-tax-types">tax-type</a> code.</td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Rate code.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Taxable amount.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Total tax amount.</td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+<td>Tax rate expressed as a number between 0.0 and 100.0.</td>
 </tr>
 </tbody></table>
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
-
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
@@ -463,33 +458,27 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retorna un objeto tipo <strong><a href="#requerimiento-nota-credito">nota de débito</a></strong> que incluye un nuevo parámetro <code class="prettyprint">id</code>,
-el cual identifica de manera única a la nota de débito. El campo <code class="prettyprint">clave_acceso</code> 
-generado también se incluirá como parte de la respuesta.</p>
+<p>Returns a <strong><a href="#debit-note-request">debit-note</a></strong> object that includes an <code class="prettyprint">id</code> parameter that uniquely identifies the invoice. A generated access code is included as <code class="prettyprint">clave_acceso</code>.</p>
 
-<h2 id="consulta-de-una-nota-de-d-bito">Consulta de una nota de débito</h2>
+<h2 id="querying-a-debit-note">Querying a debit note</h2>
 
-<p>Consulta una nota de débito para obtener toda la información del comprobante, incluyendo
-el estado del mismo.
-El parámetro <code class="prettyprint">estado</code> de la respuesta obtenida al invocar esta operación, indica 
-el estado actual del comprobante.</p>
+<p>You can query the API for the status of a debit note and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the e-document is authorized or not.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
-se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <code class="prettyprint">autorizacion_sri</code> de la respuesta.</p>
+<p>If you want to know the specific step the debit note is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">GET /debit-notes/&lt;invoice-id&gt;</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/debit-notes/&lt;id-notacredito&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
@@ -520,12 +509,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <span class="p">}</span>
 </code></pre>
 
-<p>Reemplaza en la ruta <code class="prettyprint">&lt;invoice-ID&gt;</code> por el <code class="prettyprint">id</code> de la nota de débito que necesitas consultar.</p>
+<p>Replace <code class="prettyprint">&lt;invoice-ID&gt;</code> for the <code class="prettyprint">id</code> of the debit note you want to query.</p>
 
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
@@ -627,79 +616,79 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la nota de débito.</td>
+<td>credit note sequence number.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
+<td>Possible values: <code class="prettyprint">AUTORIZADO</code> (authorized), <code class="prettyprint">NO AUTORIZADO</code> (not authorized), <code class="prettyprint">ENVIADO</code> (sent), <code class="prettyprint">DEVUELTO</code> (rejected), <code class="prettyprint">RECIBIDO</code> (received).</td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>envio_sri</td>
-<td>objeto tipo <a href="#envío-sri">envio sri</a></td>
-<td>Información luego de enviar el comprobante.</td>
+<td><a href="#sri-sending">sri-sending</a> object</td>
+<td>Information about the sending step.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
-<td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
+<td><a href="#sri-authorization">sri-authorization</a> object</td>
+<td>Information about the authorization step.</td>
 </tr>
 <tr>
 <td>emisor</td>
-<td>objeto tipo <a href="#emisor">emisor</a></td>
-<td>Información completa del emisor.</td>
+<td><a href="#issuer">issuer</a></td>
+<td>Information about the issuer.</td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> code of the currency.</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br></td>
+<td>Environment: Test <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br></td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-notas-de-débito">totales</a></td>
-<td>Listado de totales.</td>
+<td>list of <a href="#credit-note-totals">credit-note-total</a></td>
+<td>List of credit note totals.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto <a href="#comprador">comprador</a></td>
-<td>Información del comprador.</td>
+<td><a href="#recipient">recipient</a> object</td>
+<td>Information about the recipient.</td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la nota de débito.</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
+<td>Line items.</td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+<td>Version of the country e-billing format. Valid values: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
 </tr>
 </tbody></table>
