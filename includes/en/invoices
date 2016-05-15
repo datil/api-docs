@@ -13,8 +13,8 @@
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/invoices/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "ambiente":1,
   "tipo_emision":1,
@@ -35,7 +35,7 @@
   },
   "moneda":"USD",
   "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
+"Tiempo de entrega":"5 días"
   },
   "totales":{
     "total_sin_impuestos":4359.54,
@@ -192,7 +192,7 @@
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;your-certificate-password&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="n">RequestFormat</span> <span class="p">=</span> <span class="n">DataFormat</span><span class="p">.</span><span class="n">Json</span><span class="p">;</span>
 
@@ -296,7 +296,7 @@
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a></td>
+<td><a href="#issuer">issuer</a></td>
 <td>Information about the issuer. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -321,12 +321,12 @@
 </tr>
 <tr>
 <td>totales</td>
-<td><a href="#totales-factura">totales</a> object</td>
+<td>list of <a href="#invoice-totals">invoice-total</a> objects</td>
 <td>List of totals. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
-<td><a href="#persona">persona</a> object</td>
+<td><a href="#recipient">recipient</a> object</td>
 <td>Information about the recipient. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -336,7 +336,7 @@
 </tr>
 <tr>
 <td>items</td>
-<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
 <td>Line items. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -347,7 +347,7 @@
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#clave-de-acceso">generate</a> an access code?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
@@ -356,12 +356,12 @@
 </tr>
 <tr>
 <td>retenciones</td>
-<td>list of <a href="#retencion-de-factura">retencion</a> objects</td>
+<td>list of <a href="#invoice-withholdings">invoice-withholding</a> objects</td>
 <td>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</td>
 </tr>
 </tbody></table>
 
-<h4 id="totales-factura">Totals</h4>
+<h4 id="invoice-totals">Invoice totals</h4>
 
 <table><thead>
 <tr>
@@ -397,7 +397,7 @@
 </tr>
 <tr>
 <td>impuestos</td>
-<td>list of <a href="#total-impuesto">total impuesto</a> objects</td>
+<td>list of <a href="#total-tax">total-tax</a> objects</td>
 <td>List of aggregated taxes. <strong>Required</strong></td>
 </tr>
 </tbody></table>
@@ -491,7 +491,7 @@
 
 <p>You can query the API for the status of an invoice and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the invoice is authorized or not.</p>
 
-<p>If you want to know the specific step the invoice is into the <a href="#proceso-de-emisión">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
+<p>If you want to know the specific step the invoice is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
 <h3 id="operation">Operation</h3>
 
@@ -669,23 +669,23 @@
 </tr>
 <tr>
 <td>envio_sri</td>
-<td><a href="#envío-sri">envio sri</a> object</td>
+<td><a href="#sri-sending">sri-sending</a> object</td>
 <td>Information about the sending step.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td><a href="#autorización-sri">autorizacion sri</a> object</td>
+<td><a href="#sri-authorization">sri-authorization</a> object</td>
 <td>Information about the authorization step.</td>
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a> object</td>
+<td><a href="#issuer">issuer</a> object</td>
 <td>Information about the issuer.</td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td><a href="https://en.wikipedia.org/wiki/ISO*4217">ISO</a> of the currency.</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO*4217">ISO</a> code of the currency.</td>
 </tr>
 <tr>
 <td>ambiente</td>
@@ -694,12 +694,12 @@
 </tr>
 <tr>
 <td>totales</td>
-<td><a href="#totales">totales</a> object</td>
+<td>list of <a href="#invoice-totals">invoice-total</a> object</td>
 <td>List of totals.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td><a href="#persona">persona</a> object</td>
+<td><a href="#recipient">recipient</a> object</td>
 <td>Information about the recipient.</td>
 </tr>
 <tr>
@@ -709,7 +709,7 @@
 </tr>
 <tr>
 <td>items</td>
-<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
 <td>Line items.</td>
 </tr>
 <tr>
@@ -733,7 +733,7 @@
 
 <p>The <code class="prettyprint">id</code> of the invoice to be re-issued must be included in the URL.</p>
 
-<p>The body must include the <a href="#requerimiento">factura</a> object with the corrected parameters so it can be sent and authorized again.</p>
+<p>The body must include the <a href="#request">factura</a> object with the corrected parameters so it can be sent and authorized again.</p>
 
 <h3 id="response">Response</h3>
 

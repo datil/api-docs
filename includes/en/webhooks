@@ -1,33 +1,29 @@
-<h1 id="notificaciones">Notificaciones</h1>
+<h1 id="notifications">Notifications</h1>
 
-<p>Dátil emite notificaciones cada vez que un comprobante es emitido. Te podrás
-suscribir a estas notificaciones proveyendo una URL en donde recibir los datos
-del comprobante emitido.</p>
+<p>Datil can send you a HTTP notification each time an e-document is issued. You can subscribe to this notifications by providing the URL where you want to receive the e-document data.</p>
 
-<h2 id="suscripci-n">Suscripción</h2>
+<h2 id="subscription">Subscription</h2>
 
-<p>Para suscribirte a las notificaciones envía un requerimiento a:</p>
-
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">POST /webhooks</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/webhooks <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "event_name": "receipt-issued",
   "webhook_url": "http://www.b2b.com/ereceipts/receive"
 }'</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">}</span>
 <span class="n">suscripcion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"event_name"</span><span class="p">:</span> <span class="s">"receipt-issued"</span><span class="p">,</span>
   <span class="s">"webhook_url"</span><span class="p">:</span> <span class="s">"http://www.b2b.com/ereceipts/receive"</span><span class="p">}</span>
@@ -47,14 +43,14 @@ del comprobante emitido.</p>
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">idFactura</span> <span class="p">=</span> <span class="s">"&lt;id-factura&gt;"</span><span class="p">;</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/"</span> <span class="p">+</span> <span class="n">idFactura</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddBody</span><span class="p">(</span><span class="err">@</span><span class="s">"{
 </span>        <span class="s">""</span><span class="n">event_name</span><span class="s">""</span><span class="p">:</span> <span class="s">"receipt-issued"</span><span class="p">,</span>
         <span class="s">""</span><span class="n">webhook_url</span><span class="s">""</span><span class="p">:</span> <span class="s">"http://www.b2b.com/ereceipts/receive"</span>
@@ -70,50 +66,44 @@ del comprobante emitido.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>event_name</td>
 <td>string</td>
-<td>Podrá ser <code class="prettyprint">receipt-issued</code> o <code class="prettyprint">issue-error</code>. <strong>Requerido</strong></td>
+<td>Valid values: <code class="prettyprint">receipt-issued</code> o <code class="prettyprint">issue-error</code>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>webhook_url</td>
 <td>string</td>
-<td>Dirección donde se recibirá la información en formato JSON <strong>Requerido</strong></td>
+<td>Your URL where notifications will be sent.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
-<p>El evento <code class="prettyprint">receipt-issued</code> es emitido cuando el proceso de emisión termina
-correctamente. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:</p>
+<p>The <code class="prettyprint">receipt-issued</code> event is emitted when the issuance process finalizes successfully. These are the possible end states:</p>
 
 <ul>
-<li>AUTORIZADO</li>
-<li>NO AUTORIZADO</li>
+<li>AUTORIZADO (authorized)</li>
+<li>NO AUTORIZADO (not authorized)</li>
 </ul>
 
-<p>El evento <code class="prettyprint">issue-error</code> es emitido cuando ocurre un error en uno de los pasos
-del proceso de emisión. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:</p>
+<p>The <code class="prettyprint">issue-error</code> event is emitted when an error occurs in any of the issuance steps. These are the possible end states:</p>
 
 <ul>
-<li>CREADO (cuando no pudo ser firmado)</li>
-<li>DEVUELTO</li>
+<li>CREADO (created)</li>
+<li>DEVUELTO (returned)</li>
 </ul>
 
-<h2 id="eventos">Eventos</h2>
+<h2 id="events">Events</h2>
 
-<p>Al ejecutarse un evento se enviará en un requerimiento tipo <em>POST</em>, la información completa del comprobante en
-conjunto con la autorización a la dirección registrada como <code class="prettyprint">webhook_url</code> al
-momento de la suscripción.</p>
+<p>For each event, you will receive a <em>POST</em> request including the e-document in JSON format at the URL you registered <code class="prettyprint">webhook_url</code>.</p>
 
-<h3 id="autorizado">Autorizado</h3>
+<h3 id="authorized">Authorized</h3>
 
-<p>Un comprobante <em>Autorizado</em> contendrá información como el siguiente ejemplo: </p>
+<p>An <em>Authorized</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -206,9 +196,9 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="no-autorizado">No Autorizado</h3>
+<h3 id="not-authorized">Not authorized</h3>
 
-<p>Un comprobante <em>No autorizado</em> contendrá información como el siguiente ejemplo: </p>
+<p>A <em>Not authorized</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -304,9 +294,9 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="devuelto">Devuelto</h3>
+<h3 id="returned">Returned</h3>
 
-<p>Un comprobante <em>Devuelto</em> contendrá información como el siguiente ejemplo: </p>
+<p>A <em>Returned</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -402,7 +392,7 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="error-en-firma">Error en firma</h3>
+<h3 id="signature-error">Signature error</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">766</span><span class="p">,</span><span class="w">
   </span><span class="nt">"firma"</span><span class="p">:{</span><span class="w">

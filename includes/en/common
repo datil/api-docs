@@ -1,202 +1,194 @@
-<h1 id="clave-de-acceso">Clave de acceso</h1>
+<h1 id="access-code">Access Code</h1>
 
-<p>El sistema se encarga de generar automáticamente la clave de acceso de cada
-comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
-Pero es posible también proveer la clave de acceso si se requiere tener control
-en la generación de esta clave. La siguiente documentación explica como debe
-estar estructurada la clave de acceso.</p>
+<p>To comply with the Ecuador tax authority, each e-document has a unique access code comprised of 49 numeric characters. Datil generates this code for you on each request.</p>
 
-<p>Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herramienta o aplicativo a utilizar por el sujeto pasivo deberá generar de manera automática la clave de acceso, que constituirá un requisito que dará el carácter de único a cada uno de los comprobantes, y la misma servirá para que el SRI indique si el comprobante es autorizado o no; se describe a continuación su conformación:</p>
+<p>In specific cases you may want to generate the access code yourself, here is how to construct it:</p>
 
 <table><thead>
 <tr>
-<th>Campo</th>
-<th>Formato</th>
-<th>Longitud</th>
+<th>Field</th>
+<th>Format</th>
+<th>Length</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Fecha de Emisión</td>
+<td>Issuance date</td>
 <td>ddmmaaaa</td>
 <td>8</td>
 </tr>
 <tr>
-<td>Tipo de Comprobante</td>
-<td>Tabla 4</td>
+<td>Document type</td>
+<td>Table 4</td>
 <td>2</td>
 </tr>
 <tr>
-<td>Número de RUC</td>
+<td>Tax identification (RUC)</td>
 <td>1234567890001</td>
 <td>13</td>
 </tr>
 <tr>
-<td>Tipo de Ambiente</td>
-<td>Tabla 5</td>
+<td>Environment type</td>
+<td>Table 5</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Serie</td>
+<td>Series</td>
 <td>001001</td>
 <td>6</td>
 </tr>
 <tr>
-<td>Número del Comprobante (secuencial)</td>
+<td>Sequencial document number</td>
 <td>000000001</td>
 <td>9</td>
 </tr>
 <tr>
-<td>Código Numérico</td>
-<td>Numérico</td>
+<td>Numeric code</td>
+<td>Numeric</td>
 <td>8</td>
 </tr>
 <tr>
-<td>Tipo de Emisión</td>
-<td>Tabla 2</td>
+<td>Issuance mode</td>
+<td>Table 2</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Dígito Verificador (módulo 11 )</td>
-<td>Numérico</td>
+<td>Check digit (modulo 11 )</td>
+<td>Numeric</td>
 <td>1</td>
 </tr>
 </tbody></table>
 
-<p><strong>Nota:</strong> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
+<p><strong>Note:</strong> All fields must conform to the specified length. If the access code is malformed the e-document will not be authorized.</p>
 
-<p>El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).</p>
+<p>The check digit must be computed using all 48 characters of the access code and then incorporated into the code using modulo 11. Here is an <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">example algorithm</a></p>
 
-<p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
+<h1 id="common-objects">Common objects</h1>
 
-<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
+<h2 id="issuer">Issuer</h2>
 
-<h1 id="objetos-comunes">Objetos comunes</h1>
-
-<h2 id="emisor">Emisor</h2>
-
-<p>Información del emisor de un comprobante.</p>
+<p>Information about the e-document issuer:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>ruc</td>
 <td>string</td>
-<td>Número de RUC de 13 caracteres</td>
+<td>Tax identification (RUC). 13 characters long.</td>
 </tr>
 <tr>
 <td>razon_social</td>
 <td>string</td>
-<td>Razón social. Máximo 300 caracteres</td>
+<td>Legal name. 300 characters limit.</td>
 </tr>
 <tr>
 <td>nombre_comercial</td>
 <td>string</td>
-<td>Nombre comercial. Máximo 300 caracteres</td>
+<td>Commercial name. 300 characters limit.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+<td>Address on record. 300 characters limit.</td>
 </tr>
 <tr>
 <td>contribuyente_especial</td>
 <td>string</td>
-<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+<td>Special contributor resolution number. Empty if you are not a special contributor.</td>
 </tr>
 <tr>
 <td>obligado_contabilidad</td>
 <td>boolean</td>
-<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+<td><code class="prettyprint">true</code> if you are required to do accounting.</td>
 </tr>
 <tr>
 <td>establecimiento</td>
-<td><a href="#establecimiento">establecimiento</a></td>
-<td>Establecimiento que emite la factura.</td>
+<td><a href="#location">location</a></td>
+<td>Location issuing the e-document.</td>
 </tr>
 </tbody></table>
 
-<h2 id="establecimiento">Establecimiento</h2>
+<h2 id="location">Location</h2>
 
-<p>Representa un establecimiento del comercio.</p>
+<p>Describes an issuing location:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Numeric identification code for the location. 3 characters long. Example: <code class="prettyprint">001</code>.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
+<td>Address on record. 300 characters limit.</td>
 </tr>
 <tr>
 <td>punto_emision</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Numeric identification code for the point of sale. Example: <code class="prettyprint">001</code>.</td>
 </tr>
 </tbody></table>
 
-<h2 id="persona">Persona</h2>
+<h2 id="recipient">Recipient</h2>
 
-<p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
+<p>Information about the e-document recipient. Used as <strong>comprador</strong> in invoices and credit notes, and <strong>sujeto</strong> in withholdings.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>razon_social</td>
 <td>string</td>
-<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Legal name. 300 characters limit. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>identificacion</td>
 <td>string</td>
-<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+<td>Tax identification. 5 to 20 characters. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td><a href="#identification-types">Identification type</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Email. 300 characters limite. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>telefono</td>
 <td>string</td>
-<td>Teléfono.</td>
+<td>Telephone.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección</td>
+<td>Address</td>
 </tr>
 </tbody></table>
 
-<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
+<h2 id="identification-types">Identification types</h2>
 
 <table><thead>
 <tr>
-<th>Tipo de identificación</th>
-<th>Código</th>
+<th>Identification type</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -225,264 +217,264 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="total-impuesto">Total Impuesto</h2>
+<h2 id="total-tax">Total Tax</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td><a href="#tax-types">Invoice type</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Invoice rate code.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Taxable amount.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Total tax amount.</td>
 </tr>
 </tbody></table>
 
-<h2 id="impuesto-item">Impuesto Item</h2>
+<h2 id="tax-item">Tax item</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td><a href="#tax-types">Tax type</a> code.</td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Invoice rate code</td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Taxable amount.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Total tax amount.</td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+<td>Tax rate expresed as a number between 0.0 y 100.0</td>
 </tr>
 </tbody></table>
 
-<h2 id="env-o-sri">Envío SRI</h2>
+<h2 id="sri-sending">SRI sending</h2>
 
-<p>Contiene la información y el estado de la fase de envío al SRI</p>
+<p>Information about the sending step of the e-document.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>mensajes</td>
-<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
-<td>Listado de mensajes.</td>
+<td>list of <a href="#sri-response-messages">SRI message</a> objects</td>
+<td>List of messages.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
+<td>Valid values: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
 </tr>
 <tr>
 <td>fecha</td>
 <td>string</td>
-<td>Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td><a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> date when the e-document was sent (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 </tbody></table>
 
-<h2 id="autorizaci-n-sri">Autorización SRI</h2>
+<h2 id="sri-authorization">SRI authorization</h2>
 
-<p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
+<p>Information about the authorization step of the e-document.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>mensajes</td>
-<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
-<td>Listado de mensajes.</td>
+<td>list of <a href="#sri-response-messages">SRI message</a> objects</td>
+<td>List of messages.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
+<td>Valid values: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
 </tr>
 <tr>
 <td>numero</td>
 <td>string</td>
-<td>Número de autorización.</td>
+<td>Authorization number.</td>
 </tr>
 <tr>
 <td>fecha</td>
 <td>string</td>
-<td>Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td><a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> date of the authorization (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 </tbody></table>
 
-<h2 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h2>
+<h2 id="sri-response-messages">SRI response messages</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identificador</td>
 <td>string</td>
-<td>Número con el que el SRI identifica al mensaje.</td>
+<td>IRS message code.</td>
 </tr>
 <tr>
 <td>mensaje</td>
 <td>string</td>
-<td>Descripción del error, información o advertencia.</td>
+<td>Description of the message.</td>
 </tr>
 <tr>
 <td>tipo</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">INFORMATIVO</code>, <code class="prettyprint">ADVERTENCIA</code>, <code class="prettyprint">ERROR</code></td>
+<td>Valid values: <code class="prettyprint">INFORMATIVO</code> (information), <code class="prettyprint">ADVERTENCIA</code> (warning), <code class="prettyprint">ERROR</code> (error).</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
 <td>string</td>
-<td>Información adicional del mensaje.</td>
+<td>Additional information.</td>
 </tr>
 </tbody></table>
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
+<h2 id="line-item">Line item</h2>
 
-<p>Representa un producto o servicio del comercio.</p>
+<p>Describes a product or service.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>descripcion</td>
 <td>string</td>
-<td>Descripción del ítem. <strong>Requerido</strong></td>
+<td>Item description. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_principal</td>
 <td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+<td>Stock keeping unit. Máximo 25 characters.</td>
 </tr>
 <tr>
 <td>codigo_auxiliar</td>
 <td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+<td>Additional stock keeping unit. Máximo 25 characters.</td>
 </tr>
 <tr>
 <td>cantidad</td>
 <td>float</td>
-<td>Cantidad de items. <strong>Requerido</strong></td>
+<td>Quantity. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>precio_unitario</td>
 <td>float</td>
-<td>Precio unitario. <strong>Requerido</strong></td>
+<td>Unit price. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>descuento</td>
 <td>float</td>
-<td>El descuento es aplicado por cada producto. <strong>Requerido</strong></td>
+<td>Unit discount.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>precio_total_sin_impuestos</td>
 <td>float</td>
-<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+<td>Price before taxes. It is the product of <code class="prettyprint">cantidad</code> and <code class="prettyprint">precio_unitario</code>.</td>
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
-<td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
+<td>listado list of <a href="#tax-line-item">tax line item</a> objects</td>
+<td>Taxes for the item. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>detalles_adicionales</td>
 <td>object</td>
-<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
+<td>Additional product information the dictionary format. Example:<br><code>{&quot;brand&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code>. Limited to 3 key and value pairs.</td>
 </tr>
 </tbody></table>
 
-<h2 id="retencion-de-factura">Retención en factura </h2>
+<h2 id="invoice-withholdings">Invoice withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</p>
+<p>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto-para-la-retención-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+<td><a href="#tax-types-for-invoice-withholdings">Tax type for invoice withholdings</a> code.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#retención-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+<td><a href="#tax-rates-for-invoice-withholdings">Tax rate for invoice withholding</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>Tax rate. 3 integers with 2 decimals limit.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>Tax amount. 12 integers with 2 decimals limit.  <strong>Required</strong></td>
 </tr>
 </tbody></table>
 
-<h1 id="cat-logo">Catálogo</h1>
+<h1 id="catalog">Catalog</h1>
 
-<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
+<h2 id="invoice-tax-types">Invoice tax types</h2>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -499,12 +491,12 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
+<h2 id="withholding-tax-types">Withholding tax types</h2>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -521,16 +513,14 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
+<h2 id="tax-types-for-invoice-withholdings">Tax types for invoice withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
-Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
-participan en la comercialización de periódicos y/o revistas.</p>
+<p>Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -539,12 +529,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva">Retención de IVA</h2>
+<h2 id="iva-withholding">IVA withholding</h2>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -569,12 +559,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>Retención en cero</strong></p>
+<p><strong>Zero-amount withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -583,12 +573,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>No procede retención</strong></p>
+<p><strong>No withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -597,12 +587,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-isd">Retención ISD</h2>
+<h2 id="isd-withholding">ISD withholding</h2>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>ISD rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -611,18 +601,16 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
+<h2 id="tax-rates-for-invoice-withholdings">Tax rates for Invoice Withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
-Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
-participan en la comercialización de periódicos y/o revistas.</p>
+<p>Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
-<p><strong>Retención IVA</strong></p>
+<p><strong>IVA withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA presuntivo</th>
-<th>Código</th>
+<th>Presuntive IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -643,12 +631,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>Retención Renta</strong></p>
+<p><strong>Income withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje Renta</th>
-<th>Código</th>
+<th>Income withholding rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -661,32 +649,32 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-documentos">Tipos de documentos</h2>
+<h2 id="document-types">Document Types</h2>
 
 <table><thead>
 <tr>
-<th>Documento</th>
-<th>Código</th>
+<th>Document</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Factura</td>
+<td>Invoice</td>
 <td>01</td>
 </tr>
 <tr>
-<td>Nota de Crédito</td>
+<td>Credit note</td>
 <td>04</td>
 </tr>
 <tr>
-<td>Nota de Débito</td>
+<td>Debit note</td>
 <td>05</td>
 </tr>
 <tr>
-<td>Guía de Remisión</td>
+<td>Waybill</td>
 <td>06</td>
 </tr>
 <tr>
-<td>Comprobante de Retención</td>
+<td>Withholding</td>
 <td>07</td>
 </tr>
 </tbody></table>

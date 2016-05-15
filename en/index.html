@@ -86,20 +86,20 @@
   color: #90a959;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <link href="../stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="../javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;csharp&quot;]">
+  <body class="en en_index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;csharp&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="../images/navbar.png" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="../images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="python">Python</a>
@@ -127,18 +127,18 @@
 
 <p>Each section of this documentation describes e-billing capabilities available as a resource that you can access via HTTP from any programming language.</p>
 
-<p>Issuing electronic documents is an asynchronous process. This means that although the API responds to your requests immediately, it will execute multiple steps in the background to have your document approved. This process may take up to 5 seconds. Once completed, you can query the status of the document or receive a notification with the result.</p>
+<p>Issuing electronic documents (e-documents) is an asynchronous process. This means that although the API responds to your requests immediately, it will execute multiple steps in the background to have your e-document authorized. This process may take up to 5 seconds. Once completed, you can query the status of the document or receive a notification with the result.</p>
 
 <h2 id="issuance-process">Issuance process</h2>
 
-<p>The process includes the following steps:</p>
+<p>The following steps are executed by Datil:</p>
 
 <ol>
-<li><strong>Creation</strong>: The e-document is persisted for future use.</li>
-<li><strong>Signature</strong>: Using a digital certificate, an electronic signature is applied to the e-document according to the cryptographic algorithm specified by each country tax regulations.</li>
-<li><strong>Sending</strong>: The e-document is submitted to the country tax authority for authorization.</li>
-<li><strong>Authorization Query</strong>: The tax authority service is queried for an authorization response.</li>
-<li><strong>Customer notification</strong>: The recipient (customer or supplier) is notified about the new e-document issued. If the authorization fails, the merchant receives a notification detailing the errors. In this case, the receipient does not get notified.</li>
+<li><strong>Creation</strong>: The e-document is persisted for future reference.</li>
+<li><strong>Signature</strong>: Using the merchant digital certificate, the e-document is electronically signed in compliance with the <a href="https://www.w3.org/TR/XAdES/">XAdES</a> standard and each tax authority data formats.</li>
+<li><strong>Sending</strong>: The e-document is submitted to the tax authority web service for authorization.</li>
+<li><strong>Authorization Query</strong>: Datil queries the tax authority web service for an authorization response.</li>
+<li><strong>Customer notification</strong>: An email notification is sent to the e-document recipient. If the authorization fails, the issuer receives an email brief of the errors and the recipient is not notified.</li>
 </ol>
 
 <aside class="notice">
@@ -168,8 +168,6 @@
 
 <p><code class="prettyprint">X-Password: &lt;digital-certificate-password&gt;</code></p>
 
-<p>Please, store these credentials in a safe place.</p>
-
           <h1 id="invoices">Invoices</h1>
 
 <h2 id="issuing-an-invoice">Issuing an invoice</h2>
@@ -185,8 +183,8 @@
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/invoices/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "ambiente":1,
   "tipo_emision":1,
@@ -207,7 +205,7 @@
   },
   "moneda":"USD",
   "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
+"Tiempo de entrega":"5 días"
   },
   "totales":{
     "total_sin_impuestos":4359.54,
@@ -364,7 +362,7 @@
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;your-certificate-password&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="n">RequestFormat</span> <span class="p">=</span> <span class="n">DataFormat</span><span class="p">.</span><span class="n">Json</span><span class="p">;</span>
 
@@ -468,7 +466,7 @@
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a></td>
+<td><a href="#issuer">issuer</a></td>
 <td>Information about the issuer. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -493,12 +491,12 @@
 </tr>
 <tr>
 <td>totales</td>
-<td><a href="#totales-factura">totales</a> object</td>
+<td>list of <a href="#invoice-totals">invoice-total</a> objects</td>
 <td>List of totals. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
-<td><a href="#persona">persona</a> object</td>
+<td><a href="#recipient">recipient</a> object</td>
 <td>Information about the recipient. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -508,7 +506,7 @@
 </tr>
 <tr>
 <td>items</td>
-<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
 <td>Line items. <strong>Required</strong></td>
 </tr>
 <tr>
@@ -519,7 +517,7 @@
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#clave-de-acceso">generate</a> an access code?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
@@ -528,12 +526,12 @@
 </tr>
 <tr>
 <td>retenciones</td>
-<td>list of <a href="#retencion-de-factura">retencion</a> objects</td>
+<td>list of <a href="#invoice-withholdings">invoice-withholding</a> objects</td>
 <td>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</td>
 </tr>
 </tbody></table>
 
-<h4 id="totales-factura">Totals</h4>
+<h4 id="invoice-totals">Invoice totals</h4>
 
 <table><thead>
 <tr>
@@ -569,7 +567,7 @@
 </tr>
 <tr>
 <td>impuestos</td>
-<td>list of <a href="#total-impuesto">total impuesto</a> objects</td>
+<td>list of <a href="#total-tax">total-tax</a> objects</td>
 <td>List of aggregated taxes. <strong>Required</strong></td>
 </tr>
 </tbody></table>
@@ -663,7 +661,7 @@
 
 <p>You can query the API for the status of an invoice and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the invoice is authorized or not.</p>
 
-<p>If you want to know the specific step the invoice is into the <a href="#proceso-de-emisión">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
+<p>If you want to know the specific step the invoice is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
 <h3 id="operation">Operation</h3>
 
@@ -841,23 +839,23 @@
 </tr>
 <tr>
 <td>envio_sri</td>
-<td><a href="#envío-sri">envio sri</a> object</td>
+<td><a href="#sri-sending">sri-sending</a> object</td>
 <td>Information about the sending step.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td><a href="#autorización-sri">autorizacion sri</a> object</td>
+<td><a href="#sri-authorization">sri-authorization</a> object</td>
 <td>Information about the authorization step.</td>
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a> object</td>
+<td><a href="#issuer">issuer</a> object</td>
 <td>Information about the issuer.</td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td><a href="https://en.wikipedia.org/wiki/ISO*4217">ISO</a> of the currency.</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO*4217">ISO</a> code of the currency.</td>
 </tr>
 <tr>
 <td>ambiente</td>
@@ -866,12 +864,12 @@
 </tr>
 <tr>
 <td>totales</td>
-<td><a href="#totales">totales</a> object</td>
+<td>list of <a href="#invoice-totals">invoice-total</a> object</td>
 <td>List of totals.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td><a href="#persona">persona</a> object</td>
+<td><a href="#recipient">recipient</a> object</td>
 <td>Information about the recipient.</td>
 </tr>
 <tr>
@@ -881,7 +879,7 @@
 </tr>
 <tr>
 <td>items</td>
-<td>list of <a href="#item-de-factura">item</a> objects</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
 <td>Line items.</td>
 </tr>
 <tr>
@@ -905,29 +903,29 @@
 
 <p>The <code class="prettyprint">id</code> of the invoice to be re-issued must be included in the URL.</p>
 
-<p>The body must include the <a href="#requerimiento">factura</a> object with the corrected parameters so it can be sent and authorized again.</p>
+<p>The body must include the <a href="#request">factura</a> object with the corrected parameters so it can be sent and authorized again.</p>
 
 <h3 id="response">Response</h3>
 
 <p>It may return an error if the invoice is already authorized.</p>
 
-          <h1 id="notas-de-cr-dito">Notas de Crédito</h1>
+          <h1 id="credit-notes">Credit notes</h1>
 
-<h2 id="emisi-n-de-una-nota-de-cr-dito">Emisión de una nota de crédito</h2>
+<h2 id="issuing-a-credit-note">Issuing a credit note</h2>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">POST /credit-notes/issue</code></p>
 
-<h3 id="requerimiento-nota-credito">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/credit-notes/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-digital-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "ambiente":1,
   "tipo_emision":1,
@@ -1085,7 +1083,7 @@
 <span class="p">}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
-    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;your-digital-certificate-password&gt;'</span><span class="p">,</span>
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
     <span class="s">"https://link.datil.co/credit-notes/issue"</span><span class="p">,</span>
@@ -1102,14 +1100,14 @@
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"credit-notes/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;your-digital-certificate-password&gt;"</span><span class="p">);</span>
 
       <span class="n">request</span><span class="p">.</span><span class="nf">AddBody</span><span class="p">(</span><span class="err">@</span><span class="s">"{
 </span>        <span class="s">""</span><span class="n">ambiente</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
@@ -1193,132 +1191,127 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>Para la emisión de una nota de crédito se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.</p>
+<p>A credit note requires the following information:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la nota de crédito. <strong>Requerido</strong></td>
+<td>Credit note sequence number. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>emisor</td>
-<td><a href="#emisor">emisor</a></td>
-<td>Información completa del emisor. <strong>Requerido</strong></td>
+<td><a href="#issuer">issuer</a></td>
+<td>Information about the issuer.. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> currency code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br><strong>Requerido</strong></td>
+<td>Environment type. Test: <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto tipo <a href="#persona">persona</a></td>
-<td>Información del comprador.</td>
+<td><a href="#recipient">recipient</a> object</td>
+<td>Recipient information.</td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-nota-credito">totales</a></td>
-<td>Listado de totales. <strong>Requerido</strong></td>
+<td>list of <a href="#credit-note-totals">credit note totals</a> objects</td>
+<td>List of totals. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>fecha_emision_documento_modificado</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+<td>Issuance date of the modified document in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>numero_documento_modificado</td>
 <td>string</td>
-<td>Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+<td>Complete document number of the e-document being modified. Normally invoices. Example: 001-002-010023098 <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_documento_modificado</td>
 <td>string</td>
-<td>Códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+<td><a href="#document-types">Document type</a> object. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>motivo</td>
 <td>string</td>
-<td>Motivo de la operación. Ejm: Devolución de producto. <strong>Requerido</strong></td>
+<td>Reason for the credit note. Example: Product return. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br><strong>Required</strong></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la nota de crédito. <strong>Requerido</strong></td>
+<td>list of <a href="#line-item">item</a></td>
+<td>Items included in the credit note. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,</td>
+<td>Version of the country e-billing format. Defaults to the latest version.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
 <td>objeto</td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>Additional information about the invoice in dictionary form. Example:<br><code class="prettyprint">{&quot;plan&quot;: &quot;pro&quot;, &quot;months&quot;: &quot;1&quot;}</code></td>
 </tr>
 </tbody></table>
 
-<h4 id="totales-nota-credito">Totales</h4>
+<h4 id="credit-note-totals">Credit note totals</h4>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>total_sin_impuestos</td>
 <td>float</td>
-<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+<td>Total before taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
 <td>float</td>
-<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+<td>Total including taxes. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
-<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
+<td>listado of <a href="#total-impuesto">total impuesto</a></td>
+<td>Listado de impuesto totalizados. <strong>Required</strong></td>
 </tr>
 </tbody></table>
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
-
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
@@ -1396,36 +1389,30 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retorna un objeto tipo <strong><a href="#requerimiento-nota-credito">nota de crédito</a></strong> que incluye un nuevo parámetro <code class="prettyprint">id</code>,
-el cual identifica de manera única a la nota de crédito. El campo <code class="prettyprint">clave_acceso</code> 
-generado también se incluirá como parte de la respuesta.</p>
+<p>Returns a <strong><a href="#credit-note-request">credit-note</a></strong> objectt hat includes an <code class="prettyprint">id</code> parameter that uniquely identifies the invoice. A generated access code is included as <code class="prettyprint">clave_acceso</code>.</p>
 
-<h2 id="consulta-de-una-nota-de-cr-dito">Consulta de una nota de crédito</h2>
+<h2 id="querying-a-credit-note">Querying a credit note</h2>
 
-<p>Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
-el estado del mismo.
-El parámetro <code class="prettyprint">estado</code> de la respuesta obtenida al invocar esta operación, indica 
-el estado actual del comprobante.</p>
+<p>You can query the API for the status of a credit note and look for the <code class="prettyprint">estado</code> parameter. This will tell you if the e-document is authorized or not.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
-se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <code class="prettyprint">autorizacion_sri</code> de la respuesta.</p>
+<p>If you want to know the specific step the invoice is into the <a href="#issuance-process">issuance process</a>, look for value in <code class="prettyprint">envio_sri</code> and <code class="prettyprint">autorizacion_sri</code>.</p>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">GET /credit-notes/&lt;invoice-id&gt;</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
-<pre class="highlight shell"><code>curl -v https://link.datil.co/credit-notes/&lt;id-notacredito&gt; <span class="se">\</span>
+<pre class="highlight shell"><code>curl -v https://link.datil.co/credit-notes/&lt;id-credit-note&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-digital-certificate-password&gt;"</span> <span class="se">\</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/credit-notes/&lt;id-notacredito&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
@@ -1453,12 +1440,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <span class="p">}</span>
 </code></pre>
 
-<p>Reemplaza en la ruta <code class="prettyprint">&lt;invoice-ID&gt;</code> por el <code class="prettyprint">id</code> de la nota de crédito que necesitas consultar.</p>
+<p>Replace <code class="prettyprint">&lt;invoice-ID&gt;</code> for the <code class="prettyprint">id</code> of the credit note you want to query.</p>
 
-<h3 id="respuesta">Respuesta</h3>
+<h3 id="response">Response</h3>
 
 <blockquote>
-<h4 id="respuesta-de-ejemplo">Respuesta de ejemplo</h4>
+<h4 id="example-response">Example response</h4>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
@@ -1558,80 +1545,80 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la nota de crédito.</td>
+<td>credit note sequence number.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code>, <code class="prettyprint">ENVIADO</code>, <code class="prettyprint">DEVUELTO</code>, <code class="prettyprint">RECIBIDO</code></td>
+<td>Possible values: <code class="prettyprint">AUTORIZADO</code> (authorized), <code class="prettyprint">NO AUTORIZADO</code> (not authorized), <code class="prettyprint">ENVIADO</code> (sent), <code class="prettyprint">DEVUELTO</code> (rejected), <code class="prettyprint">RECIBIDO</code> (received).</td>
 </tr>
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Issuance date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
 <td>string</td>
-<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+<td>The access code represents a unique identified for the document. Datil will generate an access code if you don&rsquo;t provide it.<br>¿How to <a href="#access-code">generate</a> an access code?</td>
 </tr>
 <tr>
 <td>envio_sri</td>
-<td>objeto tipo <a href="#envío-sri">envio sri</a></td>
-<td>Información luego de enviar el comprobante.</td>
+<td><a href="#sri-sending">sri-sending</a> object</td>
+<td>Information about the sending step.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
-<td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
+<td><a href="#sri-authorization">sri-authorization</a> object</td>
+<td>Information about the authorization step.</td>
 </tr>
 <tr>
 <td>emisor</td>
-<td>objeto tipo <a href="#emisor">emisor</a></td>
-<td>Información completa del emisor.</td>
+<td><a href="#issuer">issuer</a></td>
+<td>Information about the issuer.</td>
 </tr>
 <tr>
 <td>moneda</td>
 <td>string</td>
-<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> code of the currency.</td>
 </tr>
 <tr>
 <td>ambiente</td>
 <td>integer</td>
-<td>Pruebas: <code class="prettyprint">1</code>.<br>Producción <code class="prettyprint">2</code>.<br></td>
+<td>Environment: Test <code class="prettyprint">1</code>.<br>Production <code class="prettyprint">2</code>.<br></td>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-nota-de-crédito">totales</a></td>
-<td>Listado de totales.</td>
+<td>list of <a href="#credit-note-totals">credit-note-total</a></td>
+<td>List of credit note totals.</td>
 </tr>
 <tr>
 <td>comprador</td>
-<td>objeto tipo <a href="#persona">persona</a></td>
-<td>Información del comprador.</td>
+<td><a href="#recipient">recipient</a> object</td>
+<td>Information about the recipient.</td>
 </tr>
 <tr>
 <td>tipo_emision</td>
 <td>integer</td>
-<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br></td>
+<td>Issuance mode. Normal: <code class="prettyprint">1</code>.<br>Contingency: <code class="prettyprint">2</code><br></td>
 </tr>
 <tr>
 <td>items</td>
-<td>listado de objetos tipo <a href="#item-de-factura">item</a></td>
-<td>Items incluídos en la nota de crédito.</td>
+<td>list of <a href="#line-item">line-item</a> objects</td>
+<td>Line items.</td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
-<td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
+<td>version</td>
 </tr>
 </tbody></table>
 
@@ -3678,205 +3665,197 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 </tr>
 </tbody></table>
 
-          <h1 id="clave-de-acceso">Clave de acceso</h1>
+          <h1 id="access-code">Access Code</h1>
 
-<p>El sistema se encarga de generar automáticamente la clave de acceso de cada
-comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
-Pero es posible también proveer la clave de acceso si se requiere tener control
-en la generación de esta clave. La siguiente documentación explica como debe
-estar estructurada la clave de acceso.</p>
+<p>To comply with the Ecuador tax authority, each e-document has a unique access code comprised of 49 numeric characters. Datil generates this code for you on each request.</p>
 
-<p>Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herramienta o aplicativo a utilizar por el sujeto pasivo deberá generar de manera automática la clave de acceso, que constituirá un requisito que dará el carácter de único a cada uno de los comprobantes, y la misma servirá para que el SRI indique si el comprobante es autorizado o no; se describe a continuación su conformación:</p>
+<p>In specific cases you may want to generate the access code yourself, here is how to construct it:</p>
 
 <table><thead>
 <tr>
-<th>Campo</th>
-<th>Formato</th>
-<th>Longitud</th>
+<th>Field</th>
+<th>Format</th>
+<th>Length</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Fecha de Emisión</td>
+<td>Issuance date</td>
 <td>ddmmaaaa</td>
 <td>8</td>
 </tr>
 <tr>
-<td>Tipo de Comprobante</td>
-<td>Tabla 4</td>
+<td>Document type</td>
+<td>Table 4</td>
 <td>2</td>
 </tr>
 <tr>
-<td>Número de RUC</td>
+<td>Tax identification (RUC)</td>
 <td>1234567890001</td>
 <td>13</td>
 </tr>
 <tr>
-<td>Tipo de Ambiente</td>
-<td>Tabla 5</td>
+<td>Environment type</td>
+<td>Table 5</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Serie</td>
+<td>Series</td>
 <td>001001</td>
 <td>6</td>
 </tr>
 <tr>
-<td>Número del Comprobante (secuencial)</td>
+<td>Sequencial document number</td>
 <td>000000001</td>
 <td>9</td>
 </tr>
 <tr>
-<td>Código Numérico</td>
-<td>Numérico</td>
+<td>Numeric code</td>
+<td>Numeric</td>
 <td>8</td>
 </tr>
 <tr>
-<td>Tipo de Emisión</td>
-<td>Tabla 2</td>
+<td>Issuance mode</td>
+<td>Table 2</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Dígito Verificador (módulo 11 )</td>
-<td>Numérico</td>
+<td>Check digit (modulo 11 )</td>
+<td>Numeric</td>
 <td>1</td>
 </tr>
 </tbody></table>
 
-<p><strong>Nota:</strong> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
+<p><strong>Note:</strong> All fields must conform to the specified length. If the access code is malformed the e-document will not be authorized.</p>
 
-<p>El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).</p>
+<p>The check digit must be computed using all 48 characters of the access code and then incorporated into the code using modulo 11. Here is an <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">example algorithm</a></p>
 
-<p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
+<h1 id="common-objects">Common objects</h1>
 
-<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
+<h2 id="issuer">Issuer</h2>
 
-<h1 id="objetos-comunes">Objetos comunes</h1>
-
-<h2 id="emisor">Emisor</h2>
-
-<p>Información del emisor de un comprobante.</p>
+<p>Information about the e-document issuer:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>ruc</td>
 <td>string</td>
-<td>Número de RUC de 13 caracteres</td>
+<td>Tax identification (RUC). 13 characters long.</td>
 </tr>
 <tr>
 <td>razon_social</td>
 <td>string</td>
-<td>Razón social. Máximo 300 caracteres</td>
+<td>Legal name. 300 characters limit.</td>
 </tr>
 <tr>
 <td>nombre_comercial</td>
 <td>string</td>
-<td>Nombre comercial. Máximo 300 caracteres</td>
+<td>Commercial name. 300 characters limit.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+<td>Address on record. 300 characters limit.</td>
 </tr>
 <tr>
 <td>contribuyente_especial</td>
 <td>string</td>
-<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+<td>Special contributor resolution number. Empty if you are not a special contributor.</td>
 </tr>
 <tr>
 <td>obligado_contabilidad</td>
 <td>boolean</td>
-<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+<td><code class="prettyprint">true</code> if you are required to do accounting.</td>
 </tr>
 <tr>
 <td>establecimiento</td>
-<td><a href="#establecimiento">establecimiento</a></td>
-<td>Establecimiento que emite la factura.</td>
+<td><a href="#location">location</a></td>
+<td>Location issuing the e-document.</td>
 </tr>
 </tbody></table>
 
-<h2 id="establecimiento">Establecimiento</h2>
+<h2 id="location">Location</h2>
 
-<p>Representa un establecimiento del comercio.</p>
+<p>Describes an issuing location:</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Numeric identification code for the location. 3 characters long. Example: <code class="prettyprint">001</code>.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
+<td>Address on record. 300 characters limit.</td>
 </tr>
 <tr>
 <td>punto_emision</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Numeric identification code for the point of sale. Example: <code class="prettyprint">001</code>.</td>
 </tr>
 </tbody></table>
 
-<h2 id="persona">Persona</h2>
+<h2 id="recipient">Recipient</h2>
 
-<p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
+<p>Information about the e-document recipient. Used as <strong>comprador</strong> in invoices and credit notes, and <strong>sujeto</strong> in withholdings.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>razon_social</td>
 <td>string</td>
-<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Legal name. 300 characters limit. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>identificacion</td>
 <td>string</td>
-<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+<td>Tax identification. 5 to 20 characters. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td><a href="#identification-types">Identification type</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Email. 300 characters limite. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>telefono</td>
 <td>string</td>
-<td>Teléfono.</td>
+<td>Telephone.</td>
 </tr>
 <tr>
 <td>direccion</td>
 <td>string</td>
-<td>Dirección</td>
+<td>Address</td>
 </tr>
 </tbody></table>
 
-<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
+<h2 id="identification-types">Identification types</h2>
 
 <table><thead>
 <tr>
-<th>Tipo de identificación</th>
-<th>Código</th>
+<th>Identification type</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3905,264 +3884,264 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="total-impuesto">Total Impuesto</h2>
+<h2 id="total-tax">Total Tax</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td><a href="#tax-types">Invoice type</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Invoice rate code.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Taxable amount.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Total tax amount.</td>
 </tr>
 </tbody></table>
 
-<h2 id="impuesto-item">Impuesto Item</h2>
+<h2 id="tax-item">Tax item</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td><a href="#tax-types">Tax type</a> code.</td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Invoice rate code</td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Taxable amount.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Total tax amount.</td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+<td>Tax rate expresed as a number between 0.0 y 100.0</td>
 </tr>
 </tbody></table>
 
-<h2 id="env-o-sri">Envío SRI</h2>
+<h2 id="sri-sending">SRI sending</h2>
 
-<p>Contiene la información y el estado de la fase de envío al SRI</p>
+<p>Information about the sending step of the e-document.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>mensajes</td>
-<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
-<td>Listado de mensajes.</td>
+<td>list of <a href="#sri-response-messages">SRI message</a> objects</td>
+<td>List of messages.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
+<td>Valid values: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
 </tr>
 <tr>
 <td>fecha</td>
 <td>string</td>
-<td>Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td><a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> date when the e-document was sent (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 </tbody></table>
 
-<h2 id="autorizaci-n-sri">Autorización SRI</h2>
+<h2 id="sri-authorization">SRI authorization</h2>
 
-<p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
+<p>Information about the authorization step of the e-document.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>mensajes</td>
-<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
-<td>Listado de mensajes.</td>
+<td>list of <a href="#sri-response-messages">SRI message</a> objects</td>
+<td>List of messages.</td>
 </tr>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
+<td>Valid values: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
 </tr>
 <tr>
 <td>numero</td>
 <td>string</td>
-<td>Número de autorización.</td>
+<td>Authorization number.</td>
 </tr>
 <tr>
 <td>fecha</td>
 <td>string</td>
-<td>Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td><a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> date of the authorization (AAAA-MM-DDHourTimeZone).</td>
 </tr>
 </tbody></table>
 
-<h2 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h2>
+<h2 id="sri-response-messages">SRI response messages</h2>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identificador</td>
 <td>string</td>
-<td>Número con el que el SRI identifica al mensaje.</td>
+<td>IRS message code.</td>
 </tr>
 <tr>
 <td>mensaje</td>
 <td>string</td>
-<td>Descripción del error, información o advertencia.</td>
+<td>Description of the message.</td>
 </tr>
 <tr>
 <td>tipo</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">INFORMATIVO</code>, <code class="prettyprint">ADVERTENCIA</code>, <code class="prettyprint">ERROR</code></td>
+<td>Valid values: <code class="prettyprint">INFORMATIVO</code> (information), <code class="prettyprint">ADVERTENCIA</code> (warning), <code class="prettyprint">ERROR</code> (error).</td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
 <td>string</td>
-<td>Información adicional del mensaje.</td>
+<td>Additional information.</td>
 </tr>
 </tbody></table>
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
+<h2 id="line-item">Line item</h2>
 
-<p>Representa un producto o servicio del comercio.</p>
+<p>Describes a product or service.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>descripcion</td>
 <td>string</td>
-<td>Descripción del ítem. <strong>Requerido</strong></td>
+<td>Item description. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_principal</td>
 <td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+<td>Stock keeping unit. Máximo 25 characters.</td>
 </tr>
 <tr>
 <td>codigo_auxiliar</td>
 <td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+<td>Additional stock keeping unit. Máximo 25 characters.</td>
 </tr>
 <tr>
 <td>cantidad</td>
 <td>float</td>
-<td>Cantidad de items. <strong>Requerido</strong></td>
+<td>Quantity. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>precio_unitario</td>
 <td>float</td>
-<td>Precio unitario. <strong>Requerido</strong></td>
+<td>Unit price. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>descuento</td>
 <td>float</td>
-<td>El descuento es aplicado por cada producto. <strong>Requerido</strong></td>
+<td>Unit discount.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>precio_total_sin_impuestos</td>
 <td>float</td>
-<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+<td>Price before taxes. It is the product of <code class="prettyprint">cantidad</code> and <code class="prettyprint">precio_unitario</code>.</td>
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
-<td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
+<td>listado list of <a href="#tax-line-item">tax line item</a> objects</td>
+<td>Taxes for the item. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>detalles_adicionales</td>
 <td>object</td>
-<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
+<td>Additional product information the dictionary format. Example:<br><code>{&quot;brand&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code>. Limited to 3 key and value pairs.</td>
 </tr>
 </tbody></table>
 
-<h2 id="retencion-de-factura">Retención en factura </h2>
+<h2 id="invoice-withholdings">Invoice withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</p>
+<p>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto-para-la-retención-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+<td><a href="#tax-types-for-invoice-withholdings">Tax type for invoice withholdings</a> code.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#retención-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+<td><a href="#tax-rates-for-invoice-withholdings">Tax rate for invoice withholding</a> code. <strong>Required</strong></td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>Tax rate. 3 integers with 2 decimals limit.  <strong>Required</strong></td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>Tax amount. 12 integers with 2 decimals limit.  <strong>Required</strong></td>
 </tr>
 </tbody></table>
 
-<h1 id="cat-logo">Catálogo</h1>
+<h1 id="catalog">Catalog</h1>
 
-<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
+<h2 id="invoice-tax-types">Invoice tax types</h2>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4179,12 +4158,12 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
+<h2 id="withholding-tax-types">Withholding tax types</h2>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4201,16 +4180,14 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
+<h2 id="tax-types-for-invoice-withholdings">Tax types for invoice withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
-Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
-participan en la comercialización de periódicos y/o revistas.</p>
+<p>Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
 <table><thead>
 <tr>
-<th>Impuesto</th>
-<th>Código</th>
+<th>Tax</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4219,12 +4196,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva">Retención de IVA</h2>
+<h2 id="iva-withholding">IVA withholding</h2>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4249,12 +4226,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>Retención en cero</strong></p>
+<p><strong>Zero-amount withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4263,12 +4240,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>No procede retención</strong></p>
+<p><strong>No withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4277,12 +4254,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-isd">Retención ISD</h2>
+<h2 id="isd-withholding">ISD withholding</h2>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA</th>
-<th>Código</th>
+<th>ISD rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4291,18 +4268,16 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
+<h2 id="tax-rates-for-invoice-withholdings">Tax rates for Invoice Withholdings</h2>
 
-<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
-Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
-participan en la comercialización de periódicos y/o revistas.</p>
+<p>Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</p>
 
-<p><strong>Retención IVA</strong></p>
+<p><strong>IVA withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje IVA presuntivo</th>
-<th>Código</th>
+<th>Presuntive IVA rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4323,12 +4298,12 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<p><strong>Retención Renta</strong></p>
+<p><strong>Income withholding</strong></p>
 
 <table><thead>
 <tr>
-<th>Porcentaje Renta</th>
-<th>Código</th>
+<th>Income withholding rate</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4341,61 +4316,61 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-documentos">Tipos de documentos</h2>
+<h2 id="document-types">Document Types</h2>
 
 <table><thead>
 <tr>
-<th>Documento</th>
-<th>Código</th>
+<th>Document</th>
+<th>Code</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Factura</td>
+<td>Invoice</td>
 <td>01</td>
 </tr>
 <tr>
-<td>Nota de Crédito</td>
+<td>Credit note</td>
 <td>04</td>
 </tr>
 <tr>
-<td>Nota de Débito</td>
+<td>Debit note</td>
 <td>05</td>
 </tr>
 <tr>
-<td>Guía de Remisión</td>
+<td>Waybill</td>
 <td>06</td>
 </tr>
 <tr>
-<td>Comprobante de Retención</td>
+<td>Withholding</td>
 <td>07</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errores">Errores</h1>
+          <h1 id="errors">Errors</h1>
 
-<p>Listado de códigos de error y su significado.</p>
+<p>Our API will return this errors:</p>
 
 <table><thead>
 <tr>
-<th>Código</th>
-<th>Significado</th>
+<th>Code</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; La información provista está mal formada o incompleta.</td>
+<td>Bad Request &ndash; The data provided is malformed or contains errors.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Tu clave de API</td>
+<td>Unauthorized &ndash; Your API key was no authorized.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash;</td>
+<td>Forbidden &ndash; Your API key is not allowed to access this resource.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; El recurso especificado no existe.</td>
+<td>Not Found &ndash; The resource does not exist.</td>
 </tr>
 <tr>
 <td>405</td>
@@ -4407,44 +4382,40 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; Error en el sistema.</td>
+<td>Internal Server Error &ndash; Datil API system error.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; Servicio temporalmente fuera de línea. Intenta más tarde.</td>
+<td>Service Unavailable &ndash; The service is temporarily unavailable, please try again later.</td>
 </tr>
 </tbody></table>
 
-          <h1 id="notificaciones">Notificaciones</h1>
+          <h1 id="notifications">Notifications</h1>
 
-<p>Dátil emite notificaciones cada vez que un comprobante es emitido. Te podrás
-suscribir a estas notificaciones proveyendo una URL en donde recibir los datos
-del comprobante emitido.</p>
+<p>Datil can send you a HTTP notification each time an e-document is issued. You can subscribe to this notifications by providing the URL where you want to receive the e-document data.</p>
 
-<h2 id="suscripci-n">Suscripción</h2>
+<h2 id="subscription">Subscription</h2>
 
-<p>Para suscribirte a las notificaciones envía un requerimiento a:</p>
-
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">POST /webhooks</code></p>
 
-<h3 id="requerimiento">Requerimiento</h3>
+<h3 id="request">Request</h3>
 
 <blockquote>
-<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+<h4 id="example-request">Example request</h4>
 </blockquote>
 <pre class="highlight shell"><code>curl -v https://link.datil.co/webhooks <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;your-certificate-password&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "event_name": "receipt-issued",
   "webhook_url": "http://www.b2b.com/ereceipts/receive"
 }'</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">}</span>
 <span class="n">suscripcion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"event_name"</span><span class="p">:</span> <span class="s">"receipt-issued"</span><span class="p">,</span>
   <span class="s">"webhook_url"</span><span class="p">:</span> <span class="s">"http://www.b2b.com/ereceipts/receive"</span><span class="p">}</span>
@@ -4464,14 +4435,14 @@ del comprobante emitido.</p>
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
       <span class="n">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
       <span class="n">var</span> <span class="n">idFactura</span> <span class="p">=</span> <span class="s">"&lt;id-factura&gt;"</span><span class="p">;</span>
       <span class="n">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/"</span> <span class="p">+</span> <span class="n">idFactura</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
-      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;your-api-key&gt;"</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddBody</span><span class="p">(</span><span class="err">@</span><span class="s">"{
 </span>        <span class="s">""</span><span class="n">event_name</span><span class="s">""</span><span class="p">:</span> <span class="s">"receipt-issued"</span><span class="p">,</span>
         <span class="s">""</span><span class="n">webhook_url</span><span class="s">""</span><span class="p">:</span> <span class="s">"http://www.b2b.com/ereceipts/receive"</span>
@@ -4487,50 +4458,44 @@ del comprobante emitido.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>event_name</td>
 <td>string</td>
-<td>Podrá ser <code class="prettyprint">receipt-issued</code> o <code class="prettyprint">issue-error</code>. <strong>Requerido</strong></td>
+<td>Valid values: <code class="prettyprint">receipt-issued</code> o <code class="prettyprint">issue-error</code>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>webhook_url</td>
 <td>string</td>
-<td>Dirección donde se recibirá la información en formato JSON <strong>Requerido</strong></td>
+<td>Your URL where notifications will be sent.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
-<p>El evento <code class="prettyprint">receipt-issued</code> es emitido cuando el proceso de emisión termina
-correctamente. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:</p>
+<p>The <code class="prettyprint">receipt-issued</code> event is emitted when the issuance process finalizes successfully. These are the possible end states:</p>
 
 <ul>
-<li>AUTORIZADO</li>
-<li>NO AUTORIZADO</li>
+<li>AUTORIZADO (authorized)</li>
+<li>NO AUTORIZADO (not authorized)</li>
 </ul>
 
-<p>El evento <code class="prettyprint">issue-error</code> es emitido cuando ocurre un error en uno de los pasos
-del proceso de emisión. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:</p>
+<p>The <code class="prettyprint">issue-error</code> event is emitted when an error occurs in any of the issuance steps. These are the possible end states:</p>
 
 <ul>
-<li>CREADO (cuando no pudo ser firmado)</li>
-<li>DEVUELTO</li>
+<li>CREADO (created)</li>
+<li>DEVUELTO (returned)</li>
 </ul>
 
-<h2 id="eventos">Eventos</h2>
+<h2 id="events">Events</h2>
 
-<p>Al ejecutarse un evento se enviará en un requerimiento tipo <em>POST</em>, la información completa del comprobante en
-conjunto con la autorización a la dirección registrada como <code class="prettyprint">webhook_url</code> al
-momento de la suscripción.</p>
+<p>For each event, you will receive a <em>POST</em> request including the e-document in JSON format at the URL you registered <code class="prettyprint">webhook_url</code>.</p>
 
-<h3 id="autorizado">Autorizado</h3>
+<h3 id="authorized">Authorized</h3>
 
-<p>Un comprobante <em>Autorizado</em> contendrá información como el siguiente ejemplo: </p>
+<p>An <em>Authorized</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -4623,9 +4588,9 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="no-autorizado">No Autorizado</h3>
+<h3 id="not-authorized">Not authorized</h3>
 
-<p>Un comprobante <em>No autorizado</em> contendrá información como el siguiente ejemplo: </p>
+<p>A <em>Not authorized</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -4721,9 +4686,9 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="devuelto">Devuelto</h3>
+<h3 id="returned">Returned</h3>
 
-<p>Un comprobante <em>Devuelto</em> contendrá información como el siguiente ejemplo: </p>
+<p>A <em>Returned</em> e-document has the following format:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">1267</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fecha_emision"</span><span class="p">:</span><span class="s2">"2015-12-04T19:28:56.782Z"</span><span class="p">,</span><span class="w">
@@ -4819,7 +4784,7 @@ momento de la suscripción.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="error-en-firma">Error en firma</h3>
+<h3 id="signature-error">Signature error</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"secuencial"</span><span class="p">:</span><span class="mi">766</span><span class="p">,</span><span class="w">
   </span><span class="nt">"firma"</span><span class="p">:{</span><span class="w">
