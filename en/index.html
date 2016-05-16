@@ -891,7 +891,7 @@
 
 <h2 id="re-issuing-an-invoice">Re-issuing an invoice</h2>
 
-<h3 id="operaci-n">Operación</h3>
+<h3 id="operation">Operation</h3>
 
 <p><code class="prettyprint">POST /invoices/:id/reissue</code></p>
 
@@ -899,7 +899,7 @@
 
 <p>This operation must be used to correct invoices with authorization status</p>
 
-<p>Esta operación debe ser utilizada para corregir comprobantes <code class="prettyprint">NO AUTORIZADO</code> or <code class="prettyprint">DEVUELTO</code>. This means that the local tax authority did not authorize them.</p>
+<p>This operation is used to correct e-documentos with status <code class="prettyprint">NO AUTORIZADO</code> (not authorized) or <code class="prettyprint">DEVUELTO</code> (returned). This means that the local tax authority did not authorize them and you should correct and try submitting them again.</p>
 
 <p>The <code class="prettyprint">id</code> of the invoice to be re-issued must be included in the URL.</p>
 
