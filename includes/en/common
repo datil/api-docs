@@ -234,7 +234,7 @@
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Invoice rate code.</td>
+<td>Invoice <a href="#invoice-rate-code">rate code</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -265,7 +265,7 @@
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Invoice rate code.</td>
+<td>Invoice <a href="#invoice-rate-code">rate code</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -488,6 +488,42 @@
 <tr>
 <td>IRBPNR</td>
 <td>5</td>
+</tr>
+</tbody></table>
+
+<h2 id="invoice-rate-code">Invoice rate code</h2>
+
+<table><thead>
+<tr>
+<th>Percentage</th>
+<th>Code</th>
+<th>Rate</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>3</td>
+<td>12</td>
+</tr>
+<tr>
+<td>14%</td>
+<td>3</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Not subject to tax</td>
+<td>6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Exempt from VAT</td>
+<td>7</td>
+<td>-</td>
 </tr>
 </tbody></table>
 

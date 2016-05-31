@@ -242,7 +242,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -273,7 +273,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -496,6 +496,42 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>IRBPNR</td>
 <td>5</td>
+</tr>
+</tbody></table>
+
+<h2 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje de IVA</th>
+<th>Código</th>
+<th>Tarifa</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>3</td>
+<td>12</td>
+</tr>
+<tr>
+<td>14%</td>
+<td>3</td>
+<td>14</td>
+</tr>
+<tr>
+<td>No Objeto de Impuesto</td>
+<td>6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Exento de IVA</td>
+<td>7</td>
+<td>-</td>
 </tr>
 </tbody></table>
 
