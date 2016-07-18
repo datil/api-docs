@@ -726,3 +726,85 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>07</td>
 </tr>
 </tbody></table>
+
+<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
+
+<table><thead>
+<tr>
+<th>Forma de pago</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Sin utilización del sistema financiero</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cheque propio</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Cheque certificado</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Cheque de gerencia</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Cheque del exterior</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Débito de cuenta</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Transferencia propio banco</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Traansferencia otro banco nacional</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Transferencia banco exterior</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito nacional</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito internacional</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Giro</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Depósito en cuenta (Corriente / Ahorros)</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Endoso de inversión</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Compensación de deudas</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Dinero electrónico</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>18</td>
+</tr>
+</tbody></table>

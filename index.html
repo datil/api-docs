@@ -275,6 +275,14 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }'</span>
 </code></pre>
@@ -352,6 +360,14 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       <span class="p">},</span>
       <span class="s">"descuento"</span><span class="p">:</span> <span class="mf">0.0</span>
     <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+      <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
+      <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+    <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
@@ -373,7 +389,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp 
+      <span class="c1">// Este ejemplo utiliza RestSharp
 </span>      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console
 </span>      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp
 </span>
@@ -456,7 +472,15 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
             <span class="p">},</span>
             <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0.0</span>
           <span class="p">}</span>
-        <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">"dias"</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
       <span class="p">}</span><span class="s">");
 </span>      <span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
       <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
@@ -548,9 +572,14 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Listado de objetos de tipo <a href="#retencion-de-factura">retencion</a></td>
 <td>Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</td>
 </tr>
+<tr>
+<td>pagos</td>
+<td>Listado de objetos tipo <a href="#pagos">pagos</a></td>
+<td>Listado de formas de pago aplicables a la factura. <strong>Requerido</strong></td>
+</tr>
 </tbody></table>
 
-<h4 id="totales-factura">Totales</h4>
+<h4 id="totales">Totales</h4>
 
 <table><thead>
 <tr>
@@ -591,9 +620,36 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 </tbody></table>
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
+<h4 id="pagos">Pagos</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>plazo</td>
+<td>integer</td>
+<td>Plazo de pago.</td>
+</tr>
+<tr>
+<td>unidad_tiempo</td>
+<td>string</td>
+<td>Unidad de tiempo en la cual se expresa el plazo de pago.</td>
+</tr>
+</tbody></table>
 
 <h3 id="respuesta">Respuesta</h3>
 
@@ -674,6 +730,14 @@ Remember — a happy kitten is an authenticated kitten!
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -686,10 +750,10 @@ también se incluirá como parte de la respuesta.</p>
 
 <p>Consulta una factura para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code class="prettyprint">estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code class="prettyprint">estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <code class="prettyprint">autorizacion_sri</code> de la respuesta.</p>
 
 <h3 id="operaci-n">Operación</h3>
@@ -824,6 +888,14 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">168.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -913,6 +985,11 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <td>Items incluídos en la factura.</td>
 </tr>
 <tr>
+<td>pagos</td>
+<td>listado de objetos tipo <a href="#pagos">pagos</a></td>
+<td>Listado de formas de pago aplicables a la factura.</td>
+</tr>
+<tr>
 <td>version</td>
 <td>string</td>
 <td>Versión de la especificación, opciones válidas: <code class="prettyprint">1.0.0</code>, <code class="prettyprint">1.1.0</code></td>
@@ -930,10 +1007,10 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
 DEVUELTOS por el Servicio de Rentas Internas.</p>
 
-<p>En la URL de esta opción se debe incluir el <code class="prettyprint">id</code> de la factura recibida al 
+<p>En la URL de esta opción se debe incluir el <code class="prettyprint">id</code> de la factura recibida al
 momento de emitirla.</p>
 
-<p>El cuerpo del requerimiento es un objeto <a href="#requerimiento">factura</a> con los 
+<p>El cuerpo del requerimiento es un objeto <a href="#requerimiento">factura</a> con los
 datos corregidos para que pueda ser procesado y autorizado.</p>
 
 <h3 id="respuesta">Respuesta</h3>
@@ -4433,6 +4510,88 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <tr>
 <td>Comprobante de Retención</td>
 <td>07</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
+
+<table><thead>
+<tr>
+<th>Forma de pago</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Sin utilización del sistema financiero</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cheque propio</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Cheque certificado</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Cheque de gerencia</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Cheque del exterior</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Débito de cuenta</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Transferencia propio banco</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Traansferencia otro banco nacional</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Transferencia banco exterior</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito nacional</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito internacional</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Giro</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Depósito en cuenta (Corriente / Ahorros)</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Endoso de inversión</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Compensación de deudas</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Dinero electrónico</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>18</td>
 </tr>
 </tbody></table>
 

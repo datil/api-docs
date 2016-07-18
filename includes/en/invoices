@@ -87,6 +87,14 @@
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }'</span>
 </code></pre>
@@ -163,6 +171,14 @@
         <span class="s">"Peso"</span><span class="p">:</span><span class="s">"5000.0000"</span>
       <span class="p">},</span>
       <span class="s">"descuento"</span><span class="p">:</span> <span class="mf">0.0</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+      <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
+      <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -268,7 +284,15 @@
             <span class="p">},</span>
             <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0.0</span>
           <span class="p">}</span>
-        <span class="p">]</span>
+        <span class="p">],</span>
+      <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
       <span class="p">}</span><span class="s">");
 </span>      <span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
       <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
@@ -359,6 +383,11 @@
 <td>list of <a href="#invoice-withholdings">invoice-withholding</a> objects</td>
 <td>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</td>
 </tr>
+<tr>
+<td>payments</td>
+<td>List of <a href="#payments">payments</a> objects</td>
+<td>List of forms of payment applicable to the invoice. <strong>Required</strong></td>
+</tr>
 </tbody></table>
 
 <h4 id="invoice-totals">Invoice totals</h4>
@@ -399,6 +428,37 @@
 <td>impuestos</td>
 <td>list of <a href="#total-tax">total-tax</a> objects</td>
 <td>List of aggregated taxes. <strong>Required</strong></td>
+</tr>
+</tbody></table>
+
+<h4 id="payments">Payments</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td><a href="#payment-forms">payment form</a> code. <strong>Required</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Total applicable to the payment form. <strong>Required</strong></td>
+</tr>
+<tr>
+<td>plazo</td>
+<td>integer</td>
+<td>Term applicable to the payment form.</td>
+</tr>
+<tr>
+<td>unidad_tiempo</td>
+<td>string</td>
+<td>time unit in which the term is expressed.</td>
 </tr>
 </tbody></table>
 
@@ -480,6 +540,14 @@
         </span><span class="nt">"Peso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.0000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -624,6 +692,14 @@
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -711,6 +787,11 @@
 <td>items</td>
 <td>list of <a href="#line-item">line-item</a> objects</td>
 <td>Line items.</td>
+</tr>
+<tr>
+<td>pagos</td>
+<td>list of <a href="#payments">payments</a> objects</td>
+<td>Payment forms applicable to the invoice.</td>
 </tr>
 <tr>
 <td>version</td>

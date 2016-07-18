@@ -714,3 +714,85 @@
 <td>07</td>
 </tr>
 </tbody></table>
+
+<h2 id="payment-forms">Payment forms</h2>
+
+<table><thead>
+<tr>
+<th>Payment form</th>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Does not utilize the financial system</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Own check</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Certified check</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Cashiers check</td>
+<td>4</td>
+</tr>
+<tr>
+<td>International check</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Debit account</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Transfer from own bank</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Transfer from other domestic bank</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Transfer from bank overseas</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Domestic credit card</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Overseas credit card</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Wire transfer</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Deposit (Checking / Savings)</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Investment endorsement</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Debt compensation</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Debit card</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Ecuador E-Money</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Prepaid card</td>
+<td>18</td>
+</tr>
+</tbody></table>
