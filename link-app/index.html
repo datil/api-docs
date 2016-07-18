@@ -121,10 +121,9 @@
 
 <p>Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación <strong>Link</strong> de Dátil
 te permite emitir todos los tipos de comprobantes electrónicos: facturas, retenciones,
-notas de crédito, notas de débito y guías de remisión. </p>
+notas de crédito, notas de débito y guías de remisión.</p>
 
-<p>La aplicación <strong>Link</strong> de Dátil funciona en Windows y en Linux(próximamente) como un servicio
-del sistema operativo activando la emisión de comprobantes automáticamente si tu servidor es reiniciado.</p>
+<p>La aplicación Link de Dátil funciona en Windows y en Linux (próximamente) como un servicio del sistema operativo. De esta manera, Link se podrá mantener en ejecución permanente y emitiendo comprobantes.</p>
 
 <p><strong>Link</strong> se conecta a la base de datos de tu ERP o sistema contable para obtener la información
 de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.</p>
@@ -135,7 +134,7 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 <p>Link es compatible con los siguientes sistemas operativos:</p>
 
-<p><strong>Windows</strong> </p>
+<p><strong>Windows</strong></p>
 
 <p><em>Disponible para 32 y 64 bits</em></p>
 
@@ -150,8 +149,8 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 <p><strong>Linux</strong> (próximamente)</p>
 
 <ul>
-<li>Centos </li>
-<li>Ubuntu </li>
+<li>Centos</li>
+<li>Ubuntu</li>
 </ul>
 
 <h2 id="motor-de-base-de-datos">Motor de Base de Datos</h2>
@@ -164,7 +163,7 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 <li>SQL Server 2012</li>
 </ul>
 
-<p>O extraer información de los siguientes archivos de base de datos: </p>
+<p>O extraer información de los siguientes archivos de base de datos:</p>
 
 <ul>
 <li>DBF (Visual Fox Pro)</li>
@@ -216,7 +215,7 @@ de su computador.</p>
 
 <p><strong>Tablas o Vistas</strong></p>
 
-<p>Para que la aplicación <strong>Link</strong> se conecte a su ERP o sistema contable se deben configurar 
+<p>Para que la aplicación <strong>Link</strong> se conecte a su ERP o sistema contable se deben configurar
 los <em>queries</em> para extraer información directamente de las tablas  de su base de datos.</p>
 
 <p>Si no desea que <strong>Link</strong> consulte directamente sus tablas puede crear vistas con la información
@@ -224,7 +223,7 @@ de los comprobantes a emitir.</p>
 
 <p><strong>Formato</strong></p>
 
-<p>Los queries se guardan siguiendo el formato de archivos <code class="prettyprint">.ini</code>. en el directorio 
+<p>Los queries se guardan siguiendo el formato de archivos <code class="prettyprint">.ini</code>. en el directorio
 <em>C:/Archivos de Programa/Datil/Link/config/</em>.</p>
 
 <p>En cada archivo <code class="prettyprint">.ini</code> cada <em>query</em> está asignado a una variable.</p>
@@ -235,14 +234,14 @@ de los comprobantes a emitir.</p>
 
 <p><strong>Nombres de tablas y columnas</strong></p>
 
-<p>Sea directamente o por medio de vistas, dependiendo de su sistema, deberá cambiar los nombres de las tablas  al configurar los <em>queries</em>. </p>
+<p>Sea directamente o por medio de vistas, dependiendo de su sistema, deberá cambiar los nombres de las tablas  al configurar los <em>queries</em>.</p>
 
-<p>Los nombres de las columnas en las tablas 
+<p>Los nombres de las columnas en las tablas
 de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe tener los nombres establecidos en esta documentación.</p>
 
 <p><strong>Queries opcionales</strong></p>
 
-<p>Algunos queries son opcionales porque la información que extraen no es obligatoria para el SRI, en este caso la variable que se configura en el archivo <code class="prettyprint">.ini</code> debe tener asignada el valor de <code class="prettyprint">None</code>. </p>
+<p>Algunos queries son opcionales porque la información que extraen no es obligatoria para el SRI, en este caso la variable que se configura en el archivo <code class="prettyprint">.ini</code> debe tener asignada el valor de <code class="prettyprint">None</code>.</p>
 
 <p>Ejemplo:</p>
 
@@ -252,7 +251,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <h2 id="factura">Factura</h2>
 
-<p>Los queries para la emisión electrónica de <strong>facturas</strong> se guardan en el archivo de configuración <code class="prettyprint">invoice.ini</code>. </p>
+<p>Los queries para la emisión electrónica de <strong>facturas</strong> se guardan en el archivo de configuración <code class="prettyprint">invoice.ini</code>.</p>
 
 <p><a href="/link-app#invoice-ini">Ejemplo de archivo invoice.ini</a></p>
 
@@ -260,7 +259,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <p>Obtiene las facturas de su ERP o sistema contable a partir de una fecha determinada</p>
 <pre class="highlight sql"><code>
-<span class="n">all_stored_locally</span> <span class="o">=</span> <span class="k">SELECT</span> 
+<span class="n">all_stored_locally</span> <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">id_local</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
@@ -292,13 +291,13 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <p>Obtiene las nuevas facturas generadas por su ERP o sistema contable a partir de una fecha determinada.
 Se deben configurar dos queries.</p>
-<pre class="highlight sql"><code><span class="n">not_controlled</span> <span class="o">=</span> <span class="k">SELECT</span> 
+<pre class="highlight sql"><code><span class="n">not_controlled</span> <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">id_local</span><span class="p">,</span>
   <span class="n">numero</span><span class="p">,</span>
   <span class="n">fecha_emision</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
-  <span class="k">where</span> 
+  <span class="k">where</span>
   <span class="n">id_local</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span> <span class="k">AND</span>
   <span class="n">fecha_emision</span> <span class="o">&gt;=</span> <span class="o">?</span>
 
@@ -309,7 +308,7 @@ Se deben configurar dos queries.</p>
   <span class="n">fecha_emision</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
-  <span class="k">where</span> 
+  <span class="k">where</span>
   <span class="n">fecha_emision</span> <span class="o">&gt;=</span> <span class="o">?</span>
 </code></pre>
 
@@ -745,7 +744,7 @@ Se deben configurar dos queries.</p>
 <p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
 
 <p>Se asume que en la tabla consultada
-una columna tiene los nombres y otra los valores. </p>
+una columna tiene los nombres y otra los valores.</p>
 
 <p>Ejemplo de columnas con detalles adicionales del ítem:</p>
 
@@ -802,12 +801,12 @@ una columna tiene los nombres y otra los valores. </p>
 
 <h3 id="informaci-n-adicional">Información adicional</h3>
 
-<p>Obtiene la información adicional de la factura. </p>
+<p>Obtiene la información adicional de la factura.</p>
 
 <p>La información adicional de la factura se maneja de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Tipo de pago&rsquo;:&#39;Cheque&rsquo;</p>
 
 <p>Se asume que en la tabla consultada
-una columna tiene los nombres y otra los valores. </p>
+una columna tiene los nombres y otra los valores.</p>
 
 <p>Ejemplo de columnas con información adicional de la factura:</p>
 
@@ -857,6 +856,95 @@ una columna tiene los nombres y otra los valores. </p>
 <td>Valor de la información adicional de la factura</td>
 </tr>
 </tbody></table>
+
+<h3 id="pagos">Pagos</h3>
+
+<p>Obtiene la información de los pagos aplicables a la factura.</p>
+<pre class="highlight sql"><code><span class="n">payments</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id_pago</span><span class="p">,</span>
+  <span class="n">medio_pago</span><span class="p">,</span>
+  <span class="n">total_pago</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">pagos</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_factura</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>medio</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="propiedades-de-pagos">Propiedades de Pagos</h3>
+
+<p>Obtiene la propiedades de los pagos de determinada factura.</p>
+
+<p>Las propiedades de los pagos se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Plazo&rsquo;:&#39;5&rsquo;</p>
+
+<p>Se asume que en la tabla consultada una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con propiedades de los pagos:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>plazo</td>
+<td>9</td>
+</tr>
+<tr>
+<td>unidad_tiempo</td>
+<td>dias</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">payment_properties</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>     <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">propiedades_pagos</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_pago</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">_nombre_</code></td>
+<td>string</td>
+<td>Nombre de la propiedad del pago</td>
+</tr>
+<tr>
+<td><code class="prettyprint">_valor_</code></td>
+<td>string</td>
+<td>Valor de la propiedad del pago</td>
+</tr>
+</tbody></table>
+
+<p>Para el Servicio de Rentas Internas de Ecuador (SRI), las únicas propiedades que se tomarán en cuenta son <code class="prettyprint">plazo</code> (especifica el plazo del tipo de pago) y <code class="prettyprint">unidad_tiempo</code> (especifica la unidad de tiempo en la cual se expresa el plazo).</p>
+
+<p>Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.</p>
 
           <h1 id="clave-de-acceso">Clave de acceso</h1>
 
