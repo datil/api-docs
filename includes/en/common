@@ -724,75 +724,79 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>Does not utilize the financial system</td>
-<td>1</td>
+<td>Cash</td>
+<td>efectivo</td>
 </tr>
 <tr>
-<td>Own check</td>
-<td>2</td>
+<td>Direct credit</td>
+<td>credito_directo</td>
+</tr>
+<tr>
+<td>Check</td>
+<td>cheque</td>
 </tr>
 <tr>
 <td>Certified check</td>
-<td>3</td>
+<td>cheque_certificado</td>
 </tr>
 <tr>
 <td>Cashiers check</td>
-<td>4</td>
+<td>cheque_gerencia</td>
 </tr>
 <tr>
 <td>International check</td>
-<td>5</td>
+<td>cheque_exterior</td>
 </tr>
 <tr>
 <td>Debit account</td>
-<td>6</td>
+<td>debito_cuenta_bancaria</td>
 </tr>
 <tr>
-<td>Transfer from own bank</td>
-<td>7</td>
+<td>Transfer to the same bank</td>
+<td>transferencia_mismo_banco</td>
 </tr>
 <tr>
-<td>Transfer from other domestic bank</td>
-<td>8</td>
+<td>Transfer to other domestic bank</td>
+<td>transferencia_otro_banco</td>
 </tr>
 <tr>
 <td>Transfer from bank overseas</td>
-<td>9</td>
+<td>transferencia_banco_exterior</td>
 </tr>
 <tr>
 <td>Domestic credit card</td>
-<td>10</td>
+<td>tarjeta_credito_nacional</td>
 </tr>
 <tr>
 <td>Overseas credit card</td>
-<td>11</td>
+<td>tarjeta_credito_internacional</td>
 </tr>
 <tr>
 <td>Wire transfer</td>
-<td>12</td>
+<td>giro</td>
 </tr>
 <tr>
 <td>Deposit (Checking / Savings)</td>
-<td>13</td>
+<td>deposito_cuenta_bancaria</td>
 </tr>
 <tr>
 <td>Investment endorsement</td>
-<td>14</td>
+<td>endoso_inversion</td>
 </tr>
 <tr>
 <td>Debt compensation</td>
-<td>15</td>
+<td>compensacion_deudas</td>
 </tr>
 <tr>
 <td>Debit card</td>
-<td>16</td>
+<td>tarjeta_debito</td>
 </tr>
 <tr>
 <td>Ecuador E-Money</td>
-<td>17</td>
+<td>dinero_electronico_ec</td>
 </tr>
 <tr>
 <td>Prepaid card</td>
-<td>18</td>
+<td>tarjeta_prepago</td>
 </tr>
 </tbody></table>

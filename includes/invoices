@@ -90,10 +90,12 @@
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }'</span>
@@ -175,10 +177,12 @@
   <span class="p">],</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+      <span class="s">"medio"</span><span class="p">:</span> <span class="s">"efectivo"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+      <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -287,10 +291,12 @@
       <span class="p">],</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">efectivo</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">"dias"</span>
+          <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">]</span>
       <span class="p">}</span><span class="s">");
@@ -442,7 +448,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>codigo</td>
+<td>medio</td>
 <td>string</td>
 <td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
 </tr>
@@ -452,14 +458,9 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>plazo</td>
-<td>integer</td>
-<td>Plazo de pago.</td>
-</tr>
-<tr>
-<td>unidad_tiempo</td>
-<td>string</td>
-<td>Unidad de tiempo en la cual se expresa el plazo de pago.</td>
+<td>propiedades</td>
+<td>objeto</td>
+<td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -545,10 +546,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -702,10 +705,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">168.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">

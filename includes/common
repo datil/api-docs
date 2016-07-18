@@ -736,75 +736,79 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>Sin utilización del sistema financiero</td>
-<td>1</td>
+<td>Efectivo</td>
+<td>efectivo</td>
 </tr>
 <tr>
-<td>Cheque propio</td>
-<td>2</td>
+<td>Crédito directo</td>
+<td>credito_directo</td>
+</tr>
+<tr>
+<td>Cheque</td>
+<td>cheque</td>
 </tr>
 <tr>
 <td>Cheque certificado</td>
-<td>3</td>
+<td>cheque_certificado</td>
 </tr>
 <tr>
 <td>Cheque de gerencia</td>
-<td>4</td>
+<td>cheque_gerencia</td>
 </tr>
 <tr>
 <td>Cheque del exterior</td>
-<td>5</td>
+<td>cheque_exterior</td>
 </tr>
 <tr>
-<td>Débito de cuenta</td>
-<td>6</td>
+<td>Débito de cuenta bancaria</td>
+<td>debito_cuenta_bancaria</td>
 </tr>
 <tr>
-<td>Transferencia propio banco</td>
-<td>7</td>
+<td>Transferencia en el mismo banco</td>
+<td>transferencia_mismo_banco</td>
 </tr>
 <tr>
-<td>Traansferencia otro banco nacional</td>
-<td>8</td>
+<td>Transferencia otro banco nacional</td>
+<td>transferencia_otro_banco</td>
 </tr>
 <tr>
 <td>Transferencia banco exterior</td>
-<td>9</td>
+<td>transferencia_banco_exterior</td>
 </tr>
 <tr>
 <td>Tarjeta de crédito nacional</td>
-<td>10</td>
+<td>tarjeta_credito_nacional</td>
 </tr>
 <tr>
 <td>Tarjeta de crédito internacional</td>
-<td>11</td>
+<td>tarjeta_credito_internacional</td>
 </tr>
 <tr>
 <td>Giro</td>
-<td>12</td>
+<td>giro</td>
 </tr>
 <tr>
 <td>Depósito en cuenta (Corriente / Ahorros)</td>
-<td>13</td>
+<td>deposito_cuenta_bancaria</td>
 </tr>
 <tr>
 <td>Endoso de inversión</td>
-<td>14</td>
+<td>endoso_inversion</td>
 </tr>
 <tr>
 <td>Compensación de deudas</td>
-<td>15</td>
+<td>compensacion_deudas</td>
 </tr>
 <tr>
 <td>Tarjeta de débito</td>
-<td>16</td>
+<td>tarjeta_debito</td>
 </tr>
 <tr>
-<td>Dinero electrónico</td>
-<td>17</td>
+<td>Dinero electrónico Ecuador</td>
+<td>dinero_electronico_ec</td>
 </tr>
 <tr>
 <td>Tarjeta prepago</td>
-<td>18</td>
+<td>tarjeta_prepago</td>
 </tr>
 </tbody></table>

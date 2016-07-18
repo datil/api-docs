@@ -260,10 +260,12 @@
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }'</span>
@@ -345,22 +347,24 @@
   <span class="p">],</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+      <span class="s">"medio"</span><span class="p">:</span> <span class="s">"efectivo"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">,</span>
-    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
-    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
-<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre>
+      <span class="s">"propiedades: {</span><span class="err">
+</span><span class="s">        "</span><span class="n">plazo</span><span class="s">": 0,</span><span class="err">
+</span><span class="s">        "</span><span class="n">unidad_tiempo</span><span class="s">": "</span><span class="n">dias</span><span class="s">"</span><span class="err">
+</span><span class="s">      }</span><span class="err">
+</span><span class="s">    }</span><span class="err">
+</span><span class="s">  ]</span><span class="err">
+</span><span class="s">}</span><span class="err">
+</span><span class="s">cabeceras = {</span><span class="err">
+</span><span class="s">    'x-key': '&lt;your-api-key&gt;',</span><span class="err">
+</span><span class="s">    'x-password': '&lt;clave-certificado-firma&gt;',</span><span class="err">
+</span><span class="s">    'content-type': 'application/json'}</span><span class="err">
+</span><span class="s">respuesta = requests.post(</span><span class="err">
+</span><span class="s">    "</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">link</span><span class="o">.</span><span class="n">datil</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">invoices</span><span class="o">/</span><span class="n">issue</span><span class="s">",</span><span class="err">
+</span><span class="s">    headers = cabeceras,</span><span class="err">
+</span><span class="s">    data = json.dumps(factura))</span><span class="err">
+</span></code></pre>
 <pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
@@ -457,10 +461,12 @@
         <span class="p">],</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">efectivo</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
+          <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">]</span>
       <span class="p">}</span><span class="s">");
@@ -611,7 +617,7 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>codigo</td>
+<td>medio</td>
 <td>string</td>
 <td><a href="#payment-forms">payment form</a> code. <strong>Required</strong></td>
 </tr>
@@ -621,14 +627,9 @@
 <td>Total applicable to the payment form. <strong>Required</strong></td>
 </tr>
 <tr>
-<td>plazo</td>
-<td>integer</td>
-<td>Term applicable to the payment form.</td>
-</tr>
-<tr>
-<td>unidad_tiempo</td>
-<td>string</td>
-<td>time unit in which the term is expressed.</td>
+<td>propiedades</td>
+<td>object</td>
+<td>Additional information related to the payment in dictionary form. Example: <br><code class="prettyprint">{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -714,10 +715,12 @@
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -864,10 +867,12 @@
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4441,76 +4446,80 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>Does not utilize the financial system</td>
-<td>1</td>
+<td>Cash</td>
+<td>efectivo</td>
 </tr>
 <tr>
-<td>Own check</td>
-<td>2</td>
+<td>Direct credit</td>
+<td>credito_directo</td>
+</tr>
+<tr>
+<td>Check</td>
+<td>cheque</td>
 </tr>
 <tr>
 <td>Certified check</td>
-<td>3</td>
+<td>cheque_certificado</td>
 </tr>
 <tr>
 <td>Cashiers check</td>
-<td>4</td>
+<td>cheque_gerencia</td>
 </tr>
 <tr>
 <td>International check</td>
-<td>5</td>
+<td>cheque_exterior</td>
 </tr>
 <tr>
 <td>Debit account</td>
-<td>6</td>
+<td>debito_cuenta_bancaria</td>
 </tr>
 <tr>
-<td>Transfer from own bank</td>
-<td>7</td>
+<td>Transfer to the same bank</td>
+<td>transferencia_mismo_banco</td>
 </tr>
 <tr>
-<td>Transfer from other domestic bank</td>
-<td>8</td>
+<td>Transfer to other domestic bank</td>
+<td>transferencia_otro_banco</td>
 </tr>
 <tr>
 <td>Transfer from bank overseas</td>
-<td>9</td>
+<td>transferencia_banco_exterior</td>
 </tr>
 <tr>
 <td>Domestic credit card</td>
-<td>10</td>
+<td>tarjeta_credito_nacional</td>
 </tr>
 <tr>
 <td>Overseas credit card</td>
-<td>11</td>
+<td>tarjeta_credito_internacional</td>
 </tr>
 <tr>
 <td>Wire transfer</td>
-<td>12</td>
+<td>giro</td>
 </tr>
 <tr>
 <td>Deposit (Checking / Savings)</td>
-<td>13</td>
+<td>deposito_cuenta_bancaria</td>
 </tr>
 <tr>
 <td>Investment endorsement</td>
-<td>14</td>
+<td>endoso_inversion</td>
 </tr>
 <tr>
 <td>Debt compensation</td>
-<td>15</td>
+<td>compensacion_deudas</td>
 </tr>
 <tr>
 <td>Debit card</td>
-<td>16</td>
+<td>tarjeta_debito</td>
 </tr>
 <tr>
 <td>Ecuador E-Money</td>
-<td>17</td>
+<td>dinero_electronico_ec</td>
 </tr>
 <tr>
 <td>Prepaid card</td>
-<td>18</td>
+<td>tarjeta_prepago</td>
 </tr>
 </tbody></table>
 

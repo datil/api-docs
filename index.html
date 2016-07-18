@@ -278,10 +278,12 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }'</span>
@@ -363,10 +365,12 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="p">],</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+      <span class="s">"medio"</span><span class="p">:</span> <span class="s">"efectivo"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+      <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -475,10 +479,12 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       <span class="p">],</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">efectivo</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">"dias"</span>
+          <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">]</span>
       <span class="p">}</span><span class="s">");
@@ -630,7 +636,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>codigo</td>
+<td>medio</td>
 <td>string</td>
 <td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
 </tr>
@@ -640,14 +646,9 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>plazo</td>
-<td>integer</td>
-<td>Plazo de pago.</td>
-</tr>
-<tr>
-<td>unidad_tiempo</td>
-<td>string</td>
-<td>Unidad de tiempo en la cual se expresa el plazo de pago.</td>
+<td>propiedades</td>
+<td>objeto</td>
+<td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -733,10 +734,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -890,10 +893,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">168.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4522,76 +4527,80 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>Sin utilización del sistema financiero</td>
-<td>1</td>
+<td>Efectivo</td>
+<td>efectivo</td>
 </tr>
 <tr>
-<td>Cheque propio</td>
-<td>2</td>
+<td>Crédito directo</td>
+<td>credito_directo</td>
+</tr>
+<tr>
+<td>Cheque</td>
+<td>cheque</td>
 </tr>
 <tr>
 <td>Cheque certificado</td>
-<td>3</td>
+<td>cheque_certificado</td>
 </tr>
 <tr>
 <td>Cheque de gerencia</td>
-<td>4</td>
+<td>cheque_gerencia</td>
 </tr>
 <tr>
 <td>Cheque del exterior</td>
-<td>5</td>
+<td>cheque_exterior</td>
 </tr>
 <tr>
-<td>Débito de cuenta</td>
-<td>6</td>
+<td>Débito de cuenta bancaria</td>
+<td>debito_cuenta_bancaria</td>
 </tr>
 <tr>
-<td>Transferencia propio banco</td>
-<td>7</td>
+<td>Transferencia en el mismo banco</td>
+<td>transferencia_mismo_banco</td>
 </tr>
 <tr>
-<td>Traansferencia otro banco nacional</td>
-<td>8</td>
+<td>Transferencia otro banco nacional</td>
+<td>transferencia_otro_banco</td>
 </tr>
 <tr>
 <td>Transferencia banco exterior</td>
-<td>9</td>
+<td>transferencia_banco_exterior</td>
 </tr>
 <tr>
 <td>Tarjeta de crédito nacional</td>
-<td>10</td>
+<td>tarjeta_credito_nacional</td>
 </tr>
 <tr>
 <td>Tarjeta de crédito internacional</td>
-<td>11</td>
+<td>tarjeta_credito_internacional</td>
 </tr>
 <tr>
 <td>Giro</td>
-<td>12</td>
+<td>giro</td>
 </tr>
 <tr>
 <td>Depósito en cuenta (Corriente / Ahorros)</td>
-<td>13</td>
+<td>deposito_cuenta_bancaria</td>
 </tr>
 <tr>
 <td>Endoso de inversión</td>
-<td>14</td>
+<td>endoso_inversion</td>
 </tr>
 <tr>
 <td>Compensación de deudas</td>
-<td>15</td>
+<td>compensacion_deudas</td>
 </tr>
 <tr>
 <td>Tarjeta de débito</td>
-<td>16</td>
+<td>tarjeta_debito</td>
 </tr>
 <tr>
-<td>Dinero electrónico</td>
-<td>17</td>
+<td>Dinero electrónico Ecuador</td>
+<td>dinero_electronico_ec</td>
 </tr>
 <tr>
 <td>Tarjeta prepago</td>
-<td>18</td>
+<td>tarjeta_prepago</td>
 </tr>
 </tbody></table>
 
