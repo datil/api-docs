@@ -90,10 +90,12 @@ curl -v https://link.datil.co/invoices/issue \
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }'
@@ -177,10 +179,12 @@ factura = {
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }
@@ -291,10 +295,12 @@ namespace DatilClient {
         ],
       ""pagos"": [
         {
-          ""codigo"": ""1"",
+          ""medio"": ""efectivo"",
           ""total"": 4882.68,
-          ""plazo"": 0,
-          ""unidad_tiempo"": ""dias""
+          ""propiedades"": {
+            ""plazo"": 0,
+            ""unidad_tiempo"": ""dias""
+          }
         }
       ]
       }");
@@ -344,10 +350,9 @@ impuestos           | list of [total-tax](#total-tax) objects | List of aggregat
 
 Parameter           | Type                    | Description
 ------------------- | ----------------------- | ----------
-codigo              | string                  | [payment form](#payment-forms) code. __Required__
+medio              | string                  | [payment form](#payment-forms) code. __Required__
 total               | float                   | Total applicable to the payment form. __Required__
-plazo               | integer                 | Term applicable to the payment form.
-unidad_tiempo       | string                  | time unit in which the term is expressed.
+propiedades         | object                  | Additional information related to the payment in dictionary form. Example: <br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
 ### Response
 
@@ -431,10 +436,12 @@ unidad_tiempo       | string                  | time unit in which the term is e
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades": {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }
@@ -585,10 +592,12 @@ Replace `<invoice-ID>` with the `id` of the invoice you to query.
     ],
     "pagos": [
       {
-        "codigo": "1",
+        "medio": "efectivo",
         "total": 4882.68,
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+        "propiedades": {
+          "plazo": 0,
+          "unidad_tiempo": "dias"
+        }
       }
     ],
     "autorizacion": {
