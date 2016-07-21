@@ -728,8 +728,8 @@
 <td>efectivo</td>
 </tr>
 <tr>
-<td>Direct credit</td>
-<td>credito_directo</td>
+<td>Other payment methods</td>
+<td>other</td>
 </tr>
 <tr>
 <td>Check</td>
