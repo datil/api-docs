@@ -92,7 +92,7 @@
     {
       "medio": "cheque",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
@@ -826,6 +826,11 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <td>pagos</td>
 <td>listado de objetos tipo <a href="#pagos">pagos</a></td>
 <td>Listado de formas de pago aplicables a la factura.</td>
+</tr>
+<tr>
+<td>credito</td>
+<td>Objeto de tipo <a href="#cr-dito">credito</a></td>
+<td>Información del crédito directo otorgado al cliente.</td>
 </tr>
 <tr>
 <td>version</td>
