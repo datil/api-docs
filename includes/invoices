@@ -90,11 +90,11 @@
   ],
   "pagos": [
     {
-      "medio": "efectivo",
+      "medio": "cheque",
       "total": 4882.68,
       "propiedades: {
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+        "numero": "1234567890",
+        "banco": "Banco Pacífico"
       }
     }
   ]
@@ -177,24 +177,24 @@
   <span class="p">],</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"medio"</span><span class="p">:</span> <span class="s">"efectivo"</span><span class="p">,</span>
+      <span class="s">"medio"</span><span class="p">:</span> <span class="s">"cheque"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
-    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
-    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
-<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre>
+      <span class="s">"propiedades: {</span><span class="err">
+</span><span class="s">        "</span><span class="n">numero</span><span class="s">": "</span><span class="mi">1234567890</span><span class="s">",</span><span class="err">
+</span><span class="s">        "</span><span class="n">banco</span><span class="s">": "</span><span class="n">Banco</span> <span class="n">Pac</span><span class="err">í</span><span class="n">fico</span><span class="s">"</span><span class="err">
+</span><span class="s">      }</span><span class="err">
+</span><span class="s">    }</span><span class="err">
+</span><span class="s">  ]</span><span class="err">
+</span><span class="s">}</span><span class="err">
+</span><span class="s">cabeceras = {</span><span class="err">
+</span><span class="s">    'x-key': '&lt;clave-del-api&gt;',</span><span class="err">
+</span><span class="s">    'x-password': '&lt;clave-certificado-firma&gt;',</span><span class="err">
+</span><span class="s">    'content-type': 'application/json'}</span><span class="err">
+</span><span class="s">respuesta = requests.post(</span><span class="err">
+</span><span class="s">    "</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">link</span><span class="o">.</span><span class="n">datil</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">invoices</span><span class="o">/</span><span class="n">issue</span><span class="s">",</span><span class="err">
+</span><span class="s">    headers = cabeceras,</span><span class="err">
+</span><span class="s">    data = json.dumps(factura))</span><span class="err">
+</span></code></pre>
 <pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
@@ -291,12 +291,12 @@
       <span class="p">],</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">efectivo</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">cheque</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
           <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">""</span><span class="n">plazo</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">unidad_tiempo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">dias</span><span class="s">""</span>
-          <span class="p">}</span>
+            <span class="s">""</span><span class="n">numero</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1234567890</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">banco</span><span class="s">""</span><span class="p">:</span> <span class="s">"Banco Pacífico""
+</span>          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">]</span>
       <span class="p">}</span><span class="s">");
@@ -395,6 +395,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Listado de objetos tipo <a href="#pagos">pagos</a></td>
 <td>Listado de formas de pago aplicables a la factura. <strong>Requerido</strong></td>
 </tr>
+<tr>
+<td>credito</td>
+<td>Objeto de tipo <a href="#cr-dito">credito</a></td>
+<td>Información del crédito directo otorgado al cliente.</td>
+</tr>
 </tbody></table>
 
 <h4 id="totales">Totales</h4>
@@ -461,6 +466,22 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>propiedades</td>
 <td>objeto</td>
 <td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h4 id="cr-dito">Crédito</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fecha_vencimiento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DD, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -546,13 +567,13 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+      </span><span class="nt">"propiedades: {
+        "</span><span class="err">numero</span><span class="nt">": "</span><span class="err">1234567890</span><span class="nt">",
+        "</span><span class="err">banco</span><span class="nt">": "</span><span class="err">Banco</span><span class="w"> </span><span class="err">Pacífico"</span><span class="w">
+      </span><span class="err">}</span><span class="w">
+    </span><span class="err">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -705,28 +726,28 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efectivo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">168.00</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"identificador"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"mensaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"tipo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFORMATIVO"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1505201516323509927125540010266935227"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"fecha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-15T16:32:35.000380"</span><span class="w">
+        </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"propiedades: {
+          "</span><span class="err">numero</span><span class="nt">": "</span><span class="err">1234567890</span><span class="nt">",
+          "</span><span class="err">banco</span><span class="nt">": "</span><span class="err">Banco</span><span class="w"> </span><span class="err">Pacífico</span><span class="nt">"
+        }
+      }
+    ],
+    "</span><span class="err">autorizacion</span><span class="nt">": {
+        "</span><span class="err">estado</span><span class="nt">": "</span><span class="err">AUTORIZADO</span><span class="nt">",
+        "</span><span class="err">mensajes</span><span class="nt">": [
+            {
+                "</span><span class="err">identificador</span><span class="nt">": "</span><span class="err">60</span><span class="nt">",
+                "</span><span class="err">mensaje</span><span class="nt">": "</span><span class="err">ESTE</span><span class="w"> </span><span class="err">PROCESO</span><span class="w"> </span><span class="err">FUE</span><span class="w"> </span><span class="err">REALIZADO</span><span class="w"> </span><span class="err">EN</span><span class="w"> </span><span class="err">EL</span><span class="w"> </span><span class="err">AMBIENTE</span><span class="w"> </span><span class="err">DE</span><span class="w"> </span><span class="err">PRUEBAS</span><span class="nt">",
+                "</span><span class="err">tipo</span><span class="nt">": "</span><span class="err">INFORMATIVO</span><span class="nt">",
+                "</span><span class="err">informacion_adicional</span><span class="nt">": ""
+            }
+        ],
+        "</span><span class="err">numero</span><span class="nt">": "</span><span class="err">1505201516323509927125540010266935227</span><span class="nt">",
+        "</span><span class="err">fecha</span><span class="nt">": "</span><span class="err">2015-05-15T16</span><span class="p">:</span><span class="mi">32</span><span class="err">:</span><span class="mf">35.000380</span><span class="err">"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
 </span></code></pre>
 
 <table><thead>
@@ -749,7 +770,7 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf">ISO8601</a>.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
