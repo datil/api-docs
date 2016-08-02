@@ -483,6 +483,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>string</td>
 <td>Fecha de emisión en formato AAAA-MM-DD, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
 </tr>
+<tr>
+<td>monto</td>
+<td>float</td>
+<td>Monto otorgado de crédito. <strong>Requerido</strong></td>
+</tr>
 </tbody></table>
 
 <h3 id="respuesta">Respuesta</h3>
