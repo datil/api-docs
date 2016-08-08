@@ -946,6 +946,109 @@ una columna tiene los nombres y otra los valores.</p>
 
 <p>Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.</p>
 
+<h3 id="tablas-recomendadas">Tablas recomendadas</h3>
+
+<p>Estructura recomendada para las tablas o vistas con información de la factura. </p>
+
+<p>Ejemplo en SQL Server:</p>
+<pre class="highlight sql"><code><span class="c1">-- FACTURA: CABECERA
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">cabecera</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">9</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>    
+    <span class="p">[</span><span class="n">moneda</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">15</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">guia_remision</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">clave_acceso</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">49</span><span class="p">),</span>
+    <span class="c1">-- EMISOR
+</span>    <span class="p">[</span><span class="n">ruc_emisor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">13</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">obligado_contabilidad</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">contribuyente_especial</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">nombre_comercial</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_matriz</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">punto_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- COMPRADOR
+</span>    <span class="p">[</span><span class="n">email_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">identificacion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_identificacion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">telefono_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- TOTALES
+</span>    <span class="p">[</span><span class="n">total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">importe_total</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">propina</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span>
+ <span class="k">CONSTRAINT</span> <span class="p">[</span><span class="n">PK_factura</span><span class="p">]</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">CLUSTERED</span> 
+    <span class="p">(</span> <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="k">ASC</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="c1">-- FACTURA: ITEMS
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">items</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">detalle</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_principal</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_auxiliar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_items</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span><span class="n">detalle</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">-- FACTURA: IMPUESTOS DE ITEMS 
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">items_impuestos</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">detalle</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tarifa</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="c1">-- porcentaje
+</span>    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_items_impuestos</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span><span class="n">detalle</span><span class="p">,</span> <span class="n">codigo</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">-- FACTURA: DETALLES ADICIONALES DE ITEMS
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">items_detalles_adicionales</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">detalle</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_items_detalles_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span><span class="n">detalle</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">-- FACTURA: IMPUESTOS DE TOTALES 
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">totales_impuestos</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">orden</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_totales_impuestos</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span> <span class="n">orden</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1">-- FACTURA: INFORMACION ADICIONAL DE LA FACTURA
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">DocElectronicoFactura</span><span class="p">].[</span><span class="n">informacion_adicional</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_informacion_adicional</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+    <span class="p">)</span>   
+
+
+</code></pre>
+
           <h1 id="clave-de-acceso">Clave de acceso</h1>
 
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
