@@ -181,7 +181,7 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 <p><strong>Windows</strong></p>
 
-<p>Windows 32 bits: <a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.6_32bit_generic.exe">linkapp-windows-32bits</a></p>
+<p>Windows 32 bits: <a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.7_32bit_generic.exe">linkapp-windows-32bits</a></p>
 
 <p>Windows 64 bits: [linkapp-windows-64bits]</p>
 
@@ -205,9 +205,11 @@ el flujo de ventanas que aparecerán en su pantalla.</p>
 <img src='../images/linkapp/install-step-4.png'></img>
 <img src='../images/linkapp/install-step-5.png'></img></p>
 
-<h1 id="creaci-n-de-las-tablas-de-control-y-mensaje">Creación de las tablas de Control y Mensaje</h1>
+<h1 id="configuraci-n">Configuración</h1>
 
-<p>Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos.</p>
+<h2 id="tablas-de-control-y-mensaje">Tablas de Control y Mensaje</h2>
+
+<p>Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos. Pueden estar creados en la misma base de datos o en una distinta a la que almacena la información de los comprobantes.</p>
 
 <p>Para crear la tabla de control  y mensaje ejecutar:</p>
 
@@ -229,7 +231,6 @@ CREATE TABLE
     company_name varchar(40),
     CONSTRAINT ix_tipo_idlocal UNIQUE (tipo_comprobante, id_local, numero_comprobante, company_name)
     )
-
 </pre>
 
 <pre>
@@ -245,18 +246,22 @@ CREATE TABLE
     )
 </pre>
 
-<h1 id="configuraci-n-de-la-base-de-datos-tabla-control">Configuración de la base de datos - Tabla control</h1>
+<h2 id="configuraci-n-general">Configuración general</h2>
 
 <p>Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
 <strong>Ejecutar como administrador</strong>. Escoger <code class="prettyprint">Archivo</code> -&gt; <code class="prettyprint">Abrir</code> -&gt; <code class="prettyprint">C:\Archivos de Programa\Datil\Link\config</code>, en la opción <code class="prettyprint">Tipo</code> de la ventana seleccionar <em>Todos los archivos</em> y seleccionar <code class="prettyprint">environment.ini</code></p>
 
-<h2 id="configuraci-n-para-sql-server">Configuración para SQL Server</h2>
+<h3 id="databasesource">DatabaseSource</h3>
+
+<p>Es la configuración de la base de datos que contiene las tablas de  control y mensaje.</p>
+
+<h4 id="sql-server">SQL Server</h4>
 
 <p>En la sección <code class="prettyprint">[DatabaseSource]</code> editar los parámetros:</p>
 
 <ul>
-<li><code class="prettyprint">driver</code> con una de las siguientes opciones: <code class="prettyprint">SQL Server</code>.</li>
-<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
+<li><code class="prettyprint">driver</code> con el valor  <code class="prettyprint">SQL Server</code>.</li>
+<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos donde se crearon las tablas de Control y Mensaje. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
 <li><code class="prettyprint">name</code> con el nombre de la base de datos.</li>
 <li><code class="prettyprint">user</code> con el usuario que tiene acceso a la base de datos.</li>
 <li><code class="prettyprint">password</code> con la clave de acceso a la base de datos.</li>
@@ -264,24 +269,86 @@ CREATE TABLE
 <li><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</li>
 </ul>
 
-<p><code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code>, no aplican para la conexión con 
+<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con 
 SQL Server</p>
 
-<h2 id="configuraci-n-para-dbf-visual-fox-pro">Configuración para DBF (Visual Fox Pro)</h2>
+<h3 id="constraints">Constraints</h3>
+
+<p>En la sección <code class="prettyprint">[Constraints]</code> editar el parámetro <code class="prettyprint">first_receipt_date</code> con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato <code class="prettyprint">yyyy-MM-dd hh:MM:SS</code> Ejemplo: <code class="prettyprint">2016-09-12 13:40:00</code> para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.</p>
+
+<h3 id="notification">Notification</h3>
+
+<p>En la sección <code class="prettyprint">[Notification]</code>:</p>
+
+<p>Editar el parámetro <code class="prettyprint">email_api_key</code> con el API key de Sendgrid para el envío de emails.</p>
+
+<p>Si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante agregue una o varias direcciones de correo electrónico al parámetro <code class="prettyprint">dest_email</code>.</p>
+
+<p>Guardar el archivo con la configuración editada.</p>
+
+<h2 id="configuraci-n-de-la-compa-a">Configuración de la compañía</h2>
+
+<p>Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
+<strong>Ejecutar como administrador</strong>. Escoger <code class="prettyprint">Archivo</code> -&gt; <code class="prettyprint">Abrir</code> -&gt; <code class="prettyprint">C:\Archivos de Programa\Datil\Link\config\companies</code>, en la opción <code class="prettyprint">Tipo</code> de la ventana seleccionar <em>Todos los archivos</em> y seleccionar <code class="prettyprint">my_company.ini</code></p>
+
+<h3 id="general">General</h3>
+
+<p>En la sección <code class="prettyprint">[General]</code> configurar el parámetro <code class="prettyprint">ruc</code>.</p>
+
+<h3 id="api">Api</h3>
+
+<p>En la sección <code class="prettyprint">[Api]</code> configurar el parámetro <code class="prettyprint">xkey</code> con el <em>API key</em> de Dátil y 
+<code class="prettyprint">xpassword</code> con la clave del certificado de firma electrónica, <code class="prettyprint">environment</code> con el valor <code class="prettyprint">1</code> para emisión en modo de pruebas o <code class="prettyprint">2</code> para emitir en producción.</p>
+
+<h3 id="databasesource">DatabaseSource</h3>
+
+<p>Es la configuración de la base de datos de comprobantes</p>
+
+<h4 id="sql-server">SQL Server</h4>
+
+<p>En la sección <code class="prettyprint">[DatabaseSource]</code> editar los parámetros:</p>
 
 <ul>
-<li><code class="prettyprint">driver</code> con una de las siguientes opciones: <code class="prettyprint">SQL Server</code>.</li>
-<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
-<li><code class="prettyprint">name</code> con el nombre de la base de datos.</li>
-<li><code class="prettyprint">user</code> con el usuario que tiene acceso a la base de datos.</li>
-<li><code class="prettyprint">password</code> con la clave de acceso a la base de datos.</li>
+<li><code class="prettyprint">driver</code> con el valor <code class="prettyprint">SQL Server</code>.</li>
+<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos que contiene la información de los comprobantes. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
+<li><code class="prettyprint">name</code> con el nombre de la base de datos de los comprobantes.</li>
+<li><code class="prettyprint">user</code> con el usuario que tiene acceso a la base de datos de los comprobantes.</li>
+<li><code class="prettyprint">password</code> con la clave de acceso a la base de datos de los comprobantes.</li>
 <li><code class="prettyprint">version</code> con la versión de SQL Server.</li>
-<li><p><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</p></li>
-<li><p><code class="prettyprint">datasource</code> con la ruta hacia la carpeta donde están contenidos los archivos .dfb. Ejemplo: C:\Program Files\Contabilidad\Facturacion`</p></li>
-<li><p>SQL Server</p></li>
+<li><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</li>
 </ul>
 
-<h1 id="configuraci-n-de-queries">Configuración de queries</h1>
+<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con 
+SQL Server</p>
+
+<h4 id="dbf-visual-fox-pro">DBF (Visual Fox Pro)</h4>
+
+<ul>
+<li><code class="prettyprint">api</code> con el valor <code class="prettyprint">adodb</code>.</li>
+<li><code class="prettyprint">datasource</code> con la ruta hacia la carpeta donde están contenidos los archivos .dfb. Ejemplo: C:\Program Files\Contabilidad\Facturacion`</li>
+<li><code class="prettyprint">provider</code> con el valor <code class="prettyprint">VFPOLEDB.1</code></li>
+</ul>
+
+<p><code class="prettyprint">driver</code>, <code class="prettyprint">server</code>, <code class="prettyprint">name</code>, <code class="prettyprint">user</code>, <code class="prettyprint">password</code> y <code class="prettyprint">version</code>, no aplican para la conexión con archivos DBF</p>
+
+<p>Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
+<code class="prettyprint">seguros_secomsap</code></p>
+
+<h1 id="ejecutar-el-servicio">Ejecutar el servicio</h1>
+
+<p>En el menú <code class="prettyprint">Inicio</code> buscar el <code class="prettyprint">Simbolo del Sistema</code> , darle click derecho y escoger la opción <code class="prettyprint">Ejecutar como administrador</code>.</p>
+
+<p>Luego para iniciar el servicio ejecutar el comando:</p>
+
+<p><code class="prettyprint">net start datilink</code></p>
+
+<p>Enter.</p>
+
+<p>Si desea detener el servicio, ejecutar:</p>
+
+<p><code class="prettyprint">net stop datilink</code></p>
+
+<h1 id="queries">Queries</h1>
 
 <p><strong>Tablas o Vistas</strong></p>
 
