@@ -205,16 +205,81 @@ el flujo de ventanas que aparecerán en su pantalla.</p>
 <img src='../images/linkapp/install-step-4.png'></img>
 <img src='../images/linkapp/install-step-5.png'></img></p>
 
-<h1 id="configuraci-n-de-credenciales">Configuración de credenciales</h1>
+<h1 id="creaci-n-de-las-tablas-de-control-y-mensaje">Creación de las tablas de Control y Mensaje</h1>
 
-<p>Luego de la instalación un acceso directo al programa Link aparecerá en el  Escritorio
-de su computador.</p>
+<p>Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos.</p>
 
-<p><img style='width:100px;display:block;margin-right: auto;margin-left:auto;' src='../images/linkapp/desktop-shortcut.png'></img></p>
+<p>Para crear la tabla de control  y mensaje ejecutar:</p>
 
-<p>Con doble click sobre él un ícono de Dátil aparecerá en la barra de tareas.</p>
+<pre>
+CREATE TABLE
+    Control(
+    id_control bigint IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    tipo_comprobante int NOT NULL,
+    id_local varchar(100) NOT NULL,
+    numero_comprobante varchar(20) NOT NULL,
+    estado varchar(13),
+    numero_autorizacion varchar(100),
+    fecha_autorizacion datetime,
+    fecha_emision datetime,
+    fecha_ingreso datetime,
+    fecha_ultimo_envio datetime,
+    clave_acceso varchar(50),
+    id_externo varchar(40),
+    company_name varchar(40),
+    CONSTRAINT ix_tipo_idlocal UNIQUE (tipo_comprobante, id_local, numero_comprobante, company_name)
+    )
 
-<p><img style='width:80%;display:block;margin-right: auto;margin-left:auto;' src='../images/linkapp/task-bar-icon.png'></img></p>
+</pre>
+
+<pre>
+CREATE TABLE
+    Mensaje(
+    id_control bigint,
+    identificador varchar(2) NOT NULL,
+    mensaje TEXT NOT NULL,
+    tipo varchar(50) NOT NULL,
+    fecha_creacion datetime NOT NULL,
+    CONSTRAINT pk_comprobante_identificador PRIMARY KEY (id_control, identificador),
+    CONSTRAINT fk_control_id FOREIGN KEY (id_control) REFERENCES Control(id_control)
+    )
+</pre>
+
+<h1 id="configuraci-n-de-la-base-de-datos-tabla-control">Configuración de la base de datos - Tabla control</h1>
+
+<p>Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
+<strong>Ejecutar como administrador</strong>. Escoger <code class="prettyprint">Archivo</code> -&gt; <code class="prettyprint">Abrir</code> -&gt; <code class="prettyprint">C:\Archivos de Programa\Datil\Link\config</code>, en la opción <code class="prettyprint">Tipo</code> de la ventana seleccionar <em>Todos los archivos</em> y seleccionar <code class="prettyprint">environment.ini</code></p>
+
+<h2 id="configuraci-n-para-sql-server">Configuración para SQL Server</h2>
+
+<p>En la sección <code class="prettyprint">[DatabaseSource]</code> editar los parámetros:</p>
+
+<ul>
+<li><code class="prettyprint">driver</code> con una de las siguientes opciones: <code class="prettyprint">SQL Server</code>.</li>
+<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
+<li><code class="prettyprint">name</code> con el nombre de la base de datos.</li>
+<li><code class="prettyprint">user</code> con el usuario que tiene acceso a la base de datos.</li>
+<li><code class="prettyprint">password</code> con la clave de acceso a la base de datos.</li>
+<li><code class="prettyprint">version</code> con la versión de SQL Server.</li>
+<li><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</li>
+</ul>
+
+<p><code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code>, no aplican para la conexión con 
+SQL Server</p>
+
+<h2 id="configuraci-n-para-dbf-visual-fox-pro">Configuración para DBF (Visual Fox Pro)</h2>
+
+<ul>
+<li><code class="prettyprint">driver</code> con una de las siguientes opciones: <code class="prettyprint">SQL Server</code>.</li>
+<li><code class="prettyprint">server</code> con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.</li>
+<li><code class="prettyprint">name</code> con el nombre de la base de datos.</li>
+<li><code class="prettyprint">user</code> con el usuario que tiene acceso a la base de datos.</li>
+<li><code class="prettyprint">password</code> con la clave de acceso a la base de datos.</li>
+<li><code class="prettyprint">version</code> con la versión de SQL Server.</li>
+<li><p><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</p></li>
+<li><p><code class="prettyprint">datasource</code> con la ruta hacia la carpeta donde están contenidos los archivos .dfb. Ejemplo: C:\Program Files\Contabilidad\Facturacion`</p></li>
+<li><p>SQL Server</p></li>
+</ul>
 
 <h1 id="configuraci-n-de-queries">Configuración de queries</h1>
 
