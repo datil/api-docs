@@ -274,7 +274,7 @@ SQL Server</p>
 
 <h3 id="constraints">Constraints</h3>
 
-<p>En la sección <code class="prettyprint">[Constraints]</code> editar el parámetro <code class="prettyprint">first_receipt_date</code> con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato <code class="prettyprint">yyyy-MM-dd hh:MM:SS</code> Ejemplo: <code class="prettyprint">2016-09-12 13:40:00</code> para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.</p>
+<p>En la sección <code class="prettyprint">[Constraints]</code> editar el parámetro <code class="prettyprint">first_receipt_date</code> con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato <code class="prettyprint">YYYY-mm-dd hh:MM:SS</code> Ejemplo: <code class="prettyprint">2016-09-12 13:40:00</code> para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.</p>
 
 <h3 id="notification">Notification</h3>
 
@@ -282,7 +282,7 @@ SQL Server</p>
 
 <p>Editar el parámetro <code class="prettyprint">email_api_key</code> con el API key de Sendgrid para el envío de emails.</p>
 
-<p>Si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante agregue una o varias direcciones de correo electrónico al parámetro <code class="prettyprint">dest_email</code>.</p>
+<p>Editar el parámetro <code class="prettyprint">dest_email</code> si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante. Agregue una o varias direcciones de correo electrónico al separadas por coma (,).</p>
 
 <p>Guardar el archivo con la configuración editada.</p>
 
