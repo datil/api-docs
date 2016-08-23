@@ -331,7 +331,7 @@ SQL Server</p>
 
 <p><code class="prettyprint">driver</code>, <code class="prettyprint">server</code>, <code class="prettyprint">name</code>, <code class="prettyprint">user</code>, <code class="prettyprint">password</code> y <code class="prettyprint">version</code>, no aplican para la conexión con archivos DBF</p>
 
-<p>Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
+<p>Al terminar la edición del archivo se <strong>debe cambiar el nombre</strong> del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
 <code class="prettyprint">seguros_secomsap</code></p>
 
 <h1 id="ejecutar-el-servicio">Ejecutar el servicio</h1>
@@ -997,10 +997,10 @@ una columna tiene los nombres y otra los valores.</p>
 <h3 id="pagos">Pagos</h3>
 
 <p>Obtiene la información de los pagos aplicables a la factura.</p>
-<pre class="highlight sql"><code><span class="n">payments</span>  <span class="o">=</span> <span class="k">SELECT</span>
+<pre class="highlight sql"><code><span class="n">payment_methods</span>  <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">id_pago</span><span class="p">,</span>
-  <span class="n">medio_pago</span><span class="p">,</span>
-  <span class="n">total_pago</span>
+  <span class="n">medio_pago</span> <span class="n">medio</span><span class="p">,</span>
+  <span class="n">total_pago</span> <span class="n">total</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">pagos</span>
   <span class="k">WHERE</span>
@@ -1051,7 +1051,7 @@ una columna tiene los nombres y otra los valores.</p>
 <td>dias</td>
 </tr>
 </tbody></table>
-<pre class="highlight sql"><code><span class="n">payment_properties</span> <span class="o">=</span> <span class="k">SELECT</span>
+<pre class="highlight sql"><code><span class="n">payment_method_properties</span> <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
   <span class="n">columna_de_valores</span>     <span class="n">_valor_</span>
   <span class="k">FROM</span>
