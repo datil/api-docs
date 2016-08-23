@@ -390,9 +390,14 @@
 <td>Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.</td>
 </tr>
 <tr>
-<td>payments</td>
+<td>pagos</td>
 <td>List of <a href="#payments">payments</a> objects</td>
 <td>List of forms of payment applicable to the invoice. <strong>Required</strong></td>
+</tr>
+<tr>
+<td>credito</td>
+<td>Object of type <a href="#cr-dito">credito</a></td>
+<td>Información about the credit granted to the customer.</td>
 </tr>
 </tbody></table>
 
@@ -447,6 +452,11 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>fecha</td>
+<td>string</td>
+<td>Payment date AAAA-MM-DDHoraZonaHoraria, in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> format. The present date time is used when this parameter is not specified.</td>
+</tr>
+<tr>
 <td>medio</td>
 <td>string</td>
 <td><a href="#payment-forms">payment form</a> code. <strong>Required</strong></td>
@@ -462,6 +472,31 @@
 <td>Additional information related to the payment in dictionary form. Example: <br><code class="prettyprint">{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
 </tr>
 </tbody></table>
+
+<h4 id="cr-dito">Crédito</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fecha_vencimiento</td>
+<td>string</td>
+<td>Due date in <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a> date format (AAAA-MM-DD). <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>monto</td>
+<td>float</td>
+<td>Credit amount. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This information is sent to the Internal Revenue Service (SRI) 
+</aside>
 
 <h3 id="response">Response</h3>
 
