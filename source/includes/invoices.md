@@ -342,7 +342,7 @@ credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
 total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
-descuento_adicional | float | Descuento aplicado al subtotal de la factura.
+descuento_adicional | float | Descuento aplicado al subtotal de la factura expresado en valor monetario.
 descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
 propina             | float | Propina total, llamado también servicio. __Requerido__
 importe_total       | float | Total incluyendo impuestos. __Requerido__
@@ -365,7 +365,7 @@ fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, defi
 monto               | float   | Monto otorgado de crédito. __Requerido__
 
 <aside class="notice">
-La información de crédito será enviada como forma de pago al Servicio de 
+La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
 
@@ -453,7 +453,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     {
       "medio": "cheque",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
