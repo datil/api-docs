@@ -607,7 +607,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>descuento_adicional</td>
 <td>float</td>
-<td>Descuento aplicado al subtotal de la factura.</td>
+<td>Descuento aplicado al subtotal de la factura expresado en valor monetario.</td>
 </tr>
 <tr>
 <td>descuento</td>
@@ -684,7 +684,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tbody></table>
 
 <aside class="notice">
-La información de crédito será enviada como forma de pago al Servicio de 
+La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
 
@@ -772,11 +772,11 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"propiedades: {
-        "</span><span class="err">numero</span><span class="nt">": "</span><span class="err">1234567890</span><span class="nt">",
-        "</span><span class="err">banco</span><span class="nt">": "</span><span class="err">Banco</span><span class="w"> </span><span class="err">Pacífico"</span><span class="w">
-      </span><span class="err">}</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="nt">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4254,7 +4254,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>descuento</td>
 <td>float</td>
-<td>El descuento es aplicado por cada producto. <strong>Requerido</strong></td>
+<td>El descuento es aplicado por cada producto, expresado en valor monetario. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>precio_total_sin_impuestos</td>
