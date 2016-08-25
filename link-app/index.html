@@ -182,9 +182,8 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 <p><strong>Windows</strong></p>
 
-<p>Windows 32 bits: <a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.7_32bit_generic.exe">linkapp-windows-32bits</a></p>
-
-<p>Windows 64 bits: [linkapp-windows-64bits]</p>
+<p>Windows 32 bits: [linkapp-windows-32bits]
+Windows 64 bits: [linkapp-windows-64bits]</p>
 
 <p><strong>Linux</strong></p>
 
@@ -906,8 +905,8 @@ una columna tiene los nombres y otra los valores.</p>
 </tr>
 </tbody></table>
 <pre class="highlight sql"><code><span class="n">item_details</span> <span class="o">=</span> <span class="k">SELECT</span>
-  <span class="n">columna_de_nombres</span>    <span class="n">nombre</span><span class="p">,</span>
-  <span class="n">columna_de_valores</span>   <span class="n">valor</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>   <span class="n">_valor_</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">items_detalles_adicionales</span>
   <span class="k">WHERE</span>
