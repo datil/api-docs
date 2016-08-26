@@ -392,91 +392,6 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <p><a href="/link-app#invoice-ini">Ejemplo de archivo invoice.ini</a></p>
 
-<h3 id="todas-las-facturas">Todas las facturas</h3>
-
-<p>Obtiene las facturas de su ERP o sistema contable a partir de una fecha determinada</p>
-<pre class="highlight sql"><code>
-<span class="n">all_stored_locally</span> <span class="o">=</span> <span class="k">SELECT</span>
-  <span class="n">id_local</span>
-  <span class="k">FROM</span>
-  <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
-  <span class="k">WHERE</span>
-  <span class="n">fecha_emision</span> <span class="o">&gt;=</span> <span class="o">?</span>
-
-</code></pre>
-
-<table><thead>
-<tr>
-<th>Campo</th>
-<th>Descripción</th>
-<th>Valor de ejemplo</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id_local</td>
-<td>string</td>
-<td>Identifica de manera única la factura. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>fecha_emision</td>
-<td>string</td>
-<td>Parámetro de búsqueda, es la fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
-</tr>
-</tbody></table>
-
-<h3 id="facturas-no-controladas">Facturas no controladas</h3>
-
-<p>Obtiene las nuevas facturas generadas por su ERP o sistema contable a partir de una fecha determinada.
-Se deben configurar dos queries.</p>
-<pre class="highlight sql"><code><span class="n">not_controlled</span> <span class="o">=</span> <span class="k">SELECT</span>
-  <span class="n">id_local</span><span class="p">,</span>
-  <span class="n">numero</span><span class="p">,</span>
-  <span class="n">fecha_emision</span>
-  <span class="k">FROM</span>
-  <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
-  <span class="k">where</span>
-  <span class="n">id_local</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span> <span class="k">AND</span>
-  <span class="n">fecha_emision</span> <span class="o">&gt;=</span> <span class="o">?</span>
-
-
-<span class="n">not_controlled_first_time</span> <span class="o">=</span> <span class="k">SELECT</span> <span class="n">TOP</span> <span class="p">:</span><span class="k">limit</span>
-  <span class="n">id_local</span><span class="p">,</span>
-  <span class="n">numero</span><span class="p">,</span>
-  <span class="n">fecha_emision</span>
-  <span class="k">FROM</span>
-  <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">cabecera</span>
-  <span class="k">where</span>
-  <span class="n">fecha_emision</span> <span class="o">&gt;=</span> <span class="o">?</span>
-</code></pre>
-
-<blockquote>
-<p><code class="prettyprint">:sequence</code> y <code class="prettyprint">:limit</code> son variables que maneja <strong>Link</strong>, no deben editarse o reemplazarse.</p>
-</blockquote>
-
-<table><thead>
-<tr>
-<th>Campo</th>
-<th>Descripción</th>
-<th>Valor de ejemplo</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id_local</td>
-<td>string</td>
-<td>Identifica de manera única la factura. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>numero</td>
-<td>string</td>
-<td>El número completo de la factura. Ejemplo: &lsquo;001-002-000000034&rsquo; <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>fecha_emision</td>
-<td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
-</tr>
-</tbody></table>
-
 <h3 id="cabecera">Cabecera</h3>
 
 <p>Obtiene información de la cabecera de la factura</p>
@@ -833,12 +748,8 @@ Se deben configurar dos queries.</p>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">items_impuestos</span>
   <span class="k">WHERE</span>
-  <span class="k">cast</span><span class="p">(</span><span class="n">id_factura</span> <span class="k">as</span> <span class="n">varchar</span><span class="p">)</span> <span class="o">+</span> <span class="k">cast</span><span class="p">(</span><span class="n">detalle</span> <span class="k">as</span> <span class="n">varchar</span><span class="p">)</span> <span class="o">=</span> <span class="o">?</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
 </code></pre>
-
-<blockquote>
-<p><code class="prettyprint">cast(id_factura as varchar) + cast(detalle as varchar)</code> es un ejemplo para identificar de manera única el ítem en la factura</p>
-</blockquote>
 
 <table><thead>
 <tr>
@@ -878,7 +789,7 @@ Se deben configurar dos queries.</p>
 
 <p>Obtiene los detalles adicionales de un ítem. Este query es opcional.</p>
 
-<p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
+<p>Los detalles adicionales de un ítem se manejan de la forma &lsquo;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
 
 <p>Se asume que en la tabla consultada
 una columna tiene los nombres y otra los valores.</p>
@@ -910,12 +821,8 @@ una columna tiene los nombres y otra los valores.</p>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">items_detalles_adicionales</span>
   <span class="k">WHERE</span>
-  <span class="k">cast</span><span class="p">(</span><span class="n">id_factura</span> <span class="k">as</span> <span class="n">varchar</span><span class="p">)</span> <span class="o">+</span> <span class="k">cast</span><span class="p">(</span><span class="n">detalle</span> <span class="k">as</span> <span class="n">varchar</span><span class="p">)</span> <span class="o">=</span> <span class="o">?</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
 </code></pre>
-
-<blockquote>
-<p><code class="prettyprint">cast(id_factura as varchar) + cast(detalle as varchar)</code> es un ejemplo para identificar de manera única el ítem en la factura</p>
-</blockquote>
 
 <table><thead>
 <tr>
@@ -1185,6 +1092,535 @@ una columna tiene los nombres y otra los valores.</p>
 
 
 </code></pre>
+
+<h2 id="notas-de-cr-dito">Notas de crédito</h2>
+
+<p>Los queries para la emisión electrónica de <strong>notas de crédito</strong> se guardan en el archivo de configuración <code class="prettyprint">credit_note.ini</code>.</p>
+
+<p><a href="/link-app#credit_note-ini">Ejemplo de archivo credit_note.ini</a></p>
+
+<h3 id="cabecera">Cabecera</h3>
+
+<p>Obtiene información de la cabecera de la nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">headers</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id_nota_credito</span>             <span class="n">id_local</span><span class="p">,</span>
+  <span class="n">secuencial</span><span class="p">,</span>
+  <span class="n">fecha_emision</span><span class="p">,</span>
+  <span class="n">moneda</span><span class="p">,</span>
+  <span class="n">clave_acceso</span><span class="p">,</span>
+  <span class="n">tipo_emision</span><span class="p">,</span>
+  <span class="n">fecha_emision_documento_modificado</span><span class="p">,</span>
+  <span class="n">numero_documento_modificado</span><span class="p">,</span>
+  <span class="n">tipo_documento_modificado</span><span class="p">,</span>
+  <span class="n">motivo</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">info</span><span class="p">.</span><span class="n">id_nota_credito</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id_nota_credito</span> <span class="p">:</span><span class="k">order</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_local</td>
+<td>string</td>
+<td>Identifica de manera única la nota de crédito. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la nota de crédito. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>moneda</td>
+<td>string</td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision_documento_modificado</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_modificado</td>
+<td>string</td>
+<td>Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento_modificado</td>
+<td>string</td>
+<td>Códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>motivo</td>
+<td>string</td>
+<td>Motivo de la operación. Ejm: Devolución de producto. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="vendedor">Vendedor</h3>
+
+<p>Obtiene información del vendedor en la nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">credit_note_seller</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">ruc</span><span class="p">,</span>
+  <span class="n">obligado_contabilidad</span><span class="p">,</span>
+  <span class="n">contribuyente_especial</span><span class="p">,</span>
+  <span class="n">nombre_comercial</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_establecimiento</span><span class="p">,</span>
+  <span class="n">direccion_emisor</span><span class="p">,</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">punto_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>string</td>
+<td><code class="prettyprint">&#39;SI&#39;</code> si está obligado a llevar contabilidad. <code class="prettyprint">&#39;NO&#39;</code> si no lo está.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco <code class="prettyprint">&#39;&#39;</code> si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_establecimiento</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_emisor</td>
+<td>string</td>
+<td>Dirección del punto de emisión. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="comprador">Comprador</h3>
+
+<p>Obtiene información del comprador en la nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">credit_note_buyer</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">identificacion</span><span class="p">,</span>
+  <span class="n">tipo_identificacion</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion</span><span class="p">,</span>
+  <span class="n">email</span><span class="p">,</span>
+  <span class="n">telefono</span>
+  <span class="k">FROM</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+</tbody></table>
+
+<h3 id="totales">Totales</h3>
+
+<p>Obtiene información de los valores totales de la nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">credit_note_totals</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">total_sin_impuestos</span><span class="p">,</span>
+  <span class="n">importe_total</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="impuestos-de-totales">Impuestos de totales</h3>
+
+<p>Obtiene información de los impuestos de los totales de la nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">credit_note_totals_taxes</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">totales_impuestos</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="items">Items</h3>
+
+<p>Obtiene todos los items de una nota de crédito</p>
+<pre class="highlight sql"><code><span class="n">items</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id_detalle</span><span class="p">,</span>
+  <span class="n">codigo_principal</span><span class="p">,</span>
+  <span class="n">codigo_auxiliar</span><span class="p">,</span>
+  <span class="n">descripcion</span><span class="p">,</span>
+  <span class="n">cantidad</span><span class="p">,</span>
+  <span class="n">precio_unitario</span><span class="p">,</span>
+  <span class="n">descuento</span><span class="p">,</span>
+  <span class="n">precio_total_sin_impuestos</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">items</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_detalle</td>
+<td>string</td>
+<td>Identifica de manera única el ítem o detalle de la nota de crédito. Si no hay un solo campo que lo identifique de manera única se debe usar la concatenación de varios.<strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_unitario</td>
+<td>float</td>
+<td>Precio unitario. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>El descuento es aplicado por cada producto. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_total_sin_impuestos</td>
+<td>float</td>
+<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code> <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="impuestos-de-items">Impuestos de items</h3>
+
+<p>Obtiene los impuestos de un item</p>
+<pre class="highlight sql"><code><span class="n">item_taxes</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span><span class="p">,</span>
+  <span class="n">tarifa</span><span class="p">,</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">items_impuestos</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="detalles-adicionales-de-items">Detalles adicionales de items</h3>
+
+<p>Obtiene los detalles adicionales de un ítem. Este query es opcional.</p>
+
+<p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
+
+<p>Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con detalles adicionales del ítem:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Peso</td>
+<td>KG</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Rojo</td>
+</tr>
+<tr>
+<td>Caducidad</td>
+<td>10 días</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">item_details</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>   <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">items_detalles_adicionales</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Nombre del detalle adicional del ítem</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Valor del detalle adicional del ítem</td>
+</tr>
+</tbody></table>
+
+<h3 id="informaci-n-adicional">Información adicional</h3>
+
+<p>Obtiene la información adicional de la nota de crédito.</p>
+
+<p>La información adicional de la nota de crédito se maneja de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Tipo de pago&rsquo;:&#39;Cheque&rsquo;</p>
+
+<p>Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con información adicional de la nota de crédito:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tipo de servicio</td>
+<td>Avanzado</td>
+</tr>
+<tr>
+<td>Forma de pago</td>
+<td>Cheque</td>
+</tr>
+<tr>
+<td>Periodo</td>
+<td>3 meses</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">credit_note_additional_information</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>     <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">informacion_adicional</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_nota_credito</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">_nombre_</code></td>
+<td>string</td>
+<td>Nombre de la información adicional de la nota de crédito</td>
+</tr>
+<tr>
+<td><code class="prettyprint">_valor_</code></td>
+<td>string</td>
+<td>Valor de la información adicional de la nota de crédito</td>
+</tr>
+</tbody></table>
+
+<h3 id="tablas-recomendadas">Tablas recomendadas</h3>
+
+<p>Estructura recomendada para las tablas o vistas con información de la nota de crédito. </p>
+
+<p>Ejemplo en SQL Server:</p>
+
+<p>Pendiente</p>
 
           <h1 id="clave-de-acceso">Clave de acceso</h1>
 
@@ -2157,45 +2593,8 @@ las facturas a crédito se enviarán al SRI con forma de pago &ldquo;Fuera del s
 <p>Guarda la configuración y queries para la extracción y emisisón electrónica de facturas.
 <pre></p>
 
-<p>[Api]
-issue = /credit-notes/issue
-reissue = /credit-notes/:id/reissue
-info = /credit-notes/:id</p>
-
-<p>[Constraints]
-issue_limit = 1
-issue_order = asc
-get_info_limit = 1
-get_info_order = asc</p>
-
 <p>[Query]
-all_stored_locally = SELECT 
-  id_local
-  FROM
-  DocElectronicoFactura.cabecera
-  WHERE
-  fecha_emision &gt;= ?</p>
-
-<p>not_controlled = SELECT 
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where 
-  id_local in (:sequence) AND
-  fecha_emision &gt;= ?</p>
-
-<p>not_controlled_first_time = SELECT TOP :limit
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where 
-  fecha_emision &gt;= ?</p>
-
-<p>headers = SELECT
+headers = SELECT
   id_factura            id_local,
   secuencial,
   fecha_emision,
@@ -2247,7 +2646,7 @@ all_stored_locally = SELECT
   WHERE
   id_factura = ?</p>
 
-<p>invoice_totals  = SELECT
+<p>invoice_totals_taxes  = SELECT
   codigo,
   codigo_porcentaje,
   base_imponible,
@@ -2280,7 +2679,7 @@ all_stored_locally = SELECT
   FROM
   DocElectronicoFactura.items_impuestos
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?</p>
+  id_detalle = ?</p>
 
 <p>item_details = SELECT
   nombre    nombre,
@@ -2288,7 +2687,7 @@ all_stored_locally = SELECT
   FROM
   DocElectronicoFactura.items_detalles_adicionales
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?</p>
+  id_detalle = ?</p>
 
 <p>invoice_additional_information = SELECT
   columna_de_nombres    <em>nombre</em>,
@@ -2296,7 +2695,119 @@ all_stored_locally = SELECT
   FROM
   DocElectronicoFactura.informacion_adicional
   WHERE
-  id_factura = ?
+  id_detalle = ?
+</pre></p>
+
+<h2 id="credit_note-ini">credit_note.ini</h2>
+
+<p>Guarda la configuración y queries para la extracción y emisisón electrónica de notas de crédito.
+<pre></p>
+
+<p>[Query]
+headers = SELECT
+  id_nota_credito            id_local,
+  secuencial,
+  fecha_emision,
+  guia_remision,
+  moneda,
+  clave_acceso,
+  tipo_emision,
+  fecha_emision_documento_modificado,
+  numero_documento_modificado,
+  tipo_documento_modificado,
+  motivo
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  info.id_nota_credito in (:sequence)
+  ORDER BY id_nota_credito :order</p>
+
+<p>credit_note_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?</p>
+
+<p>credit_note_buyer  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?</p>
+
+<p>credit_note_totals  = SELECT
+  total_sin_impuestos,
+  importe_total
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?</p>
+
+<p>credit_note_totals_taxes  = SELECT
+  codigo,
+  codigo_porcentaje,
+  base_imponible,
+  valor
+  FROM
+  DocElectronicoNotaCredito.totales_impuestos
+  WHERE
+  id_nota_credito = ?</p>
+
+<p>items  = SELECT
+  id_detalle,
+  codigo_principal,
+  codigo_auxiliar,
+  descripcion,
+  cantidad,
+  precio_unitario,
+  descuento,
+  precio_total_sin_impuestos
+  FROM
+  DocElectronicoNotaCredito.items
+  WHERE
+  id_nota_credito = ?</p>
+
+<p>item_taxes  = SELECT
+  base_imponible,
+  valor,
+  tarifa,
+  codigo,
+  codigo_porcentaje
+  FROM
+  DocElectronicoNotaCredito.items_impuestos
+  WHERE
+  id_detalle = ?</p>
+
+<p>item_details = SELECT
+  nombre    nombre,
+  valor   valor
+  FROM
+  DocElectronicoNotaCredito.items_detalles_adicionales
+  WHERE
+  id_detalle = ?</p>
+
+<p>credit_note_additional_information = SELECT
+  columna_de_nombres    <em>nombre</em>,
+  columna_de_valores     <em>valor</em>
+  FROM
+  DocElectronicoNotaCredito.informacion_adicional
+  WHERE
+  id_detalle = ?
 </pre></p>
 
       </div>
