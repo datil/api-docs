@@ -1293,7 +1293,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Correo electrónico. Máximo 300 caracteres.</td>
 </tr>
 <tr>
 <td>telefono</td>
@@ -1802,7 +1802,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Correo electrónico. Máximo 300 caracteres.</td>
 </tr>
 <tr>
 <td>telefono</td>
@@ -1939,6 +1939,495 @@ una columna tiene los nombres y otra los valores.</p>
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
 <p>Estructura recomendada para las tablas o vistas con información de la retención. </p>
+
+<p>Ejemplo en SQL Server:</p>
+
+<p>Pendiente</p>
+
+<h2 id="gu-as-de-remisi-n">Guías de Remisión</h2>
+
+<p>Los queries para la emisión electrónica de <strong>guías de remisión</strong> se guardan en el archivo de configuración <code class="prettyprint">waybill.ini</code>.</p>
+
+<p><a href="/link-app#waybill-ini">Ejemplo de archivo waybill.ini</a></p>
+
+<h3 id="cabecera">Cabecera</h3>
+
+<p>Obtiene información de la cabecera de la guía de remisión</p>
+<pre class="highlight sql"><code><span class="n">headers</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id_guia_remision</span>             <span class="n">id_local</span><span class="p">,</span>
+  <span class="n">secuencial</span><span class="p">,</span>
+  <span class="n">fecha_inicio_transporte</span><span class="p">,</span>
+  <span class="n">fecha_fin_transporte</span><span class="p">,</span>
+  <span class="n">direccion_partida</span><span class="p">,</span>
+  <span class="n">clave_acceso</span><span class="p">,</span>
+  <span class="n">tipo_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_guia_remision</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id_guia_remision</span> <span class="p">:</span><span class="k">order</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_local</td>
+<td>string</td>
+<td>Identifica de manera única la guía de remisión. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la retención. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_inicio_transporte</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_fin_transporte</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_partida</td>
+<td>string</td>
+<td>Dirección de partida</td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code class="prettyprint">1</code>.<br>Emisión por indisponibilidad: <code class="prettyprint">2</code><br><strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="vendedor">Vendedor</h3>
+
+<p>Obtiene información del vendedor en la guía de remisión</p>
+<pre class="highlight sql"><code><span class="n">waybill_seller</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">ruc</span><span class="p">,</span>
+  <span class="n">obligado_contabilidad</span><span class="p">,</span>
+  <span class="n">contribuyente_especial</span><span class="p">,</span>
+  <span class="n">nombre_comercial</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_establecimiento</span><span class="p">,</span>
+  <span class="n">direccion_emisor</span><span class="p">,</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">punto_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_guia_remision</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>string</td>
+<td><code class="prettyprint">&#39;SI&#39;</code> si está obligado a llevar contabilidad. <code class="prettyprint">&#39;NO&#39;</code> si no lo está.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco <code class="prettyprint">&#39;&#39;</code> si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_establecimiento</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_emisor</td>
+<td>string</td>
+<td>Dirección del punto de emisión. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="transportista">Transportista</h3>
+
+<p>Obtiene información del transportista en la guía de remisión</p>
+<pre class="highlight sql"><code><span class="n">waybill_shipper</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">identificacion</span><span class="p">,</span>
+  <span class="n">tipo_identificacion</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion</span><span class="p">,</span>
+  <span class="n">email</span><span class="p">,</span>
+  <span class="n">telefono</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">cabecera</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_guia_remision</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono</td>
+</tr>
+</tbody></table>
+
+<h3 id="destinatarios">Destinatarios</h3>
+
+<p>Obtiene información de los destinatarios en la guía de remisión</p>
+<pre class="highlight sql"><code><span class="n">waybill_receivers</span>  <span class="o">=</span> <span class="k">SELECT</span>
+    <span class="n">id_destinatario</span>     <span class="n">receiver_id</span><span class="p">,</span>
+    <span class="n">razon_social</span><span class="p">,</span>
+    <span class="n">identificacion</span><span class="p">,</span>
+    <span class="n">tipo_identificacion</span><span class="p">,</span>
+    <span class="n">email</span><span class="p">,</span>
+    <span class="n">telefono</span><span class="p">,</span>
+    <span class="n">direccion</span><span class="p">,</span>
+    <span class="n">ruta</span><span class="p">,</span>
+    <span class="n">documento_aduanero_unico</span><span class="p">,</span>
+    <span class="n">codigo_establecimiento_destino</span><span class="p">,</span>
+    <span class="n">fecha_emision_documento_sustento</span><span class="p">,</span>
+    <span class="n">numero_documento_sustento</span><span class="p">,</span>
+    <span class="n">tipo_documento_sustento</span><span class="p">,</span>
+    <span class="n">motivo_traslado</span><span class="p">,</span>
+    <span class="n">numero_autorizacion_documento_sustento</span>
+    <span class="k">FROM</span>
+    <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">destinatario</span>
+    <span class="k">WHERE</span>
+    <span class="n">id_guia_remision</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>receiver_id</td>
+<td>string</td>
+<td>Identifica de manera única al destinatario en la guía de remisión. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social del destinatario. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico del destinatario. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>telefono</td>
+<td>string</td>
+<td>Teléfono del destinatario</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección del destinatario</td>
+</tr>
+<tr>
+<td>ruta</td>
+<td>string</td>
+<td>Ruta de transporte. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>documento_aduanero_unico</td>
+<td>string</td>
+<td>Máximo 20 caracteres.</td>
+</tr>
+<tr>
+<td>fecha_emision_documento_sustento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_sustento</td>
+<td>string</td>
+<td>Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098</td>
+</tr>
+<tr>
+<td>codigo_establecimiento_destino</td>
+<td>string</td>
+<td>Número establecimiento que recibe la entrega.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision_documento_sustento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_documento_sustento</td>
+<td>string</td>
+<td>Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento_sustento</td>
+<td>string</td>
+<td>tipo_documento_sustento</td>
+</tr>
+<tr>
+<td>motivo_traslado</td>
+<td>string</td>
+<td>Motivo del traslado. Ejm: Entrega de mercadería. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorizacion_documento_sustento</td>
+<td>string</td>
+<td>Autorización del documento de sustento.</td>
+</tr>
+</tbody></table>
+
+<h3 id="items-del-destinatario">Items del destinatario</h3>
+
+<p>Obtiene la información de los items que recibirá el destinatario</p>
+<pre class="highlight sql"><code><span class="n">waybill_receiver_items</span> <span class="o">=</span> <span class="k">SELECT</span>
+    <span class="n">id_detalle</span><span class="p">,</span>
+    <span class="n">descripcion</span><span class="p">,</span>
+    <span class="n">codigo_principal</span><span class="p">,</span>
+    <span class="n">codigo_auxiliar</span><span class="p">,</span>
+    <span class="n">cantidad</span>
+    <span class="k">FROM</span>
+    <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">detalle</span>
+    <span class="k">WHERE</span>
+    <span class="n">id_destinatario</span> <span class="o">=</span> <span class="o">?</span>
+
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_detalle</td>
+<td>string</td>
+<td>Identifica de manera única el ítem o detalle de la factura. Si no hay un solo campo que lo identifique de manera única se debe usar la concatenación de varios.<strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="detalles-adicionales-de-items">Detalles adicionales de items</h3>
+
+<p>Obtiene los detalles adicionales de un ítem. Este query es opcional.</p>
+
+<p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
+
+<p>Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con detalles adicionales del ítem:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Peso</td>
+<td>KG</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Rojo</td>
+</tr>
+<tr>
+<td>Caducidad</td>
+<td>10 días</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">item_details</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>   <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoGuiaRemision</span><span class="p">.</span><span class="n">items_detalles_adicionales</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Nombre del detalle adicional del ítem</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Valor del detalle adicional del ítem</td>
+</tr>
+</tbody></table>
+
+<h3 id="informaci-n-adicional">Información adicional</h3>
+
+<p>Obtiene la información adicional de la guía de remisión.</p>
+
+<p>La información adicional de la guía de remisión se maneja de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Tipo de pago&rsquo;:&#39;Cheque&rsquo;</p>
+
+<p>Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con información adicional de la guía de remisión:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tipo de servicio</td>
+<td>Avanzado</td>
+</tr>
+<tr>
+<td>Forma de pago</td>
+<td>Cheque</td>
+</tr>
+<tr>
+<td>Periodo</td>
+<td>3 meses</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">waybill_additional_information</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>     <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoRetencion</span><span class="p">.</span><span class="n">informacion_adicional</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_retencion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">_nombre_</code></td>
+<td>string</td>
+<td>Nombre de la información adicional de la rentención</td>
+</tr>
+<tr>
+<td><code class="prettyprint">_valor_</code></td>
+<td>string</td>
+<td>Valor de la información adicional de la retención</td>
+</tr>
+</tbody></table>
+
+<h3 id="tablas-recomendadas">Tablas recomendadas</h3>
+
+<p>Estructura recomendada para las tablas o vistas con información de la guía de remisión. </p>
 
 <p>Ejemplo en SQL Server:</p>
 
@@ -3199,6 +3688,103 @@ headers = SELECT
   WHERE
   id_retencion = ?
 </pre></p>
+
+<h2 id="waybill-ini">waybill.ini</h2>
+
+<p>Guarda la configuración y queries para la extracción y emisisón electrónica de guías de remisión.
+<pre></p>
+
+<p>[Query]
+headers = SELECT
+  id_guia_remision             id_local,
+  secuencial,
+  fecha_inicio_transporte,
+  fecha_fin_transporte,
+  direccion_partida,
+  clave_acceso,
+  tipo_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision in (:sequence)
+  ORDER BY id_guia_remision :order</p>
+
+<p>waybill_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?</p>
+
+<p>waybill_shipper  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?</p>
+
+<p>waybill_receivers  = SELECT
+    id_destinatario     receiver_id,
+    razon_social,
+    identificacion,
+    tipo_identificacion,
+    email,
+    telefono,
+    direccion,
+    ruta,
+    documento_aduanero_unico,
+    codigo_establecimiento_destino,
+    fecha_emision_documento_sustento,
+    numero_documento_sustento,
+    tipo_documento_sustento,
+    motivo_traslado,
+    numero_autorizacion_documento_sustento
+    FROM
+    DocElectronicoGuiaRemision.destinatario
+    WHERE
+    id_guia_remision = ?</p>
+
+<p>waybill_receiver_items = SELECT
+    id_detalle,
+    descripcion,
+    codigo_principal,
+    codigo_auxiliar,
+    cantidad
+    FROM
+    DocElectronicoGuiaRemision.detalle
+    WHERE
+    id_destinatario = ?</p>
+
+<p>item_details = SELECT
+  columna_de_nombres    <em>nombre</em>,
+  columna_de_valores   <em>valor</em>
+  FROM
+  DocElectronicoGuiaRemision.items_detalles_adicionales
+  WHERE
+  id_detalle = ?</p>
+
+<p>waybill_additional_information = SELECT
+  columna_de_nombres    <em>nombre</em>,
+  columna_de_valores     <em>valor</em>
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?</p>
+
+<p></pre></p>
 
       </div>
       <div class="dark-box">

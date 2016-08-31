@@ -289,3 +289,100 @@ headers = SELECT
   WHERE
   id_retencion = ?
 </pre></p>
+
+<h2 id="waybill-ini">waybill.ini</h2>
+
+<p>Guarda la configuración y queries para la extracción y emisisón electrónica de guías de remisión.
+<pre></p>
+
+<p>[Query]
+headers = SELECT
+  id_guia_remision             id_local,
+  secuencial,
+  fecha_inicio_transporte,
+  fecha_fin_transporte,
+  direccion_partida,
+  clave_acceso,
+  tipo_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision in (:sequence)
+  ORDER BY id_guia_remision :order</p>
+
+<p>waybill_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?</p>
+
+<p>waybill_shipper  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?</p>
+
+<p>waybill_receivers  = SELECT
+    id_destinatario     receiver_id,
+    razon_social,
+    identificacion,
+    tipo_identificacion,
+    email,
+    telefono,
+    direccion,
+    ruta,
+    documento_aduanero_unico,
+    codigo_establecimiento_destino,
+    fecha_emision_documento_sustento,
+    numero_documento_sustento,
+    tipo_documento_sustento,
+    motivo_traslado,
+    numero_autorizacion_documento_sustento
+    FROM
+    DocElectronicoGuiaRemision.destinatario
+    WHERE
+    id_guia_remision = ?</p>
+
+<p>waybill_receiver_items = SELECT
+    id_detalle,
+    descripcion,
+    codigo_principal,
+    codigo_auxiliar,
+    cantidad
+    FROM
+    DocElectronicoGuiaRemision.detalle
+    WHERE
+    id_destinatario = ?</p>
+
+<p>item_details = SELECT
+  columna_de_nombres    <em>nombre</em>,
+  columna_de_valores   <em>valor</em>
+  FROM
+  DocElectronicoGuiaRemision.items_detalles_adicionales
+  WHERE
+  id_detalle = ?</p>
+
+<p>waybill_additional_information = SELECT
+  columna_de_nombres    <em>nombre</em>,
+  columna_de_valores     <em>valor</em>
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?</p>
+
+<p></pre></p>
