@@ -2433,6 +2433,39 @@ una columna tiene los nombres y otra los valores.</p>
 
 <p>Pendiente</p>
 
+<h1 id="actualizaci-n">Actualización</h1>
+
+<p>Para actualizar el programa Link de Dátil</p>
+
+<ul>
+<li>Abra el terminal de windows y detenga el servicio:</li>
+</ul>
+
+<p><code class="prettyprint">net stop datilink</code></p>
+
+<ul>
+<li>Respalde la carpeta de configuración  <code class="prettyprint">config</code> </li>
+</ul>
+
+<p>Windows: <code class="prettyprint">C:\Archivos de Programa\Datil\Link\config</code> .</p>
+
+<ul>
+<li>Doble click en el desinstalador:</li>
+</ul>
+
+<p>Windows: <code class="prettyprint">C:\Archivos de Programa\Datil\Link\unins</code></p>
+
+<p>Dentro del directorio de instalación solo debe quedar la carpeta <code class="prettyprint">logs</code>. Si otro
+archivo o carpeta sigue existiendo, borrarlo.</p>
+
+<ul>
+<li><p>Instalar la nueva versión ejecutando el instalador de Link</p></li>
+<li><p>Reemplazar la carpeta config recién instalada con la carpeta config respaldada previamente</p></li>
+<li><p>Iniciar el servicio con el comando:</p></li>
+</ul>
+
+<p><code class="prettyprint">net start datilink</code></p>
+
           <h1 id="clave-de-acceso">Clave de acceso</h1>
 
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
