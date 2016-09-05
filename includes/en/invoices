@@ -92,7 +92,7 @@
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "plazo": 0,
         "unidad_tiempo": "dias"
       }
@@ -179,22 +179,22 @@
     <span class="p">{</span>
       <span class="s">"medio"</span><span class="p">:</span> <span class="s">"efectivo"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"propiedades: {</span><span class="err">
-</span><span class="s">        "</span><span class="n">plazo</span><span class="s">": 0,</span><span class="err">
-</span><span class="s">        "</span><span class="n">unidad_tiempo</span><span class="s">": "</span><span class="n">dias</span><span class="s">"</span><span class="err">
-</span><span class="s">      }</span><span class="err">
-</span><span class="s">    }</span><span class="err">
-</span><span class="s">  ]</span><span class="err">
-</span><span class="s">}</span><span class="err">
-</span><span class="s">cabeceras = {</span><span class="err">
-</span><span class="s">    'x-key': '&lt;your-api-key&gt;',</span><span class="err">
-</span><span class="s">    'x-password': '&lt;clave-certificado-firma&gt;',</span><span class="err">
-</span><span class="s">    'content-type': 'application/json'}</span><span class="err">
-</span><span class="s">respuesta = requests.post(</span><span class="err">
-</span><span class="s">    "</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">link</span><span class="o">.</span><span class="n">datil</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">invoices</span><span class="o">/</span><span class="n">issue</span><span class="s">",</span><span class="err">
-</span><span class="s">    headers = cabeceras,</span><span class="err">
-</span><span class="s">    data = json.dumps(factura))</span><span class="err">
-</span></code></pre>
+      <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"plazo"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;your-api-key&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
+</code></pre>
 <pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
