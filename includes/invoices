@@ -88,10 +88,16 @@
       "descuento": 0.0
     }
   ],
+  "valor_retenido_iva": 70.40,
+  "valor_retenido_renta": 29.60,
+  "credito": {
+    "fecha_vencimiento": "2015-03-28",
+    "monto": 34.21
+  },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 4782.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
@@ -175,6 +181,12 @@
       <span class="s">"descuento"</span><span class="p">:</span> <span class="mf">0.0</span>
     <span class="p">}</span>
   <span class="p">],</span>
+  <span class="s">"valor_retenido_iva"</span><span class="p">:</span> <span class="mf">70.40</span><span class="p">,</span>
+  <span class="s">"valor_retenido_renta"</span><span class="p">:</span> <span class="mf">29.60</span><span class="p">,</span>
+  <span class="s">"credito"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"fecha_vencimiento"</span><span class="p">:</span> <span class="s">"2015-03-28"</span><span class="p">,</span>
+    <span class="s">"monto"</span><span class="p">:</span> <span class="mf">34.21</span>
+  <span class="p">},</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s">"medio"</span><span class="p">:</span> <span class="s">"cheque"</span><span class="p">,</span>
@@ -289,6 +301,12 @@
             <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0.0</span>
           <span class="p">}</span>
       <span class="p">],</span>
+        <span class="s">""</span><span class="n">valor_retenido_iva</span><span class="s">""</span><span class="p">:</span> <span class="m">70.40</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">valor_retenido_renta</span><span class="s">""</span><span class="p">:</span> <span class="m">29.60</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">credito</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">""</span><span class="n">fecha_vencimiento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">03</span><span class="p">-</span><span class="m">28</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">monto</span><span class="s">""</span><span class="p">:</span> <span class="m">34.21</span>
+        <span class="p">},</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">cheque</span><span class="s">""</span><span class="p">,</span>
@@ -384,6 +402,16 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>informacion_adicional</td>
 <td>objeto</td>
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+</tr>
+<tr>
+<td>valor_retenido_iva</td>
+<td>float</td>
+<td>Valor retenido por IVA</td>
+</tr>
+<tr>
+<td>valor_retenido_renta</td>
+<td>float</td>
+<td>Valor retenido por renta</td>
 </tr>
 <tr>
 <td>retenciones</td>
@@ -580,6 +608,12 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"valor_retenido_renta"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.60</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credito"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"fecha_vencimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-28"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"monto"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.21</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
@@ -739,6 +773,12 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"valor_retenido_renta"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.60</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credito"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"fecha_vencimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-28"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"monto"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.21</span><span class="w">
+    </span><span class="p">},</span><span class="w">    
     </span><span class="nt">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
