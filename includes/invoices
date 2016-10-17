@@ -528,6 +528,50 @@ La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
 
+<h3 id="operaci-n-a-partir-de-xml">Operación a partir de XML</h3>
+
+<p><code class="prettyprint">POST /invoices/issue/xml</code></p>
+
+<h3 id="requerimiento-a-partir-de-xml">Requerimiento a partir de XML</h3>
+
+<p>Para la emisión de una factura a partir de un xml se debe enviar contenido del archivo xml como parámetro en el cuerpo del requerimiento en formato JSON.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xml</td>
+<td>string</td>
+<td>Contenido del archivo xml. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<h4 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h4>
+</blockquote>
+<pre class="highlight shell"><code>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s">"xml"</span> <span class="p">:</span> <span class="s">"&lt;?xml ... "</span>
+<span class="p">}</span>
+
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
+</code></pre>
+<pre class="highlight csharp"><code></code></pre>
+
 <h3 id="respuesta">Respuesta</h3>
 
 <blockquote>
