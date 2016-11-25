@@ -1003,6 +1003,74 @@ una columna tiene los nombres y otra los valores.</p>
 
 <p>Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.</p>
 
+<h3 id="cr-dito">Crédito</h3>
+
+<p>Crédito otorgado en la venta. </p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fecha_vencimiento</td>
+<td>string</td>
+<td>Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>monto</td>
+<td>float</td>
+<td>Monto otorgado de crédito. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">invoice_credit</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">monto</span><span class="p">,</span>
+  <span class="n">fecha_vencimiento</span>
+  <span class="k">FROM</span>
+  <span class="n">facturas</span><span class="p">.</span><span class="n">credito</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_factura</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<h3 id="compensaci-n-solidaria">Compensación solidaria</h3>
+
+<p>Descuento otorgado a las provincias de Manabí y Esmeraldas.</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>int</td>
+<td>Código del porcentaje de IVA . <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>int</td>
+<td>Porcentaje de compensación. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor de la compensación. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">invoice_compensation</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">tarifa</span><span class="p">,</span>
+  <span class="n">valor</span>
+  <span class="k">FROM</span>
+  <span class="n">facturas</span><span class="p">.</span><span class="n">compensacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_factura</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
 <p>Estructura recomendada para las tablas o vistas con información de la factura. </p>
@@ -1022,8 +1090,8 @@ una columna tiene los nombres y otra los valores.</p>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
-    <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="c1">-- (OPCIONAL) el ambiente se toma del archivo de configuración de Link App.
+</span>    <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">moneda</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">15</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="c1">-- USD para dólares
@@ -1110,7 +1178,8 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="k">CONSTRAINT</span> <span class="n">PK_informacion_adicional</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_factura</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">pago</span><span class="p">](</span>
+<span class="c1">-- FACTURA: PAGOS
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">pago</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
     <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">fecha</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -1119,14 +1188,30 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">monto</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span>
 
-
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">pago_propiedad</span><span class="p">](</span>
+<span class="c1">-- FACTURA: PROPIEDADES DE PAGOS
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">pago_propiedad</span><span class="p">](</span>
   <span class="p">[</span><span class="n">id_pago</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">pago</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
   <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
   <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
   <span class="k">CONSTRAINT</span> <span class="n">PK_pago_propiedad</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_pago</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
+<span class="c1">-- FACTURA: CREDITO 
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">credito</span><span class="p">](</span>
+  <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+  <span class="p">[</span><span class="n">monto</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="p">[</span><span class="n">fecha_vencimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
+
+<span class="c1">-- FACTURA: COMPENSACION SOLIDARIA
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">compensacion</span><span class="p">](</span>
+  <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+  <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="p">[</span><span class="n">tarifa</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
 
 </code></pre>
 

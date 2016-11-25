@@ -103,6 +103,13 @@
         "banco": "Banco Pacífico"
       }
     }
+  ],
+  "compensaciones": [
+    {
+      "codigo": 1,
+      "tarifa": 2,
+      "valor": 2.00
+    }
   ]
 }'</span>
 </code></pre>
@@ -195,6 +202,13 @@
         <span class="s">"numero"</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">,</span>
         <span class="s">"banco"</span><span class="p">:</span> <span class="s">"Banco Pacífico"</span>
       <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"compensaciones"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"codigo"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"tarifa"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s">"valor"</span><span class="p">:</span> <span class="mf">2.00</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -316,6 +330,13 @@
             <span class="s">""</span><span class="n">banco</span><span class="s">""</span><span class="p">:</span> <span class="s">"Banco Pacífico""
 </span>          <span class="p">}</span>
         <span class="p">}</span>
+      <span class="p">],</span>
+        <span class="s">""</span><span class="n">compensaciones</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+              <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="m">1</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span> <span class="m">2</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span> <span class="m">2.00</span>
+        <span class="p">}</span>
       <span class="p">]</span>
       <span class="p">}</span><span class="s">");
 </span>      <span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
@@ -428,6 +449,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Objeto de tipo <a href="#cr-dito">credito</a></td>
 <td>Información del crédito directo otorgado al cliente.</td>
 </tr>
+<tr>
+<td>compensaciones</td>
+<td>Objeto de tipo <a href="#compensaci-n-solidaria">compensación solidaria</a></td>
+<td><strong>Solo</strong> para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana</td>
+</tr>
 </tbody></table>
 
 <h4 id="totales">Totales</h4>
@@ -520,6 +546,32 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>monto</td>
 <td>float</td>
 <td>Monto otorgado de crédito. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h4 id="compensaci-n-solidaria">Compensación solidaria</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>int</td>
+<td>Código del porcentaje de IVA . <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>int</td>
+<td>Porcentaje de compensación. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor de la compensación. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -666,6 +718,13 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
         </span><span class="nt">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
       </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"compensaciones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -833,6 +892,13 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"compensaciones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w"> 
     </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
