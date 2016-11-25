@@ -528,7 +528,7 @@ La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
 
-<h3 id="operaci-n-a-partir-de-xml">Operación a partir de XML</h3>
+<h3 id="emisi-n-a-partir-de-xml">Emisión a partir de XML</h3>
 
 <p><code class="prettyprint">POST /invoices/issue/xml</code></p>
 
@@ -566,7 +566,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
+    <span class="s">"https://link.datil.co/invoices/issue/xml"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
 </code></pre>
