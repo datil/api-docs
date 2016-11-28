@@ -693,7 +693,8 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
   <span class="n">cantidad</span><span class="p">,</span>
   <span class="n">precio_unitario</span><span class="p">,</span>
   <span class="n">descuento</span><span class="p">,</span>
-  <span class="n">precio_total_sin_impuestos</span>
+  <span class="n">precio_total_sin_impuestos</span><span class="p">,</span>
+  <span class="n">unidad_medida</span>
   <span class="k">FROM</span>
   <span class="n">DocElectronicoFactura</span><span class="p">.</span><span class="n">items</span>
   <span class="k">WHERE</span>
@@ -746,6 +747,11 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <td>precio_total_sin_impuestos</td>
 <td>float</td>
 <td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>unidad_medida</td>
+<td>string</td>
+<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
 </tr>
 </tbody></table>
 
@@ -1071,6 +1077,97 @@ una columna tiene los nombres y otra los valores.</p>
   <span class="n">id_factura</span> <span class="o">=</span> <span class="o">?</span>
 </code></pre>
 
+<h3 id="exportaci-n">Exportación</h3>
+
+<p>Obligatorio para facturas de exportación</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>incoterm_termino</td>
+<td>string</td>
+<td>Código de 3 letras correspondiente al <a href="http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/">Incoterm</a></td>
+</tr>
+<tr>
+<td>incoterm_lugar</td>
+<td>string</td>
+<td>Lugar Incoterm</td>
+</tr>
+<tr>
+<td>incoterm_total_sin_impuestos</td>
+<td>float</td>
+<td>Total sin impuestos pagado por el incoterm</td>
+</tr>
+<tr>
+<td>codigo_pais_origen</td>
+<td>string</td>
+<td>Código del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>codigo_pais_destino</td>
+<td>string</td>
+<td>Código del país destino según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>codigo_pais_adquisicion</td>
+<td>string</td>
+<td>Código del país de adquisición según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>puerto_origen</td>
+<td>string</td>
+<td>Puerto de origen</td>
+</tr>
+<tr>
+<td>puerto_destino</td>
+<td>string</td>
+<td>Puerto de destino</td>
+</tr>
+<tr>
+<td>total_flete_internacional</td>
+<td>float</td>
+<td>Total del flete internacional</td>
+</tr>
+<tr>
+<td>total_seguro_internacional</td>
+<td>float</td>
+<td>Total del seguro internacional</td>
+</tr>
+<tr>
+<td>total_gastos_aduaneros</td>
+<td>float</td>
+<td>Total de los gastos aduaneros</td>
+</tr>
+<tr>
+<td>total_otros_gastos_transporte</td>
+<td>float</td>
+<td>Total de otros gastos de transporte</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">invoice_export</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">incoterm_termino</span><span class="p">,</span>
+  <span class="n">incoterm_lugar</span><span class="p">,</span>
+  <span class="n">incoterm_total_sin_impuestos</span><span class="p">,</span>
+  <span class="n">codigo_pais_origen</span><span class="p">,</span>
+  <span class="n">codigo_pais_destino</span><span class="p">,</span>
+  <span class="n">codigo_pais_adquisicion</span><span class="p">,</span>
+  <span class="n">puerto_origen</span><span class="p">,</span>
+  <span class="n">puerto_destino</span><span class="p">,</span>
+  <span class="n">total_flete_internacional</span><span class="p">,</span>
+  <span class="n">total_seguro_internacional</span><span class="p">,</span>
+  <span class="n">total_gastos_aduaneros</span><span class="p">,</span>
+  <span class="n">total_otros_gastos_transporte</span><span class="p">,</span>
+  <span class="k">FROM</span>
+  <span class="n">facturas</span><span class="p">.</span><span class="n">exportacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_factura</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
 <p>Estructura recomendada para las tablas o vistas con información de la factura. </p>
@@ -1138,7 +1235,9 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">unidad_medida</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span>
+
 <span class="p">)</span>
 
 <span class="c1">-- FACTURA: IMPUESTOS DE ITEMS 
@@ -1213,6 +1312,23 @@ una columna tiene los nombres y otra los valores.</p>
   <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span>
 
+<span class="c1">-- FACTURA: EXPORTACION
+</span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">exportacion</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">incoterm_termino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">incoterm_lugar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">incoterm_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_origen</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_destino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_adquisicion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">puerto_origen</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">puerto_destino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_flete_internacional</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_seguro_internacional</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_gastos_aduaneros</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_otros_gastos_transporte</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
 </code></pre>
 
 <h2 id="notas-de-cr-dito">Notas de crédito</h2>
@@ -1732,6 +1848,64 @@ una columna tiene los nombres y otra los valores.</p>
 <td><code class="prettyprint">_valor_</code></td>
 <td>string</td>
 <td>Valor de la información adicional de la nota de crédito</td>
+</tr>
+</tbody></table>
+
+<h3 id="detalles-adicionales-de-items">Detalles adicionales de items</h3>
+
+<p>Obtiene los detalles adicionales de un ítem. Este query es opcional.</p>
+
+<p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
+
+<p>Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con detalles adicionales del ítem:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Peso</td>
+<td>KG</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Rojo</td>
+</tr>
+<tr>
+<td>Caducidad</td>
+<td>10 días</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql"><code><span class="n">item_details</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">columna_de_nombres</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">columna_de_valores</span>   <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">DocElectronicoNotaCredito</span><span class="p">.</span><span class="n">items_detalles_adicionales</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_detalle</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Nombre del detalle adicional del ítem</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Valor del detalle adicional del ítem</td>
 </tr>
 </tbody></table>
 
@@ -3252,6 +3426,11 @@ estar estructurada la clave de acceso.</p>
 <td>precio_total_sin_impuestos</td>
 <td>float</td>
 <td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+</tr>
+<tr>
+<td>unidad_medida</td>
+<td>string</td>
+<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
 </tr>
 <tr>
 <td>impuestos</td>

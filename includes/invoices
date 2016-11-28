@@ -110,7 +110,29 @@
       "tarifa": 2,
       "valor": 2.00
     }
-  ]
+  ],
+  "exportacion": {
+    "incoterm": {
+      "termino": "CIF",
+      "lugar": "Guayaquil",
+      "total_sin_impuestos": 10.25
+    },
+    "origen": {
+      "codigo_pais":"EC",
+      "puerto": "Guayaquil"
+    },
+    "destino": {
+      "codigo_pais":"CN",
+      "puerto": "China"
+    },
+    "codigo_pais_adquisicion": "EC",
+    "totales": {
+      "flete_internacional": 1000.00,
+      "seguro_internacional": 200.00,
+      "gastos_aduaneros": 800,
+      "otros_gastos_transporte": 350.00
+    }
+  }
 }'</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
@@ -210,7 +232,29 @@
       <span class="s">"tarifa"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
       <span class="s">"valor"</span><span class="p">:</span> <span class="mf">2.00</span>
     <span class="p">}</span>
-  <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s">"exportacion"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"incoterm"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"termino"</span><span class="p">:</span> <span class="s">"CIF"</span><span class="p">,</span>
+      <span class="s">"lugar"</span><span class="p">:</span> <span class="s">"Guayaquil"</span><span class="p">,</span>
+      <span class="s">"total_sin_impuestos"</span><span class="p">:</span> <span class="mf">10.25</span>
+    <span class="p">},</span>
+    <span class="s">"origen"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"codigo_pais"</span><span class="p">:</span><span class="s">"EC"</span><span class="p">,</span>
+      <span class="s">"puerto"</span><span class="p">:</span> <span class="s">"Guayaquil"</span>
+    <span class="p">},</span>
+    <span class="s">"destino"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"codigo_pais"</span><span class="p">:</span><span class="s">"CN"</span><span class="p">,</span>
+      <span class="s">"puerto"</span><span class="p">:</span> <span class="s">"China"</span>
+    <span class="p">},</span>
+    <span class="s">"codigo_pais_adquisicion"</span><span class="p">:</span> <span class="s">"EC"</span><span class="p">,</span>
+    <span class="s">"totales"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">"flete_internacional"</span><span class="p">:</span> <span class="mf">1000.00</span><span class="p">,</span>
+      <span class="s">"seguro_internacional"</span><span class="p">:</span> <span class="mf">200.00</span><span class="p">,</span>
+      <span class="s">"gastos_aduaneros"</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+      <span class="s">"otros_gastos_transporte"</span><span class="p">:</span> <span class="mf">350.00</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
@@ -337,7 +381,28 @@
               <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span> <span class="m">2</span><span class="p">,</span>
               <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span> <span class="m">2.00</span>
         <span class="p">}</span>
-      <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s">""</span><span class="n">exportacion</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">""</span><span class="n">incoterm</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">""</span><span class="n">termino</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">CIF</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">lugar</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Guayaquil</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">10.25</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">origen</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">""</span><span class="n">codigo_pais</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">EC</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">puerto</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Guayaquil</span><span class="s">""</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">destino</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">""</span><span class="n">codigo_pais</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">CN</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">puerto</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">China</span><span class="s">""</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">codigo_pais_adquisicion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">EC</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">totales</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">""</span><span class="n">flete_internacional</span><span class="s">""</span><span class="p">:</span> <span class="m">1000.00</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">seguro_internacional</span><span class="s">""</span><span class="p">:</span> <span class="m">200.00</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">gastos_aduaneros</span><span class="s">""</span><span class="p">:</span> <span class="m">800</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">otros_gastos_transporte</span><span class="s">""</span><span class="p">:</span> <span class="m">350.00</span>
+        <span class="p">}</span>
       <span class="p">}</span><span class="s">");
 </span>      <span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
       <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
@@ -453,6 +518,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>compensaciones</td>
 <td>Objeto de tipo <a href="#compensaci-n-solidaria">compensación solidaria</a></td>
 <td><strong>Solo</strong> para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana</td>
+</tr>
+<tr>
+<td>exportacion</td>
+<td>Objeto de tipo <a href="#exportaci-n">exportacion</a></td>
+<td><strong>Solo</strong> para facturas de exportación</td>
 </tr>
 </tbody></table>
 
@@ -572,6 +642,141 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>valor</td>
 <td>float</td>
 <td>Valor de la compensación. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h4 id="exportaci-n">Exportación</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>incoterm</td>
+<td>Objeto de tipo <a href="#inconterm">incoterm</a></td>
+<td>Información del Incoterm</td>
+</tr>
+<tr>
+<td>origen</td>
+<td>Objeto de tipo <a href="#origen-de-exportaci-n">origen de exportación</a></td>
+<td>Origen de la exportación</td>
+</tr>
+<tr>
+<td>destino</td>
+<td>Objeto de tipo <a href="#destino-de-exportaci-n">destino de exportación</a></td>
+<td>Destino de la exportación</td>
+</tr>
+<tr>
+<td>codigo_pais_adquisicion</td>
+<td>string</td>
+<td>Código del país de adquisición según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>totales</td>
+<td>Objecto de tipo <a href="#totales-de-exportaci-n">totales de exportación</a></td>
+<td>Totales de la exportación</td>
+</tr>
+</tbody></table>
+
+<h4 id="incoterm">Incoterm</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>termino</td>
+<td>string</td>
+<td>Código de 3 letras correspondiente al <a href="http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/">Incoterm</a></td>
+</tr>
+<tr>
+<td>lugar</td>
+<td>string</td>
+<td>Lugar Incoterm</td>
+</tr>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total sin impuestos del incoterm</td>
+</tr>
+</tbody></table>
+
+<h4 id="origen-de-exportaci-n">Origen de exportación</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_pais</td>
+<td>string</td>
+<td>Código del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>puerto</td>
+<td>string</td>
+<td>Puerto de origen</td>
+</tr>
+</tbody></table>
+
+<h4 id="destino-de-exportaci-n">Destino de exportación</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_pais</td>
+<td>string</td>
+<td>Código del país destino según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+</tr>
+<tr>
+<td>puerto</td>
+<td>string</td>
+<td>Puerto de destino</td>
+</tr>
+</tbody></table>
+
+<h4 id="totales-de-exportaci-n">Totales de exportación</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flete_internacional</td>
+<td>float</td>
+<td>Total del flete internacional</td>
+</tr>
+<tr>
+<td>seguro_internacional</td>
+<td>float</td>
+<td>Total del seguro internacional</td>
+</tr>
+<tr>
+<td>gastos_aduaneros</td>
+<td>float</td>
+<td>Total de los gastos aduaneros</td>
+</tr>
+<tr>
+<td>otros_gastos_transporte</td>
+<td>float</td>
+<td>Total de otros gastos de transporte</td>
 </tr>
 </tbody></table>
 
@@ -726,7 +931,29 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"exportacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"incoterm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"termino"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIF"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lugar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.25</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"origen"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"codigo_pais"</span><span class="p">:</span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"destino"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"codigo_pais"</span><span class="p">:</span><span class="s2">"CN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"codigo_pais_adquisicion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"flete_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.00</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"seguro_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gastos_aduaneros"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"otros_gastos_transporte"</span><span class="p">:</span><span class="w"> </span><span class="mf">350.00</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -898,8 +1125,30 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
         </span><span class="nt">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w"> 
-    </span><span class="nt">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"exportacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"incoterm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"termino"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIF"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lugar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.25</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"origen"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"codigo_pais"</span><span class="p">:</span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"destino"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"codigo_pais"</span><span class="p">:</span><span class="s2">"CN"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"codigo_pais_adquisicion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"flete_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"seguro_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gastos_aduaneros"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"otros_gastos_transporte"</span><span class="p">:</span><span class="w"> </span><span class="mf">350.00</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"autorizacion"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">

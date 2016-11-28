@@ -431,6 +431,11 @@ estar estructurada la clave de acceso.</p>
 <td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
 </tr>
 <tr>
+<td>unidad_medida</td>
+<td>string</td>
+<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
+</tr>
+<tr>
 <td>impuestos</td>
 <td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
 <td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
