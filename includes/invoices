@@ -85,7 +85,8 @@
       "detalles_adicionales": {
         "Peso":"5000.0000"
       },
-      "descuento": 0.0
+      "descuento": 0.0,
+      "unidad_medida": "Kilos"
     }
   ],
   "valor_retenido_iva": 70.40,
@@ -207,7 +208,8 @@
       <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"Peso"</span><span class="p">:</span><span class="s">"5000.0000"</span>
       <span class="p">},</span>
-      <span class="s">"descuento"</span><span class="p">:</span> <span class="mf">0.0</span>
+      <span class="s">"descuento"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+      <span class="s">"unidad_medida"</span><span class="p">:</span> <span class="s">"Kilos"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s">"valor_retenido_iva"</span><span class="p">:</span> <span class="mf">70.40</span><span class="p">,</span>
@@ -356,7 +358,8 @@
             <span class="s">""</span><span class="n">detalles_adicionales</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
               <span class="s">""</span><span class="n">Peso</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">5000.0000</span><span class="s">""</span>
             <span class="p">},</span>
-            <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0.0</span>
+            <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0.0</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">unidad_medida</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Kilos</span><span class="s">""</span>
           <span class="p">}</span>
       <span class="p">],</span>
         <span class="s">""</span><span class="n">valor_retenido_iva</span><span class="s">""</span><span class="p">:</span> <span class="m">70.40</span><span class="p">,</span>
@@ -906,7 +909,8 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       </span><span class="nt">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"Peso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.0000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+      </span><span class="nt">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unidad_medida"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kilos"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
@@ -1100,7 +1104,8 @@ se debe examinar los parámetros <code class="prettyprint">envio_sri</code> y <c
                     </span><span class="nt">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"unidad_medida"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kilos"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
