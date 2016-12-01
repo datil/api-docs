@@ -443,7 +443,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <tr>
 <td>fecha_emision</td>
 <td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>Fecha de emisión   <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>guia_remision</td>
@@ -1229,10 +1229,10 @@ una columna tiene los nombres y otra los valores.</p>
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
     <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
-    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">codigo_principal</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">codigo_auxiliar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
@@ -1378,7 +1378,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>fecha_emision</td>
 <td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>Fecha de emisión   <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>moneda</td>
@@ -1964,10 +1964,10 @@ una columna tiene los nombres y otra los valores.</p>
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
     <span class="p">[</span><span class="n">id_nota_credito</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">nota_de_credito</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
-    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">codigo_principal</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">codigo_auxiliar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span>
@@ -2055,7 +2055,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>fecha_emision</td>
 <td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>Fecha de emisión   <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>clave_acceso</td>
@@ -2265,7 +2265,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>fecha_emision_documento_sustento</td>
 <td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria del documento sustento de la retención, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>Fecha de emisión del documento sustento de la retención_<em>Requerido</em>_</td>
 </tr>
 </tbody></table>
 
@@ -2434,13 +2434,13 @@ una columna tiene los nombres y otra los valores.</p>
 </tr>
 <tr>
 <td>fecha_inicio_transporte</td>
-<td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>datetime</td>
+<td>Fecha en la que inicia el transporte dada la guía de remisión <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>fecha_fin_transporte</td>
-<td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>datetime</td>
+<td>Fecha en la que termina el transporte dada la guía de remisión <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>direccion_partida</td>
@@ -2667,7 +2667,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>fecha_emision_documento_sustento</td>
 <td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
+<td>Fecha de emisión del documento sustento de la guía de remisión, usualmente una factura.  <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>numero_documento_sustento</td>
@@ -2678,11 +2678,6 @@ una columna tiene los nombres y otra los valores.</p>
 <td>codigo_establecimiento_destino</td>
 <td>string</td>
 <td>Número establecimiento que recibe la entrega.  <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>fecha_emision_documento_sustento</td>
-<td>datetime</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.  <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>numero_documento_sustento</td>
