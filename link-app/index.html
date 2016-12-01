@@ -751,7 +751,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <tr>
 <td>unidad_medida</td>
 <td>string</td>
-<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
+<td>Unidad de medida. Ejemplo: Kilos. <strong>Requerido para facturas de exportación</strong></td>
 </tr>
 </tbody></table>
 
@@ -1106,17 +1106,17 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>codigo_pais_origen</td>
 <td>string</td>
-<td>Código del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código de dos letras del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
 </tr>
 <tr>
 <td>codigo_pais_destino</td>
 <td>string</td>
-<td>Código del país destino según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código de dos letras del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
 </tr>
 <tr>
 <td>codigo_pais_adquisicion</td>
 <td>string</td>
-<td>Código del país de adquisición según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código de dos letras del país origen según<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
 </tr>
 <tr>
 <td>puerto_origen</td>
@@ -1319,9 +1319,9 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">incoterm_termino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">incoterm_lugar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">incoterm_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">codigo_pais_origen</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">codigo_pais_destino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">codigo_pais_adquisicion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_origen</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_destino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_adquisicion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">puerto_origen</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">puerto_destino</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">total_flete_internacional</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
