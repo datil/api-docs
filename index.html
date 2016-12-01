@@ -848,22 +848,22 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>incoterm</td>
 <td>Objeto de tipo <a href="#incoterm">incoterm</a></td>
-<td>Información del Incoterm</td>
+<td>Información del Incoterm . <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>origen</td>
 <td>Objeto de tipo <a href="#origen-de-exportaci-n">origen de exportación</a></td>
-<td>Origen de la exportación</td>
+<td>Origen de la exportación . <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>destino</td>
 <td>Objeto de tipo <a href="#destino-de-exportaci-n">destino de exportación</a></td>
-<td>Destino de la exportación</td>
+<td>Destino de la exportación. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_pais_adquisicion</td>
 <td>string</td>
-<td>Código del país de adquisición según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código de dos caracteres del país de adquisición según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
 </tr>
 <tr>
 <td>totales</td>
@@ -884,17 +884,17 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>termino</td>
 <td>string</td>
-<td>Código de 3 letras correspondiente al <a href="http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/">Incoterm</a></td>
+<td>Código de 3 letras correspondiente al <a href="http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/">Incoterm</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>lugar</td>
 <td>string</td>
-<td>Lugar Incoterm</td>
+<td>Lugar Incoterm. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>total_sin_impuestos</td>
 <td>string</td>
-<td>Total sin impuestos del incoterm</td>
+<td>Total sin impuestos del incoterm. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -910,12 +910,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>codigo_pais</td>
 <td>string</td>
-<td>Código del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código  de dos caracteres del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>puerto</td>
 <td>string</td>
-<td>Puerto de origen</td>
+<td>Puerto de origen . <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -931,12 +931,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>codigo_pais</td>
 <td>string</td>
-<td>Código del país destino según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
+<td>Código de dos caracteres del país destino según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a></td>
 </tr>
 <tr>
 <td>puerto</td>
 <td>string</td>
-<td>Puerto de destino</td>
+<td>Puerto de destino. . <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 
@@ -952,22 +952,22 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>flete_internacional</td>
 <td>float</td>
-<td>Total del flete internacional</td>
+<td>Total del flete internacional.</td>
 </tr>
 <tr>
 <td>seguro_internacional</td>
 <td>float</td>
-<td>Total del seguro internacional</td>
+<td>Total del seguro internacional.</td>
 </tr>
 <tr>
 <td>gastos_aduaneros</td>
 <td>float</td>
-<td>Total de los gastos aduaneros</td>
+<td>Total de los gastos aduaneros.</td>
 </tr>
 <tr>
 <td>otros_gastos_transporte</td>
 <td>float</td>
-<td>Total de otros gastos de transporte</td>
+<td>Total de otros gastos de transporte.</td>
 </tr>
 </tbody></table>
 
