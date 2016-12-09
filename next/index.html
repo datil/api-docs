@@ -127,7 +127,7 @@
 
 <p>All API operations are done via POST requests to the following URL:</p>
 
-<p><code class="prettyprint">POST https://api.datil.co/ebilling</code></p>
+<p><code class="prettyprint">POST https://api.datil.co/sales</code></p>
 
 <h1 id="authentication">Authentication</h1>
 
@@ -148,14 +148,14 @@
 
 <h3 id="operation">Operation</h3>
 
-<p><code class="prettyprint">POST /ebilling/invoices/issue</code></p>
+<p><code class="prettyprint">POST /sales/invoices</code></p>
 
 <h3 id="request">Request</h3>
 
 <blockquote>
 <h4 id="example-request">Example request</h4>
 </blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/ebilling/invoices/issue <span class="se">\</span>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/sales/invoices <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;your-legacy-api-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
