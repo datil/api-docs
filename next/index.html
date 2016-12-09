@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Datil Global API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="../stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="../javascripts/all.js"></script>
+  </head>
+
+  <body class="next next_index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://datil.co'>Get your API key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Docs thanks to Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>This is the Datil global e-billing API. It allows you to generate invoices and other tax documents in Ecuador, Colombia and Perú. Other countries coming soon.</p>
+
+<p>The API is in beta. We would love to hear your thoughts about it.</p>
+
+<h2 id="operations">Operations</h2>
+
+<p>All API operations are done via POST requests to the following URL:</p>
+
+<p><code class="prettyprint">POST https://api.datil.co/ebilling</code></p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>Get an API key by logging in into your Datil account at
+<a href="https://app.datil.co">app.datil.co</a>, go to the <em>Configuration</em> and look for the &ldquo;API Key&rdquo; section.</p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png"></p>
+
+<p>Datil uses the following headers to authenticate your requests:</p>
+
+<p><code class="prettyprint">X-Key: &lt;legacy-api-key&gt;</code> This is valid for Ecuador requests.</p>
+
+<p><code class="prettyprint">X-Api-Key: &lt;api-key&gt;</code> This is required for all requests.</p>
+
+<h1 id="invoices">Invoices</h1>
+
+<h2 id="issuing-an-invoice">Issuing an invoice</h2>
+
+<h3 id="operation">Operation</h3>
+
+<p><code class="prettyprint">POST /ebilling/invoices/issue</code></p>
+
+<h3 id="request">Request</h3>
+
+<blockquote>
+<h4 id="example-request">Example request</h4>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/ebilling/invoices/issue <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;your-legacy-api-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;your-api-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{"country": "CO"
+     "type": "invoice",
+     "document": {
+       "properties": [
+         {
+           "key": "Contract Number",
+           "value": "420420"
+         }
+       ],
+       "payments": [
+         {
+           "properties": {
+             "bills": "109 pennies"
+           },
+           "amount": 1.09,
+           "method": "cash"
+         }
+       ],
+       "supplier": {
+         "id_type": "ruc",
+         "properties": [
+           {
+             "key": "required_accounting",
+             "value": "true"
+           },
+           {
+             "key": "special_contributor",
+             "value": "124531"
+           }
+         ],
+         "address": "Carrera 11 Calle 9",
+         "email": "e@datil.co",
+         "phone": "57122222222222",
+         "city": "Bogotá",
+         "tax_id": "091726282001",
+         "commercial_name": "Acmesa",
+         "legal_name": "Acme S.A.",
+         "administrative_district_level_1": "Cundinamarca",
+         "administrative_district_level_2": "Bogota",
+         "country": "CO"
+      },
+      "taxes": [
+        {
+          "amount": 0.11,
+          "type": "2",
+          "id": "3",
+          "taxable_amount": 0.98
+        }
+      ],
+      "issue_date": "2016-11-22 23:00:00",
+      "customer": {
+        "id_type": "ruc",
+        "properties": [
+          {
+            "key": "required_accounting",
+            "value": "true"
+          },
+          {
+            "key": "special_contributor",
+            "value": "202984"
+          }
+        ],
+        "address": "Carrera 10 Calle 1",
+        "email": "w@datil.co",
+        "phone": "57122222222222",
+        "city": "Bogota DC",
+        "tax_id": "1050320-1",
+        "commercial_name": "Datil Technolgies S.A.S",
+        "legal_name": "Datil",
+        "administrative_district_level_1": "Cundinamarca",
+        "administrative_district_level_2": "Bogota",
+        "country": "CO"
+      },
+      "subtotal_amount": 0.98,
+      "total_tax_amount": 0.17,
+      "total_amount": 1.15,
+      "currency": "COP",
+      "id": "001-001-000000002",
+      "uuid": "12345-12345-12345-12345-12345",
+      "items": [
+        {
+          "description": "Apple",
+          "properties": {
+            "key": "size",
+            "value": "M"
+          },
+          "unit_discount": 0.00,
+          "unit_code": "units",
+          "taxes": [
+            {
+              "amount": 0.17,
+              "rate": 0.17,
+              "type": "2",
+              "id": "3",
+              "taxable_amount": 0.98
+            }
+          ],
+          "secondary_id": "123",
+          "unit_price": 0.99,
+          "id": "ABC",
+          "subtotal_amount": 0.98,
+          "total_amount": 1.15,
+          "quantity": 1
+        }
+      ]
+  }
+}'</span>
+</code></pre>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
