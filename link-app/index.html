@@ -407,7 +407,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <h3 id="cabecera">Cabecera</h3>
 
-<p>Obtiene información de la cabecera de la factura</p>
+<p>Obtiene información de la cabecera de la factura.</p>
 <pre class="highlight sql"><code><span class="n">headers</span> <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">id_factura</span>            <span class="n">id_local</span><span class="p">,</span>
   <span class="n">secuencial</span><span class="p">,</span>
@@ -426,13 +426,13 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <table><thead>
 <tr>
 <th>Campo</th>
+<th>Tipo</th>
 <th>Descripción</th>
-<th>Valor de ejemplo</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id_local</td>
-<td>string</td>
+<td>int o string</td>
 <td>Identifica de manera única la factura. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -467,7 +467,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 </tr>
 </tbody></table>
 
-<h3 id="vendedor">Vendedor</h3>
+<h3 id="emisor">Emisor</h3>
 
 <p>Obtiene información del vendedor en la factura</p>
 <pre class="highlight sql"><code><span class="n">invoice_seller</span>  <span class="o">=</span> <span class="k">SELECT</span>
@@ -757,7 +757,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <h3 id="impuestos-de-items">Impuestos de items</h3>
 
-<p>Obtiene los impuestos de un item</p>
+<p>Obtiene los impuestos de un item. Este query es <strong>opcional</strong></p>
 <pre class="highlight sql"><code><span class="n">item_taxes</span>  <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">base_imponible</span><span class="p">,</span>
   <span class="n">valor</span><span class="p">,</span>
@@ -806,7 +806,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 
 <h3 id="detalles-adicionales-de-items">Detalles adicionales de items</h3>
 
-<p>Obtiene los detalles adicionales de un ítem. Este query es opcional.</p>
+<p>Obtiene los detalles adicionales de un ítem. Este query es <strong>opcional</strong>.</p>
 
 <p>Los detalles adicionales de un ítem se manejan de la forma &lsquo;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Peso&rsquo;:&#39;Kg&rsquo;</p>
 
@@ -864,7 +864,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="informaci-n-adicional">Información adicional</h3>
 
-<p>Obtiene la información adicional de la factura.</p>
+<p>Obtiene la información adicional de la factura. Este query es <strong>opcional</strong></p>
 
 <p>La información adicional de la factura se maneja de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Tipo de pago&rsquo;:&#39;Cheque&rsquo;</p>
 
@@ -941,20 +941,19 @@ una columna tiene los nombres y otra los valores.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>medio</td>
-<td>string</td>
-<td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>total</td>
-<td>float</td>
-<td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
+<td>id_pago</td>
+<td>&ndash;</td>
+<td>Identificador único del pago, se usa para obtener las [propiedades</td>
 </tr>
 </tbody></table>
 
+<p>del pago](Propiedades de Pagos), si no hay un identificador único del pago o no hay propiedades de pagos, se debe devolver el <em>id_factura</em>.
+medio              | string                  | Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong>
+total               | float                   | Total aplicable a la forma de pago especificada. <strong>Requerido</strong></p>
+
 <h3 id="propiedades-de-pagos">Propiedades de Pagos</h3>
 
-<p>Obtiene la propiedades de los pagos de determinada factura.</p>
+<p>Obtiene la propiedades de los pagos de determinada factura. Este query es <strong>opcional</strong></p>
 
 <p>Las propiedades de los pagos se manejan de la forma &#39;Clave&rsquo;:&#39;Valor&rsquo;. Ejemplo: &#39;Plazo&rsquo;:&#39;5&rsquo;</p>
 
@@ -1011,7 +1010,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="cr-dito">Crédito</h3>
 
-<p>Crédito otorgado en la venta. </p>
+<p>Crédito otorgado en la venta.  Este query es <strong>opcional</strong> , en caso de que todos los pagos se realizan en el momento de la venta, es decir no hay crédito.</p>
 
 <table><thead>
 <tr>
@@ -1042,7 +1041,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="compensaci-n-solidaria">Compensación solidaria</h3>
 
-<p>Descuento otorgado a las provincias de Manabí y Esmeraldas.</p>
+<p>Descuento otorgado a las provincias de Manabí y Esmeraldas. Obligatorio solo para estas provincias.</p>
 
 <table><thead>
 <tr>
@@ -1079,7 +1078,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="exportaci-n">Exportación</h3>
 
-<p>Obligatorio para facturas de exportación</p>
+<p>Obligatorio <strong>solo</strong> para facturas de exportación</p>
 
 <table><thead>
 <tr>
@@ -1367,7 +1366,7 @@ una columna tiene los nombres y otra los valores.</p>
 </thead><tbody>
 <tr>
 <td>id_local</td>
-<td>string</td>
+<td>int o string</td>
 <td>Identifica de manera única la nota de crédito. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -2044,7 +2043,7 @@ una columna tiene los nombres y otra los valores.</p>
 </thead><tbody>
 <tr>
 <td>id_local</td>
-<td>string</td>
+<td>int o string</td>
 <td>Identifica de manera única la retención. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -2372,7 +2371,7 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
     <span class="p">[</span><span class="n">id_retencion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">retenciones</span><span class="p">].[</span><span class="n">retencion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">5</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">fecha_emision_documento_sustento</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">numero_documento_sustento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
@@ -2424,7 +2423,7 @@ una columna tiene los nombres y otra los valores.</p>
 </thead><tbody>
 <tr>
 <td>id_local</td>
-<td>string</td>
+<td>int o string</td>
 <td>Identifica de manera única la guía de remisión. <strong>Requerido</strong></td>
 </tr>
 <tr>
