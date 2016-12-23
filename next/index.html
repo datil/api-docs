@@ -163,46 +163,38 @@
       "country": "CO",
       "number": "001-001-000000002",
       "uuid": "12345-12345-12345-12345-12345",
-      "currency": "COP",
-      "properties": [
-         {
-           "key": "Contract Number",
-           "value": "420420"
-         }
-       ],
-       "payments": [
-         {
-           "properties": {
-             "bills": "109 pennies"
-           },
-           "amount": 1.09,
-           "method": "cash"
-         }
-       ],
+      "issue_date": "2016-11-22 23:00:00",
        "supplier": {
-         "tax_identification_type": "ruc",
-         "properties": [
-           {
-             "key": "required_accounting",
-             "value": "true"
-           },
-           {
-             "key": "special_contributor",
-             "value": "124531"
-           }
-         ],
+         "tax_identification_type": "31",
+         "properties": [],
          "address": "Carrera 11 Calle 9",
          "email": "e@datil.co",
          "phone": "57122222222222",
          "locality": "Bogotá",
          "sublocality": "Centro",
          "tax_identification": "091726282001",
+         "tax_level_code": "2",
          "business": {
-            "commercial_name": "Datil Technolgies S.A.S",
-            "legal_name": "Datil",
+            "legal_name": "Datil Technolgies S.A.S",
          },
          "administrative_district_level_1": "Cundinamarca",
          "country": "CO"
+      },
+      "customer": {
+        "tax_identification_type": "31",
+        "properties": [],
+        "address": "Carrera 10 Calle 1",
+        "email": "w@datil.co",
+        "phone": "57122222222222",
+        "locality": "Bogota DC",
+        "sublocality": "Centro",
+        "tax_identification": "1050320-1",
+        "tax_level_code": "2",
+        "person": {"first_name": "Juan",
+                   "middle_name": "A.",
+                   "last_name": "Argüello"},
+        "administrative_district_level_1": "Cundinamarca",
+        "country": "CO"
       },
       "taxes": [
         {
@@ -212,33 +204,7 @@
           "taxable_amount": 0.98
         }
       ],
-      "issue_date": "2016-11-22 23:00:00",
-      "customer": {
-        "tax_identification_type": "ruc",
-        "properties": [
-          {
-            "key": "required_accounting",
-            "value": "true"
-          },
-          {
-            "key": "special_contributor",
-            "value": "202984"
-          }
-        ],
-        "address": "Carrera 10 Calle 1",
-        "email": "w@datil.co",
-        "phone": "57122222222222",
-        "locality": "Bogota DC",
-        "sublocality": "Centro",
-        "tax_identification": "1050320-1",
-        "business": {
-          "commercial_name": "Datil Technolgies S.A.S",
-          "legal_name": "Datil",
-        },
-        "person": "",
-        "administrative_district_level_1": "Cundinamarca",
-        "country": "CO"
-      },
+      "currency": "COP",
       "subtotal_amount": 0.98,
       "total_tax_amount": 0.17,
       "total_amount": 1.15,
@@ -267,9 +233,290 @@
           "total_amount": 1.15,
           "quantity": 1
         }
-      ]
+      ],
+      "properties": [
+         {
+           "key": "Contract Number",
+           "value": "420420"
+         }
+       ],
+       "payments": [
+         {
+           "properties": {
+             "bills": "109 pennies"
+           },
+           "amount": 1.09,
+           "method": "54"
+         }
+       ],
   }'</span>
 </code></pre>
+
+<h1 id="enums">Enums</h1>
+
+<h2 id="tax-identification-types">Tax identification types</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>11</td>
+<td>Registro civil</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Tarjeta de identidad</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Cédula de ciudadanía</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Tarjeta de extranjería</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Cédula de extranjería</td>
+</tr>
+<tr>
+<td>31</td>
+<td>NIT</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Pasaporte</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Documento de identificación extranjero</td>
+</tr>
+</tbody></table>
+
+<h2 id="tax-codes">Tax codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>01</td>
+<td><a href="http://www.andi.com.co/es/GAI/GuiInv/Imp/RIMC/Paginas/IVA.aspx">IVA</a> tax total</td>
+</tr>
+<tr>
+<td>02</td>
+<td><a href="http://www.comunidadcontable.com/BancoConocimiento/Otros/impuesto-nacional-al-consumo.asp">Impuesto al consumo</a> tax total</td>
+</tr>
+<tr>
+<td>03</td>
+<td><a href="http://www.shd.gov.co/shd/industria-y-comercio">ICA</a> tax total</td>
+</tr>
+<tr>
+<td>04-09</td>
+<td>Code range reserved for DIAN use.</td>
+</tr>
+<tr>
+<td>0A - ZZ</td>
+<td>Available code ranges.</td>
+</tr>
+</tbody></table>
+
+<h2 id="payment-methods">Payment methods</h2>
+
+<p>Payment methods codes are defined by the <a href="http://www.unece.org/trade/untdid/d16a/tred/tred4461.htm">4461 UN/CEFACT standard v06B</a>. The following are the most common codes according to DIAN:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>10</td>
+<td>Cash</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Check</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Wire transfer</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Bank deposit</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Credit card</td>
+</tr>
+</tbody></table>
+
+<h2 id="currency-codes">Currency codes</h2>
+
+<p>Currency codes are defined by the <a href="http://www.xe.com/iso4217.php">ISO 4217 standard</a>. The following table shows some examples:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>USD</td>
+<td>United States of America, Dollar</td>
+</tr>
+<tr>
+<td>EUR</td>
+<td>Euro Member Country</td>
+</tr>
+<tr>
+<td>COP</td>
+<td>Colombia, Pesos</td>
+</tr>
+</tbody></table>
+
+<h2 id="country-codes">Country codes</h2>
+
+<p>Country codes are defined by the <a href="http://data.okfn.org/data/core/country-list">ISO 3166-2 standard</a>. The following table shows some examples:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CO</td>
+<td>Colombia</td>
+</tr>
+<tr>
+<td>US</td>
+<td>United States of America</td>
+</tr>
+<tr>
+<td>EC</td>
+<td>Ecuador</td>
+</tr>
+</tbody></table>
+
+<h2 id="person-types">Person types</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Company</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Person</td>
+</tr>
+</tbody></table>
+
+<h2 id="tax-regimes">Tax regimes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Simplified</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Common</td>
+</tr>
+</tbody></table>
+
+<p><a href="http://www.dian.gov.co/descargas/Material_Informativo/serie_comun_simplificado.pdf">Learn more</a> about tax regimes in Colombia.</p>
+
+<h2 id="incoterm-codes">Incoterm codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CFR</td>
+<td>Cost and Freight</td>
+</tr>
+<tr>
+<td>CIF</td>
+<td>Cost, Insurance and Freight</td>
+</tr>
+<tr>
+<td>CIP</td>
+<td>Carriage and Insurance Paid to</td>
+</tr>
+<tr>
+<td>CPT</td>
+<td>Carriage Paid To</td>
+</tr>
+<tr>
+<td>DAF</td>
+<td>Delivered At Frontier</td>
+</tr>
+<tr>
+<td>DAP</td>
+<td>Delivered At Place</td>
+</tr>
+<tr>
+<td>DAT</td>
+<td>Delivered At Terminal</td>
+</tr>
+<tr>
+<td>DDP</td>
+<td>Delivered Duty Paid</td>
+</tr>
+<tr>
+<td>DDU</td>
+<td>Delivery Duty Unpaid</td>
+</tr>
+<tr>
+<td>DEQ</td>
+<td>Delivered Ex Quay</td>
+</tr>
+<tr>
+<td>DES</td>
+<td>Delivered Ex Ship</td>
+</tr>
+<tr>
+<td>EXW</td>
+<td>Ex Works</td>
+</tr>
+<tr>
+<td>FAS</td>
+<td>Free Alongside Ship</td>
+</tr>
+<tr>
+<td>FCA</td>
+<td>Free Carrier</td>
+</tr>
+<tr>
+<td>FOB</td>
+<td>Free On Board</td>
+</tr>
+<tr>
+<td>OTR</td>
+<td>Other delivery terms</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
