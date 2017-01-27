@@ -1,0 +1,897 @@
+<h1 id="clave-de-acceso">Clave de acceso</h1>
+
+<p>El sistema se encarga de generar automáticamente la clave de acceso de cada
+comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
+Pero es posible también proveer la clave de acceso si se requiere tener control
+en la generación de esta clave. La siguiente documentación explica como debe
+estar estructurada la clave de acceso.</p>
+
+<p>Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herramienta o aplicativo a utilizar por el sujeto pasivo deberá generar de manera automática la clave de acceso, que constituirá un requisito que dará el carácter de único a cada uno de los comprobantes, y la misma servirá para que el SRI indique si el comprobante es autorizado o no; se describe a continuación su conformación:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Formato</th>
+<th>Longitud</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Fecha de Emisión</td>
+<td>ddmmaaaa</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Tipo de Comprobante</td>
+<td>Tabla 4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Número de RUC</td>
+<td>1234567890001</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Tipo de Ambiente</td>
+<td>Tabla 5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Serie</td>
+<td>001001</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Número del Comprobante (secuencial)</td>
+<td>000000001</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Código Numérico</td>
+<td>Numérico</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Tipo de Emisión</td>
+<td>Tabla 2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dígito Verificador (módulo 11 )</td>
+<td>Numérico</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<p><strong>Nota:</strong> Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.</p>
+
+<p>El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).</p>
+
+<p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
+
+<p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
+
+<h1 id="objetos-comunes">Objetos comunes</h1>
+
+<h2 id="emisor">Emisor</h2>
+
+<p>Información del emisor de un comprobante.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres</td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>boolean</td>
+<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+</tr>
+<tr>
+<td>establecimiento</td>
+<td><a href="#establecimiento">establecimiento</a></td>
+<td>Establecimiento que emite la factura.</td>
+</tr>
+</tbody></table>
+
+<h2 id="establecimiento">Establecimiento</h2>
+
+<p>Representa un establecimiento del comercio.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="contact">Contact</h2>
+
+<p>Datos de una contacto. Utilizado para describir <strong>customer</strong> y <strong>supplier</strong> en los documentos.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>object</td>
+<td>objeto tipo <a href="#person">person</a> cuando el contacto es una persona.</td>
+</tr>
+<tr>
+<td>business</td>
+<td>object</td>
+<td>objeto tipo <a href="#business">business</a> cuando el contacto es una empresa.</td>
+</tr>
+<tr>
+<td>properties</td>
+<td>object</td>
+<td>diccionario de datos. Representa información adicional.</td>
+</tr>
+<tr>
+<td>tax_identification</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tax_identification_type</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>Teléfono.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>locality</td>
+<td>string</td>
+<td>Ciudad o pueblo <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>sublocality</td>
+<td>string</td>
+<td>Sector o barrio</td>
+</tr>
+<tr>
+<td>administrative_district_level_1</td>
+<td>string</td>
+<td>Provincia</td>
+</tr>
+</tbody></table>
+
+<p>El contacto debe incluir alguno de los dos atributos, <code class="prettyprint">business</code> o <code class="prettyprint">person</code>.</p>
+
+<h3 id="person">Person</h3>
+
+<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
+
+<table><thead>
+<tr>
+<th>Tipo de identificación</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RUC</td>
+<td><code class="prettyprint">04</code></td>
+</tr>
+<tr>
+<td>CEDULA</td>
+<td><code class="prettyprint">05</code></td>
+</tr>
+<tr>
+<td>PASAPORTE</td>
+<td><code class="prettyprint">06</code></td>
+</tr>
+<tr>
+<td>VENTA A CONSUMIDOR FINAL*</td>
+<td><code class="prettyprint">07</code></td>
+</tr>
+<tr>
+<td>IDENTIFICACION DELEXTERIOR*</td>
+<td><code class="prettyprint">08</code></td>
+</tr>
+<tr>
+<td>PLACA</td>
+<td><code class="prettyprint">09</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="total-impuesto">Total Impuesto</h2>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total.</td>
+</tr>
+</tbody></table>
+
+<h2 id="impuesto-item">Impuesto Item</h2>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total.</td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+</tr>
+</tbody></table>
+
+<h2 id="env-o-sri">Envío SRI</h2>
+
+<p>Contiene la información y el estado de la fase de envío al SRI</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mensajes</td>
+<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
+<td>Listado de mensajes.</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>string</td>
+<td>Posibles valores: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
+</tr>
+<tr>
+<td>fecha</td>
+<td>string</td>
+<td>Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="autorizaci-n-sri">Autorización SRI</h2>
+
+<p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mensajes</td>
+<td>listado de objeto <a href="#mensajes-de-respuesta-sri">mensaje SRI</a></td>
+<td>Listado de mensajes.</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>string</td>
+<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
+</tr>
+<tr>
+<td>numero</td>
+<td>string</td>
+<td>Número de autorización.</td>
+</tr>
+<tr>
+<td>fecha</td>
+<td>string</td>
+<td>Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h2>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identificador</td>
+<td>string</td>
+<td>Número con el que el SRI identifica al mensaje.</td>
+</tr>
+<tr>
+<td>mensaje</td>
+<td>string</td>
+<td>Descripción del error, información o advertencia.</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>string</td>
+<td>Posibles valores: <code class="prettyprint">INFORMATIVO</code>, <code class="prettyprint">ADVERTENCIA</code>, <code class="prettyprint">ERROR</code></td>
+</tr>
+<tr>
+<td>informacion_adicional</td>
+<td>string</td>
+<td>Información adicional del mensaje.</td>
+</tr>
+</tbody></table>
+
+<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
+
+<p>Representa un producto o servicio del comercio.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_unitario</td>
+<td>float</td>
+<td>Precio unitario. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>El descuento es aplicado por cada producto, expresado en valor monetario. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>precio_total_sin_impuestos</td>
+<td>float</td>
+<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+</tr>
+<tr>
+<td>unidad_medida</td>
+<td>string</td>
+<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
+<td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>detalles_adicionales</td>
+<td>object</td>
+<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="retencion-de-factura">Retención en factura </h2>
+
+<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto-para-la-retención-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#retención-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h1 id="cat-logo">Catálogo</h1>
+
+<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
+
+<table><thead>
+<tr>
+<th>Impuesto</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IVA</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IRBPNR</td>
+<td>5</td>
+</tr>
+</tbody></table>
+
+<h2 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje de IVA</th>
+<th>Código</th>
+<th>Tarifa</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>2</td>
+<td>12</td>
+</tr>
+<tr>
+<td>14%</td>
+<td>3</td>
+<td>14</td>
+</tr>
+<tr>
+<td>No Objeto de Impuesto</td>
+<td>6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Exento de IVA</td>
+<td>7</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
+
+<table><thead>
+<tr>
+<th>Impuesto</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RENTA</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IVA</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ISD</td>
+<td>6</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
+
+<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
+Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
+participan en la comercialización de periódicos y/o revistas.</p>
+
+<table><thead>
+<tr>
+<th>Impuesto</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IVA PRESUNTIVO Y RENTA</td>
+<td>4</td>
+</tr>
+</tbody></table>
+
+<h2 id="retenci-n-de-iva">Retención de IVA</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>10%</td>
+<td>9</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>10</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>1</td>
+</tr>
+<tr>
+<td>70%</td>
+<td>2</td>
+</tr>
+<tr>
+<td>100%</td>
+<td>3</td>
+</tr>
+</tbody></table>
+
+<p><strong>Retención en cero</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>7</td>
+</tr>
+</tbody></table>
+
+<p><strong>No procede retención</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0%</td>
+<td>8</td>
+</tr>
+</tbody></table>
+
+<h2 id="retenci-n-isd">Retención ISD</h2>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>5%</td>
+<td>4580</td>
+</tr>
+</tbody></table>
+
+<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
+
+<p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
+Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
+participan en la comercialización de periódicos y/o revistas.</p>
+
+<p><strong>Retención IVA</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje IVA presuntivo</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100%</td>
+<td>3</td>
+</tr>
+<tr>
+<td>12%  (Editores a Margen de Comercialización Voceadores)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>100% (Venta periódicos y/o Revistas a Distribuidores)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>100% (Venta periódicos y/o Revistas a Voceadores)</td>
+<td>6</td>
+</tr>
+</tbody></table>
+
+<p><strong>Retención Renta</strong></p>
+
+<table><thead>
+<tr>
+<th>Porcentaje Renta</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0.2%</td>
+<td>327</td>
+</tr>
+<tr>
+<td>0.3%</td>
+<td>328</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-documentos">Tipos de documentos</h2>
+
+<table><thead>
+<tr>
+<th>Documento</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Factura</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Nota de Crédito</td>
+<td>04</td>
+</tr>
+<tr>
+<td>Nota de Débito</td>
+<td>05</td>
+</tr>
+<tr>
+<td>Guía de Remisión</td>
+<td>06</td>
+</tr>
+<tr>
+<td>Comprobante de Retención</td>
+<td>07</td>
+</tr>
+</tbody></table>
+
+<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
+
+<table><thead>
+<tr>
+<th>Forma de pago</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Efectivo</td>
+<td>efectivo</td>
+</tr>
+<tr>
+<td>Cheque</td>
+<td>cheque</td>
+</tr>
+<tr>
+<td>Débito de cuenta bancaria</td>
+<td>debito_cuenta_bancaria</td>
+</tr>
+<tr>
+<td>Transferencia bancaria</td>
+<td>transferencia</td>
+</tr>
+<tr>
+<td>Depósito en cuenta (Corriente / Ahorros)</td>
+<td>deposito_cuenta_bancaria</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>tarjeta_debito</td>
+</tr>
+<tr>
+<td>Dinero electrónico Ecuador</td>
+<td>dinero_electronico_ec</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>tarjeta_prepago</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito</td>
+<td>tarjeta_credito</td>
+</tr>
+<tr>
+<td>Otros</td>
+<td>otros</td>
+</tr>
+<tr>
+<td>Endoso de títulos</td>
+<td>endoso_titulos</td>
+</tr>
+</tbody></table>
+
+<h2 id="equivalencia-entre-formas-de-pago-d-til-y-formas-de-pago-del-sri">Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
+
+<table><thead>
+<tr>
+<th>Forma de pago Dátil</th>
+<th>Código</th>
+<th>Forma de pago SRI</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Efectivo</td>
+<td>efectivo</td>
+<td>Sin utilización del sistema financiero</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Cheque</td>
+<td>cheque</td>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Débito bancario</td>
+<td>debito_cuenta_bancaria</td>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Transferencia bancaria</td>
+<td>transferencia</td>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito</td>
+<td>tarjeta_credito</td>
+<td>Tarjeta de crédito nacional</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Depósito en cuenta (Corriente / Ahorros)</td>
+<td>deposito_cuenta_bancaria</td>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>tarjeta_debito</td>
+<td>Tarjeta de débito</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Dinero electrónico Ecuador</td>
+<td>dinero_electronico_ec</td>
+<td>Dinero electrónico</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>tarjeta_prepago</td>
+<td>Tarjeta prepago</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Otros</td>
+<td>otros</td>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Endoso de títulos</td>
+<td>endoso_titulos</td>
+<td>Endoso de títulos</td>
+<td>21</td>
+</tr>
+</tbody></table>
+
+<p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
+las facturas a crédito se enviarán al SRI con forma de pago &ldquo;Otros con utilización del sistema financiero&rdquo;.</p>
