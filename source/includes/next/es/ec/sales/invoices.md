@@ -72,7 +72,7 @@ properties<p class="dt-data-type">object</p> | Información adicional. Ejemplo:<
 
 #### Operación
 
-`POST /locations/:location-id/invoices/issue`
+`POST /locations/:location-id/sales/invoices/issue`
 
 #### Requerimiento
 
@@ -249,7 +249,7 @@ headers = {
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 response = requests.post(
-    "https://api.datil.co/locations/31a8edd4-cf56-4435-a387-7bf1d2eb94e1/invoices/issue",
+    "https://api.datil.co/locations/31a8edd4-cf56-4435-a387-7bf1d2eb94e1/sales/invoices/issue",
     headers = headers,
     data = json.dumps(invoice))
 ```

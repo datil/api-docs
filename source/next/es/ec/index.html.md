@@ -12,6 +12,8 @@ toc_footers:
 includes:
   - next/es/ec/sales
   - next/es/ec/sales/invoices
+  - next/es/ec/purchases
+  - next/es/ec/purchases/invoices
   - next/es/ec/common
   - errores
 

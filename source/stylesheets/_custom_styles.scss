@@ -5,6 +5,16 @@
 td {
   border-bottom: 1px solid #f0f4f7;
 }
+.dt-param-required {
+  text-transform: uppercase;
+  color: #fdac51;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.dt-attr {
+  font-weight: 500;
+}
 
 .dt-data-type {
   font-size: 13px;
@@ -49,4 +59,12 @@ h4, h5, h6 {
   font-size: 13.5px !important;
   // color: #222 !important;
   font-weight: bold !important;
+}
+
+.content h4, .content h5, .content h6 {
+  font-size: 15px !important;
+}
+
+.content h3 {
+  font-size: 17.5px !important;
 }
