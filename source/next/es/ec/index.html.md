@@ -14,6 +14,8 @@ includes:
   - next/es/ec/sales/invoices
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
+  - next/es/ec/accounting
+  - next/es/ec/accounting/accounting_info
   - next/es/ec/common
   - errores
 
