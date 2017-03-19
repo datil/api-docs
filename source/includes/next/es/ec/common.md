@@ -1,4 +1,6 @@
-# Clave de acceso
+## Objetos comunes
+
+### UUID (Clave de acceso)
 
 El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
@@ -29,9 +31,29 @@ El código numérico constituye un mecanismo para brindar seguridad al emisor en
 Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11.
 
 
-# Objetos comunes
+### Tax
 
-## Emisor
+Impuesto aplicado a una transacción o aun item.
+
+Atributos | &nbsp;
+--------- | -------
+tax_code<p class="dt-data-type">string</p> | Código del grupo al que pertenece el impuesto.
+rate_code <p class="dt-data-type">string</p> | Código de la tarifa de impuesto aplicado.
+amount <p class="dt-data-type">string</p> | Valor a pagar de impuesto
+taxable_amount<p class="dt-data-type">object</p> | Base imponible. Valor a partir del cual el impuesto se calcula.
+rate <p class="dt-data-type">string</p> | Porcentaje del impuesto aplicado.
+
+
+### Documento Relacionado
+
+Atributos | &nbsp;
+--------- | -------
+number<p class="dt-data-type">string</p> | Código del grupo al que pertenece el impuesto.
+document_type <p class="dt-data-type">string</p> | Tipo del documento relacionado. Ver tabla de [Tipos de documentos](#tipos-de-documentos)
+issue_date<p class="dt-data-type">string</p> | Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+
+
+### Supplier
 
 Información del emisor de un comprobante.
 
@@ -43,9 +65,9 @@ nombre_comercial | string| Nombre comercial. Máximo 300 caracteres
 direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres.
 contribuyente_especial | string | Número de resolución. En blanco si no es contribuyente especial.
 obligado_contabilidad | boolean | `true` si está obligado a llevar contabilidad.
-establecimiento | [establecimiento](#establecimiento) | Establecimiento que emite la factura.
+location | [location](#location) | Establecimiento que emite la factura.
 
-## Establecimiento
+### Location
 
 Representa un establecimiento del comercio.
 
@@ -55,66 +77,48 @@ codigo | string | Código numérico de 3 caracteres que representa al establecim
 direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres
 punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`
 
-## Contact
+### Contacto
 
-Datos de una contacto. Utilizado para describir __customer__ y __supplier__ en los documentos.
+Los contactos están representados por un objeto _Contact_
 
 
-Parámetro | Tipo | Descripción
---------- | ---- |-------------
-person | object | objeto tipo [person](#person) cuando el contacto es una persona.
-business | object | objeto tipo [business](#business) cuando el contacto es una empresa.
-properties | object | diccionario de datos. Representa información adicional.
-tax_identification | string | De 5 a 20 caracteres. __Requerido__
-tax_identification_type | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
-phone | string | Teléfono.
-address | string | Dirección
-locality | string | Ciudad o pueblo __Requerido__
-sublocality | string | Sector o barrio
-administrative_district_level_1 | string | Provincia
+#### El objeto Contact
+
+Atributos | &nbsp;
+--------- | -------
+person <p class="dt-data-type">object</p> | objeto tipo [person](#person). Aparece cuando el contacto es una persona.
+business <p class="dt-data-type">object</p> | objeto tipo [business](#business). Aparece cuando el contacto es una empresa.
+properties <p class="dt-data-type">object</p> | diccionario de datos. Representa información complementarios del contacto.
+tax_identification <p class="dt-data-type">string</p> | De 5 a máximo 20 caracteres.
+tax_identification_type <p class="dt-data-type">string</p> | Ver [tabla](#tipo-de-identificación) de tipos de identificación
+email <p class="dt-data-type">string</p> | Correo electrónico. Máximo 255 caracteres.
+phone <p class="dt-data-type">string</p> | Teléfono.
+address <p class="dt-data-type">string</p> | Dirección
+locality <p class="dt-data-type">string</p> | Ciudad o pueblo
+sublocality <p class="dt-data-type">string</p> | Sector o barrio
+administrative_district_level_1 <p class="dt-data-type">string</p> | Provincia
 
 El contacto debe incluir alguno de los dos atributos, `business` o `person`.
 
 
+### Business
+
+Atributos | &nbsp;
+--------- | -------
+legal_name <p class="dt-data-type">string</p> | Razón social.
+commercial_name <p class="dt-data-type">string</p> | Nombre de comercial.
+
+
 ### Person
 
+Atributos | &nbsp;
+--------- | -------
+first_name <p class="dt-data-type">string</p> | Nombre de pila.
+middle_name <p class="dt-data-type">string</p> | Segundo nombre.
+last_name <p class="dt-data-type">string</p> | Apellido.
 
 
-## Tipo de identificación
-
-Tipo de identificación      | Código
---------------------------- | ------
-RUC                         | `04`
-CEDULA                      | `05`
-PASAPORTE                   | `06`
-VENTA A CONSUMIDOR FINAL*   | `07`
-IDENTIFICACION DELEXTERIOR* | `08`
-PLACA                       | `09`
-
-
-## Total Impuesto
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-
-
-## Impuesto Item
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
-
-
-## Envío SRI
+### Envío SRI
 
 Contiene la información y el estado de la fase de envío al SRI
 
@@ -125,7 +129,7 @@ estado   | string | Posibles valores: `RECIBIDA`, `DEVUELTA`
 fecha    | string | Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 
 
-## Autorización SRI
+### Autorización SRI
 
 Contiene la información y el estado de la fase de autorización del comprobante.
 
@@ -136,7 +140,8 @@ estado   | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`
 numero   | string | Número de autorización.
 fecha    | string | Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 
-## Mensajes de respuesta SRI
+
+### Mensajes de respuesta SRI
 
 Parámetro             | Tipo   | Descripción
 --------------------- | ------ | -----------
@@ -145,24 +150,8 @@ mensaje               | string | Descripción del error, información o adverten
 tipo                  | string | Posibles valores: `INFORMATIVO`, `ADVERTENCIA`, `ERROR`
 informacion_adicional | string | Información adicional del mensaje.
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
 
-Representa un producto o servicio del comercio.
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-descripcion | string | Descripción del ítem. __Requerido__
-codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-cantidad | float | Cantidad de items. __Requerido__
-precio_unitario | float | Precio unitario. __Requerido__
-descuento | float | El descuento es aplicado por cada producto, expresado en valor monetario. __Requerido__
-precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
-unidad_medida | string | Unidad de medida __Requerido para facturas de exportación__
-impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
-detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
-
-<h2 id="retencion-de-factura">Retención en factura </h2>
+<h3 id="retencion-de-factura">Retención en factura </h2>
 
 Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
 
@@ -173,9 +162,24 @@ codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-d
 tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  __Requerido__
 valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.  __Requerido__
 
-# Catálogo
+## Códigos de impuestos y pagos
 
-## Tipos de impuesto
+### Tipo de identificación
+
+Tipo de identificación                         | Código
+---------------------------------------------- | ------
+RUC                                            | 04
+CEDULA                                         | 05
+PASAPORTE                                      | 06
+VENTA A CONSUMIDOR FINAL <small>(1)</smal>     | 07
+IDENTIFICACION DEL EXTERIOR <small>(2)</small> | 08
+PLACA                                          | 09
+
+(1) En la venta a Consumidor Final la identificación del cliente se formará con 13 dígitos de nueve (9999999999999).
+(2) La identificación del Exterior corresponderá al número de Identificación otorgado por la Administración Tributaria (AT) del país que es Residente Fiscal.
+
+
+### Tipos de impuesto
 
 Impuesto | Código
 -------- | ------
@@ -183,7 +187,8 @@ IVA      | 2
 ICE      | 3
 IRBPNR   | 5
 
-## Código de Porcentaje de IVA
+
+### Código de Porcentaje de IVA
 
 Porcentaje de IVA | Código | Tarifa
 -------- | ------ | ------
@@ -193,7 +198,8 @@ Porcentaje de IVA | Código | Tarifa
 No Objeto de Impuesto   | 6 | -
 Exento de IVA   | 7 | -
 
-## Tipos de impuesto para la retención
+
+### Tipos de impuesto para la retención
 
 Impuesto | Código
 -------- | ------
@@ -201,7 +207,8 @@ RENTA    | 1
 IVA      | 2
 ISD      | 6
 
-## Tipos de impuesto para la retención en la factura
+
+### Tipos de impuesto para la retención en la factura
 
 Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
@@ -212,8 +219,7 @@ Impuesto                  | Código
 IVA PRESUNTIVO Y RENTA    | 4
 
 
-
-## Retención de IVA
+### Retención de IVA
 
 Porcentaje IVA | Código
 -------------- | ------
@@ -242,7 +248,7 @@ Porcentaje IVA | Código
 5%             | 4580
 
 
-## Retención de IVA Presuntivo y Renta
+### Retención de IVA Presuntivo y Renta
 
 Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
@@ -265,7 +271,7 @@ Porcentaje Renta | Código
 0.3%             | 328
 
 
-## Tipos de documentos
+### Tipos de documentos
 
 Documento                | Código
 ------------------------ | ------
@@ -275,7 +281,7 @@ Nota de Débito           | 05
 Guía de Remisión         | 06
 Comprobante de Retención | 07
 
-## Tipos de forma de pago
+### Tipos de forma de pago
 
 Forma de pago            | Código
 ------------------------ | ------
@@ -291,7 +297,7 @@ Tarjeta de crédito | tarjeta_credito
 Otros | otros
 Endoso de títulos | endoso_titulos
 
-## Equivalencia entre formas de pago Dátil y formas de pago del SRI
+### Equivalencia entre formas de pago Dátil y formas de pago del SRI
 
 Forma de pago Dátil      | Código | Forma de pago SRI      | Código
 ------------------------ | ------ | -----------------------|-------

@@ -10,13 +10,14 @@ toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentación gracias a Slate</a>
 
 includes:
+  - next/es/ec/core/invoice
+  - next/es/ec/common
   - next/es/ec/sales
   - next/es/ec/sales/invoices
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
   - next/es/ec/accounting
   - next/es/ec/accounting/accounting_info
-  - next/es/ec/common
   - errores
 
 search: true
@@ -92,3 +93,5 @@ Para emitir o re-emitir un comprobante se requiere también la clave del certifi
 de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 `X-Password: <clave-certificado-firma>`
+
+# Recursos
