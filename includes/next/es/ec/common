@@ -1,4 +1,6 @@
-<h1 id="clave-de-acceso">Clave de acceso</h1>
+<h2 id="objetos-comunes">Objetos comunes</h2>
+
+<h3 id="uuid-clave-de-acceso">UUID (Clave de acceso)</h3>
 
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
@@ -70,9 +72,61 @@ estar estructurada la clave de acceso.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
 
-<h1 id="objetos-comunes">Objetos comunes</h1>
+<h3 id="tax">Tax</h3>
 
-<h2 id="emisor">Emisor</h2>
+<p>Impuesto aplicado a una transacción o aun item.</p>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tax_code<p class="dt-data-type">string</p></td>
+<td>Código del grupo al que pertenece el impuesto.</td>
+</tr>
+<tr>
+<td>rate_code <p class="dt-data-type">string</p></td>
+<td>Código de la tarifa de impuesto aplicado.</td>
+</tr>
+<tr>
+<td>amount <p class="dt-data-type">string</p></td>
+<td>Valor a pagar de impuesto</td>
+</tr>
+<tr>
+<td>taxable_amount<p class="dt-data-type">object</p></td>
+<td>Base imponible. Valor a partir del cual el impuesto se calcula.</td>
+</tr>
+<tr>
+<td>rate <p class="dt-data-type">string</p></td>
+<td>Porcentaje del impuesto aplicado.</td>
+</tr>
+</tbody></table>
+
+<h3 id="documento-relacionado">Documento Relacionado</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number<p class="dt-data-type">string</p></td>
+<td>Código del grupo al que pertenece el impuesto.</td>
+</tr>
+<tr>
+<td>document_type <p class="dt-data-type">string</p></td>
+<td>Tipo del documento relacionado. Ver tabla de <a href="#tipos-de-documentos">Tipos de documentos</a></td>
+</tr>
+<tr>
+<td>issue_date<p class="dt-data-type">string</p></td>
+<td>Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+</tbody></table>
+
+<h3 id="supplier">Supplier</h3>
 
 <p>Información del emisor de un comprobante.</p>
 
@@ -114,13 +168,13 @@ estar estructurada la clave de acceso.</p>
 <td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
 </tr>
 <tr>
-<td>establecimiento</td>
-<td><a href="#establecimiento">establecimiento</a></td>
+<td>location</td>
+<td><a href="#location">location</a></td>
 <td>Establecimiento que emite la factura.</td>
 </tr>
 </tbody></table>
 
-<h2 id="establecimiento">Establecimiento</h2>
+<h3 id="location">Location</h3>
 
 <p>Representa un establecimiento del comercio.</p>
 
@@ -148,180 +202,107 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="contact">Contact</h2>
+<h3 id="contacto">Contacto</h3>
 
-<p>Datos de una contacto. Utilizado para describir <strong>customer</strong> y <strong>supplier</strong> en los documentos.</p>
+<p>Los contactos están representados por un objeto <em>Contact</em></p>
+
+<h4 id="el-objeto-contact">El objeto Contact</h4>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>person</td>
-<td>object</td>
-<td>objeto tipo <a href="#person">person</a> cuando el contacto es una persona.</td>
+<td>person <p class="dt-data-type">object</p></td>
+<td>objeto tipo <a href="#person">person</a>. Aparece cuando el contacto es una persona.</td>
 </tr>
 <tr>
-<td>business</td>
-<td>object</td>
-<td>objeto tipo <a href="#business">business</a> cuando el contacto es una empresa.</td>
+<td>business <p class="dt-data-type">object</p></td>
+<td>objeto tipo <a href="#business">business</a>. Aparece cuando el contacto es una empresa.</td>
 </tr>
 <tr>
-<td>properties</td>
-<td>object</td>
-<td>diccionario de datos. Representa información adicional.</td>
+<td>properties <p class="dt-data-type">object</p></td>
+<td>diccionario de datos. Representa información complementarios del contacto.</td>
 </tr>
 <tr>
-<td>tax_identification</td>
-<td>string</td>
-<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+<td>tax_identification <p class="dt-data-type">string</p></td>
+<td>De 5 a máximo 20 caracteres.</td>
 </tr>
 <tr>
-<td>tax_identification_type</td>
-<td>string</td>
-<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>tax_identification_type <p class="dt-data-type">string</p></td>
+<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación</td>
 </tr>
 <tr>
-<td>email</td>
-<td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>email <p class="dt-data-type">string</p></td>
+<td>Correo electrónico. Máximo 255 caracteres.</td>
 </tr>
 <tr>
-<td>phone</td>
-<td>string</td>
+<td>phone <p class="dt-data-type">string</p></td>
 <td>Teléfono.</td>
 </tr>
 <tr>
-<td>address</td>
-<td>string</td>
+<td>address <p class="dt-data-type">string</p></td>
 <td>Dirección</td>
 </tr>
 <tr>
-<td>locality</td>
-<td>string</td>
-<td>Ciudad o pueblo <strong>Requerido</strong></td>
+<td>locality <p class="dt-data-type">string</p></td>
+<td>Ciudad o pueblo</td>
 </tr>
 <tr>
-<td>sublocality</td>
-<td>string</td>
+<td>sublocality <p class="dt-data-type">string</p></td>
 <td>Sector o barrio</td>
 </tr>
 <tr>
-<td>administrative_district_level_1</td>
-<td>string</td>
+<td>administrative_district_level_1 <p class="dt-data-type">string</p></td>
 <td>Provincia</td>
 </tr>
 </tbody></table>
 
 <p>El contacto debe incluir alguno de los dos atributos, <code class="prettyprint">business</code> o <code class="prettyprint">person</code>.</p>
 
+<h3 id="business">Business</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>legal_name <p class="dt-data-type">string</p></td>
+<td>Razón social.</td>
+</tr>
+<tr>
+<td>commercial_name <p class="dt-data-type">string</p></td>
+<td>Nombre de comercial.</td>
+</tr>
+</tbody></table>
+
 <h3 id="person">Person</h3>
 
-<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
-
 <table><thead>
 <tr>
-<th>Tipo de identificación</th>
-<th>Código</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>RUC</td>
-<td><code class="prettyprint">04</code></td>
+<td>first_name <p class="dt-data-type">string</p></td>
+<td>Nombre de pila.</td>
 </tr>
 <tr>
-<td>CEDULA</td>
-<td><code class="prettyprint">05</code></td>
+<td>middle_name <p class="dt-data-type">string</p></td>
+<td>Segundo nombre.</td>
 </tr>
 <tr>
-<td>PASAPORTE</td>
-<td><code class="prettyprint">06</code></td>
-</tr>
-<tr>
-<td>VENTA A CONSUMIDOR FINAL*</td>
-<td><code class="prettyprint">07</code></td>
-</tr>
-<tr>
-<td>IDENTIFICACION DELEXTERIOR*</td>
-<td><code class="prettyprint">08</code></td>
-</tr>
-<tr>
-<td>PLACA</td>
-<td><code class="prettyprint">09</code></td>
+<td>last_name <p class="dt-data-type">string</p></td>
+<td>Apellido.</td>
 </tr>
 </tbody></table>
 
-<h2 id="total-impuesto">Total Impuesto</h2>
-
-<table><thead>
-<tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>codigo</td>
-<td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
-</tr>
-<tr>
-<td>codigo_porcentaje</td>
-<td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
-</tr>
-<tr>
-<td>base_imponible</td>
-<td>float</td>
-<td>Base imponible.</td>
-</tr>
-<tr>
-<td>valor</td>
-<td>float</td>
-<td>Valor del total.</td>
-</tr>
-</tbody></table>
-
-<h2 id="impuesto-item">Impuesto Item</h2>
-
-<table><thead>
-<tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>codigo</td>
-<td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
-</tr>
-<tr>
-<td>codigo_porcentaje</td>
-<td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
-</tr>
-<tr>
-<td>base_imponible</td>
-<td>float</td>
-<td>Base imponible.</td>
-</tr>
-<tr>
-<td>valor</td>
-<td>float</td>
-<td>Valor del total.</td>
-</tr>
-<tr>
-<td>tarifa</td>
-<td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
-</tr>
-</tbody></table>
-
-<h2 id="env-o-sri">Envío SRI</h2>
+<h3 id="env-o-sri">Envío SRI</h3>
 
 <p>Contiene la información y el estado de la fase de envío al SRI</p>
 
@@ -349,7 +330,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="autorizaci-n-sri">Autorización SRI</h2>
+<h3 id="autorizaci-n-sri">Autorización SRI</h3>
 
 <p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
 
@@ -382,7 +363,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h2>
+<h3 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h3>
 
 <table><thead>
 <tr>
@@ -413,70 +394,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
-
-<p>Representa un producto o servicio del comercio.</p>
-
-<table><thead>
-<tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>descripcion</td>
-<td>string</td>
-<td>Descripción del ítem. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>codigo_principal</td>
-<td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
-</tr>
-<tr>
-<td>codigo_auxiliar</td>
-<td>string</td>
-<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
-</tr>
-<tr>
-<td>cantidad</td>
-<td>float</td>
-<td>Cantidad de items. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>precio_unitario</td>
-<td>float</td>
-<td>Precio unitario. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>descuento</td>
-<td>float</td>
-<td>El descuento es aplicado por cada producto, expresado en valor monetario. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>precio_total_sin_impuestos</td>
-<td>float</td>
-<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
-</tr>
-<tr>
-<td>unidad_medida</td>
-<td>string</td>
-<td>Unidad de medida <strong>Requerido para facturas de exportación</strong></td>
-</tr>
-<tr>
-<td>impuestos</td>
-<td>listado de objetos tipo <a href="#impuesto-item">impuesto item</a></td>
-<td>Impuestos grabados sobre el producto. <strong>Requerido</strong></td>
-</tr>
-<tr>
-<td>detalles_adicionales</td>
-<td>object</td>
-<td>Diccionario de datos de carácter adicional. Ejemplo:<br><code>{&quot;marca&quot;: &quot;Ferrari&quot;, &quot;chasis&quot;: &quot;UANEI832-NAU101&quot;}</code></td>
-</tr>
-</tbody></table>
-
-<h2 id="retencion-de-factura">Retención en factura </h2>
+<p><h3 id="retencion-de-factura">Retención en factura </h2></p>
 
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.</p>
 
@@ -509,9 +427,46 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h1 id="cat-logo">Catálogo</h1>
+<h2 id="c-digos-de-impuestos-y-pagos">Códigos de impuestos y pagos</h2>
 
-<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
+<h3 id="tipo-de-identificaci-n">Tipo de identificación</h3>
+
+<table><thead>
+<tr>
+<th>Tipo de identificación</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RUC</td>
+<td>04</td>
+</tr>
+<tr>
+<td>CEDULA</td>
+<td>05</td>
+</tr>
+<tr>
+<td>PASAPORTE</td>
+<td>06</td>
+</tr>
+<tr>
+<td>VENTA A CONSUMIDOR FINAL <small>(1)</smal></td>
+<td>07</td>
+</tr>
+<tr>
+<td>IDENTIFICACION DEL EXTERIOR <small>(2)</small></td>
+<td>08</td>
+</tr>
+<tr>
+<td>PLACA</td>
+<td>09</td>
+</tr>
+</tbody></table>
+
+<p>(1) En la venta a Consumidor Final la identificación del cliente se formará con 13 dígitos de nueve (9999999999999).
+(2) La identificación del Exterior corresponderá al número de Identificación otorgado por la Administración Tributaria (AT) del país que es Residente Fiscal.</p>
+
+<h3 id="tipos-de-impuesto">Tipos de impuesto</h3>
 
 <table><thead>
 <tr>
@@ -533,7 +488,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h2>
+<h3 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h3>
 
 <table><thead>
 <tr>
@@ -569,7 +524,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
+<h3 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h3>
 
 <table><thead>
 <tr>
@@ -591,7 +546,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
+<h3 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h3>
 
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
@@ -609,7 +564,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva">Retención de IVA</h2>
+<h3 id="retenci-n-de-iva">Retención de IVA</h3>
 
 <table><thead>
 <tr>
@@ -681,7 +636,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
+<h3 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h3>
 
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
@@ -731,7 +686,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-documentos">Tipos de documentos</h2>
+<h3 id="tipos-de-documentos">Tipos de documentos</h3>
 
 <table><thead>
 <tr>
@@ -761,7 +716,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
+<h3 id="tipos-de-forma-de-pago">Tipos de forma de pago</h3>
 
 <table><thead>
 <tr>
@@ -815,7 +770,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </tbody></table>
 
-<h2 id="equivalencia-entre-formas-de-pago-d-til-y-formas-de-pago-del-sri">Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
+<h3 id="equivalencia-entre-formas-de-pago-d-til-y-formas-de-pago-del-sri">Equivalencia entre formas de pago Dátil y formas de pago del SRI</h3>
 
 <table><thead>
 <tr>

@@ -1,0 +1,19 @@
+<h2 id="informaci-n-contable">Información contable</h2>
+
+<p>Todos los comprobantes pueden adjuntar información contable representada por un objeto <em>Accounting</em>.</p>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cost_centre<p class="dt-data-type">string</p></td>
+<td>Código del centro de costos asignado por el negocio.</td>
+</tr>
+<tr>
+<td>account<p class="dt-data-type">string</p></td>
+<td>Código de la cuenta contable en la cual se debe contabilizar la factura o ítem.</td>
+</tr>
+</tbody></table>

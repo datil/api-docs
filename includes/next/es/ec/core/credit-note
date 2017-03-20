@@ -1,0 +1,153 @@
+<h2 id="notas-de-cr-dito">Notas de Crédito</h2>
+
+<p>Una Nota de Crédito está representada por un objeto <em>Credit Note</em>.</p>
+
+<h5 id="el-objeto-credit-note">El objeto Credit Note</h5>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number<p class="dt-data-type">string</p></td>
+<td>Número completo de la factura. Es un número secuencial que se forma a partir de {código establecimiento}-{código pto. emisión}-{secuencia}</td>
+</tr>
+<tr>
+<td>sequence<p class="dt-data-type">integer</p></td>
+<td>Número de secuencia.</td>
+</tr>
+<tr>
+<td>currency<p class="dt-data-type">string</p></td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
+</tr>
+<tr>
+<td>issue_date<p class="dt-data-type">string</p></td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>totals<p class="dt-data-type">object <a href="#invoice-totals">totals</a></p></td>
+<td>Totales de la factura</td>
+</tr>
+<tr>
+<td>customer<p class="dt-data-type">object <a href="#contacto">contacto</a></td>
+<td>Información del comprador.</td>
+</tr>
+<tr>
+<td>items<p class="dt-data-type">lista de <a href="#invoice-item">items</a></p></td>
+<td>Bienes o servicios facturados.</td>
+</tr>
+<tr>
+<td>uuid<p class="dt-data-type">string</p></td>
+<td>La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>properties<p class="dt-data-type">object</p></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+</tr>
+<tr>
+<td>electronic_document<p class="dt-data-type">string</p></td>
+<td>Documento electrónico, el XML que representa a esta factura ante el SRI.</td>
+</tr>
+<tr>
+<td>electronic_document_url<p class="dt-data-type">string</p></td>
+<td>URL de descarga del documento electrónico, el XML.</td>
+</tr>
+<tr>
+<td>printable_version_url<p class="dt-data-type">string</p></td>
+<td>URL de descarga del RIDE.</td>
+</tr>
+<tr>
+<td>credited_reason<p class="dt-data-type">string</p></td>
+<td>Motivo por el cual se emite la Nota de Crédito.</td>
+</tr>
+<tr>
+<td>credited_document<p class="dt-data-type">object <a href="#documento-relacionado">related document</a></p></td>
+<td>Documento afectado por la Nota de Crédito. Normalmente una Factura.</td>
+</tr>
+</tbody></table>
+
+<h4 id="invoice-totals">Totals</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_discount_amount<p class="dt-data-type">string</p></td>
+<td>Subtotal sin impuestos</td>
+</tr>
+<tr>
+<td>subtotal_amount<p class="dt-data-type">string</p></td>
+<td>Subtotal sin impuestos. El subtotal sin impuestos se obtiene con la suma del subtotal de los items.</td>
+</tr>
+<tr>
+<td>total_tax_amount<p class="dt-data-type">string</p></td>
+<td>Total de impuesto recaudado</td>
+</tr>
+<tr>
+<td>total_amount<p class="dt-data-type">string</p></td>
+<td>Total final.</td>
+</tr>
+<tr>
+<td>tip_amount<p class="dt-data-type">string</p></td>
+<td>Propina. También llamado servicio.</td>
+</tr>
+<tr>
+<td>additional_discount_amount<p class="dt-data-type">string</p></td>
+<td>Descuento adicional al descuento que se puede aplicar a cada item. Este descuento es aplicado al subtotal de la factura.</td>
+</tr>
+</tbody></table>
+
+<h4 id="invoice-item">Item</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description<p class="dt-data-type">string</p></td>
+<td>Descripción del ítem.</td>
+</tr>
+<tr>
+<td>sku<p class="dt-data-type">string</p></td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>quantity<p class="dt-data-type">string</p></td>
+<td>Cantidad de items.</td>
+</tr>
+<tr>
+<td>unit_price<p class="dt-data-type">string</p></td>
+<td>Precio unitario.</td>
+</tr>
+<tr>
+<td>unit_discount<p class="dt-data-type">string</p></td>
+<td>El descuento aplicado para este item, expresado en valor monetario.</td>
+</tr>
+<tr>
+<td>discount<p class="dt-data-type">string</p></td>
+<td>El descuento aplicado para este item, expresado en valor monetario.</td>
+</tr>
+<tr>
+<td>subtotal_amount<p class="dt-data-type">string</p></td>
+<td>Subtotal antes de impuestos. Se obtiene multiplicando <code class="prettyprint">quantity</code> por <code class="prettyprint">unit_price</code> menos <code class="prettyprint">discount</code></td>
+</tr>
+<tr>
+<td>unit_of_measurement<p class="dt-data-type">string</p></td>
+<td>Unidad de medida, ejemplos: l, kg, cm</td>
+</tr>
+<tr>
+<td>taxes</td>
+<td>listado de <a href="#item-tax">impuestos</a></td>
+</tr>
+<tr>
+<td>properties</td>
+<td>hash</td>
+</tr>
+</tbody></table>
