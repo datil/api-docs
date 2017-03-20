@@ -55,10 +55,6 @@
 <td>Listado de formas de pago aplicables a la factura.</td>
 </tr>
 <tr>
-<td>payment_terms</td>
-<td>Objeto de <a href="#payment-terms">payment_terms</a></td>
-</tr>
-<tr>
 <td>electronic_document<p class="dt-data-type">string</p></td>
 <td>Documento electrónico, el XML que representa a esta factura ante el SRI.</td>
 </tr>
