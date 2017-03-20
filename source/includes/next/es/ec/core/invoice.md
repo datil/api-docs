@@ -18,7 +18,6 @@ uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La cl
 properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 payments<p class="dt-data-type">lista de [payments](#payment)</p> | Pagos realizados a la factura.
 payment_methods<p class="dt-data-type">lista de [payment_methods](#payment-method)</p> | Listado de formas de pago aplicables a la factura.
-payment_terms | Objeto de [payment_terms](#payment-terms) | Información del crédito directo otorgado al cliente.
 electronic_document<p class="dt-data-type">string</p> | Documento electrónico, el XML que representa a esta factura ante el SRI.
 electronic_document_url<p class="dt-data-type">string</p> | URL de descarga del documento electrónico, el XML.
 printable_version_url<p class="dt-data-type">string</p> | URL de descarga del RIDE.

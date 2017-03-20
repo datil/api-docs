@@ -176,11 +176,7 @@ headers = {
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 response = requests.post(
-<<<<<<< HEAD
-    "https://api.datil.co/locations/31a8edd4-cf56-4435-a387-7bf1d2eb94e1/sales/invoices/issue",
-=======
-    "https://api.datil.co/locations/31a8edd4-cf56-4435-a387-7bf1d2eb94e1/invoices/issue",
->>>>>>> 368399f08433ab5ea8b8df2f12f4cb8b35995f3d
+    "https://api.datil.co/sales/invoices/issue",
     headers = headers,
     data = json.dumps(invoice))
 ```
@@ -201,37 +197,9 @@ items<p class="dt-data-type">arreglo de [items](#invoice-item)</p> | Bienes o se
 uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 payments<p class="dt-data-type">arreglo [payment](#payment)</p> | Pagos realizados a la factura.
-payment_methods<p class="dt-data-type">arreglo [payment_method](#payment_method)</p> | Listado de formas de pago aplicables a la factura.
-payment_terms | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
+payment_methods<p class="dt-data-type">arreglo [payment_method](#payment_method)</p> | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito.
 
-
-##### Totals
-
-Parámetro           | Tipo                    | Descripción
-------------------- | ----------------------- |-----------
-total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
-descuento_adicional | float | Descuento aplicado al subtotal de la factura expresado en valor monetario.
-descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
-propina             | float | Propina total, llamado también servicio. __Requerido__
-importe_total       | float | Total incluyendo impuestos. __Requerido__
-impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
-
-##### Payments
-
-Parámetro   | Tipo         | Descripción
------------ | ------------ | ----------
-fecha       | string       | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es especificado se utiliza la fecha y hora actual.
-medio       | string       | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
-total       | float        | Total aplicable a la forma de pago especificada. __Requerido__
-propiedades | objeto       | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
-
-##### Payment terms
-
-Parámetro           | Tipo    | Descripción
-------------------- | ------- | ----------
-fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-monto               | float   | Monto otorgado de crédito. __Requerido__
-
+#### Retorna
 
 Retorna un objeto **[invoice](#el-objeto-invoice)** que incluye un nuevo parámetro `id`,
 el cual identifica de manera única a la factura. El campo `clave_acceso` generado
