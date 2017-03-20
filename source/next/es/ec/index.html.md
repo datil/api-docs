@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - next/es/ec/core/invoice
+  - next/es/ec/core/credit-note
   - next/es/ec/common
   - next/es/ec/sales
   - next/es/ec/sales/invoices

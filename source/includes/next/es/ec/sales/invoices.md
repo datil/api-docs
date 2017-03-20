@@ -8,84 +8,82 @@
 > ##### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/location/31a8edd4-cf56-4435-a387-7bf1d2eb94e1/invoices/issue \
+curl -v https://api.datil.co/invoices/issue \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <API-key>" \
+-H "X-Location-Id: <location-id>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{
-      "country": "EC",
-      "device_id": "9008edd4-cf56-4435-a387-7bf1d2eb9aef",
+      "supplier": {
+        "location": {
+          "code": "001",
+          "point_of_sale": {
+            "code": "002"
+          }
+        }
+      },
       "sequence": 2,
-      "uuid": "2211201601099022690300110010030000011701993241014",
+      "uuid": "2003201701099999999900110011000000000022100020017",
       "issue_date": "2016-11-22 23:00:00",
       "customer": {
         "tax_identification_type": "31",
         "properties": [],
         "address": "Carrera 10 Calle 1",
-        "email": "w@datil.co",
+        "email": "compras@datil.co",
         "phone": "57122222222222",
-        "locality": "Bogota DC",
+        "locality": "Guayaquil",
         "sublocality": "Centro",
-        "tax_identification": "1050320-1",
-        "tax_level_code": "2",
+        "tax_identification": "0924447900",
         "person": {
           "first_name": "Juan",
           "middle_name": "A.",
-          "last_name": "Argüello"
+          "last_name": "Pérez"
         },
         "administrative_district_level_1": "Guayas",
         "country": "EC"
       },
       "taxes": [
         {
-          "amount": 419046.82,
-          "tax_code": "03",
-          "tax_rate": 4.14,
+          "amount": "14.00",
+          "tax_code": "2",
+          "tax_rate": "14.0",
           "rate_code": "3",
-          "taxable_amount": 10121904.00
-        },
-        {
-          "amount": 1619504.64,
-          "tax_code": "01",
-          "tax_rate": 16.00,
-          "rate_code": "3",
-          "taxable_amount": 10121904.00
+          "taxable_amount": "100.00"
         }
       ],
       "totals": {
-        "subtotal_amount": 10121904.00,
-        "total_tax_amount": 2038551.46,
-        "total_amount": 12160455.46,
+        "subtotal_amount": 100.00,
+        "total_tax_amount": 14.00,
+        "total_amount": 114.00,
       }
       "currency": "USD",
       "items": [
         {
           "description": "Apple",
           "properties": {
-            "key": "size",
-            "value": "M"
+            "name": "color",
+            "description": "red"
           },
           "unit_discount": "1.00",
           "unit_code": "units",
-          "unit_price": "4.3256",
-          "id": "afb0110982731abc",
-          "subtotal_amount": "6.65",
-          "quantity": "2"
+          "unit_price": "2.00",
+          "subtotal_amount": "100.00",
+          "quantity": "100"
         }
       ],
       "properties": [
          {
-           "key": "Contract Number",
-           "value": "420420"
+           "name": "Contract Number",
+           "description": "420420"
          }
        ],
        "payments": [
          {
            "properties": {
              "account_number": "2223XXXX23",
-             "bank": "Bancolombia"
+             "bank": "Banco Guayaquil"
            },
-           "amount": 1.09,
+           "amount": 114.0,
            "method": "42"
          }
        ],
@@ -107,10 +105,10 @@ invoice = {
         "properties": [],
         "address": "Carrera 10 Calle 1",
         "email": "w@datil.co",
-        "phone": "57122222222222",
+        "phone": "04 555-5555",
         "locality": "Bogota DC",
         "sublocality": "Centro",
-        "tax_identification": "1050320-1",
+        "tax_identification": "092",
         "tax_level_code": "2",
         "person": {"first_name": "Juan",
                    "middle_name": "A.",
@@ -144,8 +142,8 @@ invoice = {
         {
           "description": "Apple",
           "properties": {
-            "key": "size",
-            "value": "M"
+            "name": "size",
+            "description": "M"
           },
           "unit_discount": 0.00,
           "unit_code": "units",
@@ -158,8 +156,8 @@ invoice = {
       ],
       "properties": [
          {
-           "key": "Contract Number",
-           "value": "420420"
+           "name": "Contract Number",
+           "description": "420420"
          }
        ],
        "payments": [
