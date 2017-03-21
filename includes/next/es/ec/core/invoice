@@ -43,8 +43,8 @@
 <td>La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">objeto</p></td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al comprobante.</td>
 </tr>
 <tr>
 <td>payments<p class="dt-data-type">lista de <a href="#payment">payments</a></p></td>
@@ -139,6 +139,10 @@
 <td>Subtotal antes de impuestos. Se obtiene multiplicando <code class="prettyprint">quantity</code> por <code class="prettyprint">unit_price</code> menos <code class="prettyprint">discount</code></td>
 </tr>
 <tr>
+<td>total_amount<p class="dt-data-type">string</p></td>
+<td>subtotal_amount + total tax amount</td>
+</tr>
+<tr>
 <td>unit_of_measurement<p class="dt-data-type">string</p></td>
 <td>Unidad de medida, ejemplos: l, kg, cm</td>
 </tr>
@@ -147,8 +151,8 @@
 <td>listado de <a href="#item-tax">impuestos</a></td>
 </tr>
 <tr>
-<td>properties</td>
-<td>hash</td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Datos adicionales</td>
 </tr>
 </tbody></table>
 
@@ -173,8 +177,8 @@
 <td>Valor pagado</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">object</p></td>
-<td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;bank&quot;: &quot;Safe Bank&quot;, &quot;account_number&quot;: &quot;1020304050&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al pago Ejemplo:<br><code class="prettyprint">[{&quot;name&quot;:&quot;bank&quot;, &quot;description&quot;:&quot;Safe Bank&quot;}, {&quot;name&quot;:&quot;account_number&quot;, &quot;description&quot;:&quot;1020304050&quot;}]</code></td>
 </tr>
 </tbody></table>
 
@@ -199,7 +203,7 @@
 <td>Valor a pagar por este medio.</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">object</p></td>
-<td>Información adicional. Ejemplo:<br><code class="prettyprint">{&quot;bank&quot;: &quot;Safe Bank&quot;, &quot;account_number&quot;: &quot;1020304050&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al pago Ejemplo:<br><code class="prettyprint">[{&quot;name&quot;:&quot;bank&quot;, &quot;description&quot;:&quot;Safe Bank&quot;}, {&quot;name&quot;:&quot;account_number&quot;, &quot;description&quot;:&quot;1020304050&quot;}]</code></td>
 </tr>
 </tbody></table>

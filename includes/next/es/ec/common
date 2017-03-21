@@ -132,73 +132,95 @@ estar estructurada la clave de acceso.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ruc</td>
-<td>string</td>
+<td>tax_identification<p class="dt-data-type">string</p></td>
 <td>Número de RUC de 13 caracteres</td>
 </tr>
 <tr>
-<td>razon_social</td>
-<td>string</td>
-<td>Razón social. Máximo 300 caracteres</td>
+<td>legal_name<p class="dt-data-type">string</p></td>
+<td>Razón social</td>
 </tr>
 <tr>
-<td>nombre_comercial</td>
-<td>string</td>
-<td>Nombre comercial. Máximo 300 caracteres</td>
+<td>commercial_name<p class="dt-data-type">string</p></td>
+<td>Nombre comercial</td>
 </tr>
 <tr>
-<td>direccion</td>
-<td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+<td>address<p class="dt-data-type">string</p></td>
+<td>Dirección del establecimiento registrada en el SRI</td>
 </tr>
 <tr>
-<td>contribuyente_especial</td>
-<td>string</td>
-<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+<td>locality<p class="dt-data-type">string</p></td>
+<td>Ciudad o pueblo</td>
 </tr>
 <tr>
-<td>obligado_contabilidad</td>
-<td>boolean</td>
-<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+<td>administrative_district_level_1 <p class="dt-data-type">string</p></td>
+<td>Provincia</td>
+</tr>
+<tr>
+<td>country<p class="dt-data-type">string</p></td>
+<td>País</td>
+</tr>
+<tr>
+<td>properties <p class="dt-data-type">list of <a href="#property">property</a> objects</p></td>
+<td></td>
 </tr>
 <tr>
 <td>location</td>
 <td><a href="#location">location</a></td>
-<td>Establecimiento que emite la factura.</td>
 </tr>
 </tbody></table>
 
 <h3 id="location">Location</h3>
 
-<p>Representa un establecimiento del comercio.</p>
+<p>Representa un establecimiento del negocio.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>codigo</td>
-<td>string</td>
+<td>code<p class="dt-data-type">string</p></td>
 <td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
 </tr>
 <tr>
-<td>direccion</td>
-<td>string</td>
+<td>address<p class="dt-data-type">string</p></td>
 <td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
 </tr>
 <tr>
-<td>punto_emision</td>
-<td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+<td>administrative_district_level_1<p class="dt-data-type">string</p></td>
+<td>Provincia</td>
+</tr>
+<tr>
+<td>administrative_district_level_2<p class="dt-data-type">string</p></td>
+<td>Ciudad</td>
+</tr>
+<tr>
+<td>point_of_sale<p class="dt-data-type">object <a href="#point_of_sale">punto de venta</a></p></td>
+<td>Información del punto de venta que emite el documento</td>
+</tr>
+</tbody></table>
+
+<h3 id="point-of-sale">Point of sale</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>ID único del punto de venta</td>
+</tr>
+<tr>
+<td>code<p class="dt-data-type">string</p></td>
+<td>Código numérico de 3 caracteres que identifica al punto de emisión, o punto de venta. Ejemplo: &ldquo;001&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -299,6 +321,24 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>last_name <p class="dt-data-type">string</p></td>
 <td>Apellido.</td>
+</tr>
+</tbody></table>
+
+<h3 id="property">Property</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name <p class="dt-data-type">string</p></td>
+<td>Nombre de la propiedad. Esto permite asociar información de cualquier índole a los recursos que soportan esta propiedad.</td>
+</tr>
+<tr>
+<td>description <p class="dt-data-type">string</p></td>
+<td>Valor de la propiedad.</td>
 </tr>
 </tbody></table>
 

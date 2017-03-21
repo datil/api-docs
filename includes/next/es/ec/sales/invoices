@@ -191,6 +191,10 @@ ambiente de pruebas del SRI.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>supplier<p class="dt-data-type">opcional</p></td>
+<td>En este campo sólo es necesario proveer &ldquo;location&rdquo; con los campos &ldquo;code&rdquo; y &ldquo;point_of_sale&rdquo;. Para el objeto &ldquo;point_of_sale&rdquo; es necesario sólo especificar &ldquo;code&rdquo;</td>
+</tr>
+<tr>
 <td>sequence<p class="dt-data-type">opcional</p></td>
 <td>Número entero positivo mayor a cero</td>
 </tr>

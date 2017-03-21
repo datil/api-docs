@@ -237,8 +237,8 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <td>La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">objeto</p></td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al comprobante.</td>
 </tr>
 <tr>
 <td>payments<p class="dt-data-type">lista de <a href="#payment">payments</a></p></td>
@@ -333,6 +333,10 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <td>Subtotal antes de impuestos. Se obtiene multiplicando <code class="prettyprint">quantity</code> por <code class="prettyprint">unit_price</code> menos <code class="prettyprint">discount</code></td>
 </tr>
 <tr>
+<td>total_amount<p class="dt-data-type">string</p></td>
+<td>subtotal_amount + total tax amount</td>
+</tr>
+<tr>
 <td>unit_of_measurement<p class="dt-data-type">string</p></td>
 <td>Unidad de medida, ejemplos: l, kg, cm</td>
 </tr>
@@ -341,8 +345,8 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <td>listado de <a href="#item-tax">impuestos</a></td>
 </tr>
 <tr>
-<td>properties</td>
-<td>hash</td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Datos adicionales</td>
 </tr>
 </tbody></table>
 
@@ -367,8 +371,8 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <td>Valor pagado</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">object</p></td>
-<td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;bank&quot;: &quot;Safe Bank&quot;, &quot;account_number&quot;: &quot;1020304050&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al pago Ejemplo:<br><code class="prettyprint">[{&quot;name&quot;:&quot;bank&quot;, &quot;description&quot;:&quot;Safe Bank&quot;}, {&quot;name&quot;:&quot;account_number&quot;, &quot;description&quot;:&quot;1020304050&quot;}]</code></td>
 </tr>
 </tbody></table>
 
@@ -393,8 +397,8 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <td>Valor a pagar por este medio.</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">object</p></td>
-<td>Información adicional. Ejemplo:<br><code class="prettyprint">{&quot;bank&quot;: &quot;Safe Bank&quot;, &quot;account_number&quot;: &quot;1020304050&quot;}</code></td>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al pago Ejemplo:<br><code class="prettyprint">[{&quot;name&quot;:&quot;bank&quot;, &quot;description&quot;:&quot;Safe Bank&quot;}, {&quot;name&quot;:&quot;account_number&quot;, &quot;description&quot;:&quot;1020304050&quot;}]</code></td>
 </tr>
 </tbody></table>
 
@@ -686,73 +690,95 @@ estar estructurada la clave de acceso.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ruc</td>
-<td>string</td>
+<td>tax_identification<p class="dt-data-type">string</p></td>
 <td>Número de RUC de 13 caracteres</td>
 </tr>
 <tr>
-<td>razon_social</td>
-<td>string</td>
-<td>Razón social. Máximo 300 caracteres</td>
+<td>legal_name<p class="dt-data-type">string</p></td>
+<td>Razón social</td>
 </tr>
 <tr>
-<td>nombre_comercial</td>
-<td>string</td>
-<td>Nombre comercial. Máximo 300 caracteres</td>
+<td>commercial_name<p class="dt-data-type">string</p></td>
+<td>Nombre comercial</td>
 </tr>
 <tr>
-<td>direccion</td>
-<td>string</td>
-<td>Dirección registrada en el SRI. Máximo 300 caracteres.</td>
+<td>address<p class="dt-data-type">string</p></td>
+<td>Dirección del establecimiento registrada en el SRI</td>
 </tr>
 <tr>
-<td>contribuyente_especial</td>
-<td>string</td>
-<td>Número de resolución. En blanco si no es contribuyente especial.</td>
+<td>locality<p class="dt-data-type">string</p></td>
+<td>Ciudad o pueblo</td>
 </tr>
 <tr>
-<td>obligado_contabilidad</td>
-<td>boolean</td>
-<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+<td>administrative_district_level_1 <p class="dt-data-type">string</p></td>
+<td>Provincia</td>
+</tr>
+<tr>
+<td>country<p class="dt-data-type">string</p></td>
+<td>País</td>
+</tr>
+<tr>
+<td>properties <p class="dt-data-type">list of <a href="#property">property</a> objects</p></td>
+<td></td>
 </tr>
 <tr>
 <td>location</td>
 <td><a href="#location">location</a></td>
-<td>Establecimiento que emite la factura.</td>
 </tr>
 </tbody></table>
 
 <h3 id="location">Location</h3>
 
-<p>Representa un establecimiento del comercio.</p>
+<p>Representa un establecimiento del negocio.</p>
 
 <table><thead>
 <tr>
-<th>Parámetro</th>
-<th>Tipo</th>
-<th>Descripción</th>
+<th>Atributos</th>
+<th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>codigo</td>
-<td>string</td>
+<td>code<p class="dt-data-type">string</p></td>
 <td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
 </tr>
 <tr>
-<td>direccion</td>
-<td>string</td>
+<td>address<p class="dt-data-type">string</p></td>
 <td>Dirección registrada en el SRI. Máximo 300 caracteres</td>
 </tr>
 <tr>
-<td>punto_emision</td>
-<td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+<td>administrative_district_level_1<p class="dt-data-type">string</p></td>
+<td>Provincia</td>
+</tr>
+<tr>
+<td>administrative_district_level_2<p class="dt-data-type">string</p></td>
+<td>Ciudad</td>
+</tr>
+<tr>
+<td>point_of_sale<p class="dt-data-type">object <a href="#point_of_sale">punto de venta</a></p></td>
+<td>Información del punto de venta que emite el documento</td>
+</tr>
+</tbody></table>
+
+<h3 id="point-of-sale">Point of sale</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>ID único del punto de venta</td>
+</tr>
+<tr>
+<td>code<p class="dt-data-type">string</p></td>
+<td>Código numérico de 3 caracteres que identifica al punto de emisión, o punto de venta. Ejemplo: &ldquo;001&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -853,6 +879,24 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>last_name <p class="dt-data-type">string</p></td>
 <td>Apellido.</td>
+</tr>
+</tbody></table>
+
+<h3 id="property">Property</h3>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name <p class="dt-data-type">string</p></td>
+<td>Nombre de la propiedad. Esto permite asociar información de cualquier índole a los recursos que soportan esta propiedad.</td>
+</tr>
+<tr>
+<td>description <p class="dt-data-type">string</p></td>
+<td>Valor de la propiedad.</td>
 </tr>
 </tbody></table>
 
@@ -1603,6 +1647,10 @@ ambiente de pruebas del SRI.</p>
 <th>&nbsp;</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>supplier<p class="dt-data-type">opcional</p></td>
+<td>En este campo sólo es necesario proveer &ldquo;location&rdquo; con los campos &ldquo;code&rdquo; y &ldquo;point_of_sale&rdquo;. Para el objeto &ldquo;point_of_sale&rdquo; es necesario sólo especificar &ldquo;code&rdquo;</td>
+</tr>
 <tr>
 <td>sequence<p class="dt-data-type">opcional</p></td>
 <td>Número entero positivo mayor a cero</td>
