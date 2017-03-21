@@ -57,25 +57,39 @@ issue_date<p class="dt-data-type">string</p> | Fecha de emisión del documento r
 
 Información del emisor de un comprobante.
 
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-ruc | string | Número de RUC de 13 caracteres
-razon_social | string | Razón social. Máximo 300 caracteres
-nombre_comercial | string| Nombre comercial. Máximo 300 caracteres
-direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres.
-contribuyente_especial | string | Número de resolución. En blanco si no es contribuyente especial.
-obligado_contabilidad | boolean | `true` si está obligado a llevar contabilidad.
-location | [location](#location) | Establecimiento que emite la factura.
+Atributos | &nbsp;
+--------- | -------
+tax_identification<p class="dt-data-type">string</p> | Número de RUC de 13 caracteres
+legal_name<p class="dt-data-type">string</p> | Razón social
+commercial_name<p class="dt-data-type">string</p> | Nombre comercial
+address<p class="dt-data-type">string</p> | Dirección del establecimiento registrada en el SRI
+locality<p class="dt-data-type">string</p> | Ciudad o pueblo
+administrative_district_level_1 <p class="dt-data-type">string</p> | Provincia
+country<p class="dt-data-type">string</p> | País
+properties <p class="dt-data-type">list of [property](#property) objects</p> |
+location | [location](#location) | Información del establecimiento que emite el documento
+
 
 ### Location
 
-Representa un establecimiento del comercio.
+Representa un establecimiento del negocio.
 
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-codigo | string | Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: `001`
-direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres
-punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`
+Atributos | &nbsp;
+--------- | -------
+code<p class="dt-data-type">string</p> | Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: `001`
+address<p class="dt-data-type">string</p> | Dirección registrada en el SRI. Máximo 300 caracteres
+administrative_district_level_1<p class="dt-data-type">string</p> | Provincia
+administrative_district_level_2<p class="dt-data-type">string</p> | Ciudad
+point_of_sale<p class="dt-data-type">object [punto de venta](#point_of_sale)</p> | Información del punto de venta que emite el documento
+
+
+### Point of sale
+
+Atributos | &nbsp;
+--------- | -------
+id<p class="dt-data-type">string</p> | ID único del punto de venta
+code<p class="dt-data-type">string</p> | Código numérico de 3 caracteres que identifica al punto de emisión, o punto de venta. Ejemplo: "001"
+
 
 ### Contacto
 
@@ -116,6 +130,14 @@ Atributos | &nbsp;
 first_name <p class="dt-data-type">string</p> | Nombre de pila.
 middle_name <p class="dt-data-type">string</p> | Segundo nombre.
 last_name <p class="dt-data-type">string</p> | Apellido.
+
+
+### Property
+
+Atributos | &nbsp;
+--------- | -------
+name <p class="dt-data-type">string</p> | Nombre de la propiedad. Esto permite asociar información de cualquier índole a los recursos que soportan esta propiedad.
+description <p class="dt-data-type">string</p> | Valor de la propiedad.
 
 
 ### Envío SRI

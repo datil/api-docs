@@ -15,7 +15,7 @@ totals<p class="dt-data-type">objeto [totals](#invoice-totals)</p> | Totales de 
 customer<p class="dt-data-type">objeto [contacto](#contacto) | Información del comprador.
 items<p class="dt-data-type">lista de [items](#invoice-item)</p> | Bienes o servicios facturados.
 uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
+properties<p class="dt-data-type">list de [property objects](#property)</p> | Información adicional adjunta al comprobante.
 payments<p class="dt-data-type">lista de [payments](#payment)</p> | Pagos realizados a la factura.
 payment_methods<p class="dt-data-type">lista de [payment_methods](#payment-method)</p> | Listado de formas de pago aplicables a la factura.
 electronic_document<p class="dt-data-type">string</p> | Documento electrónico, el XML que representa a esta factura ante el SRI.
@@ -45,9 +45,10 @@ unit_price<p class="dt-data-type">string</p> | Precio unitario.
 unit_discount<p class="dt-data-type">string</p> | El descuento aplicado para este item, expresado en valor monetario.
 discount<p class="dt-data-type">string</p> | El descuento aplicado para este item, expresado en valor monetario.
 subtotal_amount<p class="dt-data-type">string</p> | Subtotal antes de impuestos. Se obtiene multiplicando `quantity` por `unit_price` menos `discount`
+total_amount<p class="dt-data-type">string</p> | subtotal_amount + total tax amount
 unit_of_measurement<p class="dt-data-type">string</p> | Unidad de medida, ejemplos: l, kg, cm
 taxes | listado de [impuestos](#item-tax) | Impuestos grabados sobre el producto.
-properties | hash | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
+properties<p class="dt-data-type">list de [property objects](#property)</p> | Datos adicionales
 
 
 #### Payment
@@ -57,7 +58,7 @@ Atributos | &nbsp;
 date<p class="dt-data-type">string</p> | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 method <p class="dt-data-type">string</p> | Código del método de pago según [4461 UN/CEFACT standard v06B](http://www.unece.org/trade/untdid/d16a/tred/tred4461.htm)
 amount <p class="dt-data-type">string</p> | Valor pagado
-properties<p class="dt-data-type">object</p> | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"bank": "Safe Bank", "account_number": "1020304050"}`
+properties<p class="dt-data-type">list de [property objects](#property)</p> | Información adicional adjunta al pago Ejemplo:<br>` [{"name":"bank", "description":"Safe Bank"}, {"name":"account_number", "description":"1020304050"}]`
 
 
 #### Payment method
@@ -67,4 +68,4 @@ Atributos | &nbsp;
 due_date<p class="dt-data-type">string</p> | Fecha de vencimiento en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 method <p class="dt-data-type">string</p> | Código del método de pago según [4461 UN/CEFACT standard v06B](http://www.unece.org/trade/untdid/d16a/tred/tred4461.htm)
 amount <p class="dt-data-type">string</p> | Valor a pagar por este medio.
-properties<p class="dt-data-type">object</p> | Información adicional. Ejemplo:<br>` {"bank": "Safe Bank", "account_number": "1020304050"}`
+properties<p class="dt-data-type">list de [property objects](#property)</p> | Información adicional adjunta al pago Ejemplo:<br>` [{"name":"bank", "description":"Safe Bank"}, {"name":"account_number", "description":"1020304050"}]`

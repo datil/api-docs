@@ -188,6 +188,7 @@ ambiente de pruebas del SRI.
 
 Parámetros | &nbsp;
 ---------- | -----------
+supplier<p class="dt-data-type">opcional</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
 sequence<p class="dt-data-type">opcional</p> | Número entero positivo mayor a cero
 currency<br>__requerido__ | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date<p class="dt-data-type">opcional</p> | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
