@@ -33,7 +33,7 @@ Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de ver
 
 ### Tax
 
-Impuesto aplicado a una transacción o aun item.
+Impuesto aplicado a una transacción o item.
 
 Atributos | &nbsp;
 --------- | -------
