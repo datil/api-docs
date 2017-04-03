@@ -1,0 +1,77 @@
+<h1 id="cat-logo">Catálogo</h1>
+
+<h2 id="productos">Productos</h2>
+
+<p>El catálogo de productos te permite registrar todo los bienes o servicios que
+vendes y compras. Así podrás crear facturas, vender a través de Market y
+controlar el inventario de los productos.</p>
+
+<h3 id="consulta-un-producto">Consulta un Producto</h3>
+
+<blockquote>
+<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="s">"e640584d-b1c3-487e-8c0c-acc931332a30"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products/"</span> <span class="o">+</span> <span class="n">product_id</span>
+<span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+
+<p>Consulta los detalles de un producto antes creado. Envía el ID del producto para
+obtener su información</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">requerido</p></td>
+<td>El identificador único del producto.</td>
+</tr>
+</tbody></table>
+
+<h4 id="respuesta">Respuesta</h4>
+
+<p>Retorna un objeto <a href="#product">Product</a> si el identificador es válido, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>

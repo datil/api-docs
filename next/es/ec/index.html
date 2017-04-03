@@ -556,6 +556,146 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 </tr>
 </tbody></table>
 
+          <h2 id="productos">Productos</h2>
+
+<p>Una Producto está representada por un objeto <em>Product</em>.</p>
+
+<h5 id="el-objeto-credit-note">El objeto Credit Note</h5>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único del producto en Dátil</td>
+</tr>
+<tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Nombre del producto</td>
+</tr>
+<tr>
+<td>description<p class="dt-data-type">string</p></td>
+<td>Esta información se mostrará en Market.</td>
+</tr>
+<tr>
+<td>created_at<p class="dt-data-type">string</p></td>
+<td>Fecha de creación generada por Dátil.</td>
+</tr>
+<tr>
+<td>updated_at<p class="dt-data-type">string</p></td>
+<td>Fecha de actualización generada automáticamente por Dátil.</td>
+</tr>
+<tr>
+<td>sku<p class="dt-data-type">string</p></td>
+<td>Código del producto (Stock Keeping Unit). Se utiliza principalmente para el control de inventario. Puede utilizarse también para realizar búsquedas con pocos caracteres.</td>
+</tr>
+<tr>
+<td>unit_cost<p class="dt-data-type">string</p></td>
+<td>Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al provedor al comprar este producto.</td>
+</tr>
+<tr>
+<td>unit_price<p class="dt-data-type">string</p></td>
+<td>Precio unitario de venta sin impuestos.</td>
+</tr>
+<tr>
+<td>unit_of_measurement<p class="dt-data-type"><a href="#unit-of-measurement">unit_of_measurement</a></p></td>
+<td>Unida de medida del producto.</td>
+</tr>
+<tr>
+<td>images<p class="dt-data-type">list of <a href="#product-image">product_images</a></p></td>
+<td>Listado de imágenes asociadas a este producto.</td>
+</tr>
+<tr>
+<td>category<p class="dt-data-type"><a href="#category">category</a></p></td>
+<td>Categoría a la que pertenece el producto.</td>
+</tr>
+<tr>
+<td>applicable_taxes<p class="dt-data-type">list of <a href="#product-tax">product-tax</a></p></td>
+<td>Listado de los impuestos que deben aplicarse a este producto al momento de vender.</td>
+</tr>
+<tr>
+<td>purchase_applicable_taxes<p class="dt-data-type">list of <a href="#product-tax">product-tax</a></p></td>
+<td>Listado de los impuestos que deben aplicarse a este producto al momento de comprarlo.</td>
+</tr>
+<tr>
+<td>track_inventory<p class="dt-data-type">boolean</p></td>
+<td>Verdadero cuando Dátil controla el las existencias de este producto.</td>
+</tr>
+<tr>
+<td>tags<p class="dt-data-type">list of string</p></td>
+<td>Las etiquetas te permiten agregar información complementaria al producto y podrás buscar productos con esta información.</td>
+</tr>
+<tr>
+<td>available_on_market<p class="dt-data-type">boolean</p></td>
+<td>Verdadero si está disponible en tu Market (<a href="https://datil.co/producto#market">más información de Market</a>)</td>
+</tr>
+</tbody></table>
+
+<h4 id="product-tax">Product Tax</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tax_code<p class="dt-data-type">string</p></td>
+<td>Código del grupo al que pertenece el impuesto.</td>
+</tr>
+<tr>
+<td>rate_code <p class="dt-data-type">string</p></td>
+<td>Código de la tarifa de impuesto aplicado.</td>
+</tr>
+<tr>
+<td>rate <p class="dt-data-type">string</p></td>
+<td>Porcentaje del impuesto aplicado.</td>
+</tr>
+<tr>
+<td>name <p class="dt-data-type">string</p></td>
+<td>Nombre descriptivo del impuesto.</td>
+</tr>
+</tbody></table>
+
+<h4 id="unit-of-measurement">Unit of measurement</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abbreviation<p class="dt-data-type">string</p></td>
+<td>Abreviatura, tratando en lo posible de utilizar el Sistema Internacional de medidas.</td>
+</tr>
+<tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Nombre completo de la unidad.</td>
+</tr>
+</tbody></table>
+
+<h4 id="product-image">Product Image</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>src<p class="dt-data-type">string</p></td>
+<td>URL de la imagen.</td>
+</tr>
+<tr>
+<td>title<p class="dt-data-type">string</p></td>
+<td>Título de la imagen.</td>
+</tr>
+</tbody></table>
+
           <h2 id="objetos-comunes">Objetos comunes</h2>
 
 <h3 id="uuid-clave-de-acceso">UUID (Clave de acceso)</h3>
@@ -632,7 +772,7 @@ estar estructurada la clave de acceso.</p>
 
 <h3 id="tax">Tax</h3>
 
-<p>Impuesto aplicado a una transacción o aun item.</p>
+<p>Impuesto aplicado a una transacción o item.</p>
 
 <table><thead>
 <tr>
@@ -1469,7 +1609,6 @@ Retenciones recibidas después de hacer una venta.</p>
 <pre class="highlight shell"><code>curl -v https://api.datil.co/invoices/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Location-Id: &lt;location-id&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
       "supplier": {
@@ -3403,6 +3542,84 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
 <h4 id="respuesta">Respuesta</h4>
 
 <p>Retornará un error si el comprobante se encuentra autorizado.</p>
+
+          <h1 id="cat-logo">Catálogo</h1>
+
+<h2 id="productos">Productos</h2>
+
+<p>El catálogo de productos te permite registrar todo los bienes o servicios que
+vendes y compras. Así podrás crear facturas, vender a través de Market y
+controlar el inventario de los productos.</p>
+
+<h3 id="consulta-un-producto">Consulta un Producto</h3>
+
+<blockquote>
+<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="s">"e640584d-b1c3-487e-8c0c-acc931332a30"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products/"</span> <span class="o">+</span> <span class="n">product_id</span>
+<span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+
+<p>Consulta los detalles de un producto antes creado. Envía el ID del producto para
+obtener su información</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">requerido</p></td>
+<td>El identificador único del producto.</td>
+</tr>
+</tbody></table>
+
+<h4 id="respuesta">Respuesta</h4>
+
+<p>Retorna un objeto <a href="#product">Product</a> si el identificador es válido, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id="contabilidad">Contabilidad</h1>
 

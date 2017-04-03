@@ -12,7 +12,6 @@
 <pre class="highlight shell"><code>curl -v https://api.datil.co/invoices/issue <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Location-Id: &lt;location-id&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
       "supplier": {
