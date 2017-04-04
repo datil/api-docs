@@ -19,6 +19,7 @@ includes:
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
   - next/es/ec/catalog/products
+  - next/es/ec/codes
   - next/es/ec/accounting
   - next/es/ec/accounting/accounting_info
   - errores
