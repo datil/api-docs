@@ -607,7 +607,7 @@ para obtener la información de la autorización.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><span class="dt-attr">electronic_document</span><p class="dt-param-required">Requerido</p></td>
+<td><span class="dt-attr">electronic_document</span><p class="dt-data-param-required">requerido</p></td>
 <td>Documento electrónico autorizado</td>
 </tr>
 </tbody></table>

@@ -2,14 +2,14 @@
 
 <h4 id="operaci-n">Operación</h4>
 
-<p><code class="prettyprint">POST /locations/:location-id/sales/invoices/issue</code></p>
+<p><code class="prettyprint">POST /locations/:location-id/sales/invoices/issues</code></p>
 
 <h4 id="requerimiento">Requerimiento</h4>
 
 <blockquote>
 <h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
 </blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/invoices/issue <span class="se">\</span>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/sales/invoices/issues <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
@@ -60,10 +60,10 @@
       "items": [
         {
           "description": "Apple",
-          "properties": {
+          "properties": [{
             "name": "color",
             "description": "red"
-          },
+          }],
           "unit_discount": "1.00",
           "unit_code": "units",
           "unit_price": "2.00",
@@ -76,17 +76,23 @@
            "name": "Contract Number",
            "description": "420420"
          }
-       ],
-       "payments": [
-         {
-           "properties": {
-             "account_number": "2223XXXX23",
-             "bank": "Banco Guayaquil"
-           },
-           "amount": 114.0,
-           "method": "42"
-         }
-       ],
+      ],
+      "payments": [
+        {
+          "properties": [
+            {
+              "name": "account_number",
+              "description": "2223XXXX23"
+            },
+            {
+              "name": "bank",
+              "description": "Banco Guayaquil"
+            }
+          }],
+          "amount": 114.0,
+          "method": "42"
+        }
+      ],
   }'</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
@@ -139,10 +145,10 @@
       <span class="s">"items"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="s">"description"</span><span class="p">:</span> <span class="s">"Apple"</span><span class="p">,</span>
-          <span class="s">"properties"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">"properties"</span><span class="p">:</span> <span class="p">[{</span>
             <span class="s">"name"</span><span class="p">:</span> <span class="s">"size"</span><span class="p">,</span>
             <span class="s">"description"</span><span class="p">:</span> <span class="s">"M"</span>
-          <span class="p">},</span>
+          <span class="p">}],</span>
           <span class="s">"unit_discount"</span><span class="p">:</span> <span class="mf">0.00</span><span class="p">,</span>
           <span class="s">"unit_code"</span><span class="p">:</span> <span class="s">"units"</span><span class="p">,</span>
           <span class="s">"unit_price"</span><span class="p">:</span> <span class="mf">43256.00</span><span class="p">,</span>
@@ -160,10 +166,10 @@
        <span class="p">],</span>
        <span class="s">"payments"</span><span class="p">:</span> <span class="p">[</span>
          <span class="p">{</span>
-           <span class="s">"properties"</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s">"properties"</span><span class="p">:</span> <span class="p">[{</span>
              <span class="s">"account_number"</span><span class="p">:</span> <span class="s">"2223XXXX23"</span><span class="p">,</span>
              <span class="s">"bank"</span><span class="p">:</span> <span class="s">"Bancolombia"</span>
-           <span class="p">},</span>
+           <span class="p">}],</span>
            <span class="s">"amount"</span><span class="p">:</span> <span class="mf">1.09</span><span class="p">,</span>
            <span class="s">"method"</span><span class="p">:</span> <span class="s">"42"</span>
          <span class="p">}</span>
@@ -190,47 +196,47 @@ ambiente de pruebas del SRI.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>supplier<p class="dt-data-type">opcional</p></td>
+<td>supplier<p class="dt-data-param-required">requerido</p></td>
 <td>En este campo sólo es necesario proveer &ldquo;location&rdquo; con los campos &ldquo;code&rdquo; y &ldquo;point_of_sale&rdquo;. Para el objeto &ldquo;point_of_sale&rdquo; es necesario sólo especificar &ldquo;code&rdquo;</td>
 </tr>
 <tr>
-<td>sequence<p class="dt-data-type">opcional</p></td>
+<td>sequence</td>
 <td>Número entero positivo mayor a cero</td>
 </tr>
 <tr>
-<td>currency<br><strong>requerido</strong></td>
+<td>currency<p class="dt-data-param-required">requerido</p></td>
 <td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
 </tr>
 <tr>
-<td>issue_date<p class="dt-data-type">opcional</p></td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+<td>issue_date</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. Si no es provista, se utilizará la fecha en la que se envía la factura.</td>
 </tr>
 <tr>
-<td>totals<p class="dt-data-type">objeto tipo <a href="#invoice-totals">totals</a></p></td>
+<td>totals<p class="dt-data-param-required">requerido</p></td>
 <td>Totales de la factura</td>
 </tr>
 <tr>
-<td>customer<p class="dt-data-type">objeto tipo <a href="#contact">contact</a></td>
+<td>customer<p class="dt-data-param-required">requerido</p></td>
 <td>Información del comprador.</td>
 </tr>
 <tr>
-<td>items<p class="dt-data-type">arreglo de <a href="#invoice-item">items</a></p></td>
+<td>items<p class="dt-data-param-required">requerido</p></td>
 <td>Bienes o servicios vendidos.</td>
 </tr>
 <tr>
-<td>uuid<p class="dt-data-type">string</p></td>
+<td>uuid</td>
 <td>La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
 </tr>
 <tr>
-<td>properties<p class="dt-data-type">objeto</p></td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>properties</td>
+<td>Información adicional adjunta al comprobante.</td>
 </tr>
 <tr>
-<td>payments<p class="dt-data-type">arreglo <a href="#payment">payment</a></p></td>
+<td>payments</td>
 <td>Pagos realizados a la factura.</td>
 </tr>
 <tr>
-<td>payment_methods<p class="dt-data-type">arreglo <a href="#payment_method">payment_method</a></p></td>
+<td>payment_methods</td>
 <td>Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un &ldquo;due_date&rdquo; Datil entenderá esto como una factura a crédito.</td>
 </tr>
 </tbody></table>
@@ -253,7 +259,7 @@ se debe examinar el atributos <code class="prettyprint">authorization</code> de 
 
 <h4 id="operaci-n">Operación</h4>
 
-<p><code class="prettyprint">GET /locations/:location-id/sales/invoices/:invoice-id</code></p>
+<p><code class="prettyprint">GET /sales/invoices/:invoice-id</code></p>
 
 <h4 id="requerimiento">Requerimiento</h4>
 
