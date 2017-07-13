@@ -23,8 +23,8 @@ controlar el inventario de los productos.</p>
 <span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 
-<p>Consulta los detalles de un producto antes creado. Envía el ID del producto para
-obtener su información</p>
+<p>Consulta los detalles de un producto. Envía el ID del producto para obtener su
+información</p>
 
 <table><thead>
 <tr>
@@ -49,29 +49,267 @@ retorna un error.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
   </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
   </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="crea-un-producto">Crea un Producto</h3>
+
+<blockquote>
+<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
+</blockquote>
+<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "name": "Pledge Limpiador de madera",
+  "description": "Limpiador de todo tipo de maderas. Deja tus muebles brillantes sin esfuerzo.",
+  "images": [{
+    "data": "iVBORw0KGgoAAAANSUhEUgAAAMwAAABQCAYAAABVhprKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERR...==",
+    "name": "pedge-fresh.jpg"
+  }],
+  "category": {
+    "name": "Limpieza"
+  },
+  "unit_price": "5.000000",
+  "applicable_taxes": [{
+    "tax_code": "2",
+    "rate_code": "2"
+  }],
+  "purchase_applicable_taxes": [],
+  "track_inventory": false,
+  "type": "good",
+  "sku": "PLM-CR123",
+  "tags": ["madera"],
+  "available_online": false,
+  "unit_cost": "4.200000"
+}'</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">"YOUR_API_KEY"</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"Pledge Limpiador de madera"</span><span class="p">,</span>
+  <span class="s">"description"</span><span class="p">:</span> <span class="s">"Limpiador de todo tipo de maderas. Deja tus muebles brillantes sin esfuerzo."</span><span class="p">,</span>
+  <span class="s">"images"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="s">"iVBORw0KGgoAAAANSUhEUgAAAMwAAABQCAYAAABVhprKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERR...=="</span><span class="p">,</span>
+    <span class="s">"name"</span><span class="p">:</span> <span class="s">"fresh.jpg"</span>
+  <span class="p">}],</span>
+  <span class="s">"category"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"name"</span><span class="p">:</span> <span class="s">"Limpieza"</span>
+  <span class="p">},</span>
+  <span class="s">"unit_price"</span><span class="p">:</span> <span class="s">"5.000000"</span><span class="p">,</span>
+  <span class="s">"applicable_taxes"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s">"tax_code"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+    <span class="s">"rate_code"</span><span class="p">:</span> <span class="s">"2"</span>
+  <span class="p">}],</span>
+  <span class="s">"purchase_applicable_taxes"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s">"track_inventory"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s">"type"</span><span class="p">:</span> <span class="s">"good"</span><span class="p">,</span>
+  <span class="s">"sku"</span><span class="p">:</span> <span class="s">"PLM-CR123"</span><span class="p">,</span>
+  <span class="s">"tags"</span><span class="p">:</span> <span class="p">[</span><span class="s">"madera"</span><span class="p">],</span>
+  <span class="s">"available_online"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s">"unit_cost"</span><span class="p">:</span> <span class="s">"4.200000"</span>
+<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="n">api_key</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products"</span>
+<span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+
+<p>Crea un nuevo producto en el catálogo con la información enviada. El SKU debe
+ser único, si ya existe un producto con el mismo SKU responde con un error.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name<p class="dt-data-type">requerido</p></td>
+<td>Nombre del producto</td>
+</tr>
+<tr>
+<td>description<p class="dt-data-type">requerido</p></td>
+<td>Esta información se mostrará en Market.</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>Código del producto (Stock Keeping Unit). Se utiliza principalmente para el control de inventario. Puede utilizarse también para realizar búsquedas con pocos caracteres.</td>
+</tr>
+<tr>
+<td>unit_price<p class="dt-data-type">requerido</p></td>
+<td>Precio unitario de venta sin impuestos.</td>
+</tr>
+<tr>
+<td>unit_cost<p class="dt-data-type">requerido sólo si será inventariable</p></td>
+<td>Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al proveedor al comprar este producto.</td>
+</tr>
+<tr>
+<td>unit_of_measurement</td>
+<td>Unida de medida del producto.</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Listado de <a href="#req-prod-img">imágenes</a> que necesitas agregar a este producto.</td>
+</tr>
+<tr>
+<td>category</td>
+<td><a href="#req-prod-cat">Categoría</a> a la que pertenece el producto. Si la categoría no existe se crea automáticamente.</td>
+</tr>
+<tr>
+<td>applicable_taxes<p class="dt-data-type">requerido</p></td>
+<td>Listado de los <a href="#req-prod-tax">product taxes</a> que deben aplicarse a este producto al momento de vender.</td>
+</tr>
+<tr>
+<td>purchase_applicable_taxes</td>
+<td>Listado de los <a href="#req-prod-tax">product taxes</a> que deben aplicarse a este producto al momento de comprarlo.</td>
+</tr>
+<tr>
+<td>track_inventory</td>
+<td>Verdadero para que Dátil controle las existencias de este producto.</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>Las etiquetas te permiten agregar información complementaria al producto y podrás buscar productos con esta información.</td>
+</tr>
+<tr>
+<td>available_on_market</td>
+<td>Verdadero si necesitas que está disponible en tu Market (<a href="https://datil.co/producto#market">más información de Market</a>)</td>
+</tr>
+</tbody></table>
+
+<h4 id="req-prod-img">Product Image</h4>
+
+<p>Para agregar una imagen al producto envía la siguiente información para cada
+imagen.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name<p class="dt-data-type">requerido</p></td>
+<td>Nombre del archivo incluyendo la extensión</td>
+</tr>
+<tr>
+<td>data<p class="dt-data-type">requerido</p></td>
+<td>Contenido del archivo de la imagen codificado en base64</td>
+</tr>
+</tbody></table>
+
+<h4 id="req-prod-cat">Category</h4>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name<p class="dt-data-type">requerido</p></td>
+<td>Nombre de la categoría.</td>
+</tr>
+</tbody></table>
+
+<h4 id="req-prod-tax">Product Tax</h4>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tax_code<p class="dt-data-type">requerido</p></td>
+<td>Código del tipo de impuesto</td>
+</tr>
+<tr>
+<td>rate_code<p class="dt-data-type">requerido</p></td>
+<td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code class="prettyprint">tax_code</code> 2 y <code class="prettyprint">rate_code</code> 2</td>
+</tr>
+</tbody></table>
+
+<h4 id="respuesta">Respuesta</h4>
+
+<p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fixed_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://datil-py-staging.s3.amazonaws.com/media/products_images/RGM6VUfresh.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b1959dc-6a0c-4c73-96bd-28d307ab81cc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limpieza"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12%"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLM-CR123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"madera"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924a7999-bbba-43d5-984b-9178d9148202"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unsubsidized_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DN42ApefQHuub3D31lo6lw"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"did"</span><span class="p">:</span><span class="w"> </span><span class="mi">447</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>

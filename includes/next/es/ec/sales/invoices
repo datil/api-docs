@@ -1,8 +1,10 @@
-<h3 id="emisi-n-de-una-factura">Emisión de una factura</h3>
+<h2 id="facturas">Facturas</h2>
+
+<h3 id="emite-una-factura">Emite una factura</h3>
 
 <h4 id="operaci-n">Operación</h4>
 
-<p><code class="prettyprint">POST /locations/:location-id/sales/invoices/issues</code></p>
+<p><code class="prettyprint">POST /sales/invoices/issues</code></p>
 
 <h4 id="requerimiento">Requerimiento</h4>
 
@@ -201,7 +203,7 @@ ambiente de pruebas del SRI.</p>
 </tr>
 <tr>
 <td>sequence</td>
-<td>Número entero positivo mayor a cero</td>
+<td>Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de factura disponible.</td>
 </tr>
 <tr>
 <td>currency<p class="dt-data-param-required">requerido</p></td>
@@ -247,7 +249,7 @@ ambiente de pruebas del SRI.</p>
 el cual identifica de manera única a la factura. El campo <code class="prettyprint">clave_acceso</code> generado
 también se incluirá como parte de la respuesta.</p>
 
-<h3 id="consulta-de-una-factura">Consulta de una factura</h3>
+<h3 id="consulta-una-factura">Consulta una factura</h3>
 
 <p>Consulta una factura para obtener toda la información del comprobante,
 incluyendo el estado de autorización del mismo.
@@ -540,7 +542,7 @@ se debe examinar el atributos <code class="prettyprint">authorization</code> de 
 </tr>
 </tbody></table>
 
-<h3 id="re-emisi-n-de-una-factura">Re-emisión de una factura</h3>
+<h3 id="re-emite-una-factura">Re-emite una factura</h3>
 
 <h4 id="operaci-n">Operación</h4>
 
@@ -548,8 +550,7 @@ se debe examinar el atributos <code class="prettyprint">authorization</code> de 
 
 <h4 id="requerimiento">Requerimiento</h4>
 
-<p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
-DEVUELTOS por el Servicio de Rentas Internas.</p>
+<p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS.</p>
 
 <p>En la URL de esta opción se debe incluir el <code class="prettyprint">id</code> de la factura recibida al
 momento de emitirla.</p>

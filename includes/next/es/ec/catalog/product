@@ -2,7 +2,7 @@
 
 <p>Una Producto está representada por un objeto <em>Product</em>.</p>
 
-<h5 id="el-objeto-credit-note">El objeto Credit Note</h5>
+<h4 id="product">Product</h4>
 
 <table><thead>
 <tr>
@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>unit_cost<p class="dt-data-type">string</p></td>
-<td>Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al provedor al comprar este producto.</td>
+<td>Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al proveedor al comprar este producto.</td>
 </tr>
 <tr>
 <td>unit_price<p class="dt-data-type">string</p></td>

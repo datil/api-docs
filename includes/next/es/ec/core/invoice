@@ -148,7 +148,7 @@
 </tr>
 <tr>
 <td>taxes</td>
-<td>listado de <a href="#item-tax">impuestos</a></td>
+<td>listado de <a href="#tax">impuestos</a></td>
 </tr>
 <tr>
 <td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
