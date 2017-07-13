@@ -2,7 +2,7 @@
 
 Una Producto está representada por un objeto _Product_.
 
-##### El objeto Credit Note
+#### Product
 
 Atributos |  &nbsp;
 --------- | -----------
@@ -12,7 +12,7 @@ description<p class="dt-data-type">string</p> | Esta información se mostrará e
 created_at<p class="dt-data-type">string</p> | Fecha de creación generada por Dátil.
 updated_at<p class="dt-data-type">string</p> | Fecha de actualización generada automáticamente por Dátil.
 sku<p class="dt-data-type">string</p> | Código del producto (Stock Keeping Unit). Se utiliza principalmente para el control de inventario. Puede utilizarse también para realizar búsquedas con pocos caracteres.
-unit_cost<p class="dt-data-type">string</p> | Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al provedor al comprar este producto.
+unit_cost<p class="dt-data-type">string</p> | Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al proveedor al comprar este producto.
 unit_price<p class="dt-data-type">string</p> | Precio unitario de venta sin impuestos.
 unit_of_measurement<p class="dt-data-type">[unit_of_measurement](#unit-of-measurement)</p> | Unida de medida del producto.
 images<p class="dt-data-type">list of [product_images](#product-image)</p> | Listado de imágenes asociadas a este producto.
