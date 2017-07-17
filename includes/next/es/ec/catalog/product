@@ -39,6 +39,10 @@
 <td>Costo unitario del producto sin impuestos. Este es el valor que normalmente pagas al proveedor al comprar este producto.</td>
 </tr>
 <tr>
+<td>type<p class="dt-data-type">string</p></td>
+<td>Tipo de producto. Bien &ldquo;good&rdquo; o servicio &ldquo;service&rdquo;.</td>
+</tr>
+<tr>
 <td>unit_price<p class="dt-data-type">string</p></td>
 <td>Precio unitario de venta sin impuestos.</td>
 </tr>

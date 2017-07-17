@@ -72,6 +72,34 @@ estar estructurada la clave de acceso.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
 
+<h3 id="result-set">Result set</h3>
+
+<p>Este objeto siempre se obtiene como respuesta al consultar un listado de recursos</p>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count<p class="dt-data-type">integer</p></td>
+<td>Número total de elementos en la lista</td>
+</tr>
+<tr>
+<td>results<p class="dt-data-type">array</p></td>
+<td>Listado de elementos</td>
+</tr>
+<tr>
+<td>next<p class="dt-data-type">string</p></td>
+<td>URL para obtener la página siguiente de resultados, es <code class="prettyprint">null</code> si no existe una siguiente página de resultados.</td>
+</tr>
+<tr>
+<td>previous<p class="dt-data-type">string</p></td>
+<td>URL para obtener la página anterior de resultados, es <code class="prettyprint">null</code> si no existe una página anterior de resultados.</td>
+</tr>
+</tbody></table>
+
 <h3 id="tax">Tax</h3>
 
 <p>Impuesto aplicado a una transacción o item.</p>
