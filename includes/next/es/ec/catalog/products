@@ -61,6 +61,10 @@ por cualquiera de estos parámetros.</p>
 <td>Lista todos los productos cuyo SKU contenga este texto.</td>
 </tr>
 <tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Lista todos los productos cuyo nombre contenga este texto.</td>
+</tr>
+<tr>
 <td>track_inventory<p class="dt-data-type">boolean</p></td>
 <td>Lista todos los productos que sean o no inventariables.</td>
 </tr>

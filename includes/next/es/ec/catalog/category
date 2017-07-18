@@ -1,0 +1,29 @@
+<h2 id="categor-as">Categorías</h2>
+
+<p>Una Categoría está representada por un objeto <em>Category</em>.</p>
+
+<h4 id="category">Category</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único de la categoría en Dátil</td>
+</tr>
+<tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Nombre de la categoría</td>
+</tr>
+<tr>
+<td>created_at<p class="dt-data-type">string</p></td>
+<td>Fecha de creación generada por Dátil.</td>
+</tr>
+<tr>
+<td>updated_at<p class="dt-data-type">string</p></td>
+<td>Fecha de actualización generada automáticamente por Dátil.</td>
+</tr>
+</tbody></table>
