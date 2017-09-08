@@ -52,6 +52,7 @@ Parámetros | &nbsp;
 ids<p class="dt-data-type">array</p> | Listado de IDs de los productos que quieres obtener.
 category_id<p class="dt-data-type">string</p> | Lista todos los productos que pertenecen a esta categoría.
 sku<p class="dt-data-type">string</p> | Lista todos los productos cuyo SKU contenga este texto.
+name<p class="dt-data-type">string</p> | Lista todos los productos cuyo nombre contenga este texto.
 track_inventory<p class="dt-data-type">boolean</p> | Lista todos los productos que sean o no inventariables.
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 

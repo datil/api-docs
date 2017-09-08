@@ -1,6 +1,6 @@
 ## Productos
 
-Una Producto está representada por un objeto _Product_.
+Un Producto está representado por un objeto _Product_.
 
 #### Product
 
