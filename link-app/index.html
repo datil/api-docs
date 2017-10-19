@@ -161,7 +161,7 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 <p>Link puede conectarse a los siguientes motores de bases de datos relacionales:</p>
 
-<p><strong>SQL Server</strong> </p>
+<p><strong>SQL Server</strong></p>
 
 <ul>
 <li>SQL Server 2000</li>
@@ -181,22 +181,24 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 <h1 id="descargas">Descargas</h1>
 
-<p>Instaladores del programa Link de Dátil:</p>
+<p>Integra Dátil a tu sistema en minutos.</p>
 
-<p><strong>Windows</strong></p>
+<h3 id="4-7-0">4.7.0</h3>
 
-<p>Windows 32 bits: [linkapp-windows-32bits]
-Windows 64 bits: [linkapp-windows-64bits]</p>
+<ul>
+<li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_32bit.exe">Windows 32 bits</a></li>
+<li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_64bit.exe">Windows 64 bits</a></li>
+</ul>
 
-<p><strong>Linux</strong></p>
+<h1 id="notas-de-la-versi-n">Notas de la versión</h1>
 
-<p>Centos 32 bits (próximamente)</p>
+<h3 id="4-7-0octubre-19-2017"><strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small></h3>
 
-<p>Centos 64 bits (próximamente)</p>
+<h4 id="nuevo">Nuevo</h4>
 
-<p>Ubuntu 32 bits (próximamente)</p>
-
-<p>Ubuntu 64 bits (próximamente)</p>
+<p>Emisión de facturas de reembolso. Se agregaron tres nuevas entradas al archivo
+de configuración <code class="prettyprint">config/receipts/invoice.ini</code>: invoice_reimbursement,
+invoice_reimbursement_document, invoice_reimbursement_document_tax</p>
 
 <h1 id="instalaci-n">Instalación</h1>
 
@@ -282,7 +284,7 @@ CREATE TABLE
 <li><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</li>
 </ul>
 
-<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con 
+<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con
 SQL Server</p>
 
 <h3 id="constraints">Constraints</h3>
@@ -310,7 +312,7 @@ SQL Server</p>
 
 <h3 id="api">Api</h3>
 
-<p>En la sección <code class="prettyprint">[Api]</code> configurar el parámetro <code class="prettyprint">xkey</code> con el <em>API key</em> de Dátil y 
+<p>En la sección <code class="prettyprint">[Api]</code> configurar el parámetro <code class="prettyprint">xkey</code> con el <em>API key</em> de Dátil y
 <code class="prettyprint">xpassword</code> con la clave del certificado de firma electrónica, <code class="prettyprint">environment</code> con el valor <code class="prettyprint">1</code> para emisión en modo de pruebas o <code class="prettyprint">2</code> para emitir en producción.</p>
 
 <h3 id="databasesource">DatabaseSource</h3>
@@ -331,7 +333,7 @@ SQL Server</p>
 <li><code class="prettyprint">api</code> con el valor <code class="prettyprint">odbc</code>.</li>
 </ul>
 
-<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con 
+<p>Dejar <code class="prettyprint">datasource</code>  y <code class="prettyprint">provider</code> con el valor <code class="prettyprint">None</code> porque no aplican para la conexión con
 SQL Server</p>
 
 <h4 id="dbf-visual-fox-pro">DBF (Visual Fox Pro)</h4>
@@ -344,7 +346,7 @@ SQL Server</p>
 
 <p><code class="prettyprint">driver</code>, <code class="prettyprint">server</code>, <code class="prettyprint">name</code>, <code class="prettyprint">user</code>, <code class="prettyprint">password</code> y <code class="prettyprint">version</code>, no aplican para la conexión con archivos DBF</p>
 
-<p>Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
+<p>Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo:
 <code class="prettyprint">seguros_secomsap</code></p>
 
 <h1 id="ejecutar-el-servicio">Ejecutar el servicio</h1>
@@ -1169,7 +1171,7 @@ total               | float                   | Total aplicable a la forma de pa
 
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
-<p>Estructura recomendada para las tablas o vistas con información de la factura. </p>
+<p>Estructura recomendada para las tablas o vistas con información de la factura.</p>
 
 <p>Ejemplo en SQL Server:</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">facturas</span>
@@ -1239,7 +1241,7 @@ total               | float                   | Total aplicable a la forma de pa
 
 <span class="p">)</span>
 
-<span class="c1">-- FACTURA: IMPUESTOS DE ITEMS 
+<span class="c1">-- FACTURA: IMPUESTOS DE ITEMS
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">item_impuesto</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id_item</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -1258,7 +1260,7 @@ total               | float                   | Total aplicable a la forma de pa
     <span class="k">CONSTRAINT</span> <span class="n">pk_items_detalles_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_item</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1">-- FACTURA: IMPUESTOS TOTALES 
+<span class="c1">-- FACTURA: IMPUESTOS TOTALES
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">total_impuesto</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -1294,7 +1296,7 @@ total               | float                   | Total aplicable a la forma de pa
   <span class="k">CONSTRAINT</span> <span class="n">PK_pago_propiedad</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_pago</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1">-- FACTURA: CREDITO 
+<span class="c1">-- FACTURA: CREDITO
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">credito</span><span class="p">](</span>
   <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
   <span class="p">[</span><span class="n">id_factura</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">facturas</span><span class="p">].[</span><span class="n">factura</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
@@ -1910,7 +1912,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
-<p>Estructura recomendada para las tablas o vistas con información de la nota de crédito. </p>
+<p>Estructura recomendada para las tablas o vistas con información de la nota de crédito.</p>
 
 <p>Ejemplo en SQL Server:</p>
 <pre class="highlight sql"><code>
@@ -1926,7 +1928,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">nota_de_credito</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
@@ -1972,7 +1974,7 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span>
 <span class="p">)</span>
 
-<span class="c1">-- NOTA DE CRÉDITO: IMPUESTOS DE ITEMS 
+<span class="c1">-- NOTA DE CRÉDITO: IMPUESTOS DE ITEMS
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">item_impuesto</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id_item</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -1991,7 +1993,7 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="k">CONSTRAINT</span> <span class="n">pk_items_detalles_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_item</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1">-- NOTA DE CRÉDITO: IMPUESTOS TOTALES 
+<span class="c1">-- NOTA DE CRÉDITO: IMPUESTOS TOTALES
 </span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">total_impuesto</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id_nota_credito</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_credito</span><span class="p">].[</span><span class="n">nota_de_credito</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -2213,7 +2215,7 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="n">tipo_documento_sustento</span><span class="p">,</span>
     <span class="n">numero_documento_sustento</span><span class="p">,</span>
     <span class="n">fecha_emision_documento_sustento</span>
-    <span class="k">FROM</span> 
+    <span class="k">FROM</span>
     <span class="n">DocElectronicoRetencion</span><span class="p">.</span><span class="n">impuesto</span>
     <span class="k">WHERE</span>
     <span class="n">id_retencion</span> <span class="o">=</span> <span class="o">?</span>
@@ -2328,7 +2330,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
-<p>Estructura recomendada para las tablas o vistas con información de la retención. </p>
+<p>Estructura recomendada para las tablas o vistas con información de la retención.</p>
 
 <p>Ejemplo en SQL Server:</p>
 <pre class="highlight sql"><code>
@@ -2341,7 +2343,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">retenciones</span><span class="p">].[</span><span class="n">retencion</span><span class="p">](</span>
     <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
@@ -2868,7 +2870,7 @@ una columna tiene los nombres y otra los valores.</p>
 
 <h3 id="tablas-recomendadas">Tablas recomendadas</h3>
 
-<p>Estructura recomendada para las tablas o vistas con información de la guía de remisión. </p>
+<p>Estructura recomendada para las tablas o vistas con información de la guía de remisión.</p>
 
 <p>Ejemplo en SQL Server:</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">guias_de_remision</span>
@@ -2967,7 +2969,7 @@ una columna tiene los nombres y otra los valores.</p>
 <p><code class="prettyprint">net stop datilink</code></p>
 
 <ul>
-<li>Respalde la carpeta de configuración  <code class="prettyprint">config</code> </li>
+<li>Respalde la carpeta de configuración  <code class="prettyprint">config</code></li>
 </ul>
 
 <p>Windows: <code class="prettyprint">C:\Archivos de Programa\Datil\Link\config</code> .</p>
