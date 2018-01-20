@@ -17,7 +17,7 @@ includes:
   - waybills
   - debit-notes
   - common
-  - errores
+  - errors
   - webhooks
 
 search: true
