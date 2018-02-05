@@ -1,7 +1,4 @@
-<h1 id="ejemplos-de-archivos-de-configuraci-n">Ejemplos de archivos de configuración</h1>
-
-<h2 id="invoice-ini">invoice.ini</h2>
-
+<h1 id='ejemplos-de-archivos-de-configuracion'>Ejemplos de archivos de configuración</h1><h2 id='invoice-ini'>invoice.ini</h2>
 <p>Guarda la configuración y queries para la extracción y emisisón electrónica de facturas.
 <pre></p>
 
@@ -109,9 +106,7 @@ headers = SELECT
   WHERE
   id_detalle = ?
 </pre></p>
-
-<h2 id="credit_note-ini">credit_note.ini</h2>
-
+<h2 id='credit_note-ini'>credit_note.ini</h2>
 <p>Guarda la configuración y queries para la extracción y emisisón electrónica de notas de crédito.
 <pre></p>
 
@@ -220,9 +215,7 @@ headers = SELECT
   WHERE
   id_detalle = ?
 </pre></p>
-
-<h2 id="retention-ini">retention.ini</h2>
-
+<h2 id='retention-ini'>retention.ini</h2>
 <p>Guarda la configuración y queries para la extracción y emisisón electrónica de retenciones.
 <pre></p>
 
@@ -289,9 +282,7 @@ headers = SELECT
   WHERE
   id_retencion = ?
 </pre></p>
-
-<h2 id="waybill-ini">waybill.ini</h2>
-
+<h2 id='waybill-ini'>waybill.ini</h2>
 <p>Guarda la configuración y queries para la extracción y emisisón electrónica de guías de remisión.
 <pre></p>
 

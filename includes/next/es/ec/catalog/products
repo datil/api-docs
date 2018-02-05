@@ -1,35 +1,26 @@
-<h1 id="cat-logo">Catálogo</h1>
-
-<h2 id="productos">Productos</h2>
-
+<h1 id='catalogo'>Catálogo</h1><h2 id='productos'>Productos</h2>
 <p>El catálogo de productos te permite registrar todo los bienes o servicios que
 vendes y compras. Así podrás crear facturas, vender a través de Market y
 controlar el inventario de los productos.</p>
-
-<h4 id="acciones-disponibles-para-productos">Acciones disponibles para Productos</h4>
-
+<h4 id='acciones-disponibles-para-productos'>Acciones disponibles para Productos</h4>
 <ul>
-<li><p><a href="#consulta-un-producto"><code class="prettyprint">GET /catalog/products/:id</code></a><br>
+<li><p><a href="#consulta-un-producto"><code>GET /catalog/products/:id</code></a><br>
 Obtener información de un Producto</p></li>
-<li><p><a href="#lista-productos"><code class="prettyprint">GET /catalog/products</code></a><br>
+<li><p><a href="#lista-productos"><code>GET /catalog/products</code></a><br>
 Obtener un listado de Productos</p></li>
-<li><p><a href="#crea-un-producto"><code class="prettyprint">POST /catalog/products</code></a><br>
+<li><p><a href="#crea-un-producto"><code>POST /catalog/products</code></a><br>
 Crear un nuevo Producto</p></li>
-<li><p><a href="#actualiza-un-producto"><code class="prettyprint">PUT /catalog/products/:id</code></a><br>
+<li><p><a href="#actualiza-un-producto"><code>PUT /catalog/products/:id</code></a><br>
 Actualizar un Producto existente</p></li>
-<li><p><a href="#elimina-un-producto"><code class="prettyprint">DELETE /catalog/products/:id</code></a><br>
+<li><p><a href="#elimina-un-producto"><code>DELETE /catalog/products/:id</code></a><br>
 Elimina un Producto de tu catálogo</p></li>
 </ul>
-
-<h3 id="lista-productos">Lista Productos</h3>
-
+<h3 id='lista-productos'>Lista Productos</h3>
 <blockquote>
-<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
-</blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products?ids<span class="o">=</span>e640584d-b1c3-487e-8c0c-acc931332a30,03a233139cca-c0c8-e784-3c1b-d485046e <span class="se">\</span>
+<h5 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h5></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products?ids<span class="o">=</span>e640584d-b1c3-487e-8c0c-acc931332a30,03a233139cca-c0c8-e784-3c1b-d485046e <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">product_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s">"e640584d-b1c3-487e-8c0c-acc931332a30"</span><span class="p">,</span>
                <span class="s">"03a233139cca-c0c8-e784-3c1b-d485046e"</span><span class="p">]</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -38,7 +29,6 @@ Elimina un Producto de tu catálogo</p></li>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products?ids="</span> <span class="o">+</span> <span class="s">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">product_ids</span><span class="p">)</span>
 <span class="n">products</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-
 <p>Obtén el listado completo de Productos del catálogo, o filtra los resultados
 por cualquiera de estos parámetros.</p>
 
@@ -73,126 +63,118 @@ por cualquiera de estos parámetros.</p>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
 </tr>
 </tbody></table>
-
-<h4 id="respuesta">Respuesta</h4>
-
+<h4 id='respuesta'>Respuesta</h4>
 <p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Productos que coincidan
 con los filtros enviados.</p>
 
 <blockquote>
-<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<h5 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h5></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 12%"</span><span class="w">
+      </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 12%"</span><span class="w">
       </span><span class="p">}],</span><span class="w">
-      </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+      </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37993e7b6992-5fd9-cac4-73e4-08ab10e9"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UX"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U432"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para fiestas formales."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37993e7b6992-5fd9-cac4-73e4-08ab10e9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UX"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U432"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para fiestas formales."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70.000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 12%"</span><span class="w">
+      </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 12%"</span><span class="w">
       </span><span class="p">}],</span><span class="w">
-      </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+      </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
+  </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
-  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+  </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
-  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="consulta-un-producto">Consulta un Producto</h3>
-
+</span></code></pre><h3 id='consulta-un-producto'>Consulta un Producto</h3>
 <blockquote>
-<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
-</blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
+<h5 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h5></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">product_id</span> <span class="o">=</span> <span class="s">"e640584d-b1c3-487e-8c0c-acc931332a30"</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
@@ -200,7 +182,6 @@ con los filtros enviados.</p>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products/"</span> <span class="o">+</span> <span class="n">product_id</span>
 <span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-
 <p>Consulta los detalles de un producto. Envía el ID del producto para obtener su
 información</p>
 
@@ -215,54 +196,47 @@ información</p>
 <td>El identificador único del producto.</td>
 </tr>
 </tbody></table>
-
-<h4 id="respuesta">Respuesta</h4>
-
+<h4 id='respuesta-2'>Respuesta</h4>
 <p>Retorna un objeto <a href="#product">Product</a> si el identificador es válido, caso contrario
 retorna un error.</p>
 
 <blockquote>
-<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
+<h5 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h5></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
+  </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
-  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
+  </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
-  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="crea-un-producto">Crea un Producto</h3>
-
+</span></code></pre><h3 id='crea-un-producto'>Crea un Producto</h3>
 <blockquote>
-<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
-</blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products <span class="se">\</span>
+<h5 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h5></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
@@ -288,8 +262,7 @@ retorna un error.</p>
   "available_online": false,
   "unit_cost": "4.200000"
 }'</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">json</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s">"YOUR_API_KEY"</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
@@ -321,7 +294,6 @@ retorna un error.</p>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products"</span>
 <span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-
 <p>Crea un nuevo producto en el catálogo con la información enviada. El SKU debe
 ser único, si ya existe un producto con el mismo SKU responde con un error.</p>
 
@@ -355,7 +327,7 @@ ser único, si ya existe un producto con el mismo SKU responde con un error.</p>
 </tr>
 <tr>
 <td>type<p class="dt-data-type">requerido</p></td>
-<td>Cataloga el producto como un bien &ldquo;good&rdquo; o un servicio &ldquo;service&rdquo;.</td>
+<td>Cataloga el producto como un bien &quot;good&quot; o un servicio &quot;service&quot;.</td>
 </tr>
 <tr>
 <td>unit_of_measurement</td>
@@ -440,70 +412,63 @@ imagen.</p>
 </tr>
 <tr>
 <td>rate_code<p class="dt-data-type">requerido</p></td>
-<td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code class="prettyprint">tax_code</code> 2 y <code class="prettyprint">rate_code</code> 2</td>
+<td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code>tax_code</code> 2 y <code>rate_code</code> 2</td>
 </tr>
 </tbody></table>
-
-<h4 id="respuesta">Respuesta</h4>
-
+<h4 id='respuesta-3'>Respuesta</h4>
 <p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
 retorna un error.</p>
 
 <blockquote>
-<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fixed_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<h5 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h5></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fixed_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://datil-py-staging.s3.amazonaws.com/media/products_images/RGM6VUfresh.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="w">
+      </span><span class="s2">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://datil-py-staging.s3.amazonaws.com/media/products_images/RGM6VUfresh.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b1959dc-6a0c-4c73-96bd-28d307ab81cc"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limpieza"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b1959dc-6a0c-4c73-96bd-28d307ab81cc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limpieza"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12%"</span><span class="w">
+      </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12%"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLM-CR123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLM-CR123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"madera"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924a7999-bbba-43d5-984b-9178d9148202"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unsubsidized_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DN42ApefQHuub3D31lo6lw"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"did"</span><span class="p">:</span><span class="w"> </span><span class="mi">447</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924a7999-bbba-43d5-984b-9178d9148202"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubsidized_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DN42ApefQHuub3D31lo6lw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"did"</span><span class="p">:</span><span class="w"> </span><span class="mi">447</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="actualiza-un-producto">Actualiza un Producto</h3>
-
+</span></code></pre><h3 id='actualiza-un-producto'>Actualiza un Producto</h3>
 <blockquote>
-<h5 id="requerimiento-de-ejemplo">Requerimiento de ejemplo</h5>
-</blockquote>
-<pre class="highlight shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
+<h5 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h5></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -d <span class="s1">'{
@@ -511,8 +476,7 @@ retorna un error.</p>
   "description": "Limpiador de todo tipo de maderas. Deja tus muebles brillantes con pocas pasadas.",
   "unit_price": "5.500000"
 }'</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">json</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s">"YOUR_API_KEY"</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
@@ -537,7 +501,6 @@ retorna un error.</p>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/catalog/products"</span>
 <span class="n">product</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-
 <p>Actualiza la información de un Producto ya existente. Puedes enviar uno o más
 atributos del producto que necesitas actualizar. Revisa el listado de
 <a href="#create-prod-params">parámetros</a></p>
@@ -651,60 +614,57 @@ imagen.</p>
 </tr>
 <tr>
 <td>rate_code<p class="dt-data-type">requerido</p></td>
-<td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code class="prettyprint">tax_code</code> 2 y <code class="prettyprint">rate_code</code> 2</td>
+<td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code>tax_code</code> 2 y <code>rate_code</code> 2</td>
 </tr>
 </tbody></table>
-
-<h4 id="respuesta">Respuesta</h4>
-
+<h4 id='respuesta-4'>Respuesta</h4>
 <p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
 retorna un error.</p>
 
 <blockquote>
-<h5 id="respuesta-de-ejemplo">Respuesta de ejemplo</h5>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fixed_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<h5 id='respuesta-de-ejemplo-4'>Respuesta de ejemplo</h5></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fixed_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://datil-py-staging.s3.amazonaws.com/media/products_images/RGM6VUfresh.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="w">
+      </span><span class="s2">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://datil-py-staging.s3.amazonaws.com/media/products_images/RGM6VUfresh.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b1959dc-6a0c-4c73-96bd-28d307ab81cc"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limpieza"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b1959dc-6a0c-4c73-96bd-28d307ab81cc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limpieza"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12%"</span><span class="w">
+      </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12%"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLM-CR123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLM-CR123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"madera"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924a7999-bbba-43d5-984b-9178d9148202"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unsubsidized_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DN42ApefQHuub3D31lo6lw"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"did"</span><span class="p">:</span><span class="w"> </span><span class="mi">447</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924a7999-bbba-43d5-984b-9178d9148202"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubsidized_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DN42ApefQHuub3D31lo6lw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pledge Limpiador de madera"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"did"</span><span class="p">:</span><span class="w"> </span><span class="mi">447</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>

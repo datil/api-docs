@@ -1,9 +1,6 @@
-<h2 id="productos">Productos</h2>
-
+<h2 id='productos'>Productos</h2>
 <p>Un Producto está representado por un objeto <em>Product</em>.</p>
-
-<h4 id="product">Product</h4>
-
+<h4 id='product'>Product</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -40,7 +37,7 @@
 </tr>
 <tr>
 <td>type<p class="dt-data-type">string</p></td>
-<td>Tipo de producto. Bien &ldquo;good&rdquo; o servicio &ldquo;service&rdquo;.</td>
+<td>Tipo de producto. Bien &quot;good&quot; o servicio &quot;service&quot;.</td>
 </tr>
 <tr>
 <td>unit_price<p class="dt-data-type">string</p></td>
@@ -79,9 +76,7 @@
 <td>Verdadero si está disponible en tu Market (<a href="https://datil.co/producto#market">más información de Market</a>)</td>
 </tr>
 </tbody></table>
-
-<h4 id="product-tax">Product Tax</h4>
-
+<h4 id='product-tax'>Product Tax</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -105,9 +100,7 @@
 <td>Nombre descriptivo del impuesto.</td>
 </tr>
 </tbody></table>
-
-<h4 id="unit-of-measurement">Unit of measurement</h4>
-
+<h4 id='unit-of-measurement'>Unit of measurement</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -123,9 +116,7 @@
 <td>Nombre completo de la unidad.</td>
 </tr>
 </tbody></table>
-
-<h4 id="product-image">Product Image</h4>
-
+<h4 id='product-image'>Product Image</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>

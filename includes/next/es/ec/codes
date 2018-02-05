@@ -1,7 +1,4 @@
-<h1 id="cat-logo-de-c-digos">Catálogo de Códigos</h1>
-
-<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
-
+<h1 id='catalogo-de-codigos'>Catálogo de Códigos</h1><h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
 <table><thead>
 <tr>
 <th>Tipo de identificación</th>
@@ -36,9 +33,7 @@
 
 <p>(1) En la venta a Consumidor Final la identificación del cliente se formará con 13 dígitos de nueve (9999999999999).
 (2) La identificación del Exterior corresponderá al número de Identificación otorgado por la Administración Tributaria (AT) del país que es Residente Fiscal.</p>
-
-<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
-
+<h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -58,9 +53,7 @@
 <td>5</td>
 </tr>
 </tbody></table>
-
-<h2 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h2>
-
+<h2 id='codigo-de-porcentaje-de-iva'>Código de Porcentaje de IVA</h2>
 <table><thead>
 <tr>
 <th>Porcentaje de IVA</th>
@@ -94,9 +87,7 @@
 <td>-</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
-
+<h2 id='tipos-de-impuesto-para-la-retencion'>Tipos de impuesto para la retención</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -116,9 +107,7 @@
 <td>6</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
-
+<h2 id='tipos-de-impuesto-para-la-retencion-en-la-factura'>Tipos de impuesto para la retención en la factura</h2>
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
 participan en la comercialización de periódicos y/o revistas.</p>
@@ -134,9 +123,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>4</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-de-iva">Retención de IVA</h2>
-
+<h2 id='retencion-de-iva'>Retención de IVA</h2>
 <table><thead>
 <tr>
 <th>Porcentaje IVA</th>
@@ -192,9 +179,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>8</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-isd">Retención ISD</h2>
-
+<h2 id='retencion-isd'>Retención ISD</h2>
 <table><thead>
 <tr>
 <th>Porcentaje IVA</th>
@@ -206,9 +191,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>4580</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
-
+<h2 id='retencion-de-iva-presuntivo-y-renta'>Retención de IVA Presuntivo y Renta</h2>
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
 participan en la comercialización de periódicos y/o revistas.</p>
@@ -256,9 +239,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>328</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-documentos">Tipos de documentos</h2>
-
+<h2 id='tipos-de-documentos'>Tipos de documentos</h2>
 <table><thead>
 <tr>
 <th>Documento</th>
@@ -286,9 +267,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>07</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
-
+<h2 id='tipos-de-forma-de-pago'>Tipos de forma de pago</h2>
 <table><thead>
 <tr>
 <th>Forma de pago</th>
@@ -340,9 +319,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>endoso_titulos</td>
 </tr>
 </tbody></table>
-
-<h2 id="equivalencia-entre-formas-de-pago-d-til-y-formas-de-pago-del-sri">Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
-
+<h2 id='equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri'>Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
 <table><thead>
 <tr>
 <th>Forma de pago Dátil</th>
@@ -420,4 +397,4 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tbody></table>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
-las facturas a crédito se enviarán al SRI con forma de pago &ldquo;Otros con utilización del sistema financiero&rdquo;.</p>
+las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>

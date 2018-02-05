@@ -1,9 +1,6 @@
-<h2 id="categor-as">Categorías</h2>
-
+<h2 id='categorias'>Categorías</h2>
 <p>Una Categoría está representada por un objeto <em>Category</em>.</p>
-
-<h4 id="category">Category</h4>
-
+<h4 id='category'>Category</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>

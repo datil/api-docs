@@ -1,7 +1,4 @@
-<h2 id="objetos-comunes">Objetos comunes</h2>
-
-<h3 id="uuid-clave-de-acceso">UUID (Clave de acceso)</h3>
-
+<h2 id='objetos-comunes'>Objetos comunes</h2><h3 id='uuid-clave-de-acceso'>UUID (Clave de acceso)</h3>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
 Pero es posible también proveer la clave de acceso si se requiere tener control
@@ -71,9 +68,7 @@ estar estructurada la clave de acceso.</p>
 <p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
-
-<h3 id="result-set">Result set</h3>
-
+<h3 id='result-set'>Result set</h3>
 <p>Este objeto siempre se obtiene como respuesta al consultar un listado de recursos</p>
 
 <table><thead>
@@ -92,16 +87,14 @@ estar estructurada la clave de acceso.</p>
 </tr>
 <tr>
 <td>next<p class="dt-data-type">string</p></td>
-<td>URL para obtener la página siguiente de resultados, es <code class="prettyprint">null</code> si no existe una siguiente página de resultados.</td>
+<td>URL para obtener la página siguiente de resultados, es <code>null</code> si no existe una siguiente página de resultados.</td>
 </tr>
 <tr>
 <td>previous<p class="dt-data-type">string</p></td>
-<td>URL para obtener la página anterior de resultados, es <code class="prettyprint">null</code> si no existe una página anterior de resultados.</td>
+<td>URL para obtener la página anterior de resultados, es <code>null</code> si no existe una página anterior de resultados.</td>
 </tr>
 </tbody></table>
-
-<h3 id="tax">Tax</h3>
-
+<h3 id='tax'>Tax</h3>
 <p>Impuesto aplicado a una transacción o item.</p>
 
 <table><thead>
@@ -131,9 +124,7 @@ estar estructurada la clave de acceso.</p>
 <td>Porcentaje del impuesto aplicado.</td>
 </tr>
 </tbody></table>
-
-<h3 id="documento-relacionado">Documento Relacionado</h3>
-
+<h3 id='documento-relacionado'>Documento Relacionado</h3>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -153,9 +144,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-
-<h3 id="supplier">Supplier</h3>
-
+<h3 id='supplier'>Supplier</h3>
 <p>Información del emisor de un comprobante.</p>
 
 <table><thead>
@@ -201,9 +190,7 @@ estar estructurada la clave de acceso.</p>
 <td><a href="#location">location</a></td>
 </tr>
 </tbody></table>
-
-<h3 id="location">Location</h3>
-
+<h3 id='location'>Location</h3>
 <p>Representa un establecimiento del negocio.</p>
 
 <table><thead>
@@ -214,7 +201,7 @@ estar estructurada la clave de acceso.</p>
 </thead><tbody>
 <tr>
 <td>code<p class="dt-data-type">string</p></td>
-<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code>001</code></td>
 </tr>
 <tr>
 <td>address<p class="dt-data-type">string</p></td>
@@ -233,9 +220,7 @@ estar estructurada la clave de acceso.</p>
 <td>Información del punto de venta que emite el documento</td>
 </tr>
 </tbody></table>
-
-<h3 id="point-of-sale">Point of sale</h3>
-
+<h3 id='point-of-sale'>Point of sale</h3>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -248,16 +233,12 @@ estar estructurada la clave de acceso.</p>
 </tr>
 <tr>
 <td>code<p class="dt-data-type">string</p></td>
-<td>Código numérico de 3 caracteres que identifica al punto de emisión, o punto de venta. Ejemplo: &ldquo;001&rdquo;</td>
+<td>Código numérico de 3 caracteres que identifica al punto de emisión, o punto de venta. Ejemplo: &quot;001&quot;</td>
 </tr>
 </tbody></table>
-
-<h3 id="contacto">Contacto</h3>
-
+<h3 id='contacto'>Contacto</h3>
 <p>Los contactos están representados por un objeto <em>Contact</em></p>
-
-<h4 id="el-objeto-contact">El objeto Contact</h4>
-
+<h4 id='el-objeto-contact'>El objeto Contact</h4>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -310,10 +291,8 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<p>El contacto debe incluir alguno de los dos atributos, <code class="prettyprint">business</code> o <code class="prettyprint">person</code>.</p>
-
-<h3 id="business">Business</h3>
-
+<p>El contacto debe incluir alguno de los dos atributos, <code>business</code> o <code>person</code>.</p>
+<h3 id='business'>Business</h3>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -329,9 +308,7 @@ estar estructurada la clave de acceso.</p>
 <td>Nombre de comercial.</td>
 </tr>
 </tbody></table>
-
-<h3 id="person">Person</h3>
-
+<h3 id='person'>Person</h3>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -351,9 +328,7 @@ estar estructurada la clave de acceso.</p>
 <td>Apellido.</td>
 </tr>
 </tbody></table>
-
-<h3 id="property">Property</h3>
-
+<h3 id='property'>Property</h3>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -369,9 +344,7 @@ estar estructurada la clave de acceso.</p>
 <td>Valor de la propiedad.</td>
 </tr>
 </tbody></table>
-
-<h3 id="env-o-sri">Envío SRI</h3>
-
+<h3 id='envio-sri'>Envío SRI</h3>
 <p>Contiene la información y el estado de la fase de envío al SRI</p>
 
 <table><thead>
@@ -389,7 +362,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
+<td>Posibles valores: <code>RECIBIDA</code>, <code>DEVUELTA</code></td>
 </tr>
 <tr>
 <td>fecha</td>
@@ -397,9 +370,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-
-<h3 id="autorizaci-n-sri">Autorización SRI</h3>
-
+<h3 id='autorizacion-sri'>Autorización SRI</h3>
 <p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
 
 <table><thead>
@@ -417,7 +388,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
+<td>Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code></td>
 </tr>
 <tr>
 <td>numero</td>
@@ -430,9 +401,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-
-<h3 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h3>
-
+<h3 id='mensajes-de-respuesta-sri'>Mensajes de respuesta SRI</h3>
 <table><thead>
 <tr>
 <th>Parámetro</th>
@@ -453,7 +422,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>tipo</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">INFORMATIVO</code>, <code class="prettyprint">ADVERTENCIA</code>, <code class="prettyprint">ERROR</code></td>
+<td>Posibles valores: <code>INFORMATIVO</code>, <code>ADVERTENCIA</code>, <code>ERROR</code></td>
 </tr>
 <tr>
 <td>informacion_adicional</td>

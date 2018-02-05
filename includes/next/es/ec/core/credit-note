@@ -1,9 +1,6 @@
-<h2 id="notas-de-cr-dito">Notas de Crédito</h2>
-
+<h2 id='notas-de-credito'>Notas de Crédito</h2>
 <p>Una Nota de Crédito está representada por un objeto <em>Credit Note</em>.</p>
-
-<h5 id="el-objeto-credit-note">El objeto Credit Note</h5>
-
+<h5 id='el-objeto-credit-note'>El objeto Credit Note</h5>
 <table><thead>
 <tr>
 <th>Atributos</th>
@@ -44,7 +41,7 @@
 </tr>
 <tr>
 <td>properties<p class="dt-data-type">object</p></td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code class="prettyprint">{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
 </tr>
 <tr>
 <td>electronic_document<p class="dt-data-type">string</p></td>
@@ -136,7 +133,7 @@
 </tr>
 <tr>
 <td>subtotal_amount<p class="dt-data-type">string</p></td>
-<td>Subtotal antes de impuestos. Se obtiene multiplicando <code class="prettyprint">quantity</code> por <code class="prettyprint">unit_price</code> menos <code class="prettyprint">discount</code></td>
+<td>Subtotal antes de impuestos. Se obtiene multiplicando <code>quantity</code> por <code>unit_price</code> menos <code>discount</code></td>
 </tr>
 <tr>
 <td>unit_of_measurement<p class="dt-data-type">string</p></td>

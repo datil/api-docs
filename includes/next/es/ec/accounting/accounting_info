@@ -1,5 +1,4 @@
-<h2 id="informaci-n-contable">Información contable</h2>
-
+<h2 id='informacion-contable'>Información contable</h2>
 <p>Todos los comprobantes pueden adjuntar información contable representada por un objeto <em>Accounting</em>.</p>
 
 <table><thead>

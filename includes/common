@@ -1,5 +1,4 @@
-<h1 id="clave-de-acceso">Clave de acceso</h1>
-
+<h1 id='clave-de-acceso'>Clave de acceso</h1>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
 Pero es posible también proveer la clave de acceso si se requiere tener control
@@ -69,11 +68,7 @@ estar estructurada la clave de acceso.</p>
 <p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
-
-<h1 id="objetos-comunes">Objetos comunes</h1>
-
-<h2 id="emisor">Emisor</h2>
-
+<h1 id='objetos-comunes'>Objetos comunes</h1><h2 id='emisor'>Emisor</h2>
 <p>Información del emisor de un comprobante.</p>
 
 <table><thead>
@@ -111,7 +106,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>obligado_contabilidad</td>
 <td>boolean</td>
-<td><code class="prettyprint">true</code> si está obligado a llevar contabilidad.</td>
+<td><code>true</code> si está obligado a llevar contabilidad.</td>
 </tr>
 <tr>
 <td>establecimiento</td>
@@ -119,9 +114,7 @@ estar estructurada la clave de acceso.</p>
 <td>Establecimiento que emite la factura.</td>
 </tr>
 </tbody></table>
-
-<h2 id="establecimiento">Establecimiento</h2>
-
+<h2 id='establecimiento'>Establecimiento</h2>
 <p>Representa un establecimiento del comercio.</p>
 
 <table><thead>
@@ -134,7 +127,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code>001</code></td>
 </tr>
 <tr>
 <td>direccion</td>
@@ -144,12 +137,10 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>punto_emision</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code class="prettyprint">001</code></td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code></td>
 </tr>
 </tbody></table>
-
-<h2 id="persona">Persona</h2>
-
+<h2 id='persona'>Persona</h2>
 <p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
 
 <table><thead>
@@ -190,9 +181,7 @@ estar estructurada la clave de acceso.</p>
 <td>Dirección</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipo-de-identificaci-n">Tipo de identificación</h2>
-
+<h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
 <table><thead>
 <tr>
 <th>Tipo de identificación</th>
@@ -201,32 +190,30 @@ estar estructurada la clave de acceso.</p>
 </thead><tbody>
 <tr>
 <td>RUC</td>
-<td><code class="prettyprint">04</code></td>
+<td><code>04</code></td>
 </tr>
 <tr>
 <td>CEDULA</td>
-<td><code class="prettyprint">05</code></td>
+<td><code>05</code></td>
 </tr>
 <tr>
 <td>PASAPORTE</td>
-<td><code class="prettyprint">06</code></td>
+<td><code>06</code></td>
 </tr>
 <tr>
 <td>VENTA A CONSUMIDOR FINAL*</td>
-<td><code class="prettyprint">07</code></td>
+<td><code>07</code></td>
 </tr>
 <tr>
 <td>IDENTIFICACION DELEXTERIOR*</td>
-<td><code class="prettyprint">08</code></td>
+<td><code>08</code></td>
 </tr>
 <tr>
 <td>PLACA</td>
-<td><code class="prettyprint">09</code></td>
+<td><code>09</code></td>
 </tr>
 </tbody></table>
-
-<h2 id="total-impuesto">Total Impuesto</h2>
-
+<h2 id='total-impuesto'>Total Impuesto</h2>
 <table><thead>
 <tr>
 <th>Parámetro</th>
@@ -255,9 +242,7 @@ estar estructurada la clave de acceso.</p>
 <td>Valor del total.</td>
 </tr>
 </tbody></table>
-
-<h2 id="impuesto-item">Impuesto Item</h2>
-
+<h2 id='impuesto-item'>Impuesto Item</h2>
 <table><thead>
 <tr>
 <th>Parámetro</th>
@@ -291,9 +276,7 @@ estar estructurada la clave de acceso.</p>
 <td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
 </tr>
 </tbody></table>
-
-<h2 id="env-o-sri">Envío SRI</h2>
-
+<h2 id='envio-sri'>Envío SRI</h2>
 <p>Contiene la información y el estado de la fase de envío al SRI</p>
 
 <table><thead>
@@ -311,7 +294,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">RECIBIDA</code>, <code class="prettyprint">DEVUELTA</code></td>
+<td>Posibles valores: <code>RECIBIDA</code>, <code>DEVUELTA</code></td>
 </tr>
 <tr>
 <td>fecha</td>
@@ -319,9 +302,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-
-<h2 id="autorizaci-n-sri">Autorización SRI</h2>
-
+<h2 id='autorizacion-sri'>Autorización SRI</h2>
 <p>Contiene la información y el estado de la fase de autorización del comprobante.</p>
 
 <table><thead>
@@ -339,7 +320,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">AUTORIZADO</code>, <code class="prettyprint">NO AUTORIZADO</code></td>
+<td>Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code></td>
 </tr>
 <tr>
 <td>numero</td>
@@ -352,9 +333,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-
-<h2 id="mensajes-de-respuesta-sri">Mensajes de respuesta SRI</h2>
-
+<h2 id='mensajes-de-respuesta-sri'>Mensajes de respuesta SRI</h2>
 <table><thead>
 <tr>
 <th>Parámetro</th>
@@ -375,7 +354,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>tipo</td>
 <td>string</td>
-<td>Posibles valores: <code class="prettyprint">INFORMATIVO</code>, <code class="prettyprint">ADVERTENCIA</code>, <code class="prettyprint">ERROR</code></td>
+<td>Posibles valores: <code>INFORMATIVO</code>, <code>ADVERTENCIA</code>, <code>ERROR</code></td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
@@ -428,7 +407,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>precio_total_sin_impuestos</td>
 <td>float</td>
-<td>Precio antes de los impuestos. Se obtiene multiplicando la <code class="prettyprint">cantidad</code> por el <code class="prettyprint">precio_unitario</code></td>
+<td>Precio antes de los impuestos. Se obtiene multiplicando la <code>cantidad</code> por el <code>precio_unitario</code></td>
 </tr>
 <tr>
 <td>unidad_medida</td>
@@ -479,11 +458,7 @@ estar estructurada la clave de acceso.</p>
 <td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-
-<h1 id="cat-logo">Catálogo</h1>
-
-<h2 id="tipos-de-impuesto">Tipos de impuesto</h2>
-
+<h1 id='catalogo'>Catálogo</h1><h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -503,9 +478,7 @@ estar estructurada la clave de acceso.</p>
 <td>5</td>
 </tr>
 </tbody></table>
-
-<h2 id="c-digo-de-porcentaje-de-iva">Código de Porcentaje de IVA</h2>
-
+<h2 id='codigo-de-porcentaje-de-iva'>Código de Porcentaje de IVA</h2>
 <table><thead>
 <tr>
 <th>Porcentaje de IVA</th>
@@ -539,9 +512,7 @@ estar estructurada la clave de acceso.</p>
 <td>-</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-impuesto-para-la-retenci-n">Tipos de impuesto para la retención</h2>
-
+<h2 id='tipos-de-impuesto-para-la-retencion'>Tipos de impuesto para la retención</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -561,9 +532,7 @@ estar estructurada la clave de acceso.</p>
 <td>6</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-impuesto-para-la-retenci-n-en-la-factura">Tipos de impuesto para la retención en la factura</h2>
-
+<h2 id='tipos-de-impuesto-para-la-retencion-en-la-factura'>Tipos de impuesto para la retención en la factura</h2>
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
 participan en la comercialización de periódicos y/o revistas.</p>
@@ -579,9 +548,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>4</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-de-iva">Retención de IVA</h2>
-
+<h2 id='retencion-de-iva'>Retención de IVA</h2>
 <table><thead>
 <tr>
 <th>Porcentaje IVA</th>
@@ -637,9 +604,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>8</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-isd">Retención ISD</h2>
-
+<h2 id='retencion-isd'>Retención ISD</h2>
 <table><thead>
 <tr>
 <th>Porcentaje IVA</th>
@@ -651,9 +616,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>4580</td>
 </tr>
 </tbody></table>
-
-<h2 id="retenci-n-de-iva-presuntivo-y-renta">Retención de IVA Presuntivo y Renta</h2>
-
+<h2 id='retencion-de-iva-presuntivo-y-renta'>Retención de IVA Presuntivo y Renta</h2>
 <p>Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
 Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
 participan en la comercialización de periódicos y/o revistas.</p>
@@ -701,9 +664,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>328</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-documentos">Tipos de documentos</h2>
-
+<h2 id='tipos-de-documentos'>Tipos de documentos</h2>
 <table><thead>
 <tr>
 <th>Documento</th>
@@ -731,9 +692,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>07</td>
 </tr>
 </tbody></table>
-
-<h2 id="tipos-de-forma-de-pago">Tipos de forma de pago</h2>
-
+<h2 id='tipos-de-forma-de-pago'>Tipos de forma de pago</h2>
 <table><thead>
 <tr>
 <th>Forma de pago</th>
@@ -785,9 +744,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>endoso_titulos</td>
 </tr>
 </tbody></table>
-
-<h2 id="equivalencia-entre-formas-de-pago-d-til-y-formas-de-pago-del-sri">Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
-
+<h2 id='equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri'>Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
 <table><thead>
 <tr>
 <th>Forma de pago Dátil</th>
@@ -865,4 +822,4 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tbody></table>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
-las facturas a crédito se enviarán al SRI con forma de pago &ldquo;Otros con utilización del sistema financiero&rdquo;.</p>
+las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
