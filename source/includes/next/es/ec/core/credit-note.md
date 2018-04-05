@@ -1,4 +1,4 @@
-## Notas de Crédito
+## Nota de Crédito
 
 Una Nota de Crédito está representada por un objeto _Credit Note_.
 

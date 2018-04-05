@@ -1,28 +1,28 @@
-#### Acciones disponibles para Facturas de Venta
+#### Acciones disponibles para Nota de Crédito en Venta
 
-* [`POST /sales/invoices/issues`](#emite-una-factura)<br>
-Emite una nueva Factura
+* [`POST /sales/credit-notes/issues`](#emite-una-nota-de-crédito)<br>
+Emite una nueva Nota de Crédito
 
-* [`GET /sales/invoices/:id`](#consulta-una-factura)<br>
-Obtener información de una Factura
+* [`GET /sales/credit-notes/:id`](#consulta-una-nota-de-crédito)<br>
+Obtener información de una Nota de Crédito
 
-* [`GET /sales/invoices`](#lista-facturas)<br>
+* [`GET /sales/credit-notes`](#lista-notas-de-crédito)<br>
 Obtener un listado de Facturas
 
-* [`POST /sales/invoices/:id/reissues`](#re-emite-un-factura)<br>
+* [`POST /sales/credit-notes/:id/reissues`](#re-emite-un-nota-de-crédito)<br>
 Re-emite un Factura existente
 
 
-## Emite una factura
+## Emite una Nota de Crédito
 
 ### Operación
 
-`POST /sales/invoices/issues`
+`POST /sales/credit-notes/issues`
 
 ### Requerimiento
 
 ```shell
-curl -v https://api.datil.co/sales/invoices/issues \
+curl -v https://api.datil.co/sales/credit-notes/issues \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -68,6 +68,12 @@ curl -v https://api.datil.co/sales/invoices/issues \
       "taxable_amount": "100.00"
     }
   ],
+  "credit_reason": "Pedido equivocado",
+  "credited_document": {
+    "number": "001-007-002357641",
+    "type": "01",
+    "issue_date": "2017-10-26T01:10:06-05:00"
+  },
   "issue_date": "2017-11-01T09:00:00-05:00",
   "customer": {
     "properties": [],
@@ -124,28 +130,12 @@ curl -v https://api.datil.co/sales/invoices/issues \
 ```python
 import requests, json
 
-invoice = {
+credit_note = {
     "live": False,
     "properties": [
         {
             "description": "420420",
             "name": "Contract Number"
-        }
-    ],
-    "payments": [
-        {
-            "properties": [
-                {
-                    "description": "2223XXXX23",
-                    "name": "account_number"
-                },
-                {
-                    "description": "Banco Huancavilva",
-                    "name": "bank"
-                }
-            ],
-            "amount": "114.00",
-            "method": "efectivo"
         }
     ],
     "supplier": {
@@ -167,6 +157,12 @@ invoice = {
         }
     ],
     "issue_date": "2017-11-01T09:00:00-05:00",
+    "credit_reason": "Pedido equivocado",
+    "credited_document": {
+        "number": "001-007-002357641",
+        "type": "01",
+        "issue_date": "2017-10-26T01:10:06-05:00"
+    },
     "customer": {
         "properties": [
 
@@ -224,54 +220,55 @@ headers = {
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 response = requests.post(
-    "https://api.datil.co/sales/invoices/issues",
+    "https://api.datil.co/sales/credit-notes/issues",
     headers = headers,
-    data = json.dumps(invoice))
+    data = json.dumps(credit-note))
 ```
 
 
-Para la emisión de una factura se debe enviar la información completa de la
-venta. Las facturas emitidas con un API key de pruebas, serán enviadas al
+Para la emisión de una nota de crédito se debe enviar la información completa de la
+venta. Las notas de crédito emitidas con un API key de pruebas, serán enviadas al
 ambiente de pruebas del SRI.
 
 Parámetros | &nbsp;
 ---------- | -----------
 supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
-sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de factura disponible.
+sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de nota de crédito disponible.
+credit_reason<p class="dt-data-param-required">requerido</p> | Razón por la cual se emite la nota de crédito.
+credited_document<p class="dt-data-param-required">requerido</p> | Documento al que afecta esta nota de crédito. Ver [documento relacionado](#documento-relacionado)
 currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
-issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
-totals<p class="dt-data-param-required">requerido</p> | Totales de la factura. Ver [objeto totales](#invoice-totals)
+issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la nota de crédito.
+totals<p class="dt-data-param-required">requerido</p> | Totales de la nota de crédito. Ver [objeto totales](#credit-note-totals)
 customer<p class="dt-data-param-required">requerido</p> | Información del [comprador](#contacto).
-items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos. Lista de [items](#invoice-item)
-uuid | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos. Lista de [items](#credit-note-item)
+uuid | La clave de acceso de la nota de crédito. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties | Información adicional adjunta al comprobante. Listado de objetos tipo [property](#property)
-payments | Pagos realizados a la factura. Listado de objetos tipo [payment](#payment)
-payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito. Listado de objectos tipo [payment_method](#payment-method)
+
 
 ### Respuesta
 
-Retorna un objeto **[invoice](#el-objeto-invoice)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la factura. El campo `clave_acceso` generado
+Retorna un objeto **[credit-note](#el-objeto-credit-note)** que incluye un nuevo parámetro `id`,
+el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
-## Consulta una factura
+## Consulta una nota de crédito
 
-Consulta una factura para obtener toda la información del comprobante,
+Consulta una nota de crédito para obtener toda la información del comprobante,
 incluyendo el estado de autorización del mismo.
 El atributo `status` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
 Si es necesario conocer en detalle el estado del [proceso de emisión](#proceso-de-emisión),
-se debe examinar el atributos `authorization` de la factura.
+se debe examinar el atributos `authorization` de la nota de crédito.
 
 ### Operación
 
-`GET /sales/invoices/:invoice-id`
+`GET /sales/credit-notes/:credit-note-id`
 
 ### Requerimiento
 
 ```shell
-curl -v https://link.datil.co/invoices/<invoice-id> \
+curl -v https://link.datil.co/credit-notes/<credit-note-id> \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <clave-del-api>" \
 ```
@@ -280,11 +277,11 @@ curl -v https://link.datil.co/invoices/<invoice-id> \
 import requests
 cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://api.datil.co/sales/invoices/<id-factura>',
+    'https://api.datil.co/sales/credit-notes/<id-nota de crédito>',
     headers = cabeceras)
 ```
 
-Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
+Reemplaza en la ruta `<credit-note-ID>` por el `id` de la nota de crédito que necesitas consultar.
 
 
 ### Respuesta
@@ -372,20 +369,20 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 }
 ```
 
-## Re-emite una factura
+## Re-emite una nota de crédito
 
 ### Operación
 
-`POST /sales/invoices/:id/reissues`
+`POST /sales/credit-notes/:id/reissues`
 
 ### Requerimiento
 
 Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS.
 
-En la URL de esta opción se debe incluir el `id` de la factura recibida al
+En la URL de esta opción se debe incluir el `id` de la nota de crédito recibida al
 momento de emitirla.
 
-El cuerpo del requerimiento es un objeto [factura](#emite-una-factura) con los
+El cuerpo del requerimiento es un objeto [nota de crédito](#emite-una-nota de crédito) con los
 datos corregidos para que pueda ser procesado y autorizado.
 
 ### Respuesta
@@ -396,7 +393,7 @@ Retornará un error si el comprobante se encuentra autorizado.
 ## Lista Facturas
 
 ```shell
-curl -v https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001 \
+curl -v https://api.datil.co/sales/credit-notes?customer_tax_identification=0900800712001 \
 -H "X-Api-Key: <API-key>" \
 -H "Accept: application/json"
 ```
@@ -407,8 +404,8 @@ headers = {
   'x-api-key': '<API-key>',
   'accept': 'application/json'
 }
-datil_api_url = "https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"
-invoices = requests.get(datil_api_url, headers=headers).json()
+datil_api_url = "https://api.datil.co/sales/credit-notes?customer_tax_identification=0900800712001"
+credit-notes = requests.get(datil_api_url, headers=headers).json()
 ```
 
 Obtén el listado completo de Facturas emitidas, o filtra los resultados
@@ -416,13 +413,13 @@ por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
 ---------- | -------
-customer_tax_identification<p class="dt-data-type">string</p> | Filtra las facturas por comprador.
-issue_from<p class="dt-data-type">string</p> | Lista facturas emitidas hasta esta fecha.
-issue_to<p class="dt-data-type">string</p> | Lista facturas a partir de esta fecha de emisión.
-sequence_from<p class="dt-data-type">string</p> | Lista facturas a partir de esta secuencia.
-sequence_to<p class="dt-data-type">string</p> | Lista facturas hasta esta secuencia.
+customer_tax_identification<p class="dt-data-type">string</p> | Filtra las notas de crédito por comprador.
+issue_from<p class="dt-data-type">string</p> | Lista notas de crédito emitidas hasta esta fecha.
+issue_to<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta fecha de emisión.
+sequence_from<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta secuencia.
+sequence_to<p class="dt-data-type">string</p> | Lista notas de crédito hasta esta secuencia.
 supplier_points_of_sale<p class="dt-data-type">array</p> | Listado de códigos de punto de emisión separados por coma, ej: 001,004,005
-select_keys<p class="dt-data-type">array</p> | Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
+select_keys<p class="dt-data-type">array</p> | Listado de nombres de atributos de la nota de crédito separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 
 
@@ -431,7 +428,7 @@ page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por p
 Retorna un objeto [result set](#result-set) con el listado de Facturas que
 coincidan con los parámetros de filtrado enviados.
 
-> Listado de facturas
+> Listado de notas de crédito
 
 ```json
 {
@@ -647,7 +644,7 @@ coincidan con los parámetros de filtrado enviados.
       "electronic_document_url": "https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"
     }
   ],
-  "next": "https://app.datil.co/api/v2/latest/sales/invoices/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
+  "next": "https://app.datil.co/api/v2/latest/sales/credit-notes/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
 }
 ```
 
@@ -655,13 +652,13 @@ coincidan con los parámetros de filtrado enviados.
 
 ### Operación
 
-`POST /sales/invoices/:id/payments`
+`POST /sales/credit-notes/:id/payments`
 
 ### Requerimiento
 
 
 ```shell
-curl -v https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/payments \
+curl -v https://api.datil.co/sales/credit-notes/6463427e69b546afb77a75973cc74ce7/payments \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -709,7 +706,7 @@ headers = {
     'x-api-key': '<clave-del-api>',
     'content-type': 'application/json'}
 response = requests.post(
-    "https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/payments",
+    "https://api.datil.co/sales/credit-notes/6463427e69b546afb77a75973cc74ce7/payments",
     headers = headers,
     data = json.dumps(payments))
 ```
