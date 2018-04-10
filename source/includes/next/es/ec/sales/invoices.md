@@ -13,7 +13,7 @@ Obtener un listado de Facturas
 Re-emite un Factura existente
 
 
-## Emite una factura
+## Emite una Factura
 
 ### Operación
 
@@ -254,7 +254,7 @@ Retorna un objeto **[invoice](#el-objeto-invoice)** que incluye un nuevo paráme
 el cual identifica de manera única a la factura. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
-## Consulta una factura
+## Consulta una Factura
 
 Consulta una factura para obtener toda la información del comprobante,
 incluyendo el estado de autorización del mismo.
@@ -271,7 +271,7 @@ se debe examinar el atributos `authorization` de la factura.
 ### Requerimiento
 
 ```shell
-curl -v https://link.datil.co/invoices/<invoice-id> \
+curl -v https://api.datil.co/sales/invoices/<invoice-id> \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <clave-del-api>" \
 ```
@@ -284,7 +284,8 @@ respuesta = requests.get(
     headers = cabeceras)
 ```
 
-Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
+Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas
+consultar.
 
 
 ### Respuesta
@@ -372,7 +373,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 }
 ```
 
-## Re-emite una factura
+## Re-emite una Factura
 
 ### Operación
 

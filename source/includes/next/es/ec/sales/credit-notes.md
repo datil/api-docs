@@ -1,19 +1,19 @@
-#### Acciones disponibles para Nota de Crédito en Venta
+#### Acciones disponibles para Nota de crédito en Venta
 
 * [`POST /sales/credit-notes/issues`](#emite-una-nota-de-crédito)<br>
-Emite una nueva Nota de Crédito
+Emite una nueva Nota de crédito
 
 * [`GET /sales/credit-notes/:id`](#consulta-una-nota-de-crédito)<br>
-Obtener información de una Nota de Crédito
+Obtener información de una Nota de crédito
 
 * [`GET /sales/credit-notes`](#lista-notas-de-crédito)<br>
-Obtener un listado de Facturas
+Obtener un listado de Notas de crédito
 
 * [`POST /sales/credit-notes/:id/reissues`](#re-emite-un-nota-de-crédito)<br>
 Re-emite un Factura existente
 
 
-## Emite una Nota de Crédito
+## Emite una Nota de crédito
 
 ### Operación
 
@@ -251,15 +251,16 @@ Retorna un objeto **[credit-note](#el-objeto-credit-note)** que incluye un nuevo
 el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
-## Consulta una nota de crédito
+## Consulta una Nota de crédito
 
 Consulta una nota de crédito para obtener toda la información del comprobante,
 incluyendo el estado de autorización del mismo.
 El atributo `status` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle el estado del [proceso de emisión](#proceso-de-emisión),
-se debe examinar el atributos `authorization` de la nota de crédito.
+Si es necesario conocer en detalle el estado del
+[proceso de emisión](#proceso-de-emisión), se debe examinar el atributos
+`authorization` de la nota de crédito.
 
 ### Operación
 
@@ -268,7 +269,7 @@ se debe examinar el atributos `authorization` de la nota de crédito.
 ### Requerimiento
 
 ```shell
-curl -v https://link.datil.co/credit-notes/<credit-note-id> \
+curl -v https://api.datil.co/sales/credit-notes/<credit-note-id> \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <clave-del-api>" \
 ```
@@ -277,11 +278,12 @@ curl -v https://link.datil.co/credit-notes/<credit-note-id> \
 import requests
 cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://api.datil.co/sales/credit-notes/<id-nota de crédito>',
+    'https://api.datil.co/sales/credit-notes/<id-nota-crédito>',
     headers = cabeceras)
 ```
 
-Reemplaza en la ruta `<credit-note-ID>` por el `id` de la nota de crédito que necesitas consultar.
+Reemplaza en la ruta `<credit-note-ID>` por el `id` de la nota de crédito que
+necesitas consultar.
 
 
 ### Respuesta
@@ -313,7 +315,13 @@ Reemplaza en la ruta `<credit-note-ID>` por el `id` de la nota de crédito que n
     "status": "AUTORIZADO",
     "messages": []
   },
-  "issue_date": "2017-08-23",
+  "credit_reason": "Pedido equivocado",
+  "credited_document": {
+    "number": "001-007-002357641",
+    "type": "01",
+    "issue_date": "2017-10-26T01:10:06-05:00"
+  },
+  "issue_date": "2017-08-10T18:09:00-05:00",
   "customer": {
     "properties": [],
     "locality": "Guayaquil",
@@ -362,14 +370,14 @@ Reemplaza en la ruta `<credit-note-ID>` por el `id` de la nota de crédito que n
     },
     {
       "name": "Incluye",
-      "description": "Facturas, Retenciones, Notas de Crédito/Débito, Guías de Remisión"
+      "description": "Notas de crédito, Retenciones, Notas de crédito/Débito, Guías de Remisión"
     }
   ],
   "payments": []
 }
 ```
 
-## Re-emite una nota de crédito
+## Re-emite una Nota de crédito
 
 ### Operación
 
@@ -390,7 +398,7 @@ datos corregidos para que pueda ser procesado y autorizado.
 Retornará un error si el comprobante se encuentra autorizado.
 
 
-## Lista Facturas
+## Lista Notas de crédito
 
 ```shell
 curl -v https://api.datil.co/sales/credit-notes?customer_tax_identification=0900800712001 \
@@ -408,7 +416,7 @@ datil_api_url = "https://api.datil.co/sales/credit-notes?customer_tax_identifica
 credit-notes = requests.get(datil_api_url, headers=headers).json()
 ```
 
-Obtén el listado completo de Facturas emitidas, o filtra los resultados
+Obtén el listado completo de Notas de crédito emitidas, o filtra los resultados
 por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
@@ -425,7 +433,7 @@ page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por p
 
 #### Respuesta
 
-Retorna un objeto [result set](#result-set) con el listado de Facturas que
+Retorna un objeto [result set](#result-set) con el listado de Notas de crédito que
 coincidan con los parámetros de filtrado enviados.
 
 > Listado de notas de crédito
@@ -647,80 +655,3 @@ coincidan con los parámetros de filtrado enviados.
   "next": "https://app.datil.co/api/v2/latest/sales/credit-notes/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
 }
 ```
-
-## Registra Pagos
-
-### Operación
-
-`POST /sales/credit-notes/:id/payments`
-
-### Requerimiento
-
-
-```shell
-curl -v https://api.datil.co/sales/credit-notes/6463427e69b546afb77a75973cc74ce7/payments \
--H "Content-Type: application/json" \
--H "X-Api-Key: <API-key>" \
--H "X-Password: <clave-certificado-firma>" \
--d '{
-      "payments": [
-        {
-          "amount": 114.0,
-          "method": "cash",
-          "date": "2017-05-31T13:50:07-05:00",
-          "properties": [
-            {
-              "name": "account_number",
-              "description": "2223XXXX23"
-            },
-            {
-              "name": "bank",
-              "description": "Banco Huancavilva"
-            }
-          }]
-        }
-      ]
-    }'
-```
-
-```python
-import requests, json
-
-payments = {
-  "payments": [{
-    "amount": "114.0",
-    "method": "cash",
-    "date": "2017-05-31T13:50:07-05:00",
-    "properties": [{
-        "name": "account_number",
-        "description": "2223XXXX23"
-      },
-      {
-        "name": "bank",
-        "description": "Banco Huancavilva"
-      }
-    ]
-  }]
-}
-headers = {
-    'x-api-key': '<clave-del-api>',
-    'content-type': 'application/json'}
-response = requests.post(
-    "https://api.datil.co/sales/credit-notes/6463427e69b546afb77a75973cc74ce7/payments",
-    headers = headers,
-    data = json.dumps(payments))
-```
-
-Puedes registrar uno o más pagos.
-
-Parámetros | &nbsp;
----------- | -----------
-payments<p class="dt-data-param-required">requerido</p> | Listado de [pagos](#payment) a registrar
-
-
-Parámetros | &nbsp;
----------- | -----------
-method<p class="dt-data-param-required">requerido</p> | Código que representa al método.
-amount<p class="dt-data-param-required">requerido</p> | Monto a pagar.
-date | Fecha en la que se realizó el pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha actual.
-properties | Listado de propiedades adicionales
