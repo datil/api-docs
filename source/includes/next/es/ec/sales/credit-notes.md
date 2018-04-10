@@ -34,22 +34,6 @@ curl -v https://api.datil.co/sales/credit-notes/issues \
       "name": "Contract Number"
     }
   ],
-  "payments": [
-    {
-      "properties": [
-        {
-          "description": "2223XXXX23",
-          "name": "account_number"
-        },
-        {
-          "description": "Banco Huancavilva",
-          "name": "bank"
-        }
-      ],
-      "amount": "114.00",
-      "method": "efectivo"
-    }
-  ],
   "supplier": {
     "location": {
       "point_of_sale": {
@@ -372,8 +356,7 @@ necesitas consultar.
       "name": "Incluye",
       "description": "Notas de crédito, Retenciones, Notas de crédito/Débito, Guías de Remisión"
     }
-  ],
-  "payments": []
+  ]
 }
 ```
 
@@ -491,7 +474,6 @@ coincidan con los parámetros de filtrado enviados.
         "name": "Periodo",
         "description": "Febrero 2018"
       }],
-      "payments": [],
       "items": [{
         "description": "Plan Gratuito",
         "discount": "0.00",
@@ -598,7 +580,6 @@ coincidan con los parámetros de filtrado enviados.
         "name": "Periodo",
         "description": "Anual"
       }],
-      "payments": [],
       "items": [{
         "description": "Certificado de Firma Electrónica",
         "discount": "0.00",
