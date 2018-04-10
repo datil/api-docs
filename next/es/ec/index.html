@@ -3585,8 +3585,8 @@ el estado actual del comprobante.</p>
 se debe examinar el atributos <code>authorization</code> de la retención.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /purchases/withholdings/:withholding-id</code></p>
-<h3 id='requerimiento-2'>Requerimiento</h3><pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/withholdings/&lt;withholding-id&gt; <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<h3 id='requerimiento-2'>Requerimiento</h3><pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/withholdings/&lt;withholding-id&gt; <span class="se">\</span>
+-H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
