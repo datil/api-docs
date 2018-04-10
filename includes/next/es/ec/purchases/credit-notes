@@ -1,9 +1,11 @@
-<h4 id='acciones-disponibles-para-nota-de-credito-en-venta'>Acciones disponibles para Nota de Crédito en Venta</h4>
+<h4 id='acciones-disponibles-para-nota-de-credito-en-compra'>Acciones disponibles para Nota de Crédito en compra</h4>
 <ul>
-<li><a href="#lista-notas-de-crédito"><code>GET /purchases/credit-notes</code></a><br>
+<li><a href="#lista-notas-de-credito-compra"><code>GET /purchases/credit-notes</code></a><br>
 Obtener un listado de Notas de Crédito</li>
 </ul>
-<h2 id='lista-notas-de-credito'>Lista Notas de Crédito</h2><pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+
+<h2 id="lista-notas-credito-compra">Lista Notas de crédito</h2>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -14,7 +16,7 @@ Obtener un listado de Notas de Crédito</li>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001"</span>
 <span class="n">credit</span><span class="o">-</span><span class="n">notes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-<p>Obtén el listado completo de Facturas emitidas, o filtra los resultados
+<p>Obtén el listado completo de Notas de crédito recibidas, o filtra los resultados
 por cualquiera de estos parámetros.</p>
 
 <table><thead>
@@ -25,23 +27,23 @@ por cualquiera de estos parámetros.</p>
 </thead><tbody>
 <tr>
 <td>customer_tax_identification<p class="dt-data-type">string</p></td>
-<td>Filtra las facturas por comprador.</td>
+<td>Filtra las notas de crédito por comprador.</td>
 </tr>
 <tr>
 <td>issue_from<p class="dt-data-type">string</p></td>
-<td>Lista facturas emitidas hasta esta fecha.</td>
+<td>Lista notas de crédito emitidas hasta esta fecha.</td>
 </tr>
 <tr>
 <td>issue_to<p class="dt-data-type">string</p></td>
-<td>Lista facturas a partir de esta fecha de emisión.</td>
+<td>Lista notas de crédito a partir de esta fecha de emisión.</td>
 </tr>
 <tr>
 <td>sequence_from<p class="dt-data-type">string</p></td>
-<td>Lista facturas a partir de esta secuencia.</td>
+<td>Lista notas de crédito a partir de esta secuencia.</td>
 </tr>
 <tr>
 <td>sequence_to<p class="dt-data-type">string</p></td>
-<td>Lista facturas hasta esta secuencia.</td>
+<td>Lista notas de crédito hasta esta secuencia.</td>
 </tr>
 <tr>
 <td>supplier_points_of_sale<p class="dt-data-type">array</p></td>
@@ -49,7 +51,7 @@ por cualquiera de estos parámetros.</p>
 </tr>
 <tr>
 <td>select_keys<p class="dt-data-type">array</p></td>
-<td>Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items</td>
+<td>Listado de nombres de atributos de la nota de crédito separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items</td>
 </tr>
 <tr>
 <td>page_size<p class="dt-data-type">integer</p></td>
@@ -57,11 +59,11 @@ por cualquiera de estos parámetros.</p>
 </tr>
 </tbody></table>
 <h4 id='respuesta'>Respuesta</h4>
-<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Facturas que
+<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Notas de crédito que
 coincidan con los parámetros de filtrado enviados.</p>
 
 <blockquote>
-<p>Listado de facturas</p>
+<p>Listado de notas de crédito</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">584</span><span class="p">,</span><span class="w">

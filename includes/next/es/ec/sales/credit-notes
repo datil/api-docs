@@ -1,4 +1,4 @@
-<h4 id='acciones-disponibles-para-nota-de-credito-en-venta'>Acciones disponibles para Nota de crédito en Venta</h4>
+<h4 id='acciones-disponibles-para-nota-de-credito-en-venta'>Acciones disponibles para Nota de crédito en venta</h4>
 <ul>
 <li><p><a href="#emite-una-nota-de-crédito"><code>POST /sales/credit-notes/issues</code></a><br>
 Emite una nueva Nota de crédito</p></li>
@@ -7,7 +7,7 @@ Obtener información de una Nota de crédito</p></li>
 <li><p><a href="#lista-notas-de-crédito"><code>GET /sales/credit-notes</code></a><br>
 Obtener un listado de Notas de crédito</p></li>
 <li><p><a href="#re-emite-un-nota-de-crédito"><code>POST /sales/credit-notes/:id/reissues</code></a><br>
-Re-emite un Factura existente</p></li>
+Re-emite un Nota de crédito existente</p></li>
 </ul>
 <h2 id='emite-una-nota-de-credito'>Emite una Nota de crédito</h2><h3 id='operacion'>Operación</h3>
 <p><code>POST /sales/credit-notes/issues</code></p>

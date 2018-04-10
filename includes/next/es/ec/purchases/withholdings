@@ -1,13 +1,13 @@
-<h4 id='acciones-disponibles-para-retenciones-emitidas'>Acciones disponibles para Retenciones emitidas</h4>
+<h4 id='acciones-disponibles-para-retenciones-en-compra'>Acciones disponibles para Retenciones en compra</h4>
 <ul>
 <li><p><a href="#emite-una-retención"><code>POST /purchases/withholdings/issues</code></a><br>
-Emite una nueva Factura</p></li>
+Emite una nueva Retención</p></li>
 <li><p><a href="#consulta-una-retención"><code>GET /purchases/withholdings/:id</code></a><br>
-Obtener información de una Factura</p></li>
-<li><p><a href="#lista-retencións"><code>GET /purchases/withholdings</code></a><br>
-Obtener un listado de Facturas</p></li>
+Obtener información de una Retención</p></li>
+<li><p><a href="#lista-retenciones"><code>GET /purchases/withholdings</code></a><br>
+Obtener un listado de Retenciones</p></li>
 <li><p><a href="#re-emite-un-retención"><code>POST /purchases/withholdings/:id/reissues</code></a><br>
-Re-emite un Factura existente</p></li>
+Re-emite un Retención existente</p></li>
 </ul>
 <h2 id='emite-una-retencion'>Emite una retención</h2><h3 id='operacion'>Operación</h3>
 <p><code>POST /purchases/withholdings/issues</code></p>
@@ -56,100 +56,44 @@ Re-emite un Factura existente</p></li>
 }'</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
 
-<span class="n">invoice</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"live"</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
-    <span class="s">"properties"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s">"description"</span><span class="p">:</span> <span class="s">"420420"</span><span class="p">,</span>
-            <span class="s">"name"</span><span class="p">:</span> <span class="s">"Contract Number"</span>
-        <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s">"payments"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s">"properties"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s">"description"</span><span class="p">:</span> <span class="s">"2223XXXX23"</span><span class="p">,</span>
-                    <span class="s">"name"</span><span class="p">:</span> <span class="s">"account_number"</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="s">"description"</span><span class="p">:</span> <span class="s">"Banco Huancavilva"</span><span class="p">,</span>
-                    <span class="s">"name"</span><span class="p">:</span> <span class="s">"bank"</span>
-                <span class="p">}</span>
-            <span class="p">],</span>
-            <span class="s">"amount"</span><span class="p">:</span> <span class="s">"114.00"</span><span class="p">,</span>
-            <span class="s">"method"</span><span class="p">:</span> <span class="s">"efectivo"</span>
-        <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s">"supplier"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"location"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">"point_of_sale"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s">"code"</span><span class="p">:</span> <span class="s">"002"</span>
-            <span class="p">},</span>
-            <span class="s">"code"</span><span class="p">:</span> <span class="s">"001"</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s">"sequence"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-    <span class="s">"taxes"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s">"amount"</span><span class="p">:</span> <span class="s">"14.00"</span><span class="p">,</span>
-            <span class="s">"tax_code"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
-            <span class="s">"rate_code"</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span>
-            <span class="s">"tax_rate"</span><span class="p">:</span> <span class="s">"14.0"</span><span class="p">,</span>
-            <span class="s">"taxable_amount"</span><span class="p">:</span> <span class="s">"100.00"</span>
-        <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s">"issue_date"</span><span class="p">:</span> <span class="s">"2017-11-01T09:00:00-05:00"</span><span class="p">,</span>
-    <span class="s">"customer"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"properties"</span><span class="p">:</span> <span class="p">[</span>
-
-        <span class="p">],</span>
-        <span class="s">"locality"</span><span class="p">:</span> <span class="s">"Guayaquil"</span><span class="p">,</span>
-        <span class="s">"address"</span><span class="p">:</span> <span class="s">"Carrera 10 Calle 1"</span><span class="p">,</span>
-        <span class="s">"email"</span><span class="p">:</span> <span class="s">"compras@datil.co"</span><span class="p">,</span>
-        <span class="s">"person"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"Juan"</span><span class="p">,</span>
-            <span class="s">"middle_name"</span><span class="p">:</span> <span class="s">"A."</span><span class="p">,</span>
-            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Pérez"</span>
-        <span class="p">},</span>
-        <span class="s">"phone"</span><span class="p">:</span> <span class="s">"57122222222222"</span><span class="p">,</span>
-        <span class="s">"tax_identification_type"</span><span class="p">:</span> <span class="s">"05"</span><span class="p">,</span>
-        <span class="s">"sublocality"</span><span class="p">:</span> <span class="s">"Centro"</span><span class="p">,</span>
-        <span class="s">"tax_identification"</span><span class="p">:</span> <span class="s">"0924447956"</span><span class="p">,</span>
-        <span class="s">"country"</span><span class="p">:</span> <span class="s">"EC"</span><span class="p">,</span>
-        <span class="s">"administrative_district_level_1"</span><span class="p">:</span> <span class="s">"Guayas"</span>
-    <span class="p">},</span>
-    <span class="s">"totals"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"total_tax_amount"</span><span class="p">:</span> <span class="s">"14.00"</span><span class="p">,</span>
-        <span class="s">"subtotal_amount"</span><span class="p">:</span> <span class="s">"100.00"</span><span class="p">,</span>
-        <span class="s">"total_discount_amount"</span><span class="p">:</span> <span class="s">"100.00"</span><span class="p">,</span>
-        <span class="s">"total_amount"</span><span class="p">:</span> <span class="s">"114.00"</span>
-    <span class="p">},</span>
-    <span class="s">"currency"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
-    <span class="s">"items"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s">"description"</span><span class="p">:</span> <span class="s">"Apple"</span><span class="p">,</span>
-            <span class="s">"properties"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s">"description"</span><span class="p">:</span> <span class="s">"red"</span><span class="p">,</span>
-                    <span class="s">"name"</span><span class="p">:</span> <span class="s">"color"</span>
-                <span class="p">}</span>
-            <span class="p">],</span>
-            <span class="s">"unit_price"</span><span class="p">:</span> <span class="s">"2.00"</span><span class="p">,</span>
-            <span class="s">"taxes"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s">"amount"</span><span class="p">:</span> <span class="s">"14.00"</span><span class="p">,</span>
-                    <span class="s">"tax_code"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
-                    <span class="s">"rate_code"</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span>
-                    <span class="s">"tax_rate"</span><span class="p">:</span> <span class="s">"14.00"</span><span class="p">,</span>
-                    <span class="s">"taxable_amount"</span><span class="p">:</span> <span class="s">"100.00"</span>
-                <span class="p">}</span>
-            <span class="p">],</span>
-            <span class="s">"subtotal_amount"</span><span class="p">:</span> <span class="s">"100.00"</span><span class="p">,</span>
-            <span class="s">"unit_code"</span><span class="p">:</span> <span class="s">"units"</span><span class="p">,</span>
-            <span class="s">"unit_discount"</span><span class="p">:</span> <span class="s">"1.00"</span><span class="p">,</span>
-            <span class="s">"quantity"</span><span class="p">:</span> <span class="s">"100"</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
+<span class="n">withholding</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'live'</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s">'currency'</span><span class="p">:</span> <span class="s">'USD'</span><span class="p">,</span>
+  <span class="s">'fiscal_period'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'month'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">'year'</span><span class="p">:</span> <span class="mi">2018</span>
+  <span class="p">},</span>
+  <span class="s">'recipient'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'address'</span><span class="p">:</span> <span class="s">'Av. Principal 234'</span><span class="p">,</span>
+    <span class="s">'legal_name'</span><span class="p">:</span> <span class="s">'Acme S.A.'</span><span class="p">,</span>
+    <span class="s">'commercial_name'</span><span class="p">:</span> <span class="s">'Acme S.A.'</span><span class="p">,</span>
+    <span class="s">'tax_identification'</span><span class="p">:</span> <span class="s">'0910872345001'</span><span class="p">,</span>
+    <span class="s">'tax_identification_type'</span><span class="p">:</span> <span class="s">'04'</span><span class="p">,</span>
+    <span class="s">'email'</span><span class="p">:</span> <span class="s">'email@datil.co'</span>
+  <span class="p">},</span>
+  <span class="s">'issue_date'</span><span class="p">:</span> <span class="s">'2018-01-04T00:00:00-05:00'</span><span class="p">,</span>
+  <span class="s">'items'</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s">'amount'</span><span class="p">:</span> <span class="s">'42.26'</span><span class="p">,</span>
+    <span class="s">'tax_code'</span><span class="p">:</span> <span class="s">'1'</span><span class="p">,</span>
+    <span class="s">'rate'</span><span class="p">:</span> <span class="s">'0'</span><span class="p">,</span>
+    <span class="s">'rate_code'</span><span class="p">:</span> <span class="s">'312'</span><span class="p">,</span>
+    <span class="s">'taxable_amount'</span><span class="p">:</span> <span class="s">'4226.40'</span><span class="p">,</span>
+    <span class="s">'affected_document'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">'number'</span><span class="p">:</span> <span class="s">'001-002-123412349'</span><span class="p">,</span>
+      <span class="s">'issue_date'</span><span class="p">:</span> <span class="s">'2017-12-31'</span><span class="p">,</span>
+      <span class="s">'type'</span><span class="p">:</span> <span class="s">'01'</span>
+    <span class="p">}</span>
+  <span class="p">}],</span>
+  <span class="s">'properties'</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s">'sequence'</span><span class="p">:</span> <span class="mi">9397</span><span class="p">,</span>
+  <span class="s">'issuer'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'location'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">'code'</span><span class="p">:</span> <span class="s">'001'</span><span class="p">,</span>
+      <span class="s">'point_of_sale'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'code'</span><span class="p">:</span> <span class="s">'002'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span><span class="p">,</span>
@@ -161,7 +105,7 @@ Re-emite un Factura existente</p></li>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">invoice</span><span class="p">))</span>
 </code></pre>
 <p>Para la emisión de una retención se debe enviar la información completa de la
-venta. Las retencións emitidas con un API key de pruebas, serán enviadas al
+venta. Las retenciones emitidas con un API key de pruebas, serán enviadas al
 ambiente de pruebas del SRI.</p>
 
 <table><thead>
@@ -196,7 +140,7 @@ ambiente de pruebas del SRI.</p>
 </tr>
 <tr>
 <td>items<p class="dt-data-param-required">requerido</p></td>
-<td>Bienes o servicios vendidos. Lista de <a href="#invoice-item">items</a></td>
+<td>Bienes o servicios vendidos. Lista de <a href="#withholding-item">items</a></td>
 </tr>
 <tr>
 <td>uuid</td>
@@ -312,11 +256,11 @@ se debe examinar el atributos <code>authorization</code> de la retención.</p>
   </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Servicio"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dátil Facturación Electrónica"</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dátil Retenciónción Electrónica"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incluye"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facturas, Retenciones, Notas de Crédito/Débito, Guías de Remisión"</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retenciones, Retenciones, Notas de Crédito/Débito, Guías de Remisión"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
@@ -333,7 +277,7 @@ momento de emitirla.</p>
 datos corregidos para que pueda ser procesado y autorizado.</p>
 <h3 id='respuesta-3'>Respuesta</h3>
 <p>Retornará un error si el comprobante se encuentra autorizado.</p>
-<h2 id='lista-facturas'>Lista Facturas</h2><pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/withholdings?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+<h2 id='lista-retenciones'>Lista Retenciones</h2><pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/withholdings?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -344,7 +288,7 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/withholdings?customer_tax_identification=0900800712001"</span>
 <span class="n">withholdings</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-<p>Obtén el listado completo de Facturas emitidas, o filtra los resultados
+<p>Obtén el listado completo de Retenciones emitidas, o filtra los resultados
 por cualquiera de estos parámetros.</p>
 
 <table><thead>
@@ -355,23 +299,23 @@ por cualquiera de estos parámetros.</p>
 </thead><tbody>
 <tr>
 <td>customer_tax_identification<p class="dt-data-type">string</p></td>
-<td>Filtra las retencións por comprador.</td>
+<td>Filtra las retenciones por comprador.</td>
 </tr>
 <tr>
 <td>issue_from<p class="dt-data-type">string</p></td>
-<td>Lista retencións emitidas hasta esta fecha.</td>
+<td>Lista retenciones emitidas hasta esta fecha.</td>
 </tr>
 <tr>
 <td>issue_to<p class="dt-data-type">string</p></td>
-<td>Lista retencións a partir de esta fecha de emisión.</td>
+<td>Lista retenciones a partir de esta fecha de emisión.</td>
 </tr>
 <tr>
 <td>sequence_from<p class="dt-data-type">string</p></td>
-<td>Lista retencións a partir de esta secuencia.</td>
+<td>Lista retenciones a partir de esta secuencia.</td>
 </tr>
 <tr>
 <td>sequence_to<p class="dt-data-type">string</p></td>
-<td>Lista retencións hasta esta secuencia.</td>
+<td>Lista retenciones hasta esta secuencia.</td>
 </tr>
 <tr>
 <td>supplier_points_of_sale<p class="dt-data-type">array</p></td>
@@ -387,14 +331,14 @@ por cualquiera de estos parámetros.</p>
 </tr>
 </tbody></table>
 <h4 id='respuesta-4'>Respuesta</h4>
-<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Facturas que
+<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Retenciones que
 coincidan con los parámetros de filtrado enviados.</p>
 
 <blockquote>
-<p>Listado de retencións</p>
+<p>Listado de retenciones</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">584</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
   </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">

@@ -1,4 +1,4 @@
-<h4 id='acciones-disponibles-para-facturas-de-venta'>Acciones disponibles para Facturas de Venta</h4>
+<h4 id='acciones-disponibles-para-facturas-de-venta'>Acciones disponibles para Facturas de venta</h4>
 <ul>
 <li><p><a href="#emite-una-factura"><code>POST /sales/invoices/issues</code></a><br>
 Emite una nueva Factura</p></li>

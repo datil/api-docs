@@ -1,4 +1,4 @@
-<h4 id='acciones-disponibles-para-facturas-de-venta'>Acciones disponibles para Facturas de Venta</h4>
+<h4 id='acciones-disponibles-para-facturas-de-compra'>Acciones disponibles para Facturas de compra</h4>
 <ul>
 <li><a href="#lista-facturas"><code>GET /purchases/invoices</code></a><br>
 Obtener un listado de Facturas de compra</li>
@@ -16,7 +16,7 @@ Obtener un listado de Facturas de compra</li>
 <span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"</span>
 <span class="n">invoices</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
-<p>Obtén el listado completo de Facturas emitidas, o filtra los resultados
+<p>Obtén el listado completo de Facturas recibidas, o filtra los resultados
 por cualquiera de estos parámetros.</p>
 
 <table><thead>
@@ -31,7 +31,7 @@ por cualquiera de estos parámetros.</p>
 </tr>
 <tr>
 <td>issue_from<p class="dt-data-type">string</p></td>
-<td>Lista facturas emitidas hasta esta fecha.</td>
+<td>Lista facturas recibidas hasta esta fecha.</td>
 </tr>
 <tr>
 <td>issue_to<p class="dt-data-type">string</p></td>
