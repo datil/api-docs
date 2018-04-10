@@ -1,4 +1,4 @@
-<h2 id='notas-de-credito'>Notas de Crédito</h2>
+<h2 id='nota-de-credito'>Nota de Crédito</h2>
 <p>Una Nota de Crédito está representada por un objeto <em>Credit Note</em>.</p>
 <h5 id='el-objeto-credit-note'>El objeto Credit Note</h5>
 <table><thead>
@@ -56,7 +56,7 @@
 <td>URL de descarga del RIDE.</td>
 </tr>
 <tr>
-<td>credited_reason<p class="dt-data-type">string</p></td>
+<td>credit_reason<p class="dt-data-type">string</p></td>
 <td>Motivo por el cual se emite la Nota de Crédito.</td>
 </tr>
 <tr>

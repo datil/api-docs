@@ -1,4 +1,4 @@
-<h2 id='productos'>Productos</h2>
+<h2 id='producto'>Producto</h2>
 <p>Un Producto está representado por un objeto <em>Product</em>.</p>
 <h4 id='product'>Product</h4>
 <table><thead>

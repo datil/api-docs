@@ -136,7 +136,7 @@ estar estructurada la clave de acceso.</p>
 <td>Código del grupo al que pertenece el impuesto.</td>
 </tr>
 <tr>
-<td>document_type <p class="dt-data-type">string</p></td>
+<td>type <p class="dt-data-type">string</p></td>
 <td>Tipo del documento relacionado. Ver tabla de <a href="#tipos-de-documentos">Tipos de documentos</a></td>
 </tr>
 <tr>

@@ -17,7 +17,8 @@ Elimina un Producto de tu catálogo</p></li>
 </ul>
 <h3 id='lista-productos'>Lista Productos</h3>
 <blockquote>
-<h5 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h5></blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products?ids<span class="o">=</span>e640584d-b1c3-487e-8c0c-acc931332a30,03a233139cca-c0c8-e784-3c1b-d485046e <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -68,7 +69,8 @@ por cualquiera de estos parámetros.</p>
 con los filtros enviados.</p>
 
 <blockquote>
-<h5 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h5></blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -138,40 +140,10 @@ con los filtros enviados.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOL-U123"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso de mano ideal para salidas casuales."</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576aac8e-0f59-4b15-a89c-7bd3afc5ffbc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolsos y Carteras"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 14%"</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"und"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unidad"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bolso-um"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"purchase_applicable_taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"track_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"good"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bolso"</span><span class="p">,</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"available_online"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='consulta-un-producto'>Consulta un Producto</h3>
 <blockquote>
-<h5 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h5></blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -201,7 +173,8 @@ información</p>
 retorna un error.</p>
 
 <blockquote>
-<h5 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h5></blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e01ba80-4e37-4cac-9df5-2996b7e39973"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bolso UM"</span><span class="p">,</span><span class="w">
@@ -235,7 +208,8 @@ retorna un error.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='crea-un-producto'>Crea un Producto</h3>
 <blockquote>
-<h5 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h5></blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
@@ -420,7 +394,8 @@ imagen.</p>
 retorna un error.</p>
 
 <blockquote>
-<h5 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h5></blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -467,7 +442,8 @@ retorna un error.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='actualiza-un-producto'>Actualiza un Producto</h3>
 <blockquote>
-<h5 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h5></blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
@@ -622,7 +598,8 @@ imagen.</p>
 retorna un error.</p>
 
 <blockquote>
-<h5 id='respuesta-de-ejemplo-4'>Respuesta de ejemplo</h5></blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0cde3602-979f-407b-ae6f-70f7d65a3a97"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
