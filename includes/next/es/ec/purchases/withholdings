@@ -1,3 +1,4 @@
+<h2 id="retenciones-compra">Retenciones</h2>
 <h4 id='acciones-disponibles-para-retenciones-en-compra'>Acciones disponibles para Retenciones en compra</h4>
 <ul>
 <li><p><a href="#emite-una-retención"><code>POST /purchases/withholdings/issues</code></a><br>
@@ -102,7 +103,7 @@ Re-emite un Retención existente</p></li>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
     <span class="s">"https://api.datil.co/purchases/withholdings/issues"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">invoice</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">withholding</span><span class="p">))</span>
 </code></pre>
 <p>Para la emisión de una retención se debe enviar la información completa de la
 venta. Las retenciones emitidas con un API key de pruebas, serán enviadas al
@@ -115,7 +116,7 @@ ambiente de pruebas del SRI.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>supplier<p class="dt-data-param-required">requerido</p></td>
+<td>issuer<p class="dt-data-param-required">requerido</p></td>
 <td>En este campo sólo es necesario proveer &quot;location&quot; con los campos &quot;code&quot; y &quot;point_of_sale&quot;. Para el objeto &quot;point_of_sale&quot; es necesario sólo especificar &quot;code&quot;</td>
 </tr>
 <tr>
@@ -131,12 +132,8 @@ ambiente de pruebas del SRI.</p>
 <td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. Si no es provista, se utilizará la fecha en la que se envía la retención.</td>
 </tr>
 <tr>
-<td>totals<p class="dt-data-param-required">requerido</p></td>
-<td>Totales de la retención. Ver <a href="#invoice-totals">objeto totales</a></td>
-</tr>
-<tr>
-<td>customer<p class="dt-data-param-required">requerido</p></td>
-<td>Información del <a href="#contacto">comprador</a>.</td>
+<td>recipient<p class="dt-data-param-required">requerido</p></td>
+<td>Información del <a href="#contacto">receptor</a>.</td>
 </tr>
 <tr>
 <td>items<p class="dt-data-param-required">requerido</p></td>
@@ -150,17 +147,9 @@ ambiente de pruebas del SRI.</p>
 <td>properties</td>
 <td>Información adicional adjunta al comprobante. Listado de objetos tipo <a href="#property">property</a></td>
 </tr>
-<tr>
-<td>payments</td>
-<td>Pagos realizados a la retención. Listado de objetos tipo <a href="#payment">payment</a></td>
-</tr>
-<tr>
-<td>payment_methods</td>
-<td>Listado de formas de pago aplicables a la retención. Si alguno de los métodos de pago tienen un &quot;due_date&quot; Datil entenderá esto como una retención a crédito. Listado de objectos tipo <a href="#payment-method">payment_method</a></td>
-</tr>
 </tbody></table>
 <h3 id='respuesta'>Respuesta</h3>
-<p>Retorna un objeto <strong><a href="#el-objeto-invoice">invoice</a></strong> que incluye un nuevo parámetro <code>id</code>,
+<p>Retorna un objeto <strong><a href="#el-objeto-withholding">withholding</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la retención. El campo <code>clave_acceso</code> generado
 también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-una-retencion'>Consulta una retención</h2>
@@ -172,8 +161,8 @@ el estado actual del comprobante.</p>
 <p>Si es necesario conocer en detalle el estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar el atributos <code>authorization</code> de la retención.</p>
 <h3 id='operacion-2'>Operación</h3>
-<p><code>GET /purchases/withholdings/:invoice-id</code></p>
-<h3 id='requerimiento-2'>Requerimiento</h3><pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/withholdings/&lt;invoice-id&gt; <span class="se">\</span>
+<p><code>GET /purchases/withholdings/:withholding-id</code></p>
+<h3 id='requerimiento-2'>Requerimiento</h3><pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/withholdings/&lt;withholding-id&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -182,88 +171,49 @@ se debe examinar el atributos <code>authorization</code> de la retención.</p>
     <span class="s">'https://api.datil.co/purchases/withholdings/&lt;id-retención&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
 </code></pre>
-<p>Reemplaza en la ruta <code>&lt;invoice-ID&gt;</code> por el <code>id</code> de la retención que necesitas consultar.</p>
+<p>Reemplaza en la ruta <code>&lt;withholding-ID&gt;</code> por el <code>id</code> de la retención que necesitas consultar.</p>
 <h3 id='respuesta-2'>Respuesta</h3>
 <blockquote>
 <p>Respuesta de ejemplo</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6463427e69b546afb77a75973cc74ce7"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fiscal_period"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acme S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acme S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0910872345001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@datil.co"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-04T00:00:00-05:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.26"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"312"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4226.40"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"affected_document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-123412349"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">9397</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"point_of_sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.64"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.36"</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-000438970"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"authorization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2308201701099271255400110010020004389701994000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-23T10:09:15-05:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 123"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientes@datil.co"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pérez"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0990289327"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sublocality"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0914617584"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.36"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_tax_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.64"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.00"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">438970</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2308201701099271255400110010020004389701994000000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan Pro"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"unit_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"unit_of_measurement"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.357000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.36"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.64"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.36"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Servicio"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dátil Retenciónción Electrónica"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incluye"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retenciones, Retenciones, Notas de Crédito/Débito, Guías de Remisión"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='re-emite-una-retencion'>Re-emite una retención</h2><h3 id='operacion-3'>Operación</h3>
 <p><code>POST /purchases/withholdings/:id/reissues</code></p>
@@ -318,7 +268,7 @@ por cualquiera de estos parámetros.</p>
 <td>Lista retenciones hasta esta secuencia.</td>
 </tr>
 <tr>
-<td>supplier_points_of_sale<p class="dt-data-type">array</p></td>
+<td>issuer_points_of_sale<p class="dt-data-type">array</p></td>
 <td>Listado de códigos de punto de emisión separados por coma, ej: 001,004,005</td>
 </tr>
 <tr>
@@ -338,305 +288,49 @@ coincidan con los parámetros de filtrado enviados.</p>
 <p>Listado de retenciones</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benalcázar Teresa"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-5555"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1910221134001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benalcázar Teresa"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tere@email.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sublocality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T13:58:25.324730-05:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0102201801099271255999999999010001483751993713710"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T18:58:25.324730+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"148375"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-001-000148375"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"payment_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total_tax_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tip_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"additional_discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"environment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"authorization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T18:58:49Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0102201801099271255999999999010001483751993713710"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Periodo"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Febrero 2018"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan Gratuito"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6047dfaa-d657-4185-b113-0f883ec455a1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FEF-001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
-        </span><span class="p">}],</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5432039</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0992754321001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-bcec-4e83-b9e9-d4ae12b4d777"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"administrative_district_level_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"point_of_sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d15f357-02dc-4911-841d-e69f09cb213c"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientes@datil.co"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"outstanding_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"printable_version_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/aaaaaaaa0000999111ccc333777aa53/pdf?download"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aaaaaaaa0000999111ccc333777aa53"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"electronic_document_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/aaaaaaaa0000999111ccc333777aa53/xml?download"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adriana Benítez"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1701927920001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adriana Benítez"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adriana@hyper.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sublocality"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T17:17:31.257164-05:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0102201801099275432100120010020000024971994713525"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.25"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.75"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T22:17:31.257164+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dbid"</span><span class="p">:</span><span class="w"> </span><span class="mi">999876</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2497"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-000002497"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"payment_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total_tax_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.75"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tip_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"additional_discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.25"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"environment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"authorization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T22:17:54Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0102201801099275432100120010020000024971994713517"</span><span class="w">
+      </span><span class="s2">"fiscal_period"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Periodo"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anual"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Certificado de Firma Electrónica"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.250000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8e77da89-4b63-40c6-b9a5-268cb4a547f9"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CFE-001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.75"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.25"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.00"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
-        </span><span class="p">}],</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23717155</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"subtotal_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.25"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="s2">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0992754321001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acme S.A."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acme S.A."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_identification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0910872345001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@datil.co"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-04T00:00:00-05:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.26"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"312"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taxable_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4226.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"affected_document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-123412349"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"issue_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+      </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">9397</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"administrative_district_level_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"point_of_sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d15f357-02dc-4118-841d-e69f09cb213c"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientes@datil.co"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"outstanding_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"printable_version_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/pdf?download"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"088140bbd883556dabf82c38f5acf8ba"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"electronic_document_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/purchases/withholdings/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/purchases/withholdings/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10page_size=1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='registra-pagos'>Registra Pagos</h2><h3 id='operacion-4'>Operación</h3>
-<p><code>POST /purchases/withholdings/:id/payments</code></p>
-<h3 id='requerimiento-4'>Requerimiento</h3><pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/withholdings/6463427e69b546afb77a75973cc74ce7/payments <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
--d <span class="s1">'{
-      "payments": [
-        {
-          "amount": 114.0,
-          "method": "cash",
-          "date": "2017-05-31T13:50:07-05:00",
-          "properties": [
-            {
-              "name": "account_number",
-              "description": "2223XXXX23"
-            },
-            {
-              "name": "bank",
-              "description": "Banco Huancavilva"
-            }
-          }]
-        }
-      ]
-    }'</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
-
-<span class="n">payments</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">"payments"</span><span class="p">:</span> <span class="p">[{</span>
-    <span class="s">"amount"</span><span class="p">:</span> <span class="s">"114.0"</span><span class="p">,</span>
-    <span class="s">"method"</span><span class="p">:</span> <span class="s">"cash"</span><span class="p">,</span>
-    <span class="s">"date"</span><span class="p">:</span> <span class="s">"2017-05-31T13:50:07-05:00"</span><span class="p">,</span>
-    <span class="s">"properties"</span><span class="p">:</span> <span class="p">[{</span>
-        <span class="s">"name"</span><span class="p">:</span> <span class="s">"account_number"</span><span class="p">,</span>
-        <span class="s">"description"</span><span class="p">:</span> <span class="s">"2223XXXX23"</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="s">"name"</span><span class="p">:</span> <span class="s">"bank"</span><span class="p">,</span>
-        <span class="s">"description"</span><span class="p">:</span> <span class="s">"Banco Huancavilva"</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">}]</span>
-<span class="p">}</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
-    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://api.datil.co/purchases/withholdings/6463427e69b546afb77a75973cc74ce7/payments"</span><span class="p">,</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payments</span><span class="p">))</span>
-</code></pre>
-<p>Puedes registrar uno o más pagos.</p>
-
-<table><thead>
-<tr>
-<th>Parámetros</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>payments<p class="dt-data-param-required">requerido</p></td>
-<td>Listado de <a href="#payment">pagos</a> a registrar</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Parámetros</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>method<p class="dt-data-param-required">requerido</p></td>
-<td>Código que representa al método.</td>
-</tr>
-<tr>
-<td>amount<p class="dt-data-param-required">requerido</p></td>
-<td>Monto a pagar.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>Fecha en la que se realizó el pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. Si no es provista, se utilizará la fecha actual.</td>
-</tr>
-<tr>
-<td>properties</td>
-<td>Listado de propiedades adicionales</td>
-</tr>
-</tbody></table>
+</span></code></pre>

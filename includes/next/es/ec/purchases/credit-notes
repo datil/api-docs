@@ -1,3 +1,4 @@
+<h2 id="notas-credito-compra">Notas de crédito</h2>
 <h4 id='acciones-disponibles-para-nota-de-credito-en-compra'>Acciones disponibles para Nota de Crédito en compra</h4>
 <ul>
 <li><a href="#lista-notas-de-credito-compra"><code>GET /purchases/credit-notes</code></a><br>

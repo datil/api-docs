@@ -144,7 +144,7 @@ estar estructurada la clave de acceso.</p>
 <td>Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
-<h3 id='supplier'>Supplier</h3>
+<h3 id='issuer'>Issuer</h3>
 <p>Información del emisor de un comprobante.</p>
 
 <table><thead>
@@ -246,12 +246,12 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>person <p class="dt-data-type">object</p></td>
-<td>objeto tipo <a href="#person">person</a>. Aparece cuando el contacto es una persona.</td>
+<td>legal_name<p class="dt-data-type">string</p></td>
+<td>Razón social del contacto.</td>
 </tr>
 <tr>
-<td>business <p class="dt-data-type">object</p></td>
-<td>objeto tipo <a href="#business">business</a>. Aparece cuando el contacto es una empresa.</td>
+<td>commercial_name<p class="dt-data-type">string</p></td>
+<td>Nombre comercial del contacto (aplica para empresas).</td>
 </tr>
 <tr>
 <td>properties <p class="dt-data-type">object</p></td>
@@ -288,44 +288,6 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>administrative_district_level_1 <p class="dt-data-type">string</p></td>
 <td>Provincia</td>
-</tr>
-</tbody></table>
-
-<p>El contacto debe incluir alguno de los dos atributos, <code>business</code> o <code>person</code>.</p>
-<h3 id='business'>Business</h3>
-<table><thead>
-<tr>
-<th>Atributos</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>legal_name <p class="dt-data-type">string</p></td>
-<td>Razón social.</td>
-</tr>
-<tr>
-<td>commercial_name <p class="dt-data-type">string</p></td>
-<td>Nombre de comercial.</td>
-</tr>
-</tbody></table>
-<h3 id='person'>Person</h3>
-<table><thead>
-<tr>
-<th>Atributos</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>first_name <p class="dt-data-type">string</p></td>
-<td>Nombre de pila.</td>
-</tr>
-<tr>
-<td>middle_name <p class="dt-data-type">string</p></td>
-<td>Segundo nombre.</td>
-</tr>
-<tr>
-<td>last_name <p class="dt-data-type">string</p></td>
-<td>Apellido.</td>
 </tr>
 </tbody></table>
 <h3 id='property'>Property</h3>

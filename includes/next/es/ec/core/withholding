@@ -1,0 +1,88 @@
+<h2 id='retencion'>Retención</h2>
+<p>Una Retención está representada por un objeto <em>Withholding</em>.</p>
+<h5 id='el-objeto-withholding'>El objeto Withholding</h5>
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number<p class="dt-data-type">string</p></td>
+<td>Número completo de la retención. Es un número secuencial que se forma a partir de {código establecimiento}-{código pto. emisión}-{secuencia}</td>
+</tr>
+<tr>
+<td>currency<p class="dt-data-type">string</p></td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda.</td>
+</tr>
+<tr>
+<td>sequence<p class="dt-data-type">integer</p></td>
+<td>Número de secuencia.</td>
+</tr>
+<tr>
+<td>issue_date<p class="dt-data-type">string</p></td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>recipient<p class="dt-data-type">objeto <a href="#contacto">contacto</a></td>
+<td>Información del receptor. Normalmente un proveedor.</td>
+</tr>
+<tr>
+<td>items<p class="dt-data-type">lista de <a href="#withholding-item">items</a></p></td>
+<td>Impuestos retenidos.</td>
+</tr>
+<tr>
+<td>uuid<p class="dt-data-type">string</p></td>
+<td>La clave de acceso de la retención. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>properties<p class="dt-data-type">list de <a href="#property">property objects</a></p></td>
+<td>Información adicional adjunta al comprobante.</td>
+</tr>
+<tr>
+<td>electronic_document<p class="dt-data-type">string</p></td>
+<td>Documento electrónico, el XML que representa a esta retención ante el SRI.</td>
+</tr>
+<tr>
+<td>electronic_document_url<p class="dt-data-type">string</p></td>
+<td>URL de descarga del documento electrónico, el XML.</td>
+</tr>
+<tr>
+<td>printable_version_url<p class="dt-data-type">string</p></td>
+<td>URL de descarga del RIDE.</td>
+</tr>
+</tbody></table>
+
+<h4 id="withholding-item">Item</h4>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount<p class="dt-data-type">string</p></td>
+<td>Monto retenido.</td>
+</tr>
+<tr>
+<td>taxable_amount<p class="dt-data-type">string</p></td>
+<td>Base imponible.</td>
+</tr>
+<tr>
+<td>tax_code<p class="dt-data-type">string</p></td>
+<td>Código del tipo de impuesto retenido</td>
+</tr>
+<tr>
+<td>rate_code<p class="dt-data-type">string</p></td>
+<td>Código del impuesto específico retenido</td>
+</tr>
+<tr>
+<td>rate<p class="dt-data-type">string</p></td>
+<td>Porcentaje del impuesto</td>
+</tr>
+<tr>
+<td>affected_document<p class="dt-data-type">object <a href="#documento-relacionado">related document</a></p></td>
+<td>Documento afectado por esta retención</td>
+</tr>
+</tbody></table>

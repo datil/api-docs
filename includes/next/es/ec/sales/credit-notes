@@ -1,4 +1,4 @@
-<h4 id='acciones-disponibles-para-nota-de-credito-en-venta'>Acciones disponibles para Nota de crédito en venta</h4>
+<h2 id='notas-de-credito'>Notas de crédito</h2><h4 id='acciones-disponibles-para-nota-de-credito-en-venta'>Acciones disponibles para Nota de crédito en venta</h4>
 <ul>
 <li><p><a href="#emite-una-nota-de-crédito"><code>POST /sales/credit-notes/issues</code></a><br>
 Emite una nueva Nota de crédito</p></li>
@@ -53,11 +53,7 @@ Re-emite un Nota de crédito existente</p></li>
     "locality": "Guayaquil",
     "address": "Carrera 10 Calle 1",
     "email": "compras@datil.co",
-    "person": {
-      "first_name": "Juan",
-      "middle_name": "A.",
-      "last_name": "Pérez"
-    },
+    "legal_name": "Juan A. Pérez",
     "phone": "57122222222222",
     "tax_identification_type": "05",
     "sublocality": "Centro",
@@ -140,11 +136,7 @@ Re-emite un Nota de crédito existente</p></li>
         <span class="s">"locality"</span><span class="p">:</span> <span class="s">"Guayaquil"</span><span class="p">,</span>
         <span class="s">"address"</span><span class="p">:</span> <span class="s">"Carrera 10 Calle 1"</span><span class="p">,</span>
         <span class="s">"email"</span><span class="p">:</span> <span class="s">"compras@datil.co"</span><span class="p">,</span>
-        <span class="s">"person"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"Juan"</span><span class="p">,</span>
-            <span class="s">"middle_name"</span><span class="p">:</span> <span class="s">"A."</span><span class="p">,</span>
-            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Pérez"</span>
-        <span class="p">},</span>
+        <span class="s">"legal_name"</span><span class="p">:</span> <span class="s">"Juan A. Pérez"</span><span class="p">,</span>
         <span class="s">"phone"</span><span class="p">:</span> <span class="s">"57122222222222"</span><span class="p">,</span>
         <span class="s">"tax_identification_type"</span><span class="p">:</span> <span class="s">"05"</span><span class="p">,</span>
         <span class="s">"sublocality"</span><span class="p">:</span> <span class="s">"Centro"</span><span class="p">,</span>
@@ -206,7 +198,7 @@ ambiente de pruebas del SRI.</p>
 </thead><tbody>
 <tr>
 <td>supplier<p class="dt-data-param-required">requerido</p></td>
-<td>En este campo sólo es necesario proveer &quot;location&quot; con los campos &quot;code&quot; y &quot;point_of_sale&quot;. Para el objeto &quot;point_of_sale&quot; es necesario sólo especificar &quot;code&quot;</td>
+<td>Información del <a href="#issuer">emisor</a> .En este campo sólo es necesario proveer &quot;location&quot; con los campos &quot;code&quot; y &quot;point_of_sale&quot;. Para el objeto &quot;point_of_sale&quot; es necesario sólo especificar &quot;code&quot;</td>
 </tr>
 <tr>
 <td>sequence</td>
@@ -315,11 +307,7 @@ necesitas consultar.</p>
     </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientes@datil.co"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pérez"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José Pérez"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0990289327"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sublocality"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -439,9 +427,7 @@ coincidan con los parámetros de filtrado enviados.</p>
   </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benalcázar Teresa"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benalcázar Teresa"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-5555"</span><span class="p">,</span><span class="w">
@@ -507,10 +493,8 @@ coincidan con los parámetros de filtrado enviados.</p>
         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="w">
       </span><span class="p">}],</span><span class="w">
       </span><span class="s2">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">
@@ -540,9 +524,7 @@ coincidan con los parámetros de filtrado enviados.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adriana Benítez"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adriana Benítez"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tax_identification_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -613,10 +595,8 @@ coincidan con los parámetros de filtrado enviados.</p>
         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="w">
       </span><span class="p">}],</span><span class="w">
       </span><span class="s2">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"commercial_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"administrative_district_level_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayas"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Principal 234"</span><span class="p">,</span><span class="w">

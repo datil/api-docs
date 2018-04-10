@@ -15,7 +15,7 @@ Actualizar un Producto existente</p></li>
 <li><p><a href="#elimina-un-producto"><code>DELETE /catalog/products/:id</code></a><br>
 Elimina un Producto de tu catálogo</p></li>
 </ul>
-<h3 id='lista-productos'>Lista Productos</h3>
+<h2 id='lista-productos'>Lista Productos</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -64,7 +64,7 @@ por cualquiera de estos parámetros.</p>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta'>Respuesta</h4>
+<h3 id='respuesta'>Respuesta</h3>
 <p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Productos que coincidan
 con los filtros enviados.</p>
 
@@ -140,7 +140,7 @@ con los filtros enviados.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='consulta-un-producto'>Consulta un Producto</h3>
+</span></code></pre><h2 id='consulta-un-producto'>Consulta un Producto</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -168,7 +168,7 @@ información</p>
 <td>El identificador único del producto.</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-2'>Respuesta</h4>
+<h3 id='respuesta-2'>Respuesta</h3>
 <p>Retorna un objeto <a href="#product">Product</a> si el identificador es válido, caso contrario
 retorna un error.</p>
 
@@ -206,7 +206,7 @@ retorna un error.</p>
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:10:32.189Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-28T13:11:04.854Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='crea-un-producto'>Crea un Producto</h3>
+</span></code></pre><h2 id='crea-un-producto'>Crea un Producto</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -389,7 +389,7 @@ imagen.</p>
 <td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code>tax_code</code> 2 y <code>rate_code</code> 2</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-3'>Respuesta</h4>
+<h3 id='respuesta-3'>Respuesta</h3>
 <p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
 retorna un error.</p>
 
@@ -440,7 +440,7 @@ retorna un error.</p>
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.877Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unit_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.200000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='actualiza-un-producto'>Actualiza un Producto</h3>
+</span></code></pre><h2 id='actualiza-un-producto'>Actualiza un Producto</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -593,7 +593,7 @@ imagen.</p>
 <td>Código del impuesto específico aplicable. Por ejemplo el código del IVA 12% es el <code>tax_code</code> 2 y <code>rate_code</code> 2</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-4'>Respuesta</h4>
+<h3 id='respuesta-4'>Respuesta</h3>
 <p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
 retorna un error.</p>
 

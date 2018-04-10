@@ -15,7 +15,7 @@ Actualizar una Categoría existente</p></li>
 <li><p><a href="#elimina-una-categor-a"><code>DELETE /catalog/categories/:id</code></a><br>
 Elimina una Categoría de tu catálogo</p></li>
 </ul>
-<h3 id='lista-categorias'>Lista Categorías</h3>
+<h2 id='lista-categorias'>Lista Categorías</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -56,7 +56,7 @@ por cualquiera de estos parámetros.</p>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta'>Respuesta</h4>
+<h3 id='respuesta'>Respuesta</h3>
 <p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Categorías que coincidan
 con los filtros enviados.</p>
 
@@ -87,7 +87,7 @@ con los filtros enviados.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='consulta-una-categoria'>Consulta una Categoría</h3>
+</span></code></pre><h2 id='consulta-una-categoria'>Consulta una Categoría</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -115,7 +115,7 @@ información</p>
 <td>El identificador único del categoría.</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-2'>Respuesta</h4>
+<h3 id='respuesta-2'>Respuesta</h3>
 <p>Retorna un objeto <a href="#product">Product</a> si el identificador es válido, caso contrario
 retorna un error.</p>
 
@@ -171,7 +171,7 @@ ser único, si ya existe un categoría con el mismo SKU responde con un error.</
 <td>ID de la categoría padre. Esto te permitirá crear categorías dentro de otras.</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-3'>Respuesta</h4>
+<h3 id='respuesta-3'>Respuesta</h3>
 <p>Retorna el nuevo objeto <a href="#product">Product</a> si la información es válida, caso contrario
 retorna un error.</p>
 
@@ -185,7 +185,7 @@ retorna un error.</p>
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-13T17:02:48.892Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='actualiza-una-categoria'>Actualiza una Categoría</h3>
+</span></code></pre><h2 id='actualiza-una-categoria'>Actualiza una Categoría</h2>
 <blockquote>
 <p>Requerimiento de ejemplo</p>
 </blockquote>
@@ -223,7 +223,7 @@ atributos del categoría que necesitas actualizar. Revisa el listado de
 <td>Nombre del categoría</td>
 </tr>
 </tbody></table>
-<h4 id='respuesta-4'>Respuesta</h4>
+<h3 id='respuesta-4'>Respuesta</h3>
 <p>Retorna el objeto <a href="#category">Category</a> actualizado si la información es válida, caso contrario
 retorna un error.</p>
 

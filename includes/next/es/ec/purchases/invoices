@@ -1,3 +1,4 @@
+<h2 id="facturas-compra">Facturas</h2>
 <h4 id='acciones-disponibles-para-facturas-de-compra'>Acciones disponibles para Facturas de compra</h4>
 <ul>
 <li><a href="#lista-facturas"><code>GET /purchases/invoices</code></a><br>
