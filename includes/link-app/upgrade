@@ -1,0 +1,31 @@
+<h1 id='actualizacion'>Actualización</h1>
+<p>Para actualizar el programa Link de Dátil</p>
+
+<ul>
+<li>Abra el terminal de windows y detenga el servicio:</li>
+</ul>
+
+<p><code>net stop datilink</code></p>
+
+<ul>
+<li>Respalde la carpeta de configuración  <code>config</code></li>
+</ul>
+
+<p>Windows: <code>C:\Archivos de Programa\Datil\Link\config</code> .</p>
+
+<ul>
+<li>Doble click en el desinstalador:</li>
+</ul>
+
+<p>Windows: <code>C:\Archivos de Programa\Datil\Link\unins</code></p>
+
+<p>Dentro del directorio de instalación solo debe quedar la carpeta <code>logs</code>. Si otro
+archivo o carpeta sigue existiendo, borrarlo.</p>
+
+<ul>
+<li><p>Instalar la nueva versión ejecutando el instalador de Link</p></li>
+<li><p>Reemplazar la carpeta config recién instalada con la carpeta config respaldada previamente</p></li>
+<li><p>Iniciar el servicio con el comando:</p></li>
+</ul>
+
+<p><code>net start datilink</code></p>

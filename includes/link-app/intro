@@ -1,0 +1,72 @@
+<h1 id='introduccion'>Introducción</h1>
+<p>Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación
+<strong>Link</strong> de Dátil te permite emitir todos los tipos de comprobantes
+electrónicos: facturas, retenciones, notas de crédito, notas de débito y
+guías de remisión.</p>
+
+<p>Link funciona como un servicio del sistema operativo, de esta manera se mantiene
+en ejecución permanente emitiendo comprobantes.</p>
+
+<p><strong>Link</strong> se conecta a la base de datos de tu ERP o sistema contable para obtener
+la información de los comprobantes mientras sigues usando tu sistema como
+siempre lo has hecho.</p>
+
+<p><strong>¿Cómo funciona?</strong></p>
+
+<ul>
+<li>Link consulta los documentos utilizando las sentencias SQL de los archivos de
+configuración.</li>
+<li>Registra los nuevos documentos detectados en una tabla de Control.</li>
+<li>La <em>tarea de emisión</em> de Link toma de la tabla de Control el ID del documento
+(id_local) en las tablas o vistas del ERP y consulta toda la información de
+todas las tablas/vistas relacionadas establecidas en la configuración.</li>
+<li>Si el intento de emisión del documento fue exitoso, Link actualiza la tabla
+de Control con el estado <em>RECIBIDO</em></li>
+<li>La <em>tarea de consulta de resultado</em> consulta al servicio de Dátil el estado
+de autorización del documento hasta obtener un estado final (AUTORIZADO,
+NO AUTORIZADO o DEVUELTO).</li>
+</ul>
+<h1 id='compatibilidad'>Compatibilidad</h1><h2 id='sistema-operativo'>Sistema Operativo</h2>
+<p>Link es compatible con los siguientes sistemas operativos:</p>
+
+<p><strong>Windows</strong></p>
+
+<p><em>Disponible para 32 y 64 bits</em></p>
+
+<ul>
+<li>Windows Server 2003</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2012</li>
+<li>Windows XP</li>
+<li>Windows Vista</li>
+<li>Windows 7</li>
+<li>Windows 8</li>
+</ul>
+
+<p>Para saber si la versión de su equipo es de 32 o 64 bits en Windows, sigue los
+pasos del <a href="https://support.microsoft.com/es-es/kb/827218">siguiente enlace</a>.</p>
+
+<p><strong>Linux</strong> (próximamente)</p>
+
+<ul>
+<li>CentOS</li>
+</ul>
+<h2 id='bases-de-datos'>Bases de Datos</h2>
+<p>Link utiliza ODBC para interactuar con la base de datos, por lo que si el
+sistema de base de datos que utiliza tu sistema tiene un controlador ODBC Link
+debería funcionar sin problemas.</p>
+
+<p>Consulta la documentación del driver ODBC que utilizas para construir la cadena
+de conexión (connection string). El sitio web <a href="https://www.connectionstrings.com/">www.connectionstrings.com</a> también puede ser de utilidad. Este sitio tiene documentación sobre varios motores de base de datos y drivers ODBC.</p>
+
+<p>Link ha sido probado y es utilizado en producción en estos motores de base de
+datos.</p>
+<h3 id='sql-server'>SQL Server</h3>
+<ul>
+<li>SQL Server 2000</li>
+<li>SQL Server 2005</li>
+<li>SQL Server 2008</li>
+<li>SQL Server 2012</li>
+<li>SQL Server 2014</li>
+</ul>
+<h3 id='sybase'>Sybase</h3><h3 id='oracle'>ORACLE</h3><h3 id='mysql'>MySQL</h3>
