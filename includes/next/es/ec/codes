@@ -267,7 +267,7 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>07</td>
 </tr>
 </tbody></table>
-<h2 id='tipos-de-forma-de-pago'>Tipos de forma de pago</h2>
+<h2 id='formas-de-pago'>Formas de pago</h2>
 <table><thead>
 <tr>
 <th>Forma de pago</th>
@@ -275,122 +275,210 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>Efectivo</td>
-<td>efectivo</td>
+<td>Alia</td>
+<td>alia</td>
+</tr>
+<tr>
+<td>American Express</td>
+<td>american_express</td>
 </tr>
 <tr>
 <td>Cheque</td>
-<td>cheque</td>
+<td>check</td>
+</tr>
+<tr>
+<td>Cheque certificado</td>
+<td>certified_check</td>
+</tr>
+<tr>
+<td>Cheque de gerencia</td>
+<td>cashiers_check</td>
+</tr>
+<tr>
+<td>Cheque del exterior</td>
+<td>outside_check</td>
+</tr>
+<tr>
+<td>Compensación de deudas</td>
+<td>debt_compensation</td>
 </tr>
 <tr>
 <td>Débito de cuenta bancaria</td>
-<td>debito_cuenta_bancaria</td>
+<td>bank_account_debit</td>
 </tr>
 <tr>
-<td>Transferencia bancaria</td>
-<td>transferencia</td>
+<td>Depósito Banco Bolivariano</td>
+<td>banco_bolivariano</td>
+</tr>
+<tr>
+<td>Depósito Banco Pacífico</td>
+<td>banco_pacifico</td>
+</tr>
+<tr>
+<td>Depósito Banco Pichincha</td>
+<td>banco_pichincha</td>
 </tr>
 <tr>
 <td>Depósito en cuenta (Corriente / Ahorros)</td>
-<td>deposito_cuenta_bancaria</td>
+<td>bank_account_deposit</td>
 </tr>
 <tr>
-<td>Tarjeta de débito</td>
-<td>tarjeta_debito</td>
-</tr>
-<tr>
-<td>Dinero electrónico Ecuador</td>
+<td>Dinero electrónico</td>
 <td>dinero_electronico_ec</td>
 </tr>
 <tr>
-<td>Tarjeta prepago</td>
-<td>tarjeta_prepago</td>
+<td>Diners Club</td>
+<td>diners_club</td>
 </tr>
 <tr>
-<td>Tarjeta de crédito</td>
-<td>tarjeta_credito</td>
+<td>Discover</td>
+<td>discover</td>
 </tr>
 <tr>
-<td>Otros</td>
-<td>otros</td>
+<td>Efectivo</td>
+<td>cash</td>
+</tr>
+<tr>
+<td>Endoso de inversión</td>
+<td>investment_endorsement</td>
 </tr>
 <tr>
 <td>Endoso de títulos</td>
-<td>endoso_titulos</td>
+<td>certificate_endorsement</td>
+</tr>
+<tr>
+<td>Giro</td>
+<td>money_order</td>
+</tr>
+<tr>
+<td>MasterCard</td>
+<td>mastercard</td>
+</tr>
+<tr>
+<td>Nota de Crédito</td>
+<td>credit_note</td>
+</tr>
+<tr>
+<td>Orden de Pago Banco Pichincha</td>
+<td>banco_pichincha_payment_order</td>
+</tr>
+<tr>
+<td>Otros</td>
+<td>others</td>
+</tr>
+<tr>
+<td>PayPal</td>
+<td>paypal</td>
+</tr>
+<tr>
+<td>PayPhone</td>
+<td>payphone</td>
+</tr>
+<tr>
+<td>Retención</td>
+<td>retention</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito</td>
+<td>credit_card</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito internacional</td>
+<td>international_credit_card</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito nacional</td>
+<td>local_credit_card</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>debit_card</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>prepaid_card</td>
+</tr>
+<tr>
+<td>Transferencia</td>
+<td>wire_transfer</td>
+</tr>
+<tr>
+<td>Transferencia banco exterior</td>
+<td>international_bank_transfer</td>
+</tr>
+<tr>
+<td>Transferencia en el mismo banco</td>
+<td>same_bank_transfer</td>
+</tr>
+<tr>
+<td>Transferencia otro banco nacional</td>
+<td>other_bank_transfer</td>
+</tr>
+<tr>
+<td>Visa</td>
+<td>visa</td>
 </tr>
 </tbody></table>
 <h2 id='equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri'>Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
 <table><thead>
 <tr>
 <th>Forma de pago Dátil</th>
-<th>Código</th>
 <th>Forma de pago SRI</th>
 <th>Código</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Efectivo</td>
-<td>efectivo</td>
 <td>Sin utilización del sistema financiero</td>
 <td>01</td>
 </tr>
 <tr>
 <td>Cheque</td>
-<td>cheque</td>
 <td>Otros con utilización del sistema financiero</td>
 <td>20</td>
 </tr>
 <tr>
 <td>Débito bancario</td>
-<td>debito_cuenta_bancaria</td>
 <td>Otros con utilización del sistema financiero</td>
 <td>20</td>
 </tr>
 <tr>
 <td>Transferencia bancaria</td>
-<td>transferencia</td>
 <td>Otros con utilización del sistema financiero</td>
 <td>20</td>
 </tr>
 <tr>
 <td>Tarjeta de crédito</td>
-<td>tarjeta_credito</td>
 <td>Tarjeta de crédito nacional</td>
 <td>19</td>
 </tr>
 <tr>
 <td>Depósito en cuenta (Corriente / Ahorros)</td>
-<td>deposito_cuenta_bancaria</td>
 <td>Otros con utilización del sistema financiero</td>
 <td>20</td>
 </tr>
 <tr>
 <td>Tarjeta de débito</td>
-<td>tarjeta_debito</td>
 <td>Tarjeta de débito</td>
 <td>16</td>
 </tr>
 <tr>
 <td>Dinero electrónico Ecuador</td>
-<td>dinero_electronico_ec</td>
 <td>Dinero electrónico</td>
 <td>17</td>
 </tr>
 <tr>
 <td>Tarjeta prepago</td>
-<td>tarjeta_prepago</td>
 <td>Tarjeta prepago</td>
 <td>18</td>
 </tr>
 <tr>
 <td>Otros</td>
-<td>otros</td>
 <td>Otros con utilización del sistema financiero</td>
 <td>20</td>
 </tr>
 <tr>
 <td>Endoso de títulos</td>
-<td>endoso_titulos</td>
 <td>Endoso de títulos</td>
 <td>21</td>
 </tr>
