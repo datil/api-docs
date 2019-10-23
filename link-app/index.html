@@ -298,6 +298,9 @@
                     <a href="#establecimiento" class="toc-h2 toc-link" data-title="Establecimiento">Establecimiento</a>
                   </li>
                   <li>
+                    <a href="#maquina-fiscal" class="toc-h2 toc-link" data-title="Máquina fiscal">Máquina fiscal</a>
+                  </li>
+                  <li>
                     <a href="#persona" class="toc-h2 toc-link" data-title="Persona">Persona</a>
                   </li>
                   <li>
@@ -319,7 +322,7 @@
                     <a href="#mensajes-de-respuesta-sri" class="toc-h2 toc-link" data-title="Mensajes de respuesta SRI">Mensajes de respuesta SRI</a>
                   </li>
                   <li>
-                    <a href="#item-de-factura" class="toc-h2 toc-link" data-title="Item de factura y nota de crédito">Item de factura y nota de crédito</a>
+                    <a href="#item-de-factura" class="toc-h2 toc-link" data-title="Item de factura, nota de crédito y liquidación de compras">Item de factura, nota de crédito y liquidación de compras</a>
                   </li>
                   <li>
                     <a href="#retencion-de-factura" class="toc-h2 toc-link" data-title="Retención en factura ">Retención en factura </a>
@@ -3475,6 +3478,32 @@ estar estructurada la clave de acceso.</p>
 <td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code></td>
 </tr>
 </tbody></table>
+<h2 id='maquina-fiscal'>Máquina fiscal</h2>
+<p>Datos de una máquina fiscal.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marca</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>modelo</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>serie</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
 <h2 id='persona'>Persona</h2>
 <p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
 
@@ -3698,7 +3727,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
+<h2 id="item-de-factura">Item de factura, nota de crédito y liquidación de compras</h2>
 
 <p>Representa un producto o servicio del comercio.</p>
 
