@@ -3404,42 +3404,42 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_id_proveedor_reembolso</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_pais_pago_proveedor_reembolso</td>
 <td>string</td>
-<td>Código de dos letras del país del proveedor según [ISO_3166](https://en.wikipedia.org/wiki/</td>
+<td>Código de dos letras del país del proveedor según [ISO_3166](https://en.wikipedia.org/wiki/ <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tipo_proveedor_reembolso</td>
 <td>string</td>
-<td>Tipo de proveedor</td>
+<td>Tipo de proveedor <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>secuencia_reembolso</td>
 <td>int</td>
-<td>Número de secuencia de la factura.</td>
+<td>Número de secuencia de la factura. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>punto_emision_reembolso</td>
 <td>string</td>
-<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code>.</td>
+<td>Código numérico de 3 caracteres que  representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>fecha_emision_reembolso</td>
 <td>datetime</td>
-<td>Fecha de emisión</td>
+<td>Fecha de emisión <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>numero_autorizacion_reembolso</td>
 <td>string</td>
-<td>Autorización del documento de reembolso.</td>
+<td>Autorización del documento de reembolso. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_establecimiento_reembolso</td>
 <td>float</td>
-<td>Número establecimiento que recibe la entrega.</td>
+<td>Número establecimiento que recibe la entrega. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h3 id='impuestos-de-reembolsos'>Impuestos de reembolsos</h3>
@@ -3491,9 +3491,9 @@ una columna tiene los nombres y otra los valores.</p>
 <h3 id='maquina-fiscal'>Máquina fiscal</h3>
 <p>Obtiene información de la máquina fiscal con la que se emitió la liquidación</p>
 <pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_fiscal_machine</span> <span class="o">=</span> <span class="k">SELECT</span>
-  <span class="p">[</span><span class="n">marca</span><span class="p">],</span>
-  <span class="p">[</span><span class="n">modelo</span><span class="p">],</span>
-  <span class="p">[</span><span class="n">serie</span><span class="p">]</span>
+  <span class="n">marca</span><span class="p">,</span>
+  <span class="n">modelo</span><span class="p">,</span>
+  <span class="n">serie</span>
   <span class="k">FROM</span>
   <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">maquina_fiscal</span>
   <span class="k">WHERE</span>
@@ -3522,3 +3522,141 @@ una columna tiene los nombres y otra los valores.</p>
 <td>Serie de máximo 100 caracteres</td>
 </tr>
 </tbody></table>
+<h3 id='tablas-recomendadas-5'>Tablas recomendadas</h3>
+<p>Estructura recomendada para las tablas o vistas con información de las liquidaciones de compra.</p>
+
+<p>Ejemplo en SQL Server:</p>
+<pre class="highlight sql tab-sql"><code><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">liquidaciones_compra</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">clave_acceso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">49</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">DATETIME</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">moneda</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">15</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_documento</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- EMISOR</span>
+    <span class="p">[</span><span class="n">ruc</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">13</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">obligado_contabilidad</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">contribuyente_especial</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">13</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">nombre_comercial</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_matriz</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">punto_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- PROVEEDOR</span>
+    <span class="p">[</span><span class="n">tipo_identificador_proveedor</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social_proveedor</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">identificador_proveedor</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_proveedor</span><span class="p">]</span> <span class="p">[</span><span class="n">vARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- TOTALES</span>
+    <span class="p">[</span><span class="n">total_sin_impuesto</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">importe_total</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- REEMBOLSO</span>
+    <span class="p">[</span><span class="n">codigo_documento_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_comprobante_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_base_imponible_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_impuesto_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: ITEMS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">codigo_principal</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">25</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_auxiliar</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">25</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">unidad_medida</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDIACION: DETALLES ADICIONALES DE ITEMS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">item_detalle_adicional</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_item</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_items_detalles_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_item</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: IMPUESTOS DE ITEMS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">item_impuesto</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_item</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tarifa</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="c1">-- porcentaje</span>
+    <span class="k">CONSTRAINT</span> <span class="n">PK_item_impuesto</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_item</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">codigo_porcentaje</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: IMPUESTOS TOTALES</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">total_impuesto</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento_adicional</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tarifa</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">PK_total_impuesto</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_liquidacion</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">codigo_porcentaje</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDIACION: PAGOS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">pago</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">forma_pago</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">plazo</span><span class="p">]</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">unidad_tiempo</span><span class="p">]</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: REEMBOLSOS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">reembolso</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_reembolso</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">tipo_id_proveedor_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_proveedor_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_pais_pago_proveedor_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_proveedor_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_documento_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_establecimiento_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">punto_emision_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">secuencial_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">fecha_emision_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DATETIME</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">numero_autorizacion_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">49</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: REEMBOLSO IMPUESTOS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">reembolso_tax</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">reembolso</span><span class="p">](</span><span class="n">id_reembolso</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tarifa</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">impuesto_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: MAQUINA FISCAL</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">maquina_fiscal</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">marca</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">modelo</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">serie</span><span class="p">]</span> <span class="p">[</span><span class="n">VARCHAR</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_maquina_fiscal</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">marca</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">-- LIQUIDACION: INFO ADICIONAL</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">info_adicional</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_liquidacion</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">liquidaciones_compra</span><span class="p">].[</span><span class="n">liquidacion</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_info_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_liquidacion</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre>
