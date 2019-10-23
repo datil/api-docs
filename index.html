@@ -196,7 +196,7 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-554fbf47.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-611b0914.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-bccf8c07.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
@@ -723,7 +723,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
     <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -1248,7 +1248,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
 <pre class="highlight shell tab-shell"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
 
-<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span> 
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"xml"</span> <span class="p">:</span> <span class="s">"&lt;?xml ... "</span>
 <span class="p">}</span>
 
@@ -1260,7 +1260,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     <span class="s">"https://link.datil.co/invoices/issue/xml"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code></code></pre><h3 id='respuesta'>Respuesta</h3>
+</code></pre><pre class="highlight csharp tab-csharp"><code></code></pre><h3 id='respuesta'>Respuesta</h3>
 <blockquote>
 <h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -1411,7 +1411,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/invoices/&lt;id-factura&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -1854,7 +1854,7 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
     <span class="s">"https://link.datil.co/credit-notes/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">nota_credito</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -1864,7 +1864,7 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp </span>
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
       <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
       <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
 
@@ -2154,15 +2154,15 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-nota-credito">nota de crédito</a></strong> que incluye un nuevo parámetro <code>id</code>,
-el cual identifica de manera única a la nota de crédito. El campo <code>clave_acceso</code> 
+el cual identifica de manera única a la nota de crédito. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-de-una-nota-de-credito'>Consulta de una nota de crédito</h2>
 <p>Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /credit-notes/&lt;invoice-id&gt;</code></p>
@@ -2178,7 +2178,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/credit-notes/&lt;id-notacredito&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -2484,7 +2484,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="s">"https://link.datil.co/retentions/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">retencion</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -2743,7 +2743,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/retentions/&lt;id-retencion&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -3045,7 +3045,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="s">"https://link.datil.co/waybills/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">guia_remision</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -3454,7 +3454,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/waybills/&lt;id-notacredito&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -3779,7 +3779,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="s">"https://link.datil.co/debit-notes/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">nota_debito</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -4131,7 +4131,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/debit-notes/&lt;id-notacredito&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -4526,7 +4526,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="s">"https://link.datil.co/purchase-settlements/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">liquidacion_compras</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -4912,7 +4912,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/purchase-settlements/&lt;id-liquidacion&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -6058,7 +6058,7 @@ del comprobante emitido.</p>
     <span class="s">'https://link.datil.co/webhooks'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">suscripcion</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>

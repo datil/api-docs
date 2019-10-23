@@ -257,7 +257,7 @@
     <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -782,7 +782,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
 <pre class="highlight shell tab-shell"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
 
-<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span> 
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"xml"</span> <span class="p">:</span> <span class="s">"&lt;?xml ... "</span>
 <span class="p">}</span>
 
@@ -794,7 +794,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     <span class="s">"https://link.datil.co/invoices/issue/xml"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code></code></pre><h3 id='respuesta'>Respuesta</h3>
+</code></pre><pre class="highlight csharp tab-csharp"><code></code></pre><h3 id='respuesta'>Respuesta</h3>
 <blockquote>
 <h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -945,7 +945,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/invoices/&lt;id-factura&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>

@@ -185,7 +185,7 @@
     <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -588,7 +588,7 @@ This information is sent to the Internal Revenue Service (SRI)
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://link.datil.co/invoices/&lt;id-factura&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
-</code></pre><pre class="highlight csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
