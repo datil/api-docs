@@ -283,6 +283,9 @@
                   <li>
                     <a href="#guias-de-remision" class="toc-h2 toc-link" data-title="Guías de Remisión">Guías de Remisión</a>
                   </li>
+                  <li>
+                    <a href="#liquidaciones-de-compra" class="toc-h2 toc-link" data-title="Liquidaciones de compra">Liquidaciones de compra</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -3336,7 +3339,739 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="k">CONSTRAINT</span> <span class="n">PK_informacion_adicional</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_guia_remision</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
 
-</code></pre><h1 id='clave-de-acceso'>Clave de acceso</h1>
+</code></pre><h2 id='liquidaciones-de-compra'>Liquidaciones de compra</h2>
+<p>Los queries para la emisión electrónica de <strong>liquidaciones de compra</strong> se guardan en el archivo de configuración <code>purchase_settlement.ini</code>.</p>
+
+<p><a href="/link-app#purchase_settlement-ini">Ejemplo de archivo purchase_settlement.ini</a></p>
+<h3 id='cabecera-5'>Cabecera</h3>
+<p>Obtiene información de la cabecera de la liquidación de compra</p>
+<pre class="highlight sql tab-sql"><code><span class="n">headers</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id</span>                      <span class="n">id_local</span><span class="p">,</span>
+  <span class="n">secuencial</span><span class="p">,</span>
+  <span class="n">fecha_emision</span><span class="p">,</span>
+  <span class="n">moneda</span><span class="p">,</span>
+  <span class="n">tipo_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="p">:</span><span class="k">order</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_local</td>
+<td>int o string</td>
+<td>Identifica de manera única la liquidación de compra. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la liquidación. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>datetime</td>
+<td>Fecha en la que se emite la liquidación.</td>
+</tr>
+<tr>
+<td>moneda</td>
+<td>string</td>
+<td>Código <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO</a> de la moneda. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>int</td>
+<td>Emisión normal: <code>1</code>.<br>Emisión por indisponibilidad: <code>2</code><br><strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='emisor-2'>Emisor</h3>
+<p>Obitiene información del emisor de la liquidación de compra</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_buyer</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">ruc</span><span class="p">,</span>
+  <span class="n">obligado_contabilidad</span><span class="p">,</span>
+  <span class="n">contribuyente_especial</span><span class="p">,</span>
+  <span class="n">nombre_comercial</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_establecimiento</span><span class="p">,</span>
+  <span class="n">direccion_matriz</span>              <span class="n">direccion_emisor</span><span class="p">,</span>
+  <span class="n">codigo_establecimiento</span>        <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">punto_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>string</td>
+<td><code>&#39;SI&#39;</code> si está obligado a llevar contabilidad. <code>&#39;NO&#39;</code> si no lo está.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco <code>&#39;&#39;</code> si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direccion_establecimiento</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_emisor</td>
+<td>string</td>
+<td>Dirección del punto de emisión. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code>001</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='proveedor'>Proveedor</h3>
+<p>Obtiene información del proveedor de la liquidación de compra</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_provider</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">identificador_proveedor</span>                   <span class="n">identificacion</span><span class="p">,</span>
+  <span class="n">tipo_identificador_proveedor</span>              <span class="n">tipo_identificacion</span><span class="p">,</span>
+  <span class="n">razon_social_proveedor</span> <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_proveedor</span> <span class="n">direccion</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identificacion</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+</tbody></table>
+<h3 id='totales-3'>Totales</h3>
+<p>Obtiene información de los valores totales de las liquidaciones</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_totals</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">total_sin_impuestos</span><span class="p">,</span>
+  <span class="n">importe_total</span><span class="p">,</span>
+  <span class="n">descuento</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='impuestos-de-totales-3'>Impuestos de totales</h3>
+<p>Obtiene información de los impuestos de los totales de la factura</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_totals_taxes</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span>
+  <span class="k">FROM</span> 
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">total_impuesto</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_liquidacion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='items-3'>Items</h3>
+<p>Obtiene todos los items de una factura</p>
+<pre class="highlight sql tab-sql"><code><span class="n">items</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id</span> <span class="n">id_detalle</span><span class="p">,</span>
+  <span class="n">codigo_principal</span><span class="p">,</span>
+  <span class="n">codigo_auxiliar</span><span class="p">,</span>
+  <span class="n">descripcion</span><span class="p">,</span>
+  <span class="n">cantidad</span><span class="p">,</span>
+  <span class="n">unidad_medida</span><span class="p">,</span>
+  <span class="n">precio_unitario</span><span class="p">,</span>
+  <span class="n">descuento</span><span class="p">,</span>
+  <span class="n">precio_total_sin_impuestos</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">item</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_liquidacion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_detalle</td>
+<td>int</td>
+<td>Identifica de manera única el ítem o detalle de la factura. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_principal</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_auxiliar</td>
+<td>string</td>
+<td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
+</tr>
+<tr>
+<td>descripcion</td>
+<td>string</td>
+<td>Descripción del ítem. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>cantidad</td>
+<td>float</td>
+<td>Cantidad de items. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>unidad_medida</td>
+<td>string</td>
+<td>Unidad de medida. Ejemplo: Kilos.</td>
+</tr>
+<tr>
+<td>precio_unitario</td>
+<td>float</td>
+<td>Precio unitario. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>El descuento es aplicado por cada producto.</td>
+</tr>
+<tr>
+<td>precio_total_sin_impuestos</td>
+<td>float</td>
+<td>Precio antes de los impuestos. Se obtiene multiplicando la <code>cantidad</code> por el <code>precio_unitario</code> <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='impuestos-de-items-3'>Impuestos de items</h3>
+<p>Obtiene los impuestos de un item.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">item_taxes</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id_item</span> <span class="n">id_detalle</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span><span class="p">,</span>
+  <span class="n">tarifa</span><span class="p">,</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">item_impuesto</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_item</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_detalle</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='detalles-adicionales-de-items-5'>Detalles adicionales de items</h3>
+<p>Obtiene los detalles adicionales de un ítem.</p>
+
+<p>Los detalles adicionales de un ítem se manejan de la forma &#39;Clave&#39;:&#39;Valor&#39;. Ejemplo: &#39;Peso&#39;:&#39;Kg&#39;</p>
+
+<p>Se asume que en la tabla consultada una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con detalles adicionales del ítem:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Peso</td>
+<td>KG</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Rojo</td>
+</tr>
+<tr>
+<td>Caducidad</td>
+<td>10 días</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql tab-sql"><code><span class="n">item_details</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">nombre</span>    <span class="n">nombre</span><span class="p">,</span>
+  <span class="n">valor</span>   <span class="n">valor</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">item_detalle_adicional</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_item</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Nombre del detalle adicional del ítem</td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Valor del detalle adicional del ítem</td>
+</tr>
+</tbody></table>
+<h3 id='informacion-adicional-5'>Información adicional</h3>
+<p>Obtiene la información adicional de la factura. Este query es <strong>opcional</strong></p>
+
+<p>La información adicional de la factura se maneja de la forma &#39;Clave&#39;:&#39;Valor&#39;. Ejemplo: &#39;Tipo de pago&#39;:&#39;Cheque&#39;</p>
+
+<p>Se asume que en la tabla consultada una columna tiene los nombres y otra los valores.</p>
+
+<p>Ejemplo de columnas con información adicional de la liquidación:</p>
+
+<table><thead>
+<tr>
+<th>columna_de_nombres</th>
+<th>columna_de_valores</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tipo de servicio</td>
+<td>Avanzado</td>
+</tr>
+<tr>
+<td>Forma de pago</td>
+<td>Cheque</td>
+</tr>
+<tr>
+<td>Periodo</td>
+<td>3 meses</td>
+</tr>
+</tbody></table>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_additional_information</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">nombre</span>    <span class="n">_nombre_</span><span class="p">,</span>
+  <span class="n">valor</span>     <span class="n">_valor_</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">info_adicional</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_liquidacion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>_nombre_</code></td>
+<td>string</td>
+<td>Nombre de la información adicional de la factura</td>
+</tr>
+<tr>
+<td><code>_valor_</code></td>
+<td>string</td>
+<td>Valor de la información adicional de la factura</td>
+</tr>
+</tbody></table>
+<h3 id='pagos-2'>Pagos</h3>
+<p>Obtiene la información de los pagos aplicables a la liquidación.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">payment_methods</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">forma_pago</span><span class="p">,</span>
+  <span class="n">total</span> <span class="n">total</span><span class="p">,</span>
+  <span class="n">unidad_tiempo</span><span class="p">,</span>
+  <span class="n">plazo</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">pago</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_liquidacion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>forma_pago</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-forma-de-pago">tipo de forma de pago</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>unidad_tiempo</td>
+<td>string</td>
+<td>Especifica la unidad de tiempo en la cual se expresa el plazo.</td>
+</tr>
+<tr>
+<td>plazo</td>
+<td>int</td>
+<td>Especifica el plazo del tipo de pago.</td>
+</tr>
+</tbody></table>
+<h3 id='reembolsos'>Reembolsos</h3>
+<p>Obtiene el reembolso aplicable a una liquidación.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_reimbursement</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">r</span><span class="p">.</span><span class="n">id_reembolso</span><span class="p">,</span>
+  <span class="n">l</span><span class="p">.</span><span class="n">codigo_documento_reembolso</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span> <span class="k">AS</span> <span class="n">l</span> <span class="k">JOIN</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">reembolso</span> <span class="k">AS</span> <span class="n">r</span> 
+  <span class="k">ON</span>
+  <span class="n">l</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">id_liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>r.id_reembolso</td>
+<td>int</td>
+<td>Identificador del reembolso. <strong>Reembolso</strong></td>
+</tr>
+<tr>
+<td>l.codigo_documento_reembolso</td>
+<td>Identificador del documento de reembolso. <strong>Reembolso</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='totales-de-reembolosos'>Totales de reembolosos</h3>
+<p>Obtiene la información de los totales de un reembolso</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_reimbursement_totals</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">total_comprobante_reembolso</span>            <span class="n">subtotal</span><span class="p">,</span>
+  <span class="n">total_base_imponible_reembolso</span>         <span class="n">total</span><span class="p">,</span>
+  <span class="n">total_impuesto_reembolso</span>               <span class="n">total_impuestos</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">liquidacion</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subtotal</td>
+<td>float</td>
+<td>Total del reembolso incluyendo base imponible e impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Total del reembolso incluyendo la base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total_impuestos</td>
+<td>float</td>
+<td>Total del reembolso incluyendo los impuestos</td>
+</tr>
+</tbody></table>
+<h3 id='documennto-reembolso'>Documennto reembolso</h3>
+<p>Obtiene la información de un reembolso.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_reimbursement_document</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo_documento_reembolso</span>            <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">id_reembolso</span>                          <span class="n">id_documento</span><span class="p">,</span>
+  <span class="n">id_proveedor_reembolso</span><span class="p">,</span>
+  <span class="n">tipo_id_proveedor_reembolso</span><span class="p">,</span>
+  <span class="n">codigo_pais_pago_proveedor_reembolso</span><span class="p">,</span>
+  <span class="n">tipo_proveedor_reembolso</span><span class="p">,</span>
+  <span class="n">secuencia_reembolso</span><span class="p">,</span>
+  <span class="n">punto_emision_reembolso</span><span class="p">,</span>
+  <span class="n">fecha_emision_reembolso</span><span class="p">,</span>
+  <span class="n">numero_autorizacion_reembolso</span><span class="p">,</span>
+  <span class="n">codigo_establecimiento_reembolso</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">reembolso</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_reembolso</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código numérico de 2 caracteres que representa al documento de reembolso. Ejemplo: <code>01</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>id_documento</td>
+<td>int</td>
+<td>Identifica de manera única al documento de reemoblso. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>id_proveedor_reembolso</td>
+<td>string</td>
+<td>Identifica de manera única al proveedor en la liquidación. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_id_proveedor_reembolso</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación</td>
+</tr>
+<tr>
+<td>codigo_pais_pago_proveedor_reembolso</td>
+<td>string</td>
+<td>Código de dos letras del país del proveedor según [ISO_3166](https://en.wikipedia.org/wiki/</td>
+</tr>
+<tr>
+<td>tipo_proveedor_reembolso</td>
+<td>string</td>
+<td>Tipo de proveedor</td>
+</tr>
+<tr>
+<td>secuencia_reembolso</td>
+<td>int</td>
+<td>Número de secuencia de la factura.</td>
+</tr>
+<tr>
+<td>punto_emision_reembolso</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code>.</td>
+</tr>
+<tr>
+<td>fecha_emision_reembolso</td>
+<td>datetime</td>
+<td>Fecha de emisión</td>
+</tr>
+<tr>
+<td>numero_autorizacion_reembolso</td>
+<td>string</td>
+<td>Autorización del documento de reembolso.</td>
+</tr>
+<tr>
+<td>codigo_establecimiento_reembolso</td>
+<td>float</td>
+<td>Número establecimiento que recibe la entrega.</td>
+</tr>
+</tbody></table>
+<h3 id='impuestos-de-reembolsos'>Impuestos de reembolsos</h3>
+<p>Obtiene información de los impuestos de los reembolsos</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_reimbursement_tax</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">tarifa</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">impuesto_reembolso</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">reembolso_tax</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_reembolso</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuesto_reembolso</td>
+<td>float</td>
+<td>Valor del impuesto del reembolso</td>
+</tr>
+</tbody></table>
+<h3 id='maquina-fiscal'>Máquina fiscal</h3>
+<p>Obtiene información de la máquina fiscal con la que se emitió la liquidación</p>
+<pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_fiscal_machine</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="p">[</span><span class="n">marca</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">modelo</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">serie</span><span class="p">]</span>
+  <span class="k">FROM</span>
+  <span class="n">liquidaciones_compra</span><span class="p">.</span><span class="n">maquina_fiscal</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_liquidacion</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marca</td>
+<td>string</td>
+<td>Marca de máximo 100 caracteres</td>
+</tr>
+<tr>
+<td>modelo</td>
+<td>string</td>
+<td>Modelo de máximo 100 caracteres</td>
+</tr>
+<tr>
+<td>serie</td>
+<td>string</td>
+<td>Serie de máximo 100 caracteres</td>
+</tr>
+</tbody></table>
+<h1 id='clave-de-acceso'>Clave de acceso</h1>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
 Pero es posible también proveer la clave de acceso si se requiere tener control
