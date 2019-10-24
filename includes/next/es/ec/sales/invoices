@@ -417,16 +417,24 @@ por cualquiera de estos parámetros.</p>
 <td>Lista facturas hasta esta secuencia.</td>
 </tr>
 <tr>
-<td>supplier_points_of_sale<p class="dt-data-type">array</p></td>
+<td>supplier_locations_codes<p class="dt-data-type">array</p></td>
+<td>Listado de códigos de establecimiento separados por coma, ej: 001,004,005</td>
+</tr>
+<tr>
+<td>supplier_locations_points_of_sale<p class="dt-data-type">array</p></td>
 <td>Listado de códigos de punto de emisión separados por coma, ej: 001,004,005</td>
 </tr>
 <tr>
-<td>select_keys<p class="dt-data-type">array</p></td>
+<td>select_keys<p class="dt-data-type">string</p></td>
 <td>Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items</td>
 </tr>
 <tr>
 <td>page_size<p class="dt-data-type">integer</p></td>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
+</tr>
+<tr>
+<td>order_by <p class="dt-data-type">string</p></td>
+<td>Listado de nombres de atributos de la factura por los que quisieras ordenar el listado, por ejemplo: &quot;sequence&quot;. Para ordenar de forma descendente utiliza un guión &quot;-&quot; como prefijo al nombre del atributo, así: &quot;-sequence&quot;</td>
 </tr>
 </tbody></table>
 <h4 id='respuesta-4'>Respuesta</h4>

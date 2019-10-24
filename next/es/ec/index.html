@@ -394,6 +394,15 @@
                   <li>
                     <a href="#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri" class="toc-h2 toc-link" data-title="Equivalencia entre formas de pago Dátil y formas de pago del SRI">Equivalencia entre formas de pago Dátil y formas de pago del SRI</a>
                   </li>
+                  <li>
+                    <a href="#document-status" class="toc-h2 toc-link" data-title="Estado de un documento">Estado de un documento</a>
+                  </li>
+                  <li>
+                    <a href="#document-status-code" class="toc-h2 toc-link" data-title="Código del estado de un documento">Código del estado de un documento</a>
+                  </li>
+                  <li>
+                    <a href="#document-payment-status-code" class="toc-h2 toc-link" data-title="Código del estado de pago">Código del estado de pago</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -536,6 +545,18 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
 <tr>
 <td>printable_version_url<p class="dt-data-type">string</p></td>
 <td>URL de descarga del RIDE.</td>
+</tr>
+<tr>
+<td>status<p class="dt-data-type">string</p></td>
+<td><a href="#document-status">Estado</a> del comprobante.</td>
+</tr>
+<tr>
+<td>status_code<p class="dt-data-type">string</p></td>
+<td><a href="#document-status-code">Código del estado</a> del comprobante. Útil para programación.</td>
+</tr>
+<tr>
+<td>payment_status<p class="dt-data-type">string</p></td>
+<td><a href="#document-payment-status-code">Código del estado de pago</a>.</td>
 </tr>
 </tbody></table>
 
@@ -1922,16 +1943,24 @@ por cualquiera de estos parámetros.</p>
 <td>Lista facturas hasta esta secuencia.</td>
 </tr>
 <tr>
-<td>supplier_points_of_sale<p class="dt-data-type">array</p></td>
+<td>supplier_locations_codes<p class="dt-data-type">array</p></td>
+<td>Listado de códigos de establecimiento separados por coma, ej: 001,004,005</td>
+</tr>
+<tr>
+<td>supplier_locations_points_of_sale<p class="dt-data-type">array</p></td>
 <td>Listado de códigos de punto de emisión separados por coma, ej: 001,004,005</td>
 </tr>
 <tr>
-<td>select_keys<p class="dt-data-type">array</p></td>
+<td>select_keys<p class="dt-data-type">string</p></td>
 <td>Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items</td>
 </tr>
 <tr>
 <td>page_size<p class="dt-data-type">integer</p></td>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
+</tr>
+<tr>
+<td>order_by <p class="dt-data-type">string</p></td>
+<td>Listado de nombres de atributos de la factura por los que quisieras ordenar el listado, por ejemplo: &quot;sequence&quot;. Para ordenar de forma descendente utiliza un guión &quot;-&quot; como prefijo al nombre del atributo, así: &quot;-sequence&quot;</td>
 </tr>
 </tbody></table>
 <h4 id='respuesta-4'>Respuesta</h4>
@@ -5129,6 +5158,108 @@ participan en la comercialización de periódicos y/o revistas.</p>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
+
+<h2 id="document-status">Estado de un documento</h2>
+
+<table><thead>
+<tr>
+<th>Estado</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Anulado</td>
+<td>El documento fue marcado como anulado</td>
+</tr>
+<tr>
+<td>Autorizado</td>
+<td>Autorización confirmada por la autoridad tributaria</td>
+</tr>
+<tr>
+<td>Firmado</td>
+<td>El documento fue firmado correctamente. Este es un estado transitorio que puede verse durante el proceso de emisión</td>
+</tr>
+<tr>
+<td>Procesando</td>
+<td>El documento está siendo autorizado.</td>
+</tr>
+<tr>
+<td>No Autorizado</td>
+<td>Rechazado por la autoridad tributaria</td>
+</tr>
+<tr>
+<td>En Proceso</td>
+<td>Está en espera de ser procesado por la autoridad tributaria.</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>Este estado aparece para documentos que se registraron pero no cumplieron con requisitos de validación, o la clave del certificado está incorrecta</td>
+</tr>
+<tr>
+<td>Enviado al SRI</td>
+<td>Estado transitorio mientras es procesado.</td>
+</tr>
+<tr>
+<td>Borrador</td>
+<td>El documento fue creado en Datil y no ha sido autorizado.</td>
+</tr>
+</tbody></table>
+
+<h2 id="document-status-code">Código del estado de un documento</h2>
+
+<table><thead>
+<tr>
+<th>Estado</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>approved</td>
+<td>Autorizado</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>No autorizado</td>
+</tr>
+<tr>
+<td>cancelled</td>
+<td>Anulado</td>
+</tr>
+<tr>
+<td>processing</td>
+<td>Procesando</td>
+</tr>
+<tr>
+<td>signed</td>
+<td>Firmado</td>
+</tr>
+<tr>
+<td>draft</td>
+<td>Borrador</td>
+</tr>
+</tbody></table>
+
+<h2 id="document-payment-status-code">Código del estado de pago</h2>
+
+<table><thead>
+<tr>
+<th>Estado</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>payed</td>
+<td>Pagado</td>
+</tr>
+<tr>
+<td>due</td>
+<td>Pendiente de pago y vencido (la fecha máxima de pago es menor a la fecha actual)</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>Pendiente de pago</td>
+</tr>
+</tbody></table>
 <h1 id='errores'>Errores</h1>
 <p>Listado de códigos de error y su significado.</p>
 

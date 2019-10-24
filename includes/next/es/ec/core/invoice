@@ -63,6 +63,18 @@
 <td>printable_version_url<p class="dt-data-type">string</p></td>
 <td>URL de descarga del RIDE.</td>
 </tr>
+<tr>
+<td>status<p class="dt-data-type">string</p></td>
+<td><a href="#document-status">Estado</a> del comprobante.</td>
+</tr>
+<tr>
+<td>status_code<p class="dt-data-type">string</p></td>
+<td><a href="#document-status-code">Código del estado</a> del comprobante. Útil para programación.</td>
+</tr>
+<tr>
+<td>payment_status<p class="dt-data-type">string</p></td>
+<td><a href="#document-payment-status-code">Código del estado de pago</a>.</td>
+</tr>
 </tbody></table>
 
 <h4 id="invoice-totals">Totals</h4>
