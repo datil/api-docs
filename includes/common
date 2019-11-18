@@ -166,6 +166,28 @@ estar estructurada la clave de acceso.</p>
 <td>Máximo 300 caracteres. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
+<h2 id='info-adicional'>Info adicional</h2>
+<p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
+que no pueda ser descrito con los elementos que son parte del documento.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
 <h2 id='persona'>Persona</h2>
 <p>Datos de una persona. Utilizado como <strong>comprador</strong> en facturas y notas de crédito, como <strong>sujeto</strong> en retenciones</p>
 

@@ -319,6 +319,9 @@
                     <a href="#maquina-fiscal" class="toc-h2 toc-link" data-title="Máquina fiscal">Máquina fiscal</a>
                   </li>
                   <li>
+                    <a href="#info-adicional" class="toc-h2 toc-link" data-title="Info adicional">Info adicional</a>
+                  </li>
+                  <li>
                     <a href="#persona" class="toc-h2 toc-link" data-title="Persona">Persona</a>
                   </li>
                   <li>
@@ -477,7 +480,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2019-09-28T11:28:56.782Z",
+  "fecha_emision":"2019-10-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad": true,
@@ -492,18 +495,15 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
     }
   },
   "moneda":"USD",
-  "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
-  },
+  "info_adicional":[
+    {
+      "nombre": "Tiempo de entrega",
+      "valor": "5 días"
+    }
+  ],
   "totales":{
     "total_sin_impuestos":4359.54,
     "impuestos":[
-      {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
       {
         "base_imponible":4359.54,
         "valor":523.14,
@@ -528,10 +528,10 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       "cantidad":622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descuento": 0,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -551,24 +551,17 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   "valor_retenido_iva": 70.40,
   "valor_retenido_renta": 29.60,
   "credito": {
-    "fecha_vencimiento": "2015-03-28",
-    "monto": 34.21
+    "fecha_vencimiento": "2019-12-31",
+    "monto": 1900.00
   },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 2882.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
-    }
-  ],
-  "compensaciones": [
-    {
-      "codigo": 1,
-      "tarifa": 2,
-      "valor": 2.00
     }
   ],
   "exportacion": {
@@ -600,7 +593,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="s">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
   <span class="s">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
   <span class="s">"secuencial"</span><span class="p">:</span><span class="mi">148</span><span class="p">,</span>
-  <span class="s">"fecha_emision"</span><span class="p">:</span><span class="s">"2019-09-28T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"fecha_emision"</span><span class="p">:</span><span class="s">"2019-10-28T11:28:56.782Z"</span><span class="p">,</span>
   <span class="s">"emisor"</span><span class="p">:{</span>
     <span class="s">"ruc"</span><span class="p">:</span><span class="s">"0910000000001"</span><span class="p">,</span>
     <span class="s">"obligado_contabilidad"</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span>
@@ -615,18 +608,15 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="s">"moneda"</span><span class="p">:</span><span class="s">"USD"</span><span class="p">,</span>
-  <span class="s">"informacion_adicional"</span><span class="p">:{</span>
-    <span class="s">"Tiempo de entrega"</span><span class="p">:</span><span class="s">"5 días"</span>
-  <span class="p">},</span>
+  <span class="s">"info_adicional"</span><span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="s">"nombre"</span><span class="p">:</span><span class="s">"Tiempo de entrega"</span><span class="p">,</span>
+      <span class="s">"valor"</span><span class="p">:</span><span class="s">"5 días"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
   <span class="s">"totales"</span><span class="p">:{</span>
     <span class="s">"total_sin_impuestos"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
     <span class="s">"impuestos"</span><span class="p">:[</span>
-      <span class="p">{</span>
-        <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
-        <span class="s">"valor"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
-        <span class="s">"codigo"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
-        <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"0"</span>
-      <span class="p">},</span>
       <span class="p">{</span>
         <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
         <span class="s">"valor"</span><span class="p">:</span><span class="mf">523.14</span><span class="p">,</span>
@@ -651,10 +641,10 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       <span class="s">"cantidad"</span><span class="p">:</span><span class="mf">622.0</span><span class="p">,</span>
       <span class="s">"codigo_principal"</span><span class="p">:</span><span class="s">"ZNC"</span><span class="p">,</span>
       <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"050"</span><span class="p">,</span>
-      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mf">7.01</span><span class="p">,</span>
+      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mf">7.008907</span><span class="p">,</span>
       <span class="s">"descuento"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
       <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Zanahoria granel  50 Kg."</span><span class="p">,</span>
-      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mf">4360.22</span><span class="p">,</span>
+      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mf">4359.54</span><span class="p">,</span>
       <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
@@ -674,24 +664,17 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
   <span class="s">"valor_retenido_iva"</span><span class="p">:</span> <span class="mf">70.40</span><span class="p">,</span>
   <span class="s">"valor_retenido_renta"</span><span class="p">:</span> <span class="mf">29.60</span><span class="p">,</span>
   <span class="s">"credito"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">"fecha_vencimiento"</span><span class="p">:</span> <span class="s">"2015-03-28"</span><span class="p">,</span>
-    <span class="s">"monto"</span><span class="p">:</span> <span class="mf">34.21</span>
+    <span class="s">"fecha_vencimiento"</span><span class="p">:</span> <span class="s">"2019-12-28"</span><span class="p">,</span>
+    <span class="s">"monto"</span><span class="p">:</span> <span class="mf">1900.00</span>
   <span class="p">},</span>
   <span class="s">"pagos"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s">"medio"</span><span class="p">:</span> <span class="s">"cheque"</span><span class="p">,</span>
-      <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
+      <span class="s">"total"</span><span class="p">:</span> <span class="mf">2882.68</span><span class="p">,</span>
       <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"numero"</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">,</span>
         <span class="s">"banco"</span><span class="p">:</span> <span class="s">"Banco Pacífico"</span>
       <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s">"compensaciones"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s">"codigo"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">"tarifa"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s">"valor"</span><span class="p">:</span> <span class="mf">2.00</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s">"exportacion"</span><span class="p">:</span> <span class="p">{</span>
@@ -804,7 +787,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
             <span class="s">""</span><span class="n">precio_unitario</span><span class="s">""</span><span class="p">:</span> <span class="m">7.01</span><span class="p">,</span>
             <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">0</span><span class="p">,</span>
             <span class="s">""</span><span class="n">descripcion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Zanahoria</span> <span class="n">granel</span>  <span class="m">50</span> <span class="n">Kg</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">4360.22</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">4359.54</span><span class="p">,</span>
             <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
               <span class="p">{</span>
                 <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">4359.54</span><span class="p">,</span>
@@ -825,23 +808,16 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
         <span class="s">""</span><span class="n">valor_retenido_renta</span><span class="s">""</span><span class="p">:</span> <span class="m">29.60</span><span class="p">,</span>
         <span class="s">""</span><span class="n">credito</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
             <span class="s">""</span><span class="n">fecha_vencimiento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">03</span><span class="p">-</span><span class="m">28</span><span class="s">""</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">monto</span><span class="s">""</span><span class="p">:</span> <span class="m">34.21</span>
+            <span class="s">""</span><span class="n">monto</span><span class="s">""</span><span class="p">:</span> <span class="m">1900.00</span>
         <span class="p">},</span>
       <span class="s">""</span><span class="n">pagos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">cheque</span><span class="s">""</span><span class="p">,</span>
-          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">4882.68</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">2882.68</span><span class="p">,</span>
           <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
             <span class="s">""</span><span class="n">numero</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1234567890</span><span class="s">""</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">banco</span><span class="s">""</span><span class="p">:</span> <span class="s">"Banco Pacífico""
-</span>          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">],</span>
-        <span class="s">""</span><span class="n">compensaciones</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-              <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="m">1</span><span class="p">,</span>
-              <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span> <span class="m">2</span><span class="p">,</span>
-              <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span> <span class="m">2.00</span>
+            <span class="s">""</span><span class="n">banco</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Banco</span> <span class="n">Pac</span><span class="err">í</span><span class="n">fico</span><span class="s">""</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">],</span>
       <span class="s">""</span><span class="n">exportacion</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
@@ -887,7 +863,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
-<td>string</td>
+<td>integer (min. 1 - max. 999999999 )</td>
 <td>Número de secuencia de la factura. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -907,7 +883,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>guia_remision</td>
-<td>string</td>
+<td>string (17 caracteres)</td>
 <td>Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})</td>
 </tr>
 <tr>
@@ -942,13 +918,18 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>clave_acceso</td>
-<td>string</td>
+<td>string (49 caracteres)</td>
 <td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>info_adicional</td>
+<td>Listado de objectos de tipo <a href="#info-adicional">información adicional</a></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>[{&quot;nombre&quot;:&quot;plan&quot;, &quot;valor&quot;:&quot;Inicial&quot;, &quot;nombre&quot;:&quot;vigencia&quot;, &quot;valor&quot;:&quot;1 mes&quot;}]</code></td>
 </tr>
 <tr>
 <td>informacion_adicional</td>
 <td>objeto</td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;plan&quot;: &quot;Inicial&quot;, &quot;vigencia&quot;: &quot;1 mes&quot;}</code> <span style="color: red"><strong>Obsoleto</strong></span> <em>utiliza el parámetro info_adicional</em></td>
 </tr>
 <tr>
 <td>valor_retenido_iva</td>
@@ -1294,12 +1275,6 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
     </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
     </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
         </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
         </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
         </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -1328,7 +1303,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
       </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
           </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
           </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -1345,24 +1320,17 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
   </span><span class="s2">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
   </span><span class="s2">"valor_retenido_renta"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.60</span><span class="p">,</span><span class="w">
   </span><span class="s2">"credito"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"fecha_vencimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-28"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"monto"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.21</span><span class="w">
+    </span><span class="s2">"fecha_vencimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-28"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"monto"</span><span class="p">:</span><span class="w"> </span><span class="mf">1900.00</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2882.68</span><span class="p">,</span><span class="w">
       </span><span class="s2">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"compensaciones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"exportacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5303,6 +5271,28 @@ estar estructurada la clave de acceso.</p>
 </tr>
 <tr>
 <td>serie</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h2 id='info-adicional'>Info adicional</h2>
+<p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
+que no pueda ser descrito con los elementos que son parte del documento.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
 <td>string</td>
 <td>Máximo 300 caracteres. <strong>Requerido</strong></td>
 </tr>
