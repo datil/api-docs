@@ -561,7 +561,8 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
-      }
+      },
+      "notas": "Depósitado en cuenta corriente"
     }
   ],
   "exportacion": {
@@ -671,6 +672,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
     <span class="p">{</span>
       <span class="s">"medio"</span><span class="p">:</span> <span class="s">"cheque"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">2882.68</span><span class="p">,</span>
+      <span class="s">"notas"</span><span class="p">:</span> <span class="s">"Depósitado en cuenta corriente"</span><span class="p">,</span>
       <span class="s">"propiedades"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"numero"</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">,</span>
         <span class="s">"banco"</span><span class="p">:</span> <span class="s">"Banco Pacífico"</span>
@@ -814,6 +816,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:</p>
         <span class="p">{</span>
           <span class="s">""</span><span class="n">medio</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">cheque</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">2882.68</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">notas</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Dep</span><span class="err">ó</span><span class="n">sitado</span> <span class="n">en</span> <span class="n">cuenta</span> <span class="n">corriente</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">propiedades</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
             <span class="s">""</span><span class="n">numero</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1234567890</span><span class="s">""</span><span class="p">,</span>
             <span class="s">""</span><span class="n">banco</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Banco</span> <span class="n">Pac</span><span class="err">í</span><span class="n">fico</span><span class="s">""</span>
@@ -1028,6 +1031,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>total</td>
 <td>float</td>
 <td>Total aplicable a la forma de pago especificada. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>notas</td>
+<td>string (máximo 300 caracteres)</td>
+<td>Texto abierto que te permite registrar cualquier nota relacionada al pago.</td>
 </tr>
 <tr>
 <td>propiedades</td>
@@ -1330,7 +1338,8 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       </span><span class="s2">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"notas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Depósitado en cuenta corriente"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"exportacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1504,7 +1513,8 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
         </span><span class="s2">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"notas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Depósitado en cuenta corriente"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"compensaciones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
