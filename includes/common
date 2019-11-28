@@ -166,6 +166,124 @@ estar estructurada la clave de acceso.</p>
 <td>Máximo 300 caracteres. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
+<h2 id='reembolso'>Reembolso</h2>
+<p>Datos de una factura o liquidación de compras de reembolso.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del tipo de documento de reembolso equivalente a 41. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>documentos</td>
+<td>listado de objeto <a href="#documento">Documento</a></td>
+<td>Lista de documentos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>float</td>
+<td>Sumatoria de los subtotales de los documentos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total_impuestos</td>
+<td>float</td>
+<td>Sumatoria de los totales de impuestos de los documentos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Subtotal más total de impuestos. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h2 id='documento'>Documento</h2>
+<p>Datos de un documento.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_establecimiento</td>
+<td>string</td>
+<td>3 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_punto_emision</td>
+<td>string</td>
+<td>3 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencia</td>
+<td>integer (min. 1 - max. 999999999 )</td>
+<td>Número de secuencia del documento. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion_proveedor</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion_proveedor</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objeto <a href="#impuesto-item">impuesto</a></td>
+<td>Impuestos totales del documento. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorizacion</td>
+<td>string</td>
+<td>Número de autorización del documento. 10, 37 o 49 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>pais_origen_proveedor</td>
+<td>string</td>
+<td>Código  de dos caracteres del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>string</td>
+<td>Código de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_proveedor</td>
+<td>string</td>
+<td>Código de <a href="#tipo-de-proveedor">tipo de proveedor</a> de reembolso. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
+<table><thead>
+<tr>
+<th>Tipo</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Personal natural</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Sociedad</td>
+<td>02</td>
+</tr>
+</tbody></table>
 <h2 id='info-adicional'>Info adicional</h2>
 <p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
 que no pueda ser descrito con los elementos que son parte del documento.</p>
