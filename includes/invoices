@@ -427,7 +427,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>totales</td>
-<td>objeto tipo <a href="#totales-factura">totales</a></td>
+<td>objeto tipo <a href="#totales">totales</a></td>
 <td>Listado de totales. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -487,17 +487,17 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>credito</td>
-<td>Objeto de tipo <a href="#cr-dito">credito</a></td>
+<td>Objeto de tipo <a href="#credito">credito</a></td>
 <td>Información del crédito directo otorgado al cliente.</td>
 </tr>
 <tr>
 <td>compensaciones</td>
-<td>Objeto de tipo <a href="#compensaci-n-solidaria">compensación solidaria</a></td>
+<td>Objeto de tipo <a href="#compensacion-solidaria">compensación solidaria</a></td>
 <td><strong>Solo</strong> para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana</td>
 </tr>
 <tr>
 <td>exportacion</td>
-<td>Objeto de tipo <a href="#exportaci-n">exportacion</a></td>
+<td>Objeto de tipo <a href="#exportacion">exportacion</a></td>
 <td><strong>Solo</strong> para facturas de exportación</td>
 </tr>
 </tbody></table>
@@ -747,10 +747,150 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
-<h3 id='emision-a-partir-de-xml'>Emisión a partir de XML</h3>
+<h3 id='respuesta'>Respuesta</h3>
+<blockquote>
+<h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="mi">148</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="s2">"2019-09-28T11:28:56.782Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2802201501091000000000120010010000100451993736618"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emisor"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0910000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XYZ Corporación S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Tiempo de entrega"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 días"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle única Numero 987"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefono"</span><span class="p">:</span><span class="w"> </span><span class="s2">"046029400"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">622.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"050"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.01</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zanahoria granel  50 Kg."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Peso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.0000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unidad_medida"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kilos"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"valor_retenido_iva"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.40</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"valor_retenido_renta"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.60</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"credito"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"fecha_vencimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-28"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"monto"</span><span class="p">:</span><span class="w"> </span><span class="mf">1900.00</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pagos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"medio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2882.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"propiedades"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"banco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banco Pacífico"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"notas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Depositado en cuenta corriente"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"exportacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"incoterm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"termino"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lugar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIF"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"origen"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigo_pais"</span><span class="p">:</span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guayaquil"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"destino"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigo_pais"</span><span class="p">:</span><span class="s2">"CN"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"puerto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"China"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"codigo_pais_adquisicion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"flete_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seguro_internacional"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gastos_aduaneros"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"otros_gastos_transporte"</span><span class="p">:</span><span class="w"> </span><span class="mf">350.00</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retorna un objeto tipo <strong><a href="#requerimiento">factura</a></strong> que incluye un nuevo parámetro <code>id</code>,
+el cual identifica de manera única a la factura. El campo <code>clave_acceso</code> generado
+también se incluirá como parte de la respuesta.</p>
+<h2 id='emision-de-una-factura-a-partir-de-xml'>Emisión de una factura a partir de XML</h2>
 <p><code>POST /invoices/issue/xml</code></p>
 <h3 id='requerimiento-a-partir-de-xml'>Requerimiento a partir de XML</h3>
-<p>Para la emisión de una factura a partir de un xml se debe enviar contenido del archivo xml como parámetro en el cuerpo del requerimiento en formato JSON.</p>
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/issue/xml <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{"xml" : "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;factura id=\"comprobante\" version=\"1.1.0\"&gt;&lt;infoTributaria&gt;&lt;ambiente&gt;1&lt;/ambiente&gt;&lt;tipoEmision&gt;1&lt;/tipoEmision&gt;&lt;razonSocial&gt;Angel Arreaga&lt;/razonSocial&gt;&lt;nombreComercial&gt;XYZ&lt;/nombreComercial&gt;&lt;ruc&gt;0953239092002&lt;/ruc&gt;&lt;claveAcceso&gt;None&lt;/claveAcceso&gt;&lt;codDoc&gt;01&lt;/codDoc&gt;&lt;estab&gt;002&lt;/estab&gt;&lt;ptoEmi&gt;003&lt;/ptoEmi&gt;&lt;secuencial&gt;000098431&lt;/secuencial&gt;&lt;dirMatriz&gt;Mucho Lote 1&lt;/dirMatriz&gt;&lt;/infoTributaria&gt;&lt;infoFactura&gt;&lt;fechaEmision&gt;17/10/2019&lt;/fechaEmision&gt;&lt;dirEstablecimiento&gt;Mucho Lote 1&lt;/dirEstablecimiento&gt;&lt;obligadoContabilidad&gt;NO&lt;/obligadoContabilidad&gt;&lt;tipoIdentificacionComprador&gt;04&lt;/tipoIdentificacionComprador&gt;&lt;razonSocialComprador&gt;DATILMEDIA S.A.&lt;/razonSocialComprador&gt;&lt;identificacionComprador&gt;0992712554001&lt;/identificacionComprador&gt;&lt;direccionComprador&gt;Entre Guayacanes e Higueras, Guayaquil, Ecuador&lt;/direccionComprador&gt;&lt;totalSinImpuestos&gt;12.00&lt;/totalSinImpuestos&gt;&lt;totalDescuento&gt;0.00&lt;/totalDescuento&gt;&lt;totalConImpuestos&gt;&lt;totalImpuesto&gt;&lt;codigo&gt;2&lt;/codigo&gt;&lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;&lt;baseImponible&gt;12.00&lt;/baseImponible&gt;&lt;valor&gt;1.44&lt;/valor&gt;&lt;/totalImpuesto&gt;&lt;/totalConImpuestos&gt;&lt;propina&gt;0.00&lt;/propina&gt;&lt;importeTotal&gt;13.44&lt;/importeTotal&gt;&lt;moneda&gt;DOLAR&lt;/moneda&gt;&lt;/infoFactura&gt;&lt;detalles&gt;&lt;detalle&gt;&lt;codigoPrincipal&gt;105AP1&lt;/codigoPrincipal&gt;&lt;descripcion&gt;Aceite Protector Madera&lt;/descripcion&gt;&lt;cantidad&gt;1.000000&lt;/cantidad&gt;&lt;precioUnitario&gt;12.000000&lt;/precioUnitario&gt;&lt;descuento&gt;0.00&lt;/descuento&gt;&lt;precioTotalSinImpuesto&gt;12.00&lt;/precioTotalSinImpuesto&gt;&lt;impuestos&gt;&lt;impuesto&gt;&lt;codigo&gt;2&lt;/codigo&gt;&lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;&lt;tarifa&gt;12.00&lt;/tarifa&gt;&lt;baseImponible&gt;12.00&lt;/baseImponible&gt;&lt;valor&gt;1.44&lt;/valor&gt;&lt;/impuesto&gt;&lt;/impuestos&gt;&lt;/detalle&gt;&lt;/detalles&gt;&lt;/factura&gt;"}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
+
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"xml"</span> <span class="p">:</span> <span class="s">'&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;factura id="comprobante" version="1.1.0"&gt;&lt;infoTributaria&gt;&lt;ambiente&gt;1&lt;/ambiente&gt;&lt;tipoEmision&gt;1&lt;/tipoEmision&gt;&lt;razonSocial&gt;XYZ Corporación S.A.&lt;/razonSocial&gt;&lt;nombreComercial&gt;XYZ Corp&lt;/nombreComercial&gt;&lt;ruc&gt;0910000000001&lt;/ruc&gt;&lt;claveAcceso&gt;&lt;/claveAcceso&gt;&lt;codDoc&gt;01&lt;/codDoc&gt;&lt;estab&gt;002&lt;/estab&gt;&lt;ptoEmi&gt;003&lt;/ptoEmi&gt;&lt;secuencial&gt;000098431&lt;/secuencial&gt;&lt;dirMatriz&gt;Av. Primera 234 y calle 5ta&lt;/dirMatriz&gt;&lt;/infoTributaria&gt;&lt;infoFactura&gt;&lt;fechaEmision&gt;17/10/2019&lt;/fechaEmision&gt;&lt;dirEstablecimiento&gt;Av. Primera 234 y calle 5ta&lt;/dirEstablecimiento&gt;&lt;obligadoContabilidad&gt;SI&lt;/obligadoContabilidad&gt;&lt;tipoIdentificacionComprador&gt;04&lt;/tipoIdentificacionComprador&gt;&lt;razonSocialComprador&gt;Juan Pérez&lt;/razonSocialComprador&gt;&lt;identificacionComprador&gt;0987654321&lt;/identificacionComprador&gt;&lt;direccionComprador&gt;Calle única Numero 987&lt;/direccionComprador&gt;&lt;totalSinImpuestos&gt;12.00&lt;/totalSinImpuestos&gt;&lt;totalDescuento&gt;0.00&lt;/totalDescuento&gt;&lt;totalConImpuestos&gt;&lt;totalImpuesto&gt;&lt;codigo&gt;2&lt;/codigo&gt;&lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;&lt;baseImponible&gt;12.00&lt;/baseImponible&gt;&lt;valor&gt;1.44&lt;/valor&gt;&lt;/totalImpuesto&gt;&lt;/totalConImpuestos&gt;&lt;propina&gt;0.00&lt;/propina&gt;&lt;importeTotal&gt;13.44&lt;/importeTotal&gt;&lt;moneda&gt;DOLAR&lt;/moneda&gt;&lt;/infoFactura&gt;&lt;detalles&gt;&lt;detalle&gt;&lt;codigoPrincipal&gt;105AP1&lt;/codigoPrincipal&gt;&lt;descripcion&gt;Aceite Protector Madera&lt;/descripcion&gt;&lt;cantidad&gt;1.000000&lt;/cantidad&gt;&lt;precioUnitario&gt;12.000000&lt;/precioUnitario&gt;&lt;descuento&gt;0.00&lt;/descuento&gt;&lt;precioTotalSinImpuesto&gt;12.00&lt;/precioTotalSinImpuesto&gt;&lt;impuestos&gt;&lt;impuesto&gt;&lt;codigo&gt;2&lt;/codigo&gt;&lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;&lt;tarifa&gt;12.00&lt;/tarifa&gt;&lt;baseImponible&gt;12.00&lt;/baseImponible&gt;&lt;valor&gt;1.44&lt;/valor&gt;&lt;/impuesto&gt;&lt;/impuestos&gt;&lt;/detalle&gt;&lt;/detalles&gt;&lt;/factura&gt;'</span>
+<span class="p">}</span>
+
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/invoices/issue/xml"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code></code></pre>
+<p>Para la emisión de una factura a partir de un XML se debe enviar el XML como parámetro en el cuerpo del requerimiento en formato JSON.
+Este XML debe cumplir con la especificación del SRI</p>
 
 <table><thead>
 <tr>
@@ -765,27 +905,9 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
 <td>Contenido del archivo xml. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-
+<h3 id='respuesta-2'>Respuesta</h3>
 <blockquote>
-<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
-<pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
-
-<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"xml"</span> <span class="p">:</span> <span class="s">"&lt;?xml ... "</span>
-<span class="p">}</span>
-
-<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
-    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
-    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
-<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s">"https://link.datil.co/invoices/issue/xml"</span><span class="p">,</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
-</code></pre><pre class="highlight csharp tab-csharp"><code></code></pre><h3 id='respuesta'>Respuesta</h3>
-<blockquote>
-<h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
+<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef09876123cea56784f01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -1391,7 +1513,7 @@ el estado del mismo.
 El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emision">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-3'>Operación</h3>
 <p><code>GET /invoices/&lt;invoice-id&gt;</code></p>
@@ -1430,9 +1552,9 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="p">}</span>
 </code></pre>
 <p>Reemplaza en la ruta <code>&lt;invoice-ID&gt;</code> por el <code>id</code> de la factura que necesitas consultar.</p>
-<h3 id='respuesta-2'>Respuesta</h3>
+<h3 id='respuesta-3'>Respuesta</h3>
 <blockquote>
-<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
+<h4 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
@@ -1561,7 +1683,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
         </span><span class="s2">"gastos_aduaneros"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
         </span><span class="s2">"otros_gastos_transporte"</span><span class="p">:</span><span class="w"> </span><span class="mf">350.00</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"autorizacion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"mensajes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1606,12 +1728,12 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 </tr>
 <tr>
 <td>envio_sri</td>
-<td>objeto tipo <a href="#envío-sri">envio sri</a></td>
+<td>objeto tipo <a href="#envio-sri">envio sri</a></td>
 <td>Información luego de enviar el comprobante.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
+<td>objeto tipo <a href="#autorizacion-sri">autorizacion sri</a></td>
 <td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
 </tr>
 <tr>
@@ -1656,7 +1778,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 </tr>
 <tr>
 <td>credito</td>
-<td>Objeto de tipo <a href="#cr-dito">credito</a></td>
+<td>Objeto de tipo <a href="#credito">credito</a></td>
 <td>Información del crédito directo otorgado al cliente.</td>
 </tr>
 <tr>
@@ -1671,7 +1793,7 @@ el estado del mismo.
 El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emision">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-4'>Operación</h3>
 <p><code>GET /invoices/&lt;invoice-id&gt;</code></p>
@@ -1710,9 +1832,9 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <span class="p">}</span>
 </code></pre>
 <p>Reemplaza en la ruta <code>&lt;invoice-ID&gt;</code> por el <code>id</code> de la factura que necesitas consultar.</p>
-<h3 id='respuesta-3'>Respuesta</h3>
+<h3 id='respuesta-4'>Respuesta</h3>
 <blockquote>
-<h4 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h4></blockquote>
+<h4 id='respuesta-de-ejemplo-4'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="p">,</span><span class="w">
@@ -1864,12 +1986,12 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 </tr>
 <tr>
 <td>envio_sri</td>
-<td>objeto tipo <a href="#envío-sri">envio sri</a></td>
+<td>objeto tipo <a href="#envio-sri">envio sri</a></td>
 <td>Información luego de enviar el comprobante.</td>
 </tr>
 <tr>
 <td>autorizacion</td>
-<td>objeto tipo <a href="#autorización-sri">autorizacion sri</a></td>
+<td>objeto tipo <a href="#autorizacion-sri">autorizacion sri</a></td>
 <td>Información de la autorización.org/html/rfc3339#section-5.6).</td>
 </tr>
 <tr>
@@ -1934,5 +2056,5 @@ momento de emitirla.</p>
 
 <p>El cuerpo del requerimiento es un objeto <a href="#requerimiento">factura</a> con los
 datos corregidos para que pueda ser procesado y autorizado.</p>
-<h3 id='respuesta-4'>Respuesta</h3>
+<h3 id='respuesta-5'>Respuesta</h3>
 <p>Retornará un error si el comprobante se encuentra autorizado.</p>

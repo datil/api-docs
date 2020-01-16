@@ -329,12 +329,12 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificación">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Correo electrónico. Máximo 300 caracteres. <strong>Requerido</strong></td>
+<td>Correo electrónico. Máximo 300 caracteres.</td>
 </tr>
 <tr>
 <td>telefono</td>
@@ -395,7 +395,7 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -424,7 +424,7 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>.</td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>.</td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -606,12 +606,12 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto-para-la-retención-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+<td>Código del <a href="#tipos-de-impuesto-para-la-retencion-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#retención-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#retencion-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tarifa</td>

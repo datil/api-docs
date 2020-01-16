@@ -13,7 +13,7 @@
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-08-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -31,17 +31,17 @@
     "Tiempo de entrega":"5 días"
   },
   "totales":{
-    "total_sin_impuestos":4359.54,
+    "total_sin_impuestos":120.89,
     "impuestos":[
       {
-        "base_imponible":4359.54,
-        "valor":523.14,
+        "base_imponible":120.89,
+        "valor":14.51,
         "codigo":"2",
         "codigo_porcentaje":"2",
         "tarifa": 12.0
       }
     ],
-    "importe_total":4882.68
+    "importe_total":135.4
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -67,10 +67,10 @@
   <span class="s">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
   <span class="s">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
   <span class="s">"secuencial"</span><span class="p">:</span><span class="mi">148</span><span class="p">,</span>
-  <span class="s">"fecha_emision"</span><span class="p">:</span><span class="s">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"fecha_emision"</span><span class="p">:</span><span class="s">"2019-02-28T11:28:56.782Z"</span><span class="p">,</span>
   <span class="s">"emisor"</span><span class="p">:{</span>
     <span class="s">"ruc"</span><span class="p">:</span><span class="s">"0910000000001"</span><span class="p">,</span>
-    <span class="s">"obligado_contabilidad"</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+    <span class="s">"obligado_contabilidad"</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span>
     <span class="s">"contribuyente_especial"</span><span class="p">:</span><span class="s">"12345"</span><span class="p">,</span>
     <span class="s">"nombre_comercial"</span><span class="p">:</span><span class="s">"XYZ Corp"</span><span class="p">,</span>
     <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"XYZ Corporación S.A."</span><span class="p">,</span>
@@ -82,20 +82,20 @@
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="s">"informacion_adicional"</span><span class="p">:{</span>
-    <span class="s">"Tiempo de entrega"</span><span class="p">:</span><span class="s">"5 días"</span>
+    <span class="s">"Tiempo de entrega"</span><span class="p">:</span><span class="s">u"5 días"</span>
   <span class="p">},</span>
   <span class="s">"totales"</span><span class="p">:{</span>
-    <span class="s">"total_sin_impuestos"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
+    <span class="s">"total_sin_impuestos"</span><span class="p">:</span><span class="mf">120.89</span><span class="p">,</span>
     <span class="s">"impuestos"</span><span class="p">:[</span>
       <span class="p">{</span>
-        <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
-        <span class="s">"valor"</span><span class="p">:</span><span class="mf">523.14</span><span class="p">,</span>
+        <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">120.89</span><span class="p">,</span>
+        <span class="s">"valor"</span><span class="p">:</span><span class="mf">14.51</span><span class="p">,</span>
         <span class="s">"codigo"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
         <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
         <span class="s">"tarifa"</span><span class="p">:</span> <span class="mf">12.0</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s">"importe_total"</span><span class="p">:</span><span class="mf">4882.68</span>
+    <span class="s">"importe_total"</span><span class="p">:</span><span class="mf">135.4</span>
   <span class="p">},</span>
   <span class="s">"fecha_emision_documento_modificado"</span><span class="p">:</span> <span class="s">"2015-02-27T11:28:56.782Z"</span><span class="p">,</span>
   <span class="s">"numero_documento_modificado"</span><span class="p">:</span> <span class="s">"001-002-000058473"</span><span class="p">,</span>
@@ -110,7 +110,7 @@
   <span class="p">},</span>
   <span class="s">"items"</span><span class="p">:[</span>
     <span class="p">{</span>
-      <span class="s">"motivo"</span><span class="p">:</span><span class="s">"Interés por mora"</span><span class="p">,</span>
+      <span class="s">"motivo"</span><span class="p">:</span><span class="s">u"Interés por mora"</span><span class="p">,</span>
       <span class="s">"valor"</span><span class="p">:</span><span class="mf">120.89</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -133,7 +133,7 @@
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp </span>
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
       <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
       <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
 
@@ -165,7 +165,7 @@
           <span class="s">""</span><span class="n">Tiempo</span> <span class="n">de</span> <span class="n">entrega</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">5</span> <span class="n">d</span><span class="err">í</span><span class="k">as</span><span class="s">""</span>
         <span class="p">},</span>
         <span class="s">""</span><span class="n">totales</span><span class="s">""</span><span class="p">:{</span>
-          <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span><span class="m">4359.54</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span><span class="m">120.89</span><span class="p">,</span>
           <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:[</span>
             <span class="p">{</span>
               <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span><span class="p">,</span>
@@ -175,13 +175,13 @@
               <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span> <span class="m">12.0</span>
             <span class="p">},</span>
             <span class="p">{</span>
-              <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">4359.54</span><span class="p">,</span>
-              <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">523.14</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">120.89</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">14.51</span><span class="p">,</span>
               <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
               <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
             <span class="p">}</span>
           <span class="p">],</span>
-          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span><span class="m">4882.68</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span><span class="m">135.4</span><span class="p">,</span>
           <span class="s">""</span><span class="n">propina</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span><span class="p">,</span>
           <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span>
         <span class="p">},</span>
@@ -203,8 +203,8 @@
             <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">4360.22</span><span class="p">,</span>
             <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
               <span class="p">{</span>
-                <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">4359.54</span><span class="p">,</span>
-                <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">523.14</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">120.89</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">14.51</span><span class="p">,</span>
                 <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span><span class="m">12.0</span><span class="p">,</span>
                 <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
                 <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
@@ -257,6 +257,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Pruebas: <code>1</code>.<br>Producción <code>2</code>.<br><strong>Requerido</strong></td>
 </tr>
 <tr>
+<td>comprador</td>
+<td>objeto tipo <a href="#persona">persona</a></td>
+<td>Información del comprador. <strong>Requerido</strong></td>
+</tr>
+<tr>
 <td>totales</td>
 <td>objeto tipo <a href="#totales-nota-debito">totales</a></td>
 <td>Listado de totales. <strong>Requerido</strong></td>
@@ -277,9 +282,9 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
-<td>motivos</td>
-<td>arreglo de objetos tipo <a href="#motivo">motivo</a></td>
-<td>Motivo o mitivos del débito. Ejm: Interés por mora. <strong>Requerido</strong></td>
+<td>items</td>
+<td>arreglo de objetos tipo <a href="#motivos">items</a></td>
+<td>Motivos del débito. Ejm: Interés por mora. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tipo_emision</td>
@@ -329,6 +334,27 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 </tbody></table>
 
+<h4 id="motivos">Items</h4>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>motivo</td>
+<td>string</td>
+<td>Motivo por el cuál se hace el débito. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor sin impuestos. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
 <h4 id="impuesto-nota-debito">Impuesto</h4>
 
 <table><thead>
@@ -341,33 +367,29 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a></td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del porcentaje.</td>
+<td>Código del porcentaje. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Base imponible. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Valor del total. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tarifa</td>
 <td>float</td>
-<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
 <h3 id='respuesta'>Respuesta</h3>
 <blockquote>
 <h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
@@ -396,7 +418,7 @@ Remember — a happy kitten is an authenticated kitten!
     </span><span class="s2">"Tiempo de entrega"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 días"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">120.89</span><span class="p">,</span><span class="w">
     </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
@@ -406,14 +428,14 @@ Remember — a happy kitten is an authenticated kitten!
         </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">120.89</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.51</span><span class="p">,</span><span class="w">
         </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">135.4</span><span class="p">,</span><span class="w">
     </span><span class="s2">"propina"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -435,8 +457,8 @@ Remember — a happy kitten is an authenticated kitten!
       </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
       </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">523.14</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">120.89</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.51</span><span class="p">,</span><span class="w">
           </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
@@ -451,15 +473,15 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-nota-credito">nota de débito</a></strong> que incluye un nuevo parámetro <code>id</code>,
-el cual identifica de manera única a la nota de débito. El campo <code>clave_acceso</code> 
+el cual identifica de manera única a la nota de débito. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-de-una-nota-de-debito'>Consulta de una nota de débito</h2>
 <p>Consulta una nota de débito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /debit-notes/&lt;invoice-id&gt;</code></p>
