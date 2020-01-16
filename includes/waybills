@@ -147,7 +147,7 @@
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp </span>
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
       <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
       <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
 
@@ -404,7 +404,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>cantidad</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Cantidad de items. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -522,15 +522,15 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-guia-remision">guía de remisión</a></strong> que incluye un nuevo parámetro <code>id</code>,
-el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code> 
+el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-de-una-guia-de-remision'>Consulta de una guía de remisión</h2>
 <p>Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /waybills/&lt;receipt-id&gt;</code></p>

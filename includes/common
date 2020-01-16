@@ -16,7 +16,7 @@ estar estructurada la clave de acceso.</p>
 </thead><tbody>
 <tr>
 <td>Fecha de Emisión</td>
-<td>ddmmaaaa</td>
+<td>DDMMAAAA</td>
 <td>8</td>
 </tr>
 <tr>
@@ -428,17 +428,17 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </tr>
 <tr>
 <td>base_imponible</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Base imponible.</td>
 </tr>
 <tr>
 <td>valor</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Valor del total.</td>
 </tr>
 <tr>
 <td>tarifa</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
 </tr>
 </tbody></table>
@@ -542,37 +542,37 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </thead><tbody>
 <tr>
 <td>descripcion</td>
-<td>string</td>
+<td>string (máximo 300 caracteres)</td>
 <td>Descripción del ítem. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_principal</td>
-<td>string</td>
+<td>string (máximo 25 caracteres)</td>
 <td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
 </tr>
 <tr>
 <td>codigo_auxiliar</td>
-<td>string</td>
+<td>string (máximo 25 caracteres)</td>
 <td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
 </tr>
 <tr>
 <td>cantidad</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Cantidad de items. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>precio_unitario</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Precio unitario. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>descuento</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>El descuento es aplicado por cada producto, expresado en valor monetario. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>precio_total_sin_impuestos</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Precio antes de los impuestos. Se obtiene multiplicando la <code>cantidad</code> por el <code>precio_unitario</code></td>
 </tr>
 <tr>
@@ -615,13 +615,13 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </tr>
 <tr>
 <td>tarifa</td>
-<td>float</td>
-<td>Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Porcentaje actual del impuesto.  <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>valor</td>
-<td>float</td>
-<td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Valor del impuesto.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h1 id='catalogo'>Catálogo</h1><h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
@@ -840,6 +840,10 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <tr>
 <td>Factura</td>
 <td>01</td>
+</tr>
+<tr>
+<td>Liquidación de Compra</td>
+<td>03</td>
 </tr>
 <tr>
 <td>Nota de Crédito</td>

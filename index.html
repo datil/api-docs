@@ -998,27 +998,27 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </thead><tbody>
 <tr>
 <td>total_sin_impuestos</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Total antes de los impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>descuento_adicional</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Descuento aplicado al subtotal de la factura expresado en valor monetario.</td>
 </tr>
 <tr>
 <td>descuento</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>propina</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Propina total, llamado también servicio. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Total incluyendo impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -2613,9 +2613,9 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
       "cantidad":622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -2691,9 +2691,9 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
       <span class="s">"cantidad"</span><span class="p">:</span><span class="mf">622.0</span><span class="p">,</span>
       <span class="s">"codigo_principal"</span><span class="p">:</span><span class="s">"ZNC"</span><span class="p">,</span>
       <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"050"</span><span class="p">,</span>
-      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mf">7.01</span><span class="p">,</span>
+      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mf">7.008907</span><span class="p">,</span>
       <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Zanahoria granel  50 Kg."</span><span class="p">,</span>
-      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mf">4360.22</span><span class="p">,</span>
+      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mf">4359.54</span><span class="p">,</span>
       <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
           <span class="s">"base_imponible"</span><span class="p">:</span><span class="mf">4359.54</span><span class="p">,</span>
@@ -2790,9 +2790,9 @@ datos corregidos para que pueda ser procesado y autorizado.</p>
             <span class="s">""</span><span class="n">cantidad</span><span class="s">""</span><span class="p">:</span><span class="m">622.0</span><span class="p">,</span>
             <span class="s">""</span><span class="n">codigo_principal</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">ZNC</span><span class="s">""</span>
             <span class="s">""</span><span class="n">codigo_auxiliar</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">050</span><span class="s">""</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">precio_unitario</span><span class="s">""</span><span class="p">:</span> <span class="m">7.01</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_unitario</span><span class="s">""</span><span class="p">:</span> <span class="m">7.008907</span><span class="p">,</span>
             <span class="s">""</span><span class="n">descripcion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Zanahoria</span> <span class="n">granel</span>  <span class="m">50</span> <span class="n">Kg</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
-            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">4360.22</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">4359.54</span><span class="p">,</span>
             <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
               <span class="p">{</span>
                 <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">4359.54</span><span class="p">,</span>
@@ -2830,7 +2830,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
-<td>string</td>
+<td>integer (min. 1 - max. 999999999 )</td>
 <td>Número de secuencia de la nota de crédito. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -2856,7 +2856,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>comprador</td>
 <td>objeto tipo <a href="#persona">persona</a></td>
-<td>Información del comprador.</td>
+<td>Información del comprador. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>totales</td>
@@ -2997,9 +2997,9 @@ Remember — a happy kitten is an authenticated kitten!
       </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">622.0</span><span class="p">,</span><span class="w">
       </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"050"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.01</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.008907</span><span class="p">,</span><span class="w">
       </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zanahoria granel  50 Kg."</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4360.22</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
       </span><span class="s2">"impuestos"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">4359.54</span><span class="p">,</span><span class="w">
@@ -3919,7 +3919,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp </span>
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
       <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
       <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
 
@@ -4176,7 +4176,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>cantidad</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Cantidad de items. <strong>Requerido</strong></td>
 </tr>
 <tr>
@@ -4294,15 +4294,15 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-guia-remision">guía de remisión</a></strong> que incluye un nuevo parámetro <code>id</code>,
-el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code> 
+el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-de-una-guia-de-remision'>Consulta de una guía de remisión</h2>
 <p>Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /waybills/&lt;receipt-id&gt;</code></p>
@@ -6136,7 +6136,7 @@ estar estructurada la clave de acceso.</p>
 </thead><tbody>
 <tr>
 <td>Fecha de Emisión</td>
-<td>ddmmaaaa</td>
+<td>DDMMAAAA</td>
 <td>8</td>
 </tr>
 <tr>
@@ -6548,17 +6548,17 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </tr>
 <tr>
 <td>base_imponible</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Base imponible.</td>
 </tr>
 <tr>
 <td>valor</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Valor del total.</td>
 </tr>
 <tr>
 <td>tarifa</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0</td>
 </tr>
 </tbody></table>
@@ -6662,37 +6662,37 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </thead><tbody>
 <tr>
 <td>descripcion</td>
-<td>string</td>
+<td>string (máximo 300 caracteres)</td>
 <td>Descripción del ítem. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_principal</td>
-<td>string</td>
+<td>string (máximo 25 caracteres)</td>
 <td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
 </tr>
 <tr>
 <td>codigo_auxiliar</td>
-<td>string</td>
+<td>string (máximo 25 caracteres)</td>
 <td>Código alfanumérico de uso del comercio. Máximo 25 caracteres.</td>
 </tr>
 <tr>
 <td>cantidad</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Cantidad de items. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>precio_unitario</td>
-<td>float</td>
+<td>float (hasta 6 cifras decimales)</td>
 <td>Precio unitario. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>descuento</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>El descuento es aplicado por cada producto, expresado en valor monetario. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>precio_total_sin_impuestos</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Precio antes de los impuestos. Se obtiene multiplicando la <code>cantidad</code> por el <code>precio_unitario</code></td>
 </tr>
 <tr>
@@ -6735,13 +6735,13 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 </tr>
 <tr>
 <td>tarifa</td>
-<td>float</td>
-<td>Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Porcentaje actual del impuesto.  <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>valor</td>
-<td>float</td>
-<td>Valor del impuesto. Máximo 12 enteros y 2 decimales.  <strong>Requerido</strong></td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Valor del impuesto.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h1 id='catalogo'>Catálogo</h1><h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
@@ -6960,6 +6960,10 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <tr>
 <td>Factura</td>
 <td>01</td>
+</tr>
+<tr>
+<td>Liquidación de Compra</td>
+<td>03</td>
 </tr>
 <tr>
 <td>Nota de Crédito</td>

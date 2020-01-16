@@ -511,27 +511,27 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </thead><tbody>
 <tr>
 <td>total_sin_impuestos</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Total antes de los impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>descuento_adicional</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Descuento aplicado al subtotal de la factura expresado en valor monetario.</td>
 </tr>
 <tr>
 <td>descuento</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>propina</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Propina total, llamado también servicio. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>importe_total</td>
-<td>float</td>
+<td>float (hasta 2 cifras decimales)</td>
 <td>Total incluyendo impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>

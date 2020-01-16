@@ -31,7 +31,7 @@ parámetros de conexión a la base de datos:</p>
 <h3 id='simplificada'>Simplificada</h3>
 <p>Link tiene la capacidad de construir la cadena de conexión para los siguientes
 drivers ODBC: SQL Anywhere 11, Microsoft ODBC for Oracle, Oracle in OraClient11g_home1,
-Microsoft ODBC Driver for Oracle y SQL Server. Si utilizas alguno de estos drivers
+Microsoft ODBC Driver for Oracle, SQL Server y Access ODBC Driver. Si utilizas alguno de estos drivers
 debes especificar los siguientes parámetros:</p>
 
 <table><thead>
@@ -343,7 +343,7 @@ de los comprobantes a emitir.</p>
 
 <p>Si aún no ha instalado <strong>Link</strong>, puede crear un archivo <code>.ini</code> de respaldo con los queries configurados.</p>
 
-<p><a href="link-app#ejemplos-de-archivos-de-configuraci-n">Ver ejemplos de archivos de configuración</a></p>
+<p><a href="#ejemplos-de-archivos-de-configuracion">Ver ejemplos de archivos de configuración</a></p>
 
 <p><strong>Nombres de tablas y columnas</strong></p>
 
@@ -529,7 +529,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>email</td>
@@ -614,7 +614,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -740,7 +740,7 @@ de su sistema pueden ser distintos pero el resultado de cada <em>query</em> debe
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h3 id='detalles-adicionales-de-items'>Detalles adicionales de items</h3>
@@ -1010,7 +1010,7 @@ total               | float                   | Total aplicable a la forma de pa
 <tr>
 <td>incoterm_termino</td>
 <td>string</td>
-<td>Código de 3 letras correspondiente al <a href="http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/">Incoterm</a> . <strong>Requerido</strong></td>
+<td>Código de 3 letras correspondiente al <a href="https://en.wikipedia.org/wiki/Incoterms#Rules_for_any_mode_of_transport">Incoterm</a> . <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>incoterm_lugar</td>
@@ -1430,7 +1430,7 @@ total               | float                   | Total aplicable a la forma de pa
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>email</td>
@@ -1503,7 +1503,7 @@ total               | float                   | Total aplicable a la forma de pa
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -1623,7 +1623,7 @@ total               | float                   | Total aplicable a la forma de pa
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h3 id='detalles-adicionales-de-items-2'>Detalles adicionales de items</h3>
@@ -2047,7 +2047,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>razon_social</td>
@@ -2096,12 +2096,12 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código de <a href="#tipos-de-impuesto-para-la-retenci-n">tipo de impuesto</a>. <strong>Requerido</strong></td>
+<td>Código de <a href="#tipos-de-impuesto-para-la-retencion">tipo de impuesto</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td><a href="#retenci-n-de-iva">Código del porcentaje</a> a aplicar dentro del tipo de impuesto <strong>Requerido</strong></td>
+<td><a href="#retencion-de-iva">Código del porcentaje</a> a aplicar dentro del tipo de impuesto <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>porcentaje</td>
@@ -2412,7 +2412,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>razon_social</td>
@@ -2483,7 +2483,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>email</td>
@@ -2938,7 +2938,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_identificacion</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>razon_social</td>
@@ -3012,7 +3012,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>base_imponible</td>
@@ -3144,7 +3144,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h3 id='detalles-adicionales-de-items-5'>Detalles adicionales de items</h3>
@@ -3404,7 +3404,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>tipo_id_proveedor_reembolso</td>
 <td>string</td>
-<td>Ver <a href="#tipo-de-identificaci-n">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_pais_pago_proveedor_reembolso</td>
@@ -3470,7 +3470,7 @@ una columna tiene los nombres y otra los valores.</p>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td>Código del <a href="#c-digo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>tarifa</td>
