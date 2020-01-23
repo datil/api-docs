@@ -313,6 +313,20 @@
               </ul>
           </li>
           <li>
+            <a href="#consulta-de-autorizacion" class="toc-h1 toc-link" data-title="Consulta de autorización">Consulta de autorización</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#operacion" class="toc-h2 toc-link" data-title="Operación">Operación</a>
+                  </li>
+                  <li>
+                    <a href="#requerimiento" class="toc-h2 toc-link" data-title="Requerimiento">Requerimiento</a>
+                  </li>
+                  <li>
+                    <a href="#respuesta" class="toc-h2 toc-link" data-title="Respuesta">Respuesta</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#clave-de-acceso" class="toc-h1 toc-link" data-title="Clave de acceso">Clave de acceso</a>
           </li>
           <li>
@@ -2009,8 +2023,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/&lt;id-factura&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
@@ -3358,7 +3371,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
   <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
-      <span class="c1">// Este ejemplo utiliza RestSharp </span>
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
       <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
       <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
 
@@ -3419,7 +3432,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>Para la emisión de una nota de crédito se debe enviar la información completa del
+<p>Para la emisión de una retención se debe enviar la información completa del
 comprobante en el cuerpo del requerimiento en formato JSON.</p>
 
 <table><thead>
@@ -3431,8 +3444,8 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </thead><tbody>
 <tr>
 <td>secuencial</td>
-<td>string</td>
-<td>Número de secuencia de la nota de crédito. <strong>Requerido</strong></td>
+<td>integer (min. 1 - max. 999999999 )</td>
+<td>Número de secuencia de la retención. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>emisor</td>
@@ -3583,15 +3596,15 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-retencion">retención</a></strong> que incluye un nuevo parámetro <code>id</code>,
-el cual identifica de manera única a la nota de crédito. El campo <code>clave_acceso</code> 
+el cual identifica de manera única a la retención. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
 <h2 id='consulta-de-un-comprobante-de-retencion'>Consulta de un Comprobante de Retención</h2>
-<p>Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
+<p>Consulta una retención para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica 
+El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.</p>
 
-<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>, 
+<p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emisión">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
 <h3 id='operacion-2'>Operación</h3>
 <p><code>GET /retentions/&lt;receipt-id&gt;</code></p>
@@ -3629,7 +3642,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>Reemplaza en la ruta <code>&lt;receipt-id&gt;</code> por el <code>id</code> de la nota de crédito que necesitas consultar.</p>
+<p>Reemplaza en la ruta <code>&lt;receipt-id&gt;</code> por el <code>id</code> de la retención que necesitas consultar.</p>
 <h3 id='respuesta-2'>Respuesta</h3>
 <blockquote>
 <h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
@@ -3712,7 +3725,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <tr>
 <td>secuencial</td>
 <td>string</td>
-<td>Número de secuencia de la nota de crédito.</td>
+<td>Número de secuencia de la retención.</td>
 </tr>
 <tr>
 <td>estado</td>
@@ -6118,6 +6131,90 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <td>Versión de la especificación, opciones válidas: <code>1.0.0</code>, <code>1.1.0</code></td>
 </tr>
 </tbody></table>
+<h1 id='consulta-de-autorizacion'>Consulta de autorización</h1>
+<p>Consulta la información de autorización de cualquier tipo de comprobante electrónico.
+El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir un documento.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET /edocs/&lt;id-doc&gt;</code></p>
+<h3 id='requerimiento'>Requerimiento</h3>
+<blockquote>
+<h4 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/edocs/&lt;id-doc&gt; <span class="se">\</span>
+-H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s">'https://link.datil.co/edocs/&lt;id-factura&gt;'</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">DatilClient</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
+      <span class="kt">var</span> <span class="n">idDocumento</span> <span class="p">=</span> <span class="s">"&lt;id-doc&gt;"</span><span class="p">;</span>
+      <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"edocs/"</span> <span class="p">+</span> <span class="n">idDocumento</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+
+      <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">Content</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='respuesta'>Respuesta</h3>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>El id del documento consultado</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>string</td>
+<td>Código que representa el tipo de documento. Revisa <a href="#tipos-de-documentos">aquí</a> el código que corresponde a cada tipo de documento</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>string</td>
+<td>Estado de autorización del comprobante. Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code>, <code>ENVIADO</code>, <code>DEVUELTO</code>, <code>RECIBIDO</code></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>Clave de acceso del documento.</td>
+</tr>
+<tr>
+<td>url_formato_impresion</td>
+<td>url</td>
+<td>Esta URL te permite acceder de manera directa al formato de impresión (RIDE) del comprobante</td>
+</tr>
+<tr>
+<td>url_documento_electronico</td>
+<td>url</td>
+<td>Esta URL te permite acceder de manera directa al documento electrónico (XML)</td>
+</tr>
+<tr>
+<td>autorizacion</td>
+<td>Objeto de tipo <a href="#autorizacion-sri">autorización SRI</a></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
 <h1 id='clave-de-acceso'>Clave de acceso</h1>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.

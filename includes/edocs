@@ -1,0 +1,84 @@
+<h1 id='consulta-de-autorizacion'>Consulta de autorización</h1>
+<p>Consulta la información de autorización de cualquier tipo de comprobante electrónico.
+El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir un documento.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET /edocs/&lt;id-doc&gt;</code></p>
+<h3 id='requerimiento'>Requerimiento</h3>
+<blockquote>
+<h4 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/edocs/&lt;id-doc&gt; <span class="se">\</span>
+-H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s">'https://link.datil.co/edocs/&lt;id-factura&gt;'</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">DatilClient</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
+      <span class="kt">var</span> <span class="n">idDocumento</span> <span class="p">=</span> <span class="s">"&lt;id-doc&gt;"</span><span class="p">;</span>
+      <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"edocs/"</span> <span class="p">+</span> <span class="n">idDocumento</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+
+      <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">Content</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='respuesta'>Respuesta</h3>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>El id del documento consultado</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>string</td>
+<td>Código que representa el tipo de documento. Revisa <a href="#tipos-de-documentos">aquí</a> el código que corresponde a cada tipo de documento</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>string</td>
+<td>Estado de autorización del comprobante. Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code>, <code>ENVIADO</code>, <code>DEVUELTO</code>, <code>RECIBIDO</code></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>Clave de acceso del documento.</td>
+</tr>
+<tr>
+<td>url_formato_impresion</td>
+<td>url</td>
+<td>Esta URL te permite acceder de manera directa al formato de impresión (RIDE) del comprobante</td>
+</tr>
+<tr>
+<td>url_documento_electronico</td>
+<td>url</td>
+<td>Esta URL te permite acceder de manera directa al documento electrónico (XML)</td>
+</tr>
+<tr>
+<td>autorizacion</td>
+<td>Objeto de tipo <a href="#autorizacion-sri">autorización SRI</a></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>

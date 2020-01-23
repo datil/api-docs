@@ -1522,8 +1522,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/&lt;id-factura&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
--H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
