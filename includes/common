@@ -914,6 +914,46 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>endoso_titulos</td>
 </tr>
 </tbody></table>
+<h2 id='tipos-de-forma-de-pago-del-sri'>Tipos de forma de pago del SRI</h2>
+<table><thead>
+<tr>
+<th>Forma de pago</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Sin utilización del sistema financiero</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Compensación de deudas</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Tarjeta de débito</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Dinero electrónico</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Tarjeta prepago</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Tarjeta de crédito</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Otros con utilización del sistema financiero</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Endoso de títulos</td>
+<td>21</td>
+</tr>
+</tbody></table>
 <h2 id='equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri'>Equivalencia entre formas de pago Dátil y formas de pago del SRI</h2>
 <table><thead>
 <tr>
