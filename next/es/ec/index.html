@@ -2908,7 +2908,7 @@ Obtener un listado de Facturas de compra</li>
 </ul>
 
 <h2 id="lista-facturas-compra">Lista Facturas</h2>
-<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/sales/invoices?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/invoices?supplier_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -2916,7 +2916,7 @@ Obtener un listado de Facturas de compra</li>
   <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span><span class="p">,</span>
   <span class="s">'accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
-<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/invoices?supplier_tax_identification=0900800712001"</span>
 <span class="n">invoices</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <p>Obtén el listado completo de Facturas recibidas, o filtra los resultados
@@ -3181,7 +3181,7 @@ coincidan con los parámetros de filtrado enviados.</p>
       </span><span class="s2">"electronic_document_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/sales/invoices/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/purchases/invoices/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id="notas-credito-compra">Notas de crédito</h2>
 <h4 id='acciones-disponibles-para-nota-de-credito-en-compra'>Acciones disponibles para Nota de Crédito en compra</h4>
@@ -3191,7 +3191,7 @@ Obtener un listado de Notas de Crédito</li>
 </ul>
 
 <h2 id="lista-notas-credito-compra">Lista Notas de crédito</h2>
-<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/credit-notes?supplier_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -3199,7 +3199,7 @@ Obtener un listado de Notas de Crédito</li>
   <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span><span class="p">,</span>
   <span class="s">'accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
-<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001"</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/credit-notes?supplier_tax_identification=0900800712001"</span>
 <span class="n">credit</span><span class="o">-</span><span class="n">notes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <p>Obtén el listado completo de Notas de crédito recibidas, o filtra los resultados
@@ -3212,7 +3212,7 @@ por cualquiera de estos parámetros.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>customer_tax_identification<p class="dt-data-type">string</p></td>
+<td>supplier_tax_identification<p class="dt-data-type">string</p></td>
 <td>Filtra las notas de crédito por comprador.</td>
 </tr>
 <tr>

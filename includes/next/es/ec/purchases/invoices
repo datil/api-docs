@@ -6,7 +6,7 @@ Obtener un listado de Facturas de compra</li>
 </ul>
 
 <h2 id="lista-facturas-compra">Lista Facturas</h2>
-<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/sales/invoices?customer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/purchases/invoices?supplier_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -14,7 +14,7 @@ Obtener un listado de Facturas de compra</li>
   <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span><span class="p">,</span>
   <span class="s">'accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
-<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/purchases/invoices?supplier_tax_identification=0900800712001"</span>
 <span class="n">invoices</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <p>Obtén el listado completo de Facturas recibidas, o filtra los resultados
@@ -279,6 +279,6 @@ coincidan con los parámetros de filtrado enviados.</p>
       </span><span class="s2">"electronic_document_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/sales/invoices/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.datil.co/api/v2/latest/purchases/invoices/?page=2&amp;issue_from=2018-02-01&amp;page_size=2&amp;issue_to=2018-02-10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
