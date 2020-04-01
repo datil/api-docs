@@ -68,7 +68,6 @@ curl -v https://link.datil.co/invoices/issue \
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.008907,
-      "descuento": 0,
       "descripcion": "Zanahoria granel  50 Kg.",
       "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
@@ -139,7 +138,7 @@ factura = {
   "fecha_emision":"2019-10-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
-    "obligado_contabilidad":True,
+    "obligado_contabilidad":true,
     "contribuyente_especial":"12345",
     "nombre_comercial":"XYZ Corp",
     "razon_social":"XYZ Corporación S.A.",
@@ -185,7 +184,6 @@ factura = {
       "codigo_principal":"ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.008907,
-      "descuento":0,
       "descripcion": "Zanahoria granel  50 Kg.",
       "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
@@ -332,7 +330,6 @@ namespace DatilClient {
             ""codigo_principal"":""ZNC"",
             ""codigo_auxiliar"": ""050"",
             ""precio_unitario"": 7.01,
-            ""descuento"": 0,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
             ""precio_total_sin_impuestos"": 4359.54,
             ""impuestos"": [
@@ -861,7 +858,6 @@ curl -v https://link.datil.co/invoices/issue \
     "codigo_principal": "REEM",
     "codigo_auxiliar": "",
     "precio_unitario": 300.00,
-    "descuento": 0,
     "descripcion": "Reembolso de gastos",
     "precio_total_sin_impuestos": 300.00,
     "impuestos": [{
@@ -961,7 +957,6 @@ factura = {
     "codigo_principal": "REEM",
     "codigo_auxiliar": "",
     "precio_unitario": 300.00,
-    "descuento": 0,
     "descripcion": "Reembolso de gastos",
     "precio_total_sin_impuestos": 300.00,
     "impuestos": [{
@@ -1088,7 +1083,6 @@ namespace DatilClient {
           ""codigo_principal"": ""REEM"",
           ""codigo_auxiliar"": "",
           ""precio_unitario"": 300.00,
-          ""descuento"": 0,
           ""descripcion"": ""Reembolso de gastos"",
           ""precio_total_sin_impuestos"": 300.00,
           ""impuestos"": [{
@@ -1539,7 +1533,6 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
     "codigo_principal": "REEM",
     "codigo_auxiliar": "",
     "precio_unitario": 300.00,
-    "descuento": 0,
     "descripcion": "Reembolso de gastos",
     "precio_total_sin_impuestos": 300.00,
     "impuestos": [{
