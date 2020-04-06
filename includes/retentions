@@ -479,7 +479,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <tr>
 <td>estado</td>
 <td>string</td>
-<td>Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code>, <code>ENVIADO</code>, <code>DEVUELTO</code>, <code>RECIBIDO</code></td>
+<td>Posibles valores: <code>AUTORIZADO</code>, <code>NO AUTORIZADO</code>, <code>ENVIADO</code>, <code>DEVUELTO</code>, <code>RECIBIDO</code>, <code>ERROR</code></td>
 </tr>
 <tr>
 <td>fecha_emision</td>
