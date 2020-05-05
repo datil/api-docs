@@ -473,7 +473,279 @@ Remember — a happy kitten is an authenticated kitten!
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-nota-credito">nota de crédito</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la nota de crédito. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
-<h2 id='consulta-de-una-nota-de-credito'>Consulta de una nota de crédito</h2>
+<h2 id='emision-de-una-nota-de-credito-a-partir-de-xml'>Emisión de una nota de crédito a partir de XML</h2>
+<p><code>POST /credit-notes/issue/xml</code></p>
+<h3 id='requerimiento-a-partir-de-xml'>Requerimiento a partir de XML</h3>
+<p>Para la emisión de una nota de crédito a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xml</td>
+<td>string</td>
+<td>Contenido del archivo xml. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/credit-notes/issue/xml <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{"xml": "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;
+&lt;notaCredito id=\"comprobante\" version=\"1.1.0\"&gt;
+  &lt;infoTributaria&gt;
+    &lt;ambiente&gt;1&lt;/ambiente&gt;
+    &lt;tipoEmision&gt;1&lt;/tipoEmision&gt;
+    &lt;razonSocial&gt;DATILMEDIA S.A.&lt;/razonSocial&gt;
+    &lt;nombreComercial&gt;Datil&lt;/nombreComercial&gt;
+    &lt;ruc&gt;1234567890001&lt;/ruc&gt;
+    &lt;claveAcceso&gt;0405202004123456789000110010010000000062235571918&lt;/claveAcceso&gt;
+    &lt;codDoc&gt;04&lt;/codDoc&gt;
+    &lt;estab&gt;001&lt;/estab&gt;
+    &lt;ptoEmi&gt;001&lt;/ptoEmi&gt;
+    &lt;secuencial&gt;000000006&lt;/secuencial&gt;
+    &lt;dirMatriz&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirMatriz&gt;
+  &lt;/infoTributaria&gt;
+  &lt;infoNotaCredito&gt;
+    &lt;fechaEmision&gt;04/05/2020&lt;/fechaEmision&gt;
+    &lt;dirEstablecimiento&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirEstablecimiento&gt;
+    &lt;tipoIdentificacionComprador&gt;04&lt;/tipoIdentificacionComprador&gt;
+    &lt;razonSocialComprador&gt;Juan Pérez&lt;/razonSocialComprador&gt;
+    &lt;identificacionComprador&gt;0953239092001&lt;/identificacionComprador&gt;
+    &lt;obligadoContabilidad&gt;NO&lt;/obligadoContabilidad&gt;
+    &lt;codDocModificado&gt;01&lt;/codDocModificado&gt;
+    &lt;numDocModificado&gt;001-002-000000001&lt;/numDocModificado&gt;
+    &lt;fechaEmisionDocSustento&gt;04/05/2020&lt;/fechaEmisionDocSustento&gt;
+    &lt;totalSinImpuestos&gt;0.45&lt;/totalSinImpuestos&gt;
+    &lt;valorModificacion&gt;0.68&lt;/valorModificacion&gt;
+    &lt;moneda&gt;DOLAR&lt;/moneda&gt;
+    &lt;totalConImpuestos&gt;
+      &lt;totalImpuesto&gt;
+        &lt;codigo&gt;3&lt;/codigo&gt;
+        &lt;codigoPorcentaje&gt;3080&lt;/codigoPorcentaje&gt;
+        &lt;baseImponible&gt;0.45&lt;/baseImponible&gt;
+        &lt;valor&gt;0.16&lt;/valor&gt;
+      &lt;/totalImpuesto&gt;
+      &lt;totalImpuesto&gt;
+        &lt;codigo&gt;2&lt;/codigo&gt;
+        &lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;
+        &lt;baseImponible&gt;0.61&lt;/baseImponible&gt;
+        &lt;valor&gt;0.07&lt;/valor&gt;
+      &lt;/totalImpuesto&gt;
+    &lt;/totalConImpuestos&gt;
+    &lt;motivo&gt;Motivo de la nota de credito&lt;/motivo&gt;
+  &lt;/infoNotaCredito&gt;
+  &lt;detalles&gt;
+    &lt;detalle&gt;
+      &lt;codigoInterno&gt;AGDAS-001&lt;/codigoInterno&gt;
+      &lt;descripcion&gt;Agua purificada&lt;/descripcion&gt;
+      &lt;cantidad&gt;1.000000&lt;/cantidad&gt;
+      &lt;precioUnitario&gt;0.450000&lt;/precioUnitario&gt;
+      &lt;descuento&gt;0.00&lt;/descuento&gt;
+      &lt;precioTotalSinImpuesto&gt;0.45&lt;/precioTotalSinImpuesto&gt;
+      &lt;impuestos&gt;
+        &lt;impuesto&gt;
+          &lt;codigo&gt;2&lt;/codigo&gt;
+          &lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;
+          &lt;tarifa&gt;12.00&lt;/tarifa&gt;
+          &lt;baseImponible&gt;0.61&lt;/baseImponible&gt;
+          &lt;valor&gt;0.07&lt;/valor&gt;
+        &lt;/impuesto&gt;
+        &lt;impuesto&gt;
+          &lt;codigo&gt;3&lt;/codigo&gt;
+          &lt;codigoPorcentaje&gt;3080&lt;/codigoPorcentaje&gt;
+          &lt;tarifa&gt;35.00&lt;/tarifa&gt;
+          &lt;baseImponible&gt;0.45&lt;/baseImponible&gt;
+          &lt;valor&gt;0.16&lt;/valor&gt;
+        &lt;/impuesto&gt;
+      &lt;/impuestos&gt;
+    &lt;/detalle&gt;
+  &lt;/detalles&gt;
+  &lt;infoAdicional&gt;
+    &lt;campoAdicional nombre=\"Campo Adicional\"&gt;Informacion Adicional&lt;/campoAdicional&gt;
+  &lt;/infoAdicional&gt;
+&lt;/notaCredito&gt;"}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
+
+<span class="n">nota_credito</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"xml"</span><span class="p">:</span> <span class="s">'''&lt;?xml version=</span><span class="se">\"</span><span class="s">1.0</span><span class="se">\"</span><span class="s"> encoding=</span><span class="se">\"</span><span class="s">UTF-8</span><span class="se">\"</span><span class="s">?&gt;
+    &lt;notaCredito id=</span><span class="se">\"</span><span class="s">comprobante</span><span class="se">\"</span><span class="s"> version=</span><span class="se">\"</span><span class="s">1.1.0</span><span class="se">\"</span><span class="s">&gt;
+      &lt;infoTributaria&gt;
+        &lt;ambiente&gt;1&lt;/ambiente&gt;
+        &lt;tipoEmision&gt;1&lt;/tipoEmision&gt;
+        &lt;razonSocial&gt;DATILMEDIA S.A.&lt;/razonSocial&gt;
+        &lt;nombreComercial&gt;Datil&lt;/nombreComercial&gt;
+        &lt;ruc&gt;1234567890001&lt;/ruc&gt;
+        &lt;claveAcceso&gt;0405202004123456789000110010010000000062235571918&lt;/claveAcceso&gt;
+        &lt;codDoc&gt;04&lt;/codDoc&gt;
+        &lt;estab&gt;001&lt;/estab&gt;
+        &lt;ptoEmi&gt;001&lt;/ptoEmi&gt;
+        &lt;secuencial&gt;000000006&lt;/secuencial&gt;
+        &lt;dirMatriz&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirMatriz&gt;
+      &lt;/infoTributaria&gt;
+      &lt;infoNotaCredito&gt;
+        &lt;fechaEmision&gt;04/05/2020&lt;/fechaEmision&gt;
+        &lt;dirEstablecimiento&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirEstablecimiento&gt;
+        &lt;tipoIdentificacionComprador&gt;04&lt;/tipoIdentificacionComprador&gt;
+        &lt;razonSocialComprador&gt;Juan Pérez&lt;/razonSocialComprador&gt;
+        &lt;identificacionComprador&gt;0953239092001&lt;/identificacionComprador&gt;
+        &lt;obligadoContabilidad&gt;NO&lt;/obligadoContabilidad&gt;
+        &lt;codDocModificado&gt;01&lt;/codDocModificado&gt;
+        &lt;numDocModificado&gt;001-002-000000001&lt;/numDocModificado&gt;
+        &lt;fechaEmisionDocSustento&gt;04/05/2020&lt;/fechaEmisionDocSustento&gt;
+        &lt;totalSinImpuestos&gt;0.45&lt;/totalSinImpuestos&gt;
+        &lt;valorModificacion&gt;0.68&lt;/valorModificacion&gt;
+        &lt;moneda&gt;DOLAR&lt;/moneda&gt;
+        &lt;totalConImpuestos&gt;
+          &lt;totalImpuesto&gt;
+            &lt;codigo&gt;3&lt;/codigo&gt;
+            &lt;codigoPorcentaje&gt;3080&lt;/codigoPorcentaje&gt;
+            &lt;baseImponible&gt;0.45&lt;/baseImponible&gt;
+            &lt;valor&gt;0.16&lt;/valor&gt;
+          &lt;/totalImpuesto&gt;
+          &lt;totalImpuesto&gt;
+            &lt;codigo&gt;2&lt;/codigo&gt;
+            &lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;
+            &lt;baseImponible&gt;0.61&lt;/baseImponible&gt;
+            &lt;valor&gt;0.07&lt;/valor&gt;
+          &lt;/totalImpuesto&gt;
+        &lt;/totalConImpuestos&gt;
+        &lt;motivo&gt;Motivo de la nota de credito&lt;/motivo&gt;
+      &lt;/infoNotaCredito&gt;
+      &lt;detalles&gt;
+        &lt;detalle&gt;
+          &lt;codigoInterno&gt;AGDAS-001&lt;/codigoInterno&gt;
+          &lt;descripcion&gt;Agua purificada&lt;/descripcion&gt;
+          &lt;cantidad&gt;1.000000&lt;/cantidad&gt;
+          &lt;precioUnitario&gt;0.450000&lt;/precioUnitario&gt;
+          &lt;descuento&gt;0.00&lt;/descuento&gt;
+          &lt;precioTotalSinImpuesto&gt;0.45&lt;/precioTotalSinImpuesto&gt;
+          &lt;impuestos&gt;
+            &lt;impuesto&gt;
+              &lt;codigo&gt;2&lt;/codigo&gt;
+              &lt;codigoPorcentaje&gt;2&lt;/codigoPorcentaje&gt;
+              &lt;tarifa&gt;12.00&lt;/tarifa&gt;
+              &lt;baseImponible&gt;0.61&lt;/baseImponible&gt;
+              &lt;valor&gt;0.07&lt;/valor&gt;
+            &lt;/impuesto&gt;
+            &lt;impuesto&gt;
+              &lt;codigo&gt;3&lt;/codigo&gt;
+              &lt;codigoPorcentaje&gt;3080&lt;/codigoPorcentaje&gt;
+              &lt;tarifa&gt;35.00&lt;/tarifa&gt;
+              &lt;baseImponible&gt;0.45&lt;/baseImponible&gt;
+              &lt;valor&gt;0.16&lt;/valor&gt;
+            &lt;/impuesto&gt;
+          &lt;/impuestos&gt;
+        &lt;/detalle&gt;
+      &lt;/detalles&gt;
+      &lt;infoAdicional&gt;
+        &lt;campoAdicional nombre="Campo Adicional"&gt;Informacion Adicional&lt;/campoAdicional&gt;
+      &lt;/infoAdicional&gt;
+    &lt;/notaCredito&gt;'''</span>
+<span class="p">}</span>
+
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/credit-notes/issue/xml"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">nota_credito</span><span class="p">))</span>
+</code></pre>
+<blockquote>
+<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000006"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-04T00:00:00-05:19"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"emisor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATILMEDIA S.A."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"devops@datilmedia.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fecha_emision_documento_modificado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-04T00:00:00-05:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"es_valida"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"moneda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21da58fa6ecf4827ae002b8c641e1b00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Campo Adicional"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Informacion Adicional"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"importe_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.68</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3080"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.16</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.61</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"comprador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0953239092001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"precio_unitario"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agua purificada"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"precio_total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.61</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3080"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.16</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"descuento"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGDAS-001"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tipo_documento_modificado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numero_documento_modificado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0405202004123456789000110010010000000062235571918"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"motivo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Motivo de la nota de credito"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='consulta-de-una-nota-de-credito'>Consulta de una nota de crédito</h2>
 <p>Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
 El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
@@ -485,7 +757,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <p><code>GET /credit-notes/&lt;invoice-id&gt;</code></p>
 <h3 id='requerimiento'>Requerimiento</h3>
 <blockquote>
-<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<h4 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/credit-notes/&lt;id-notacredito&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
@@ -520,7 +792,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <p>Reemplaza en la ruta <code>&lt;invoice-ID&gt;</code> por el <code>id</code> de la nota de crédito que necesitas consultar.</p>
 <h3 id='respuesta-2'>Respuesta</h3>
 <blockquote>
-<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
+<h4 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
