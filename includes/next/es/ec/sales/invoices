@@ -674,7 +674,8 @@ coincidan con los parámetros de filtrado enviados.</p>
             }
           }]
         }
-      ]
+      ],
+      "send_payment_confirmation": true
     }'</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
 
@@ -692,7 +693,8 @@ coincidan con los parámetros de filtrado enviados.</p>
         <span class="s">"description"</span><span class="p">:</span> <span class="s">"Banco Huancavilva"</span>
       <span class="p">}</span>
     <span class="p">]</span>
-  <span class="p">}]</span>
+  <span class="p">}],</span>
+  <span class="s">"send_payment_confirmation"</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">}</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
@@ -713,6 +715,10 @@ coincidan con los parámetros de filtrado enviados.</p>
 <tr>
 <td>payments<p class="dt-data-param-required">requerido</p></td>
 <td>Listado de <a href="#payment">pagos</a> a registrar</td>
+</tr>
+<tr>
+<td>send_payment_confirmation</td>
+<td>Envia un correo de recibo de pago al cliente.</td>
 </tr>
 </tbody></table>
 
