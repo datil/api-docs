@@ -1,9 +1,13 @@
 <h1 id='consulta-de-autorizacion'>Consulta de autorización</h1>
 <p>Consulta la información de autorización de cualquier tipo de comprobante electrónico.
 El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir un documento.</p>
-<h3 id='operacion'>Operación</h3>
+
+<h3 id="consulta-comprobante-op">Operación</h3>
+
 <p><code>GET /edocs/&lt;id-doc&gt;</code></p>
-<h3 id='requerimiento'>Requerimiento</h3>
+
+<h3 id="consulta-comprobante-requerimiento">Requerimiento</h3>
+
 <blockquote>
 <h4 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/edocs/&lt;id-doc&gt; <span class="se">\</span>
@@ -35,7 +39,9 @@ El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre><h3 id='respuesta'>Respuesta</h3>
+</code></pre>
+<h3 id="consulta-comprobante-respuesta">Respuesta</h3>
+
 <table><thead>
 <tr>
 <th>Parámetro</th>

@@ -258,12 +258,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>codigo</td>
 <td>string</td>
-<td>Código de <a href="#tipos-de-impuesto-para-la-retenci-n">tipo de impuesto</a>. <strong>Requerido</strong></td>
+<td>Código de <a href="#tipos-de-impuesto-para-la-retencion">tipo de impuesto</a>. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>codigo_porcentaje</td>
 <td>string</td>
-<td><a href="#retenci-n-de-iva">Código del porcentaje</a> a aplicar dentro del tipo de impuesto <strong>Requerido</strong></td>
+<td><a href="#retencion-de-iva">Código del porcentaje</a> a aplicar dentro del tipo de impuesto <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>porcentaje</td>
