@@ -1033,3 +1033,11 @@ participan en la comercialización de periódicos y/o revistas.</p>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
+<h1 id='descarga-de-documentos'>Descarga de documentos</h1><h2 id='consulta-de-ride'>Consulta de RIDE</h2>
+<p>Consulta de la representación impresa del documento electrónico (RIDE). El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/pdf</code></p>
+<h2 id='consulta-de-xml'>Consulta de XML</h2>
+<p>Consulta de representación XML de los documentos. El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
+<h3 id='operacion-2'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/xml</code></p>

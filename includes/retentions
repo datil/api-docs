@@ -347,7 +347,172 @@ Remember — a happy kitten is an authenticated kitten!
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-retencion">retención</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la retención. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
-<h2 id='consulta-de-un-comprobante-de-retencion'>Consulta de un Comprobante de Retención</h2>
+<h2 id='emision-de-retenciones-a-partir-de-xml'>Emisión de retenciones a partir de XML</h2>
+<p><code>POST /retentions/issue/xml</code></p>
+<h3 id='requerimiento-a-partir-de-xml'>Requerimiento a partir de XML</h3>
+<p>Para la emisión de un comprobante de retención a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xml</td>
+<td>string</td>
+<td>Contenido del archivo xml. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/retentions/issue/xml <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{"xml": "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;
+&lt;comprobanteRetencion id=\"comprobante\" version=\"1.0.0\"&gt;
+  &lt;infoTributaria&gt;
+    &lt;ambiente&gt;1&lt;/ambiente&gt;
+    &lt;tipoEmision&gt;1&lt;/tipoEmision&gt;
+    &lt;razonSocial&gt;DATILMEDIA S.A.&lt;/razonSocial&gt;
+    &lt;nombreComercial&gt;Datil&lt;/nombreComercial&gt;
+    &lt;ruc&gt;1234567890001&lt;/ruc&gt;
+    &lt;claveAcceso&gt;0405202007123456789000110010010000000012235571911&lt;/claveAcceso&gt;
+    &lt;codDoc&gt;07&lt;/codDoc&gt;
+    &lt;estab&gt;001&lt;/estab&gt;
+    &lt;ptoEmi&gt;001&lt;/ptoEmi&gt;
+    &lt;secuencial&gt;000000001&lt;/secuencial&gt;
+    &lt;dirMatriz&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirMatriz&gt;
+  &lt;/infoTributaria&gt;
+  &lt;infoCompRetencion&gt;
+    &lt;fechaEmision&gt;04/05/2020&lt;/fechaEmision&gt;
+    &lt;dirEstablecimiento&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirEstablecimiento&gt;
+    &lt;obligadoContabilidad&gt;NO&lt;/obligadoContabilidad&gt;
+    &lt;tipoIdentificacionSujetoRetenido&gt;04&lt;/tipoIdentificacionSujetoRetenido&gt;
+    &lt;razonSocialSujetoRetenido&gt;Juan Perez&lt;/razonSocialSujetoRetenido&gt;
+    &lt;identificacionSujetoRetenido&gt;0953239092001&lt;/identificacionSujetoRetenido&gt;
+    &lt;periodoFiscal&gt;05/2020&lt;/periodoFiscal&gt;
+  &lt;/infoCompRetencion&gt;
+  &lt;impuestos&gt;
+    &lt;impuesto&gt;
+      &lt;codigo&gt;1&lt;/codigo&gt;
+      &lt;codigoRetencion&gt;401CD&lt;/codigoRetencion&gt;
+      &lt;baseImponible&gt;10.00&lt;/baseImponible&gt;
+      &lt;porcentajeRetener&gt;0.00&lt;/porcentajeRetener&gt;
+      &lt;valorRetenido&gt;0.00&lt;/valorRetenido&gt;
+      &lt;codDocSustento&gt;01&lt;/codDocSustento&gt;
+      &lt;numDocSustento&gt;001001000000001&lt;/numDocSustento&gt;
+      &lt;fechaEmisionDocSustento&gt;03/05/2020&lt;/fechaEmisionDocSustento&gt;
+    &lt;/impuesto&gt;
+  &lt;/impuestos&gt;
+  &lt;infoAdicional&gt;
+    &lt;campoAdicional nombre="Campo adicional"&gt;Información adicional&lt;/campoAdicional&gt;
+  &lt;/infoAdicional&gt;
+&lt;/comprobanteRetencion&gt;"}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
+
+<span class="n">retencion</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"xml"</span><span class="p">:</span> <span class="s">'''&lt;?xml version=</span><span class="se">\"</span><span class="s">1.0</span><span class="se">\"</span><span class="s"> encoding=</span><span class="se">\"</span><span class="s">UTF-8</span><span class="se">\"</span><span class="s">?&gt;
+    &lt;comprobanteRetencion id=</span><span class="se">\"</span><span class="s">comprobante</span><span class="se">\"</span><span class="s"> version=</span><span class="se">\"</span><span class="s">1.0.0</span><span class="se">\"</span><span class="s">&gt;
+      &lt;infoTributaria&gt;
+        &lt;ambiente&gt;1&lt;/ambiente&gt;
+        &lt;tipoEmision&gt;1&lt;/tipoEmision&gt;
+        &lt;razonSocial&gt;DATILMEDIA S.A.&lt;/razonSocial&gt;
+        &lt;nombreComercial&gt;Datil&lt;/nombreComercial&gt;
+        &lt;ruc&gt;1234567890001&lt;/ruc&gt;
+        &lt;claveAcceso&gt;0405202007123456789000110010010000000012235571911&lt;/claveAcceso&gt;
+        &lt;codDoc&gt;07&lt;/codDoc&gt;
+        &lt;estab&gt;001&lt;/estab&gt;
+        &lt;ptoEmi&gt;001&lt;/ptoEmi&gt;
+        &lt;secuencial&gt;000000001&lt;/secuencial&gt;
+        &lt;dirMatriz&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirMatriz&gt;
+      &lt;/infoTributaria&gt;
+      &lt;infoCompRetencion&gt;
+        &lt;fechaEmision&gt;04/05/2020&lt;/fechaEmision&gt;
+        &lt;dirEstablecimiento&gt;Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras&lt;/dirEstablecimiento&gt;
+        &lt;obligadoContabilidad&gt;NO&lt;/obligadoContabilidad&gt;
+        &lt;tipoIdentificacionSujetoRetenido&gt;04&lt;/tipoIdentificacionSujetoRetenido&gt;
+        &lt;razonSocialSujetoRetenido&gt;Juan Perez&lt;/razonSocialSujetoRetenido&gt;
+        &lt;identificacionSujetoRetenido&gt;0953239092001&lt;/identificacionSujetoRetenido&gt;
+        &lt;periodoFiscal&gt;05/2020&lt;/periodoFiscal&gt;
+      &lt;/infoCompRetencion&gt;
+      &lt;impuestos&gt;
+        &lt;impuesto&gt;
+          &lt;codigo&gt;1&lt;/codigo&gt;
+          &lt;codigoRetencion&gt;401CD&lt;/codigoRetencion&gt;
+          &lt;baseImponible&gt;10.00&lt;/baseImponible&gt;
+          &lt;porcentajeRetener&gt;0.00&lt;/porcentajeRetener&gt;
+          &lt;valorRetenido&gt;0.00&lt;/valorRetenido&gt;
+          &lt;codDocSustento&gt;01&lt;/codDocSustento&gt;
+          &lt;numDocSustento&gt;001001000000001&lt;/numDocSustento&gt;
+          &lt;fechaEmisionDocSustento&gt;03/05/2020&lt;/fechaEmisionDocSustento&gt;
+        &lt;/impuesto&gt;
+      &lt;/impuestos&gt;
+      &lt;infoAdicional&gt;
+        &lt;campoAdicional nombre="Campo adicional"&gt;Información adicional&lt;/campoAdicional&gt;
+      &lt;/infoAdicional&gt;
+    &lt;/comprobanteRetencion&gt;'''</span>
+<span class="p">}</span>
+
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/retentions/issue/xml"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">retencion</span><span class="p">))</span>
+</code></pre>
+<blockquote>
+<h4 id='respuesta-de-ejemplo-2'> Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fecha_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-04T00:00:00-05:19"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"emisor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ruc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATILMEDIA S.A."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Datil"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"devops@datilmedia.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sujeto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0953239092001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan Perez"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"es_valida"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"periodo_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05/2020"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41f5188e0256420cbe9e447db99c9753"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"informacion_adicional"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Campo adicional"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Información adicional"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"401CD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fecha_emision_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-03T00:00:00-05:19"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"numero_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-001-000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tipo_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"valor_retenido"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0405202007123456789000110010010000000012235571911"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='consulta-de-un-comprobante-de-retencion'>Consulta de un Comprobante de Retención</h2>
 <p>Consulta una retención para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
 El parámetro <code>estado</code> de la respuesta obtenida al invocar esta operación, indica
@@ -359,7 +524,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <p><code>GET /retentions/&lt;receipt-id&gt;</code></p>
 <h3 id='requerimiento'>Requerimiento</h3>
 <blockquote>
-<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<h4 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/retentions/&lt;id-retencion&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
@@ -394,7 +559,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <p>Reemplaza en la ruta <code>&lt;receipt-id&gt;</code> por el <code>id</code> de la retención que necesitas consultar.</p>
 <h3 id='respuesta-2'>Respuesta</h3>
 <blockquote>
-<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
+<h4 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h4></blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcf12343faad06785abcf12343faad0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
