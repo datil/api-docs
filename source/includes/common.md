@@ -1,4 +1,6 @@
-# Clave de acceso
+# Objetos comunes
+
+## Clave de acceso
 
 El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
@@ -28,8 +30,6 @@ El código numérico constituye un mecanismo para brindar seguridad al emisor en
 
 Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11.
 
-
-# Objetos comunes
 
 ## Emisor
 
@@ -95,13 +95,6 @@ tipo  | string |  Código de [tipos de documentos](#tipos-de-documentos). __Requ
 tipo_proveedor  | string | Código de [tipo de proveedor](#tipo-de-proveedor) de reembolso. __Requerido__
 
 
-## Tipo de proveedor
-Tipo | Código
----- |-----------
-Personal natural |  01
-Sociedad |  02
-
-
 ## Info adicional
 
 Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
@@ -124,18 +117,6 @@ tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de 
 email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono.
 direccion | string | Dirección
-
-
-## Tipo de identificación
-
-Tipo de identificación      | Código
---------------------------- | ------
-RUC                         | `04`
-CEDULA                      | `05`
-PASAPORTE                   | `06`
-VENTA A CONSUMIDOR FINAL*   | `07`
-IDENTIFICACION DELEXTERIOR* | `08`
-PLACA                       | `09`
 
 
 ## Total Impuesto
@@ -219,6 +200,18 @@ tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto.  __R
 valor | float (hasta 2 cifras decimales) | Valor del impuesto.  __Requerido__
 
 # Catálogo
+
+## Tipo de identificación
+
+Tipo de identificación      | Código
+--------------------------- | ------
+RUC                         | `04`
+CEDULA                      | `05`
+PASAPORTE                   | `06`
+VENTA A CONSUMIDOR FINAL*   | `07`
+IDENTIFICACION DELEXTERIOR* | `08`
+PLACA                       | `09`
+
 
 ## Tipos de impuesto
 
@@ -379,21 +372,9 @@ Endoso de títulos | endoso_titulos | Endoso de títulos | 21
 Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero".
 
-# Descarga de documentos
+## Tipo de proveedor
 
-## Consulta de RIDE
-
-Consulta de la representación impresa del documento electrónico (RIDE). El ID del documento `id-doc` es el ID que se obtiene después de emitir un documento.
-
-### Operación
-
-`GET app.datil.co/ver/<id-doc>/pdf`
-
-## Consulta de XML
-
-Consulta de representación XML de los documentos. El ID del documento `id-doc` es el ID que se obtiene después de emitir un documento.
-
-### Operación
-
-`GET app.datil.co/ver/<id-doc>/xml`
-
+Tipo | Código
+---- |-----------
+Personal natural |  01
+Sociedad |  02
