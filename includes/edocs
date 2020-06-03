@@ -103,4 +103,11 @@ El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be69b7bc64b643718a643caa9a8c3569"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h1 id='descarga-de-comprobantes'>Descarga de comprobantes</h1><h2 id='consulta-de-ride'>Consulta de RIDE</h2>
+<p>Consulta de la representación impresa del documento electrónico (RIDE). El ID del comprobante <code>id-doc</code> es el ID que se obtiene después de emitir un comprobante.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/pdf</code></p>
+<h2 id='consulta-de-xml'>Consulta de XML</h2>
+<p>Consulta de representación XML de los comprobantes. El ID del comprobante <code>id-doc</code> es el ID que se obtiene después de emitir un comprobante.</p>
+<h3 id='operacion-2'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/xml</code></p>

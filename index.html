@@ -348,11 +348,22 @@
               </ul>
           </li>
           <li>
-            <a href="#clave-de-acceso" class="toc-h1 toc-link" data-title="Clave de acceso">Clave de acceso</a>
+            <a href="#descarga-de-comprobantes" class="toc-h1 toc-link" data-title="Descarga de comprobantes">Descarga de comprobantes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#consulta-de-ride" class="toc-h2 toc-link" data-title="Consulta de RIDE">Consulta de RIDE</a>
+                  </li>
+                  <li>
+                    <a href="#consulta-de-xml" class="toc-h2 toc-link" data-title="Consulta de XML">Consulta de XML</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#objetos-comunes" class="toc-h1 toc-link" data-title="Objetos comunes">Objetos comunes</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#clave-de-acceso" class="toc-h2 toc-link" data-title="Clave de acceso">Clave de acceso</a>
+                  </li>
                   <li>
                     <a href="#emisor" class="toc-h2 toc-link" data-title="Emisor">Emisor</a>
                   </li>
@@ -369,16 +380,10 @@
                     <a href="#documento" class="toc-h2 toc-link" data-title="Documento">Documento</a>
                   </li>
                   <li>
-                    <a href="#tipo-de-proveedor" class="toc-h2 toc-link" data-title="Tipo de proveedor">Tipo de proveedor</a>
-                  </li>
-                  <li>
                     <a href="#info-adicional" class="toc-h2 toc-link" data-title="Info adicional">Info adicional</a>
                   </li>
                   <li>
                     <a href="#persona" class="toc-h2 toc-link" data-title="Persona">Persona</a>
-                  </li>
-                  <li>
-                    <a href="#tipo-de-identificacion" class="toc-h2 toc-link" data-title="Tipo de identificación">Tipo de identificación</a>
                   </li>
                   <li>
                     <a href="#total-impuesto" class="toc-h2 toc-link" data-title="Total Impuesto">Total Impuesto</a>
@@ -406,6 +411,9 @@
           <li>
             <a href="#catalogo" class="toc-h1 toc-link" data-title="Catálogo">Catálogo</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#tipo-de-identificacion" class="toc-h2 toc-link" data-title="Tipo de identificación">Tipo de identificación</a>
+                  </li>
                   <li>
                     <a href="#tipos-de-impuesto" class="toc-h2 toc-link" data-title="Tipos de impuesto">Tipos de impuesto</a>
                   </li>
@@ -442,16 +450,8 @@
                   <li>
                     <a href="#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri" class="toc-h2 toc-link" data-title="Equivalencia entre formas de pago Dátil y formas de pago del SRI">Equivalencia entre formas de pago Dátil y formas de pago del SRI</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#descarga-de-documentos" class="toc-h1 toc-link" data-title="Descarga de documentos">Descarga de documentos</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#consulta-de-ride" class="toc-h2 toc-link" data-title="Consulta de RIDE">Consulta de RIDE</a>
-                  </li>
-                  <li>
-                    <a href="#consulta-de-xml" class="toc-h2 toc-link" data-title="Consulta de XML">Consulta de XML</a>
+                    <a href="#tipo-de-proveedor" class="toc-h2 toc-link" data-title="Tipo de proveedor">Tipo de proveedor</a>
                   </li>
               </ul>
           </li>
@@ -8284,7 +8284,15 @@ El ID del documento <code>id-doc</code> es el ID que obtienes después de emitir
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be69b7bc64b643718a643caa9a8c3569"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='clave-de-acceso'>Clave de acceso</h1>
+</span></code></pre><h1 id='descarga-de-comprobantes'>Descarga de comprobantes</h1><h2 id='consulta-de-ride'>Consulta de RIDE</h2>
+<p>Consulta de la representación impresa del documento electrónico (RIDE). El ID del comprobante <code>id-doc</code> es el ID que se obtiene después de emitir un comprobante.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/pdf</code></p>
+<h2 id='consulta-de-xml'>Consulta de XML</h2>
+<p>Consulta de representación XML de los comprobantes. El ID del comprobante <code>id-doc</code> es el ID que se obtiene después de emitir un comprobante.</p>
+<h3 id='operacion-2'>Operación</h3>
+<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/xml</code></p>
+<h1 id='objetos-comunes'>Objetos comunes</h1><h2 id='clave-de-acceso'>Clave de acceso</h2>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
 Pero es posible también proveer la clave de acceso si se requiere tener control
@@ -8354,7 +8362,7 @@ estar estructurada la clave de acceso.</p>
 <p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
-<h1 id='objetos-comunes'>Objetos comunes</h1><h2 id='emisor'>Emisor</h2>
+<h2 id='emisor'>Emisor</h2>
 <p>Información del emisor de un comprobante.</p>
 
 <table><thead>
@@ -8554,22 +8562,6 @@ estar estructurada la clave de acceso.</p>
 <td>Código de <a href="#tipo-de-proveedor">tipo de proveedor</a> de reembolso. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
-<table><thead>
-<tr>
-<th>Tipo</th>
-<th>Código</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Personal natural</td>
-<td>01</td>
-</tr>
-<tr>
-<td>Sociedad</td>
-<td>02</td>
-</tr>
-</tbody></table>
 <h2 id='info-adicional'>Info adicional</h2>
 <p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
 que no pueda ser descrito con los elementos que son parte del documento.</p>
@@ -8631,38 +8623,6 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>direccion</td>
 <td>string</td>
 <td>Dirección</td>
-</tr>
-</tbody></table>
-<h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
-<table><thead>
-<tr>
-<th>Tipo de identificación</th>
-<th>Código</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>RUC</td>
-<td><code>04</code></td>
-</tr>
-<tr>
-<td>CEDULA</td>
-<td><code>05</code></td>
-</tr>
-<tr>
-<td>PASAPORTE</td>
-<td><code>06</code></td>
-</tr>
-<tr>
-<td>VENTA A CONSUMIDOR FINAL*</td>
-<td><code>07</code></td>
-</tr>
-<tr>
-<td>IDENTIFICACION DELEXTERIOR*</td>
-<td><code>08</code></td>
-</tr>
-<tr>
-<td>PLACA</td>
-<td><code>09</code></td>
 </tr>
 </tbody></table>
 <h2 id='total-impuesto'>Total Impuesto</h2>
@@ -8910,7 +8870,39 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>Valor del impuesto.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h1 id='catalogo'>Catálogo</h1><h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
+<h1 id='catalogo'>Catálogo</h1><h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
+<table><thead>
+<tr>
+<th>Tipo de identificación</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RUC</td>
+<td><code>04</code></td>
+</tr>
+<tr>
+<td>CEDULA</td>
+<td><code>05</code></td>
+</tr>
+<tr>
+<td>PASAPORTE</td>
+<td><code>06</code></td>
+</tr>
+<tr>
+<td>VENTA A CONSUMIDOR FINAL*</td>
+<td><code>07</code></td>
+</tr>
+<tr>
+<td>IDENTIFICACION DELEXTERIOR*</td>
+<td><code>08</code></td>
+</tr>
+<tr>
+<td>PLACA</td>
+<td><code>09</code></td>
+</tr>
+</tbody></table>
+<h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -9327,14 +9319,22 @@ participan en la comercialización de periódicos y/o revistas.</p>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
-<h1 id='descarga-de-documentos'>Descarga de documentos</h1><h2 id='consulta-de-ride'>Consulta de RIDE</h2>
-<p>Consulta de la representación impresa del documento electrónico (RIDE). El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
-<h3 id='operacion'>Operación</h3>
-<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/pdf</code></p>
-<h2 id='consulta-de-xml'>Consulta de XML</h2>
-<p>Consulta de representación XML de los documentos. El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
-<h3 id='operacion-2'>Operación</h3>
-<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/xml</code></p>
+<h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
+<table><thead>
+<tr>
+<th>Tipo</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Personal natural</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Sociedad</td>
+<td>02</td>
+</tr>
+</tbody></table>
 <h1 id='errores'>Errores</h1>
 <p>Listado de códigos de error y su significado.</p>
 

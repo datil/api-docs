@@ -1,4 +1,4 @@
-<h1 id='clave-de-acceso'>Clave de acceso</h1>
+<h1 id='objetos-comunes'>Objetos comunes</h1><h2 id='clave-de-acceso'>Clave de acceso</h2>
 <p>El sistema se encarga de generar automáticamente la clave de acceso de cada
 comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
 Pero es posible también proveer la clave de acceso si se requiere tener control
@@ -68,7 +68,7 @@ estar estructurada la clave de acceso.</p>
 <p>El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.</p>
 
 <p>Ver <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_control">aquí</a> ejemplo de verificación utilizando algoritmo de módulo 11.</p>
-<h1 id='objetos-comunes'>Objetos comunes</h1><h2 id='emisor'>Emisor</h2>
+<h2 id='emisor'>Emisor</h2>
 <p>Información del emisor de un comprobante.</p>
 
 <table><thead>
@@ -268,22 +268,6 @@ estar estructurada la clave de acceso.</p>
 <td>Código de <a href="#tipo-de-proveedor">tipo de proveedor</a> de reembolso. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
-<table><thead>
-<tr>
-<th>Tipo</th>
-<th>Código</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Personal natural</td>
-<td>01</td>
-</tr>
-<tr>
-<td>Sociedad</td>
-<td>02</td>
-</tr>
-</tbody></table>
 <h2 id='info-adicional'>Info adicional</h2>
 <p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
 que no pueda ser descrito con los elementos que son parte del documento.</p>
@@ -345,38 +329,6 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>direccion</td>
 <td>string</td>
 <td>Dirección</td>
-</tr>
-</tbody></table>
-<h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
-<table><thead>
-<tr>
-<th>Tipo de identificación</th>
-<th>Código</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>RUC</td>
-<td><code>04</code></td>
-</tr>
-<tr>
-<td>CEDULA</td>
-<td><code>05</code></td>
-</tr>
-<tr>
-<td>PASAPORTE</td>
-<td><code>06</code></td>
-</tr>
-<tr>
-<td>VENTA A CONSUMIDOR FINAL*</td>
-<td><code>07</code></td>
-</tr>
-<tr>
-<td>IDENTIFICACION DELEXTERIOR*</td>
-<td><code>08</code></td>
-</tr>
-<tr>
-<td>PLACA</td>
-<td><code>09</code></td>
 </tr>
 </tbody></table>
 <h2 id='total-impuesto'>Total Impuesto</h2>
@@ -624,7 +576,39 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>Valor del impuesto.  <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h1 id='catalogo'>Catálogo</h1><h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
+<h1 id='catalogo'>Catálogo</h1><h2 id='tipo-de-identificacion'>Tipo de identificación</h2>
+<table><thead>
+<tr>
+<th>Tipo de identificación</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RUC</td>
+<td><code>04</code></td>
+</tr>
+<tr>
+<td>CEDULA</td>
+<td><code>05</code></td>
+</tr>
+<tr>
+<td>PASAPORTE</td>
+<td><code>06</code></td>
+</tr>
+<tr>
+<td>VENTA A CONSUMIDOR FINAL*</td>
+<td><code>07</code></td>
+</tr>
+<tr>
+<td>IDENTIFICACION DELEXTERIOR*</td>
+<td><code>08</code></td>
+</tr>
+<tr>
+<td>PLACA</td>
+<td><code>09</code></td>
+</tr>
+</tbody></table>
+<h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>
 <table><thead>
 <tr>
 <th>Impuesto</th>
@@ -1041,11 +1025,19 @@ participan en la comercialización de periódicos y/o revistas.</p>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
-<h1 id='descarga-de-documentos'>Descarga de documentos</h1><h2 id='consulta-de-ride'>Consulta de RIDE</h2>
-<p>Consulta de la representación impresa del documento electrónico (RIDE). El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
-<h3 id='operacion'>Operación</h3>
-<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/pdf</code></p>
-<h2 id='consulta-de-xml'>Consulta de XML</h2>
-<p>Consulta de representación XML de los documentos. El ID del documento <code>id-doc</code> es el ID que se obtiene después de emitir un documento.</p>
-<h3 id='operacion-2'>Operación</h3>
-<p><code>GET app.datil.co/ver/&lt;id-doc&gt;/xml</code></p>
+<h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
+<table><thead>
+<tr>
+<th>Tipo</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Personal natural</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Sociedad</td>
+<td>02</td>
+</tr>
+</tbody></table>
