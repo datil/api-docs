@@ -157,7 +157,7 @@ new_receipts_limit<p class="dt-data-param-required">requerido</p> | Número máx
 
 ## companies/my_company.ini
 
-No es necesario, pero te recomendamos renombrar este archivo con un nombre
+Recomendamos renombrar este archivo con un nombre
 corto de tu empresa, sobretodo si vas a utilizar una instalación de Link para
 varias empresas. Link utiliza el nombre de este archivo para garantizar que los
 registros en la tabla de *control* sean únicos para cada compañía, esto es lo

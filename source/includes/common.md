@@ -125,9 +125,8 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva).
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-
+base_imponible | float | Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje.
+valor | float | Resultado de aplicar el impuesto a la (`base_imponible` - `descuento_adicional`)
 
 ## Impuesto Item
 
@@ -135,7 +134,7 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva).
-base_imponible | float (hasta 2 cifras decimales) | Base imponible.
+base_imponible | float (hasta 2 cifras decimales) | Corresponde al valor de la `cantidad` multiplicado por el `precio_unitario` menos el `descuento`
 valor | float (hasta 2 cifras decimales) | Valor del total.
 tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
 
