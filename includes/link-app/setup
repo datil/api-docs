@@ -397,6 +397,83 @@ y notas_de_credito.total_impuesto</p>
 </code></pre>
 <p>Consulta <a href="https://datil.dev/#emision-de-una-nota-de-credito">la documentación de nuestro servicio web</a>
 para obtener más información sobre cada uno de los parámetros.</p>
+<h2 id='notas-de-debito'>Notas de Débito</h2>
+<p>A continuación están detalladas todas las estructuras disponibles para emitir una nota de débito. Las únicas que deben contener información son:
+notas_de_debito.nota_de_debito, notas_de_debito.totales_impuestos y notas_de_debito.items</p>
+<pre class="highlight sql tab-sql"><code>
+<span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">notas_de_debito</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">nota_de_debito</span><span class="p">]</span> <span class="p">(</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">ambiente</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">int</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">secuencial</span><span class="p">]</span> <span class="p">[</span><span class="n">bigint</span><span class="p">]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">fecha_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">moneda</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">15</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">clave_acceso</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">49</span><span class="p">),</span>
+    <span class="c1">-- DOCUMENTO MODIFICADO</span>
+    <span class="p">[</span><span class="n">fecha_emision_documento_modificado</span><span class="p">]</span> <span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">numero_documento_modificado</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">17</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_documento_modificado</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- EMISOR</span>
+    <span class="p">[</span><span class="n">ruc</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">13</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">obligado_contabilidad</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">contribuyente_especial</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">10</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">nombre_comercial</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_emisor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">punto_emision</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_establecimiento</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- COMPRADOR</span>
+    <span class="p">[</span><span class="n">email_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">254</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">identificacion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">20</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tipo_identificacion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">razon_social_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">direccion_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">telefono_comprador</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">200</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="c1">-- TOTALES</span>
+    <span class="p">[</span><span class="n">total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">importe_total</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">-- NOTA DE DÉBITO: TOTALES IMPUESTOS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">totales_impuestos</span><span class="p">]</span> <span class="p">(</span>
+    <span class="p">[</span><span class="n">id_nota_debito</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">nota_de_debito</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_porcentaje</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">base_imponible</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">tarida</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">CONSTRAINT</span> <span class="n">PK_total_impuesto</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_nota_debito</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">codigo_porcentaje</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">-- NOTA DE DÉBITO: ITEMS</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">item</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">id_nota_debito</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">nota_de_debito</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">cantidad</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_principal</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">codigo_auxiliar</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">50</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_unitario</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descripcion</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">precio_total_sin_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">descuento</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">motivo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">300</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">-- NOTA DE DEBITO: INFORMACIÓN ADICIONAL</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">informacion_adicional</span><span class="p">](</span>
+    <span class="p">[</span><span class="n">id_nota_debito</span><span class="p">]</span> <span class="n">bigint</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">notas_de_debito</span><span class="p">].[</span><span class="n">nota_de_debito</span><span class="p">](</span><span class="n">id</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">CONSTRAINT</span> <span class="n">PK_informacion_adicional</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_nota_debito</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+<span class="p">)</span>
+
+</code></pre>
+<p>Consulta <a href="https://datil.dev/#emision-de-una-nota-de-debito">la documentación de nuestro servicio web</a>
+para obtener más información sobre cada uno de los parámetros.</p>
 <h2 id='guias-de-remision'>Guías de Remisión</h2>
 <p>A continuación están detalladas todas las estructuras disponibles para emitir una
 guía de remisión. Las únicas que deben contener información son:
@@ -628,7 +705,4 @@ y liquidaciones_compra.total_impuesto</p>
 <span class="p">)</span>
 </code></pre>
 <p>Consulta <a href="https://datil.dev/#emision-de-una-liquidacion-de-compras">la documentación de nuestro servicio web</a>
-para obtener más información sobre cada uno de los parámetros.</p>
-<h2 id='notas-de-debito'>Notas de Débito</h2>
-<p>Consulta <a href="https://datil.dev/#emision-de-una-nota-de-debito">la documentación de nuestro servicio web</a>
 para obtener más información sobre cada uno de los parámetros.</p>

@@ -352,12 +352,12 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>base_imponible</td>
 <td>float</td>
-<td>Base imponible.</td>
+<td>Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje.</td>
 </tr>
 <tr>
 <td>valor</td>
 <td>float</td>
-<td>Valor del total.</td>
+<td>Resultado de aplicar el impuesto a la (<code>base_imponible</code> - <code>descuento_adicional</code>)</td>
 </tr>
 </tbody></table>
 <h2 id='impuesto-item'>Impuesto Item</h2>
@@ -381,7 +381,7 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>base_imponible</td>
 <td>float (hasta 2 cifras decimales)</td>
-<td>Base imponible.</td>
+<td>Corresponde al valor de la <code>cantidad</code> multiplicado por el <code>precio_unitario</code> menos el <code>descuento</code></td>
 </tr>
 <tr>
 <td>valor</td>

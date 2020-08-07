@@ -205,7 +205,7 @@ volver a ejecutarse. Todos estos valores se especifican en segundos.</p>
 </tr>
 </tbody></table>
 <h2 id='companies-my_company-ini'>companies/my_company.ini</h2>
-<p>No es necesario, pero te recomendamos renombrar este archivo con un nombre
+<p>Recomendamos renombrar este archivo con un nombre
 corto de tu empresa, sobretodo si vas a utilizar una instalación de Link para
 varias empresas. Link utiliza el nombre de este archivo para garantizar que los
 registros en la tabla de <em>control</em> sean únicos para cada compañía, esto es lo

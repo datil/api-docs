@@ -864,7 +864,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
 <p>Retorna un objeto tipo <strong><a href="#requerimiento">factura</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la factura. El campo <code>clave_acceso</code> generado
 también se incluirá como parte de la respuesta.</p>
-<h2 id='emision-de-una-factura-a-partir-de-xml'>Emisión de una factura a partir de XML</h2>
+<h2 id='emision-de-una-factura-a-partir-de-xml'>Emisión de una factura a partir de XML</h2><h3 id='operacion-2'>Operación</h3>
 <p><code>POST /invoices/issue/xml</code></p>
 <h3 id='requerimiento-a-partir-de-xml'>Requerimiento a partir de XML</h3>
 <blockquote>
@@ -1134,7 +1134,7 @@ Este XML debe cumplir con la especificación del SRI</p>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento">factura</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la factura. El campo <code>clave_acceso</code> generado
 también se incluirá como parte de la respuesta.</p>
-<h2 id='emision-de-una-factura-de-reembolso'>Emisión de una factura de reembolso</h2><h3 id='operacion-2'>Operación</h3>
+<h2 id='emision-de-una-factura-de-reembolso'>Emisión de una factura de reembolso</h2><h3 id='operacion-3'>Operación</h3>
 <p><code>POST /invoices/issue</code></p>
 <h3 id='requerimiento-2'>Requerimiento</h3>
 <blockquote>
@@ -1619,6 +1619,373 @@ comprobante en el cuerpo del requerimiento en formato JSON. El total de ítems d
 <td>Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br><code>{&quot;plazo&quot;: &quot;30&quot;, &quot;unidad_tiempo&quot;: &quot;dias&quot;}</code></td>
 </tr>
 </tbody></table>
+<h2 id='emision-de-una-factura-con-descuentos'>Emisión de una factura con descuentos</h2><h3 id='operacion-4'>Operación</h3>
+<p><code>POST /invoices/issue</code></p>
+<h3 id='requerimiento-3'>Requerimiento</h3>
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/issue <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":52,
+  "fecha_emision":"2020-06-30T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"001",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda":"USD",
+  "info_adicional":[
+    {
+      "nombre": "Tiempo de entrega",
+      "valor": "5 días"
+    }
+  ],
+  "totales":{
+    "total_sin_impuestos":14,
+    "impuestos":[
+      {
+        "base_imponible":14,
+        "valor":1.56,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":14.56,
+    "propina":0.0,
+    "descuento":4,
+    "descuento_adicional":1
+  },
+  "comprador":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
+  },
+  "items":[
+    {
+      "cantidad":1,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7,
+      "descuento": 1,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 6,
+      "impuestos": [
+        {
+          "base_imponible":6,
+          "valor":0.72,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    },
+    {
+      "cantidad":2,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 5,
+      "descuento": 1,
+      "descripcion": "Brocoli granel  50 Kg.",
+      "precio_total_sin_impuestos": 8,
+      "impuestos": [
+        {
+          "base_imponible":8,
+          "valor":0.96,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    }
+  ]
+}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
+
+<span class="n">factura</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s">"secuencial"</span><span class="p">:</span><span class="mi">52</span><span class="p">,</span>
+  <span class="s">"fecha_emision"</span><span class="p">:</span><span class="s">"2020-06-30T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"emisor"</span><span class="p">:{</span>
+    <span class="s">"ruc"</span><span class="p">:</span><span class="s">"0910000000001"</span><span class="p">,</span>
+    <span class="s">"obligado_contabilidad"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">"contribuyente_especial"</span><span class="p">:</span><span class="s">"12345"</span><span class="p">,</span>
+    <span class="s">"nombre_comercial"</span><span class="p">:</span><span class="s">"XYZ Corp"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"XYZ Corporación S.A."</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span>
+    <span class="s">"establecimiento"</span><span class="p">:{</span>
+      <span class="s">"punto_emision"</span><span class="p">:</span><span class="s">"001"</span><span class="p">,</span>
+      <span class="s">"codigo"</span><span class="p">:</span><span class="s">"001"</span><span class="p">,</span>
+      <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Av. Primera 234 y calle 5ta"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s">"moneda"</span><span class="p">:</span><span class="s">"USD"</span><span class="p">,</span>
+  <span class="s">"info_adicional"</span><span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="s">"nombre"</span><span class="p">:</span> <span class="s">"Tiempo de entrega"</span><span class="p">,</span>
+      <span class="s">"valor"</span><span class="p">:</span> <span class="s">"5 días"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"totales"</span><span class="p">:{</span>
+    <span class="s">"total_sin_impuestos"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span>
+    <span class="s">"impuestos"</span><span class="p">:[</span>
+      <span class="p">{</span>
+        <span class="s">"base_imponible"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span>
+        <span class="s">"valor"</span><span class="p">:</span><span class="mf">1.56</span><span class="p">,</span>
+        <span class="s">"codigo"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
+        <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"2"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s">"importe_total"</span><span class="p">:</span><span class="mf">14.56</span><span class="p">,</span>
+    <span class="s">"propina"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="s">"descuento"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+    <span class="s">"descuento_adicional"</span><span class="p">:</span><span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s">"comprador"</span><span class="p">:{</span>
+    <span class="s">"email"</span><span class="p">:</span><span class="s">"juan.perez@xyz.com"</span><span class="p">,</span>
+    <span class="s">"identificacion"</span><span class="p">:</span><span class="s">"0987654321"</span><span class="p">,</span>
+    <span class="s">"tipo_identificacion"</span><span class="p">:</span><span class="s">"05"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"Juan Pérez"</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Calle única Numero 987"</span><span class="p">,</span>
+    <span class="s">"telefono"</span><span class="p">:</span><span class="s">"046029400"</span>
+  <span class="p">},</span>
+  <span class="s">"items"</span><span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="s">"cantidad"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+      <span class="s">"codigo_principal"</span><span class="p">:</span> <span class="s">"ZNC"</span><span class="p">,</span>
+      <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"050"</span><span class="p">,</span>
+      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="s">"descuento"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Zanahoria granel  50 Kg."</span><span class="p">,</span>
+      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+      <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">"base_imponible"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
+          <span class="s">"valor"</span><span class="p">:</span><span class="mf">0.72</span><span class="p">,</span>
+          <span class="s">"tarifa"</span><span class="p">:</span><span class="mf">12.0</span><span class="p">,</span>
+          <span class="s">"codigo"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
+          <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"2"</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"Peso"</span><span class="p">:</span><span class="s">"5"</span>
+      <span class="p">},</span>
+      <span class="s">"unidad_medida"</span><span class="p">:</span> <span class="s">"Kilos"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">"cantidad"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+      <span class="s">"codigo_principal"</span><span class="p">:</span> <span class="s">"ZNC"</span><span class="p">,</span>
+      <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"050"</span><span class="p">,</span>
+      <span class="s">"precio_unitario"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s">"descuento"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Brocoli granel  50 Kg."</span><span class="p">,</span>
+      <span class="s">"precio_total_sin_impuestos"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">"base_imponible"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+          <span class="s">"valor"</span><span class="p">:</span><span class="mf">0.96</span><span class="p">,</span>
+          <span class="s">"tarifa"</span><span class="p">:</span><span class="mf">12.0</span><span class="p">,</span>
+          <span class="s">"codigo"</span><span class="p">:</span><span class="s">"2"</span><span class="p">,</span>
+          <span class="s">"codigo_porcentaje"</span><span class="p">:</span><span class="s">"2"</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"Peso"</span><span class="p">:</span><span class="s">"5"</span>
+      <span class="p">},</span>
+      <span class="s">"unidad_medida"</span><span class="p">:</span> <span class="s">"Kilos"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/invoices/issue"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">factura</span><span class="p">))</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">DatilClient</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
+      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
+      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
+
+      <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
+      <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/issue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="n">RequestFormat</span> <span class="p">=</span> <span class="n">DataFormat</span><span class="p">.</span><span class="n">Json</span><span class="p">;</span>
+
+      <span class="kt">var</span> <span class="n">body</span> <span class="p">=</span> <span class="p">(</span><span class="err">@</span><span class="s">"{
+</span>        <span class="s">""</span><span class="n">ambiente</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">tipo_emision</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">secuencial</span><span class="s">""</span><span class="p">:</span><span class="m">52</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">fecha_emision</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2020</span><span class="p">-</span><span class="m">06</span><span class="p">-</span><span class="m">30</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">emisor</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">ruc</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0910000000001</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">obligado_contabilidad</span><span class="s">""</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">contribuyente_especial</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">12345</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">nombre_comercial</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">XYZ</span> <span class="n">Corp</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">razon_social</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">XYZ</span> <span class="n">Corporaci</span><span class="err">ó</span><span class="n">n</span> <span class="n">S</span><span class="p">.</span><span class="n">A</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Av</span><span class="p">.</span> <span class="n">Primera</span> <span class="m">234</span> <span class="n">y</span> <span class="n">calle</span> <span class="m">5</span><span class="n">ta</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">establecimiento</span><span class="s">""</span><span class="p">:{</span>
+            <span class="s">""</span><span class="n">punto_emision</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">001</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">001</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Av</span><span class="p">.</span> <span class="n">Primera</span> <span class="m">234</span> <span class="n">y</span> <span class="n">calle</span> <span class="m">5</span><span class="n">ta</span><span class="s">""</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">moneda</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">USD</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">info_adicional</span><span class="s">""</span><span class="p">:[</span>
+          <span class="p">{</span>
+            <span class="s">""</span><span class="n">nombre</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Tiempo</span> <span class="n">de</span> <span class="n">entrega</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">5</span> <span class="n">d</span><span class="err">í</span><span class="k">as</span><span class="s">""</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">""</span><span class="n">totales</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span><span class="m">14</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:[</span>
+            <span class="p">{</span>
+              <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">14</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">1.56</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
+            <span class="p">}</span>
+          <span class="p">],</span>
+          <span class="s">""</span><span class="n">importe_total</span><span class="s">""</span><span class="p">:</span><span class="m">14.56</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">propina</span><span class="s">""</span><span class="p">:</span><span class="m">0.0</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span><span class="m">4</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">descuento_adicional</span><span class="s">""</span><span class="p">:</span><span class="m">1</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">comprador</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">juan</span><span class="p">.</span><span class="n">perez@xyz</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0987654321</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">tipo_identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">05</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">razon_social</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Juan</span> <span class="n">P</span><span class="err">é</span><span class="n">rez</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Calle</span> <span class="err">ú</span><span class="n">nica</span> <span class="n">Numero</span> <span class="m">987</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">telefono</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">046029400</span><span class="s">""</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">items</span><span class="s">""</span><span class="p">:[</span>
+          <span class="p">{</span>
+            <span class="s">""</span><span class="n">cantidad</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_principal</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">ZNC</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_auxiliar</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">050</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_unitario</span><span class="s">""</span><span class="p">:</span> <span class="m">7</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">1</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">descripcion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Zanahoria</span> <span class="n">granel</span>  <span class="m">50</span> <span class="n">Kg</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">6</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
+              <span class="p">{</span>
+                <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">6</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">0.72</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span><span class="m">12.0</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
+              <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s">""</span><span class="n">detalles_adicionales</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s">""</span><span class="n">Peso</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">5</span><span class="s">""</span>
+            <span class="p">},</span>
+            <span class="s">""</span><span class="n">unidad_medida</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Kilos</span><span class="s">""</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="s">""</span><span class="n">cantidad</span><span class="s">""</span><span class="p">:</span><span class="m">2</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_principal</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">ZNC</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_auxiliar</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">050</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_unitario</span><span class="s">""</span><span class="p">:</span> <span class="m">5</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">descuento</span><span class="s">""</span><span class="p">:</span> <span class="m">1</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">descripcion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Brocoli</span> <span class="n">granel</span>  <span class="m">50</span> <span class="n">Kg</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">precio_total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">8</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
+              <span class="p">{</span>
+                <span class="s">""</span><span class="n">base_imponible</span><span class="s">""</span><span class="p">:</span><span class="m">8</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">valor</span><span class="s">""</span><span class="p">:</span><span class="m">0.96</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">tarifa</span><span class="s">""</span><span class="p">:</span><span class="m">12.0</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
+                <span class="s">""</span><span class="n">codigo_porcentaje</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2</span><span class="s">""</span>
+              <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s">""</span><span class="n">detalles_adicionales</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s">""</span><span class="n">Peso</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">5</span><span class="s">""</span>
+            <span class="p">},</span>
+            <span class="s">""</span><span class="n">unidad_medida</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Kilos</span><span class="s">""</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span><span class="s">");
+</span>      <span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
+      <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">Content</span><span class="p">);</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items. </p>
+
+<h3 id="totales-reembolso"> Totales </h3>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_sin_impuestos</td>
+<td>float</td>
+<td>Total antes de los impuestos sin incluir el descuento adicional. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>descuento</td>
+<td>float</td>
+<td>Suma de los descuentos de cada ítem y del descuento adicional. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>importe_total</td>
+<td>float</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos <a href="#total-impuesto">total impuesto</a></td>
+<td>Listado de impuesto totalizados. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
 <h2 id='consulta-de-una-factura'>Consulta de una factura</h2>
 <p>Consulta una factura para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
@@ -1627,11 +1994,11 @@ el estado actual del comprobante.</p>
 
 <p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emision">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
-<h3 id='operacion-3'>Operación</h3>
+<h3 id='operacion-5'>Operación</h3>
 <p><code>GET /invoices/&lt;invoice-id&gt;</code></p>
-<h3 id='requerimiento-3'>Requerimiento</h3>
+<h3 id='requerimiento-4'>Requerimiento</h3>
 <blockquote>
-<h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
+<h4 id='requerimiento-de-ejemplo-5'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/&lt;id-factura&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span>
@@ -1906,11 +2273,11 @@ el estado actual del comprobante.</p>
 
 <p>Si es necesario conocer en detalle, en que estado del <a href="#proceso-de-emision">proceso de emisión</a>,
 se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri</code> de la respuesta.</p>
-<h3 id='operacion-4'>Operación</h3>
+<h3 id='operacion-6'>Operación</h3>
 <p><code>GET /invoices/&lt;invoice-id&gt;</code></p>
-<h3 id='requerimiento-4'>Requerimiento</h3>
+<h3 id='requerimiento-5'>Requerimiento</h3>
 <blockquote>
-<h4 id='requerimiento-de-ejemplo-5'>Requerimiento de ejemplo</h4></blockquote>
+<h4 id='requerimiento-de-ejemplo-6'>Requerimiento de ejemplo</h4></blockquote>
 <pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/invoices/&lt;id-factura&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
@@ -2156,9 +2523,9 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <td>Información de reembolso.</td>
 </tr>
 </tbody></table>
-<h2 id='re-emision-de-una-factura'>Re-emisión de una factura</h2><h3 id='operacion-5'>Operación</h3>
+<h2 id='re-emision-de-una-factura'>Re-emisión de una factura</h2><h3 id='operacion-7'>Operación</h3>
 <p><code>POST /invoices/:id/reissue</code></p>
-<h3 id='requerimiento-5'>Requerimiento</h3>
+<h3 id='requerimiento-6'>Requerimiento</h3>
 <p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
 DEVUELTOS por el Servicio de Rentas Internas.</p>
 
