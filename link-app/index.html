@@ -284,6 +284,9 @@
                   <li>
                     <a href="#companies-my_company-ini" class="toc-h2 toc-link" data-title="companies/my_company.ini">companies/my_company.ini</a>
                   </li>
+                  <li>
+                    <a href="#actualizacion-de-estados" class="toc-h2 toc-link" data-title="Actualización de estados">Actualización de estados</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -309,6 +312,9 @@
                   </li>
                   <li>
                     <a href="#liq-compra-advanced" class="toc-h2 toc-link" data-title="Liquidaciones de compra">Liquidaciones de compra</a>
+                  </li>
+                  <li>
+                    <a href="#consulta-de-documentos" class="toc-h2 toc-link" data-title="Consulta de documentos">Consulta de documentos</a>
                   </li>
               </ul>
           </li>
@@ -1482,7 +1488,22 @@ archivo a través de la cabecera HTTP Content-Disposition. Si esta cabecera no
 está presente, se utilizará el ID del recurso contenido en el evento para dar
 nombre al archivo.
 </aside>
-<h1 id='operacion'>Operación</h1>
+<h2 id='actualizacion-de-estados'>Actualización de estados</h2>
+<p>Link es capaz de ejecutar sentencias SQL basado en el estado de autorización del comprobante. Se puede de configurar el query <code>on_status_update</code> dentro del archivo de configuración del comprobante para almacenar información de autorización u otra información que se desee del documento en la base de datos. Este query se ejecutará cada vez que el comprobante esté en estado <code>POR AUTORIZAR</code> y <code>RECIBIDO</code>.</p>
+
+<p>Ejemplo para guardar información de autorización para facturas</p>
+<pre class="highlight sql tab-sql"><code>  <span class="n">on_status_update</span><span class="o">=</span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">RESPUESTA_SRI_FACTURAS</span> <span class="p">(</span>
+    <span class="n">id</span><span class="p">,</span>
+    <span class="n">numero_documento</span><span class="p">,</span>
+    <span class="n">clave_acceso</span><span class="p">,</span>
+    <span class="n">fecha_autorizacion</span> 
+  <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+    <span class="err">{{</span> <span class="n">id</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">numero</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">clave_acceso</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">fecha</span> <span class="err">}}</span>
+  <span class="p">)</span>
+</code></pre><h1 id='operacion'>Operación</h1>
 <p>En el menú <code>Inicio</code> buscar el <code>Simbolo del Sistema</code> , darle click derecho y escoger la opción <code>Ejecutar como administrador</code>.</p>
 
 <p>Luego para iniciar el servicio ejecutar el comando:</p>
@@ -4868,6 +4889,26 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="k">CONSTRAINT</span> <span class="n">pk_info_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_liquidacion</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre><h2 id='consulta-de-documentos'>Consulta de documentos</h2>
+<p>La información que Link consulta cuando un documento ha sido emitido y el query <code>on_status_update</code> ha sido definido son los mismos detallados en la <a href="https://datil.dev/#envio-sri">consulta de documentos</a>. Se puede acceder y personalizar la sentencia SQL utilizando las etiquetas <a href="http://jinja.pocoo.org/">Jinja2</a></p>
+
+<blockquote>
+<h4 id='ejemplo-para-guardar-autorizacion-de-facturas'>Ejemplo para guardar autorizacion de facturas</h4></blockquote>
+<pre class="highlight sql tab-sql"><code><span class="n">on_status_update</span> <span class="o">=</span> <span class="err">{</span><span class="o">%</span> <span class="n">if</span> <span class="n">autorizacion</span> <span class="k">is</span> <span class="k">defined</span> <span class="o">%</span><span class="err">}</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">RESPUESTA_SRI_FACTURSA</span> <span class="p">(</span>
+  <span class="n">id</span><span class="p">,</span>
+  <span class="n">numero</span><span class="p">,</span>
+  <span class="n">clave_acceso</span><span class="p">,</span>
+  <span class="n">codig_estado</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+  <span class="err">{{</span> <span class="n">id_local</span> <span class="err">}}</span><span class="p">,</span>
+  <span class="err">{{</span> <span class="n">autorzacio</span><span class="p">.</span><span class="n">numero</span> <span class="err">}}</span><span class="p">,</span>
+  <span class="err">{</span><span class="o">%</span> <span class="n">if</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">numero</span> <span class="o">==</span> <span class="s1">'AUTORIZADO'</span> <span class="o">%</span><span class="err">}</span> 
+    <span class="mi">100</span>
+  <span class="err">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="err">}</span>
+    <span class="mi">0</span>
+  <span class="err">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="err">}</span>
 <span class="p">)</span>
 </code></pre>
       </div>

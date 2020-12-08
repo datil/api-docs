@@ -524,7 +524,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <p>Retorna un objeto tipo <strong><a href="#requerimiento-guia-remision">guía de remisión</a></strong> que incluye un nuevo parámetro <code>id</code>,
 el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta.</p>
-<h2 id='emision-de-una-guia-de-remision-a-partir-de-xml'>Emisión de una guia de remisión a partir de XML</h2>
+<h2 id='emision-de-una-guia-de-remision-a-partir-de-xml'>Emisión de una guía de remisión a partir de XML</h2>
 <p><code>POST /waybills/issue/xml</code></p>
 <h3 id='requerimiento-a-partir-de-xml'>Requerimiento a partir de XML</h3>
 <p>Para la emisión de una guia de remisión a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.</p>
@@ -743,14 +743,14 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <h3 id='requerimiento'>Requerimiento</h3>
 <blockquote>
 <h4 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h4></blockquote>
-<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/waybills/&lt;id-notacredito&gt; <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/waybills/&lt;id-guiaremision&gt; <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;clave-del-api&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">}</span>
 <span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s">'https://link.datil.co/waybills/&lt;id-notacredito&gt;'</span><span class="p">,</span>
+    <span class="s">'https://link.datil.co/waybills/&lt;id-guiaremision&gt;'</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">)</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
@@ -763,7 +763,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
 
       <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
-      <span class="kt">var</span> <span class="n">idNotaCredito</span> <span class="p">=</span> <span class="s">"&lt;id-notacredito&gt;"</span><span class="p">;</span>
+      <span class="kt">var</span> <span class="n">idNotaCredito</span> <span class="p">=</span> <span class="s">"&lt;id-guiaremision&gt;"</span><span class="p">;</span>
       <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"invoices/"</span> <span class="p">+</span> <span class="n">idNotaCredito</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
       <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
 
@@ -952,3 +952,300 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code></td>
 </tr>
 </tbody></table>
+<h2 id='re-emision-de-una-guia-de-remision'>Re-emisión de una guía de remisión</h2><h3 id='operacion-3'>Operación</h3>
+<p><code>POST /waybills/:id/reissue</code></p>
+<h3 id='requerimiento-2'>Requerimiento</h3>
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/waybills/&lt;id-guiaremision&gt;/reissue <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "transportista":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
+  },
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
+      "detalles_adicionales": {
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
+}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span><span class="p">,</span> <span class="n">json</span>
+
+<span class="n">guia_remision</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s">"secuencial"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
+  <span class="s">"fecha_inicio_transporte"</span><span class="p">:</span><span class="s">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"fecha_fin_transporte"</span><span class="p">:</span><span class="s">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span>
+  <span class="s">"direccion_partida"</span><span class="p">:</span> <span class="s">"Victor Emilio Estrada"</span><span class="p">,</span>
+  <span class="s">"emisor"</span><span class="p">:{</span>
+    <span class="s">"ruc"</span><span class="p">:</span><span class="s">"0910000000001"</span><span class="p">,</span>
+    <span class="s">"obligado_contabilidad"</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+    <span class="s">"contribuyente_especial"</span><span class="p">:</span><span class="s">"12345"</span><span class="p">,</span>
+    <span class="s">"nombre_comercial"</span><span class="p">:</span><span class="s">"XYZ Corp"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"XYZ Corporación S.A."</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span>
+    <span class="s">"establecimiento"</span><span class="p">:{</span>
+      <span class="s">"punto_emision"</span><span class="p">:</span><span class="s">"002"</span><span class="p">,</span>
+      <span class="s">"codigo"</span><span class="p">:</span><span class="s">"001"</span><span class="p">,</span>
+      <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Av. Primera 234 y calle 5ta"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s">"informacion_adicional"</span><span class="p">:{</span>
+    <span class="s">"Tiempo de entrega"</span><span class="p">:</span><span class="s">"5 días"</span>
+  <span class="p">},</span>
+  <span class="s">"transportista"</span><span class="p">:{</span>
+    <span class="s">"email"</span><span class="p">:</span><span class="s">"juan.perez@xyz.com"</span><span class="p">,</span>
+    <span class="s">"identificacion"</span><span class="p">:</span><span class="s">"0987654321"</span><span class="p">,</span>
+    <span class="s">"tipo_identificacion"</span><span class="p">:</span><span class="s">"05"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"Juan Pérez"</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Calle única Numero 987"</span><span class="p">,</span>
+    <span class="s">"telefono"</span><span class="p">:</span><span class="s">"04 6029400"</span><span class="p">,</span>
+    <span class="s">"placa"</span><span class="p">:</span><span class="s">"GSM-0123"</span>
+  <span class="p">},</span>
+  <span class="s">"destinatarios"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s">"identificacion"</span><span class="p">:</span><span class="s">"0987654321"</span><span class="p">,</span>
+    <span class="s">"tipo_identificacion"</span><span class="p">:</span><span class="s">"05"</span><span class="p">,</span>
+    <span class="s">"razon_social"</span><span class="p">:</span><span class="s">"Juan Pérez"</span><span class="p">,</span>
+    <span class="s">"direccion"</span><span class="p">:</span><span class="s">"Calle única Numero 987"</span><span class="p">,</span>
+    <span class="s">"email"</span><span class="p">:</span><span class="s">"juan.perez@xyz.com"</span><span class="p">,</span>
+    <span class="s">"telefono"</span><span class="p">:</span><span class="s">"046029400"</span><span class="p">,</span>
+    <span class="s">"fecha_emision_documento_sustento"</span><span class="p">:</span> <span class="s">"2015-02-27T11:28:56.782Z"</span><span class="p">,</span>
+    <span class="s">"numero_documento_sustento"</span><span class="p">:</span> <span class="s">"001-001-000000008"</span><span class="p">,</span>
+    <span class="s">"numero_autorizacion_documento_sustento"</span><span class="p">:</span> <span class="s">"0123456789"</span><span class="p">,</span>
+    <span class="s">"motivo_traslado"</span><span class="p">:</span> <span class="s">"Venta"</span><span class="p">,</span>
+    <span class="s">"tipo_documento_sustento"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
+    <span class="s">"ruta"</span><span class="p">:</span> <span class="s">"GYE - UIO"</span><span class="p">,</span>
+    <span class="s">"documento_aduanero_unico"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"codigo_establecimiento_destino"</span><span class="p">:</span> <span class="s">"001"</span><span class="p">,</span>
+    <span class="s">"items"</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="s">"cantidad"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+      <span class="s">"codigo_principal"</span><span class="p">:</span> <span class="s">"SPS"</span><span class="p">,</span>
+      <span class="s">"codigo_auxiliar"</span><span class="p">:</span> <span class="s">"001"</span><span class="p">,</span>
+      <span class="s">"descripcion"</span><span class="p">:</span> <span class="s">"Playstation 4"</span><span class="p">,</span>
+      <span class="s">"detalles_adicionales"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"numero"</span><span class="p">:</span> <span class="s">"DFGDG2342-2"</span><span class="p">,</span>
+        <span class="s">"serie"</span><span class="p">:</span> <span class="s">"1-2014-2"</span>
+      <span class="p">}</span>
+    <span class="p">}]</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+<span class="n">cabeceras</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'x-key'</span><span class="p">:</span> <span class="s">'&lt;clave-del-api&gt;'</span><span class="p">,</span>
+    <span class="s">'x-password'</span><span class="p">:</span> <span class="s">'&lt;clave-certificado-firma&gt;'</span><span class="p">,</span>
+    <span class="s">'content-type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s">"https://link.datil.co/waybills/&lt;id-guiaremision&gt;/reissue"</span><span class="p">,</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">cabeceras</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">guia_remision</span><span class="p">))</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">RestSharp</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">DatilClient</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">InvoicingServiceClient</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="c1">// Este ejemplo utiliza RestSharp</span>
+      <span class="c1">// Para instalar anda al menú: tools &gt; Library Package Manager &gt; Package Manager Console</span>
+      <span class="c1">// copia y pega y presiona enter: Install-Package RestSharp</span>
+
+      <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://link.datil.co/"</span><span class="p">);</span>
+      <span class="kt">var</span> <span class="n">idGuiaRemision</span> <span class="p">=</span> <span class="s">"&lt;id-guiaremision&gt;"</span>
+      <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="s">"waybills/"</span> <span class="p">+</span> <span class="n">idGuiaRemision</span> <span class="p">+</span> <span class="s">"/reissue"</span><span class="p">,</span> <span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Key"</span><span class="p">,</span> <span class="s">"&lt;clave-del-api&gt;"</span><span class="p">);</span>
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"X-Password"</span><span class="p">,</span> <span class="s">"&lt;clave-certificado-firma&gt;"</span><span class="p">);</span>
+
+      <span class="n">request</span><span class="p">.</span><span class="nf">AddBody</span><span class="p">(</span><span class="err">@</span><span class="s">"{
+</span>        <span class="s">""</span><span class="n">ambiente</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">tipo_emision</span><span class="s">""</span><span class="p">:</span><span class="m">1</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">secuencial</span><span class="s">""</span><span class="p">:</span><span class="m">50</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">fecha_inicio_transporte</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">02</span><span class="p">-</span><span class="m">28</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">fecha_fin_transporte</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">02</span><span class="p">-</span><span class="m">28</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">direccion_partida</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Victor</span> <span class="n">Emilio</span> <span class="n">Estrada</span><span class="s">""</span><span class="p">,</span>
+        <span class="s">""</span><span class="n">emisor</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">ruc</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0910000000001</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">obligado_contabilidad</span><span class="s">""</span><span class="p">:</span><span class="k">true</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">contribuyente_especial</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">12345</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">nombre_comercial</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">XYZ</span> <span class="n">Corp</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">razon_social</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">XYZ</span> <span class="n">Corporaci</span><span class="err">ó</span><span class="n">n</span> <span class="n">S</span><span class="p">.</span><span class="n">A</span><span class="p">.</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Av</span><span class="p">.</span> <span class="n">Primera</span> <span class="m">234</span> <span class="n">y</span> <span class="n">calle</span> <span class="m">5</span><span class="n">ta</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">establecimiento</span><span class="s">""</span><span class="p">:{</span>
+            <span class="s">""</span><span class="n">punto_emision</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">002</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">001</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Av</span><span class="p">.</span> <span class="n">Primera</span> <span class="m">234</span> <span class="n">y</span> <span class="n">calle</span> <span class="m">5</span><span class="n">ta</span><span class="s">""</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">informacion_adicional</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">Tiempo</span> <span class="n">de</span> <span class="n">entrega</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">5</span> <span class="n">d</span><span class="err">í</span><span class="k">as</span><span class="s">""</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">transportista</span><span class="s">""</span><span class="p">:{</span>
+          <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">juan</span><span class="p">.</span><span class="n">perez@xyz</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0987654321</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">tipo_identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">05</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">razon_social</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Juan</span> <span class="n">P</span><span class="err">é</span><span class="n">rez</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Calle</span> <span class="err">ú</span><span class="n">nica</span> <span class="n">Numero</span> <span class="m">987</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">telefono</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">04</span> <span class="m">6029400</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">placa</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">GSM</span><span class="p">-</span><span class="m">0123</span><span class="s">""</span>
+        <span class="p">},</span>
+        <span class="s">""</span><span class="n">destinatarios</span><span class="s">""</span><span class="p">:</span> <span class="p">[{</span>
+          <span class="s">""</span><span class="n">identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0987654321</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">tipo_identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">05</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">razon_social</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Juan</span> <span class="n">P</span><span class="err">é</span><span class="n">rez</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">direccion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">Calle</span> <span class="err">ú</span><span class="n">nica</span> <span class="n">Numero</span> <span class="m">987</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">juan</span><span class="p">.</span><span class="n">perez@xyz</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">telefono</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">046029400</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">fecha_emision_documento_sustento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">2015</span><span class="p">-</span><span class="m">02</span><span class="p">-</span><span class="m">27</span><span class="n">T11</span><span class="p">:</span><span class="m">28</span><span class="p">:</span><span class="m">56.782</span><span class="n">Z</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">numero_documento_sustento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">001</span><span class="p">-</span><span class="m">001</span><span class="p">-</span><span class="m">000000008</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">numero_autorizacion_documento_sustento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">0123456789</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">motivo_traslado</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Venta</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">tipo_documento_sustento</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">ruta</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">GYE</span> <span class="p">-</span> <span class="n">UIO</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">documento_aduanero_unico</span><span class="s">""</span><span class="p">:</span> <span class="s">""""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">codigo_establecimiento_destino</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">001</span><span class="s">""</span><span class="p">,</span>
+          <span class="s">""</span><span class="n">items</span><span class="s">""</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s">""</span><span class="n">cantidad</span><span class="s">""</span><span class="p">:</span> <span class="m">1.0</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_principal</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">SPS</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">codigo_auxiliar</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">001</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">descripcion</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">Playstation</span> <span class="m">4</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">detalles_adicionales</span><span class="s">""</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s">""</span><span class="n">numero</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">DFGDG2342</span><span class="p">-</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">serie</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">1</span><span class="p">-</span><span class="m">2014</span><span class="p">-</span><span class="m">2</span><span class="s">""</span>
+            <span class="p">}</span>
+          <span class="p">}]</span>
+        <span class="p">}]</span>
+      <span class="p">}</span><span class="s">");
+</span>
+      <span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">Content</span><span class="p">);</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o DEVUELTOS por el Servicio de Rentas Internas.</p>
+
+<p>En la URL de esta opción se debe incluir el id de la retención recibida al momento de emitirla.</p>
+
+<p>El cuerpo del requerimiento es un objeto retención con los datos corregidos para que pueda ser procesado y autorizado.</p>
+<h3 id='respuesta-3'>Respuesta</h3>
+<blockquote>
+<h4 id='respuesta-de-ejemplo-4'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcfde09817263847cdaef8493018fef"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clave_acceso"</span><span class="p">:</span><span class="s2">"2802201501091000000000120010010000100451993736618"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ambiente"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tipo_emision"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"secuencial"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fecha_inicio_transporte"</span><span class="p">:</span><span class="s2">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fecha_fin_transporte"</span><span class="p">:</span><span class="s2">"2015-02-28T11:28:56.782Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emisor"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"ruc"</span><span class="p">:</span><span class="s2">"0910000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"obligado_contabilidad"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contribuyente_especial"</span><span class="p">:</span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nombre_comercial"</span><span class="p">:</span><span class="s2">"XYZ Corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="s2">"XYZ Corporación S.A."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establecimiento"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="s2">"002"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Av. Primera 234 y calle 5ta"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"informacion_adicional"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"Tiempo de entrega"</span><span class="p">:</span><span class="s2">"5 días"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transportista"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Calle única Numero 987"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefono"</span><span class="p">:</span><span class="s2">"04 6029400"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"placa"</span><span class="p">:</span><span class="s2">"GSM-0123"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destinatarios"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_identificacion"</span><span class="p">:</span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"razon_social"</span><span class="p">:</span><span class="s2">"Juan Pérez"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direccion"</span><span class="p">:</span><span class="s2">"Calle única Numero 987"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"juan.perez@xyz.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telefono"</span><span class="p">:</span><span class="s2">"046029400"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fecha_emision_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-27T11:28:56.782Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numero_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-001-000000008"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numero_autorizacion_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"motivo_traslado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Venta"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tipo_documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ruta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GYE - UIO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"documento_aduanero_unico"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codigo_establecimiento_destino"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"cantidad"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_auxiliar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"descripcion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Playstation 4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"detalles_adicionales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"numero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DFGDG2342-2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serie"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2014-2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retorna un objeto tipo <strong><a href="#requerimiento-guia-remision">guía de remisión</a></strong> que incluye un nuevo parámetro <code>id</code>,
+el cual identifica de manera única a la guía de remisión. El campo <code>clave_acceso</code>
+generado también se incluirá como parte de la respuesta. Sí la guía de remisión ya está autorizada se retornará un error.</p>

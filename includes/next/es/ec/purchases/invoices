@@ -58,6 +58,10 @@ por cualquiera de estos parámetros.</p>
 <td>page_size<p class="dt-data-type">integer</p></td>
 <td>Define la cantidad de items por página. Por defecto retorna 30 items por página</td>
 </tr>
+<tr>
+<td>environment<p class="dt-data-type">integer</p></td>
+<td>Lista facturas dependiento del ambiente</td>
+</tr>
 </tbody></table>
 <h4 id='respuesta'>Respuesta</h4>
 <p>Retorna un objeto <a href="#result-set">result set</a> con el listado de Facturas que

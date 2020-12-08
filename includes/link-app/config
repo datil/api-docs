@@ -313,7 +313,22 @@ archivo a través de la cabecera HTTP Content-Disposition. Si esta cabecera no
 está presente, se utilizará el ID del recurso contenido en el evento para dar
 nombre al archivo.
 </aside>
-<h1 id='operacion'>Operación</h1>
+<h2 id='actualizacion-de-estados'>Actualización de estados</h2>
+<p>Link es capaz de ejecutar sentencias SQL basado en el estado de autorización del comprobante. Se puede de configurar el query <code>on_status_update</code> dentro del archivo de configuración del comprobante para almacenar información de autorización u otra información que se desee del documento en la base de datos. Este query se ejecutará cada vez que el comprobante esté en estado <code>POR AUTORIZAR</code> y <code>RECIBIDO</code>.</p>
+
+<p>Ejemplo para guardar información de autorización para facturas</p>
+<pre class="highlight sql tab-sql"><code>  <span class="n">on_status_update</span><span class="o">=</span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">RESPUESTA_SRI_FACTURAS</span> <span class="p">(</span>
+    <span class="n">id</span><span class="p">,</span>
+    <span class="n">numero_documento</span><span class="p">,</span>
+    <span class="n">clave_acceso</span><span class="p">,</span>
+    <span class="n">fecha_autorizacion</span> 
+  <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+    <span class="err">{{</span> <span class="n">id</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">numero</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">clave_acceso</span> <span class="err">}}</span><span class="p">,</span>
+    <span class="err">{{</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">fecha</span> <span class="err">}}</span>
+  <span class="p">)</span>
+</code></pre><h1 id='operacion'>Operación</h1>
 <p>En el menú <code>Inicio</code> buscar el <code>Simbolo del Sistema</code> , darle click derecho y escoger la opción <code>Ejecutar como administrador</code>.</p>
 
 <p>Luego para iniciar el servicio ejecutar el comando:</p>

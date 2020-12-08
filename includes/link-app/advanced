@@ -3342,4 +3342,24 @@ una columna tiene los nombres y otra los valores.</p>
     <span class="p">[</span><span class="n">valor</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="k">CONSTRAINT</span> <span class="n">pk_info_adicionales</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id_liquidacion</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
 <span class="p">)</span>
+</code></pre><h2 id='consulta-de-documentos'>Consulta de documentos</h2>
+<p>La información que Link consulta cuando un documento ha sido emitido y el query <code>on_status_update</code> ha sido definido son los mismos detallados en la <a href="https://datil.dev/#envio-sri">consulta de documentos</a>. Se puede acceder y personalizar la sentencia SQL utilizando las etiquetas <a href="http://jinja.pocoo.org/">Jinja2</a></p>
+
+<blockquote>
+<h4 id='ejemplo-para-guardar-autorizacion-de-facturas'>Ejemplo para guardar autorizacion de facturas</h4></blockquote>
+<pre class="highlight sql tab-sql"><code><span class="n">on_status_update</span> <span class="o">=</span> <span class="err">{</span><span class="o">%</span> <span class="n">if</span> <span class="n">autorizacion</span> <span class="k">is</span> <span class="k">defined</span> <span class="o">%</span><span class="err">}</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">RESPUESTA_SRI_FACTURSA</span> <span class="p">(</span>
+  <span class="n">id</span><span class="p">,</span>
+  <span class="n">numero</span><span class="p">,</span>
+  <span class="n">clave_acceso</span><span class="p">,</span>
+  <span class="n">codig_estado</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+  <span class="err">{{</span> <span class="n">id_local</span> <span class="err">}}</span><span class="p">,</span>
+  <span class="err">{{</span> <span class="n">autorzacio</span><span class="p">.</span><span class="n">numero</span> <span class="err">}}</span><span class="p">,</span>
+  <span class="err">{</span><span class="o">%</span> <span class="n">if</span> <span class="n">autorizacion</span><span class="p">.</span><span class="n">numero</span> <span class="o">==</span> <span class="s1">'AUTORIZADO'</span> <span class="o">%</span><span class="err">}</span> 
+    <span class="mi">100</span>
+  <span class="err">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="err">}</span>
+    <span class="mi">0</span>
+  <span class="err">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="err">}</span>
+<span class="p">)</span>
 </code></pre>
