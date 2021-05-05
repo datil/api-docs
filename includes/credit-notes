@@ -827,7 +827,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
         </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"base_imponible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"valor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="w">
