@@ -1,0 +1,38 @@
+<h2 id='bodega'>Bodega</h2>
+<p>Una Bodega está representado por un objeto <em>Warehouse</em>.</p>
+<h4 id='warehouse'>Warehouse</h4>
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Nombre de la bodega</td>
+</tr>
+<tr>
+<td>default_warehouse<p class="dt-data-type">boolean</p></td>
+<td><code>true</code> si es la bodega por defecto del punto de emisión</td>
+</tr>
+<tr>
+<td>created_at<p class="dt-data-type">string</p></td>
+<td>Fecha de creación de la bodega en formato ISO</td>
+</tr>
+<tr>
+<td>business_id<p class="dt-data-type">string</p></td>
+<td>Identificador único de la entidad tributaria</td>
+</tr>
+<tr>
+<td>updated_at<p class="dt-data-type">string</p></td>
+<td>Fecha de la última actualización</td>
+</tr>
+<tr>
+<td>location_id<p class="dt-data-type">string</p></td>
+<td>Identificador único del punto de emisión</td>
+</tr>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único de la bodega</td>
+</tr>
+</tbody></table>

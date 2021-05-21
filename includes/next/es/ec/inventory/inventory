@@ -1,0 +1,642 @@
+<h1 id='inventario'>Inventario</h1>
+<p>El catálogo de inventario te permite consultar información de las bodegas y stock de los items que tengas.</p>
+<h4 id='acciones-disponibles-para-categorias'>Acciones disponibles para Categorías</h4>
+<ul>
+<li><p><a href="#listar-bodegas"><code>GET /inventory/warehouses</code></a><br>
+Obtener un listado de las bodegas</p></li>
+<li><p><a href="#consulta-una-bodega"><code>GET /inventory/warehouses/:id</code></a><br>
+Consutlar información de una bodega</p></li>
+<li><p><a href="#consulta-una-bodega-por-punto-de-emision"><code>GET /inventory/warehouses/locations/:id</code></a><br>
+Consultar información de la bodega por defecto de un punto de emisión</p></li>
+<li><p><a href="#listar-existencias"><code>GET /inventory/warehouses/:id/stocks</code></a><br>
+Consultar stock de los items en una bodega</p></li>
+<li><p><a href="#consulta-existencias"><code>GET /inventory/warehouses/:id_warehouse/stocks/:id_item</code></a><br>
+Consultar stock de un item en una bodega</p></li>
+</ul>
+<h2 id='listar-bodegas'>Listar Bodegas</h2>
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/warehouses
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/warehouses"</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<p>Obten un listado completo de las bodegas en tu inventario.</p>
+<h3 id='respuesta'>Respuesta</h3>
+<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de las bodegas que tengas en tu inventario.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matriz"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-18T20:02:07.582Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-18T20:02:17.424Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:07.582Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:17.424Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"874ec980-b939-11eb-8529-0242ac130003"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='consulta-una-bodega'>Consulta una Bodega</h2>
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/warehouses/874ec980-b939-11eb-8529-0242ac130003 <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">warehouse_id</span> <span class="o">=</span> <span class="s">"874ec980-b939-11eb-8529-0242ac130003"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/warehouses/"</span> <span class="o">+</span> <span class="n">warehouse_id</span>
+<span class="n">warehouse</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<p>Consulta los detalles de una bodega. Envía el ID de la bodega para obtener su información.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">requerido</p></td>
+<td>El identificador único de la bodega.</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-2'>Respuesta</h3>
+<p>Retorna un objeto <a href="#warehouse">Warehouse</a> si el identificador es válido, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:07.582Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:17.424Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"874ec980-b939-11eb-8529-0242ac130003"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='consulta-una-bodega-por-punto-de-emision'>Consulta una Bodega por punto de emisión</h2>
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/warehouses/locations/2eff72aa-d3e1-4c0d-96be-3d22e8c6e72 <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">location_id</span> <span class="o">=</span> <span class="s">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/warehouses/locations"</span> <span class="o">+</span> <span class="n">location_id</span>
+<span class="n">warehouse</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<p>Consulta los detalles de la bodega por defecto del punto de emisión. Envía el ID del punto de emisión para obtener su información.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">requerido</p></td>
+<td>El identificador único del punto de emisión.</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-3'>Respuesta</h3>
+<p>Retorna un objeto <a href="#warehouse">warehouse</a> si el identificador es válido, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='listar-existencias'>Listar existencias</h2>
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/warehouses/874ec980-b939-11eb-8529-0242ac130003/stocks <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">warehouse_id</span> <span class="o">=</span> <span class="s">"874ec980-b939-11eb-8529-0242ac130003"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/warehouses/"</span> <span class="o">+</span> <span class="n">warehouse_id</span> <span class="o">+</span> <span class="s">"/stocks"</span>
+<span class="n">warehouse</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<p>Obten un listado de todas las existencias de una bodega. Envía el ID de la bodega para obtener su información.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">requerido</p></td>
+<td>El identificador único de la bodega.</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-4'>Respuesta</h3>
+<p>Retorna un objeto <a href="#result-set">result set</a> con el listado de las existencias que tenga la bodega.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80518213-0ca4-4ec7-b988-db6462352d71"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latest_update_by_transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb16de6e-fd4b-4428-a496-91d9245f0902"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"warehouse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3450.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.000000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.055944"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"991ee848-06ff-433d-9811-3ba0afdf1352"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latest_update_by_transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ad3a06bf-e08c-4126-9e29-d2491e049ec5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"warehouse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106.909092"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.000000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='consulta-existencias'>Consulta Existencias</h2>
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/warehouses/874ec980-b939-11eb-8529-0242ac130003/stocks/991ee848-06ff-433d-9811-3ba0afdf1352 <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">warehouse_id</span> <span class="o">=</span> <span class="s">"874ec980-b939-11eb-8529-0242ac130003"</span>
+<span class="n">item_id</span> <span class="o">=</span> <span class="s">"991ee848-06ff-433d-9811-3ba0afdf1352"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/warehouses/"</span> <span class="o">+</span> <span class="n">warehouse_id</span> <span class="o">+</span> <span class="s">"/stocks/"</span> <span class="o">+</span> <span class="n">item_id</span>
+<span class="n">stock</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<p>Consulta las existencias de un item en la bodega. Envía el ID de la bodega y el ID del item.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_warehouse<p class="dt-data-type">requerido</p></td>
+<td>El identificador único de la bodega.</td>
+</tr>
+<tr>
+<td>id_item<p class="dt-data-type">requerido</p></td>
+<td>El identificador único de la bodega.</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-5'>Respuesta</h3>
+<p>Retorna un objeto <a href="#stock">Stock</a> si los identificadores son correctos, caso contrario
+retorna un error.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"to_buy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"991ee848-06ff-433d-9811-3ba0afdf1352"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stock_alarm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latest_update_by_transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ad3a06bf-e08c-4126-9e29-d2491e049ec5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warehouse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T20:28:49.090Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T20:28:49.090Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T02:57:12.505Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106.909092"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T17:16:51.404Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.055944"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='transacciones'>Transacciones</h2>
+<p>Actualiza las existencias en las bodegas de tu inventario.</p>
+
+<ul>
+<li><p><a href="#entrada"><code>POST /inventory/input</code></a><br>
+Incrementa las existencias en una bodega</p></li>
+<li><p><a href="#salida"><code>POST /inventory/output</code></a><br>
+Disminuye las existencias en una bodega</p></li>
+</ul>
+<h2 id='entrada'>Entrada</h2><h3 id='operacion'>Operación</h3>
+<p><code>POST /inventory/inputs</code></p>
+
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/input <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "warehouse": {"id": "e1579cd1-2040-47e2-8b8f-de87f4644f39"},
+    "support_doc_id": "97b34644c9a848fc8b4f1g8edac0323d",
+    "support_doc_type": 1,
+    "support_doc_date": "2021-05-18T00:00:00Z",
+    "items": [{
+        "id": "80518213-0ca4-4ec7-b988-db6462352d71",
+        "sku": "113",
+        "name": "Laptop",
+        "quantity": 5,
+        "unit_price": "30.0",
+        "total": "150.0"
+    }],
+    "description": "Factura MegaMarket 001-034-000555007"
+}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">entrada</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"warehouse"</span><span class="p">:</span> <span class="p">{</span><span class="s">"id"</span><span class="p">:</span> <span class="s">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="p">},</span>
+    <span class="s">"support_doc_id"</span><span class="p">:</span> <span class="s">"97b34644c9a848fc8b4f1g8edac0323d"</span><span class="p">,</span>
+    <span class="s">"support_doc_type"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">"support_doc_date"</span><span class="p">:</span> <span class="s">"2021-05-18T00:00:00Z"</span><span class="p">,</span>
+    <span class="s">"items"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="s">"80518213-0ca4-4ec7-b988-db6462352d71"</span><span class="p">,</span>
+        <span class="s">"sku"</span><span class="p">:</span> <span class="s">"113"</span><span class="p">,</span>
+        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Laptop"</span><span class="p">,</span>
+        <span class="s">"quantity"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s">"unit_price"</span><span class="p">:</span> <span class="s">"30.0"</span><span class="p">,</span>
+        <span class="s">"total"</span><span class="p">:</span> <span class="s">"150.0"</span>
+    <span class="p">}],</span>
+    <span class="s">"description"</span><span class="p">:</span> <span class="s">"Factura MegaMarket 001-034-000555007"</span>
+<span class="p">}</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/input</span><span class="err">
+</span><span class="s">respuesta = requests.post(</span><span class="err">
+</span><span class="s">    datil_api_url, </span><span class="err">
+</span><span class="s">    headers=headers,</span><span class="err">
+</span><span class="s">    data=json.dumps(entrada))</span><span class="err">
+</span></code></pre>
+<p>Para aumentar la cantidad de existencias en una bodega, se debe de enviar el ID de la bodega más la información del item del cual se incrementará la cantidad</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>warehouse<p class="dt-data-type">object</p></td>
+<td>Objeto donde se especifica el id de la bodega</td>
+</tr>
+<tr>
+<td>support_doc_id<p class="dt-data-type">string</p></td>
+<td>El id del documento de compra de los productos</td>
+</tr>
+<tr>
+<td>support_doc_type<p class="dt-data-type">integer</p></td>
+<td>Tipo de documento de compra</td>
+</tr>
+<tr>
+<td>support_doc_date<p class="dt-data-type">string</p></td>
+<td>Fecha de del documento de compra</td>
+</tr>
+<tr>
+<td>items</td>
+<td>Objeto de tipo <a href="#item">Item</a></td>
+</tr>
+<tr>
+<td>descripcion<p class="dt-data-type">string</p></td>
+<td>Descripción del incremento de existencias</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-6'>Respuesta</h3>
+<p>Retorna información del incremento e información del item y de la bodega a la que se le hizo el aumento.</p>
+
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"approved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Factura MegaMarket 001-034-000555007"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entry_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T17:46:25.862Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97b34644c9a848fc8b4f1g8edac0323d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T17:46:25.862Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"113"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Laptop"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stock"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T17:33:51.614Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.000000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T17:46:25.935Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.000000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80518213-0ca4-4ec7-b988-db6462352d71"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warehouse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:07.582Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:17.424Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a35aad6-063b-450d-b056-4ca3e913a87e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-18T00:00:00Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status<p class="dt-data-type">string</p></td>
+<td>Estado de la operación</td>
+</tr>
+<tr>
+<td>support_doc_type<p class="dt-data-type">integer</p></td>
+<td>El id del documento de compra de los productos</td>
+</tr>
+<tr>
+<td>total_amount<p class="dt-data-type">integer</p></td>
+<td>Tipo de documento de compra</td>
+</tr>
+<tr>
+<td>description<p class="dt-data-type">string</p></td>
+<td>Descripción del incremento de existencias</td>
+</tr>
+<tr>
+<td>entry_type<p class="dt-data-type">string</p></td>
+<td>Tipo de Operación. Si es un ingreso <code>&quot;I&quot;</code> si es una salida <code>&quot;O&quot;</code></td>
+</tr>
+<tr>
+<td>created_at<p class="dt-data-type">string</p></td>
+<td>Fecha de creación del incremento</td>
+</tr>
+<tr>
+<td>support_doc_id<p class="dt-data-type">string</p></td>
+<td>Identificador único del documento asociando</td>
+</tr>
+<tr>
+<td>updated_at<p class="dt-data-type">string</p></td>
+<td>Fecha de la última actualización</td>
+</tr>
+<tr>
+<td>items<p class="dt-data-type">array</p></td>
+<td>Objeto de tipo <a href="#item">Item</a></td>
+</tr>
+<tr>
+<td>warehouse<p class="dt-data-type">object</p></td>
+<td>Objeto de tipo <a href="#bodega">Bodega</a></td>
+</tr>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único del incremento</td>
+</tr>
+<tr>
+<td>support_doc_date<p class="dt-data-type">string</p></td>
+<td>Fecha de del documento de compra</td>
+</tr>
+</tbody></table>
+<h2 id='salida'>Salida</h2><h3 id='operacion-2'>Operación</h3>
+<p><code>POST /inventory/outputs</code></p>
+
+<blockquote>
+<p>Requerimiento de ejemplo</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/inventory/input <span class="se">\</span>
+-H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "warehouse": {"id": "e1579cd1-2040-47e2-8b8f-de87f4644f39"},
+    "support_doc_id": "97b34644c9a848fc8b4f1g8edac0323d",
+    "support_doc_type": 1,
+    "support_doc_date": "2021-05-17T22:15:41Z",
+    "items": [{
+        "id": "991ee848-06ff-433d-9811-3ba0afdf1352",
+        "sku": "111",
+        "name": "Agua Mineral",
+        "quantity": 3
+    }],
+    "description": "Factura MegaMarket 001-034-000555007"
+}'</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">entrada</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"warehouse"</span><span class="p">:</span> <span class="p">{</span><span class="s">"id"</span><span class="p">:</span> <span class="s">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="p">},</span>
+    <span class="s">"support_doc_id"</span><span class="p">:</span> <span class="s">"97b34644c9a848fc8b4f1g8edac0323d"</span><span class="p">,</span>
+    <span class="s">"support_doc_type"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">"support_doc_date"</span><span class="p">:</span> <span class="s">"2021-05-17T22:15:41Z"</span><span class="p">,</span>
+    <span class="s">"items"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="s">"991ee848-06ff-433d-9811-3ba0afdf1352"</span><span class="p">,</span>
+        <span class="s">"sku"</span><span class="p">:</span> <span class="s">"111"</span><span class="p">,</span>
+        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Agua Mineral"</span><span class="p">,</span>
+        <span class="s">"quantity"</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="p">}],</span>
+    <span class="s">"description"</span><span class="p">:</span> <span class="s">"Factura MegaMarket 001-034-000555007"</span>
+<span class="p">}</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span>
+<span class="p">}</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/inventory/input</span><span class="err">
+</span><span class="s">respuesta = requests.post(</span><span class="err">
+</span><span class="s">    datil_api_url, </span><span class="err">
+</span><span class="s">    headers=headers,</span><span class="err">
+</span><span class="s">    data=json.dumps(entrada))</span><span class="err">
+</span></code></pre>
+<p>Para decrementar la cantidad de existencias en una bodega, se debe de enviar el ID de la bodega más la información del item del cual se disminuirá la cantidad</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>warehouse<p class="dt-data-type">object</p></td>
+<td>Objeto donde se especifica el id de la bodega</td>
+</tr>
+<tr>
+<td>support_doc_id<p class="dt-data-type">string</p></td>
+<td>El id del documento de compra de los productos</td>
+</tr>
+<tr>
+<td>support_doc_type<p class="dt-data-type">integer</p></td>
+<td>Tipo de documento de compra</td>
+</tr>
+<tr>
+<td>support_doc_date<p class="dt-data-type">string</p></td>
+<td>Fecha de del documento de compra</td>
+</tr>
+<tr>
+<td>items<p class="dt-data-type">array</p></td>
+<td>Objeto con información del item</td>
+</tr>
+<tr>
+<td>descripcion<p class="dt-data-type">string</p></td>
+<td>Descripción del incremento de existencias</td>
+</tr>
+</tbody></table>
+<h3 id='respuesta-7'>Respuesta</h3>
+<blockquote>
+<p>Respuesta de ejemplo</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"approved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Factura MegaMarket 001-034-000555007"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entry_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-21T17:07:10.374Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97b34644c9a848fc8b4f1g8edac0323d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-21T17:07:10.374Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agua Mineral"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.363636"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stock"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-19T02:57:12.505Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.818184"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-21T17:07:10.530Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.363636"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.090908"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"991ee848-06ff-433d-9811-3ba0afdf1352"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warehouse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bodega"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"default_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:07.582Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T20:02:17.424Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2eff72aa-d3e1-4c0d-96be-3d22e8c6e72f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1579cd1-2040-47e2-8b8f-de87f4644f39"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c3c756a4-f029-43d2-9905-78d6e0c79fb3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"support_doc_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-17T22:15:41Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retorna información del decremento e información del item y de la bodega a la que se le hizo la dismimnución.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status<p class="dt-data-type">string</p></td>
+<td>Estado de la operación</td>
+</tr>
+<tr>
+<td>support_doc_type<p class="dt-data-type">integer</p></td>
+<td>El id del documento de compra de los productos</td>
+</tr>
+<tr>
+<td>total_amount<p class="dt-data-type">integer</p></td>
+<td>Monto total en la bodega</td>
+</tr>
+<tr>
+<td>description<p class="dt-data-type">string</p></td>
+<td>Descripción del decremento de existencias</td>
+</tr>
+<tr>
+<td>entry_type<p class="dt-data-type">string</p></td>
+<td>Tipo de Operación. Si es un ingreso <code>&quot;I&quot;</code> si es una salida <code>&quot;O&quot;</code></td>
+</tr>
+<tr>
+<td>created_at<p class="dt-data-type">string</p></td>
+<td>Fecha de creación del decremento</td>
+</tr>
+<tr>
+<td>support_doc_id<p class="dt-data-type">string</p></td>
+<td>Identificador único del documento asociando</td>
+</tr>
+<tr>
+<td>updated_at<p class="dt-data-type">string</p></td>
+<td>Fecha de la última actualización</td>
+</tr>
+<tr>
+<td>items<p class="dt-data-type">array</p></td>
+<td>Objeto de tipo <a href="#item">Item</a></td>
+</tr>
+<tr>
+<td>warehouse<p class="dt-data-type">object</p></td>
+<td>Objeto de tipo <a href="#bodega">Bodega</a></td>
+</tr>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único del decremento</td>
+</tr>
+<tr>
+<td>support_doc_date<p class="dt-data-type">string</p></td>
+<td>Fecha de del documento de compra</td>
+</tr>
+</tbody></table>

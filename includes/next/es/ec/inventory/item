@@ -1,0 +1,34 @@
+<h2 id='item'>Item</h2>
+<p>Objeto que representa el item al cual se desea incrementar o decrementar la cantidad en el inventario</p>
+
+<table><thead>
+<tr>
+<th>Atributos</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<p class="dt-data-type">string</p></td>
+<td>Identificador único del producto</td>
+</tr>
+<tr>
+<td>sku<p class="dt-data-type">string</p></td>
+<td>Código de inventario</td>
+</tr>
+<tr>
+<td>name<p class="dt-data-type">string</p></td>
+<td>Nombre del producto</td>
+</tr>
+<tr>
+<td>quantity<p class="dt-data-type">integer</p></td>
+<td>Cantidad a aumentar en el inventario</td>
+</tr>
+<tr>
+<td>unit_price<p class="dt-data-type">string</p></td>
+<td>Percio unitario del producto</td>
+</tr>
+<tr>
+<td>total<p class="dt-data-type">string</p></td>
+<td>Monto total. El precio unitario por la canitdad.</td>
+</tr>
+</tbody></table>
