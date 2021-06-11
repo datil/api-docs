@@ -84,7 +84,7 @@
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -173,7 +173,7 @@
     <span class="p">{</span>
       <span class="s">"forma_pago"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span><span class="p">,</span>
       <span class="s">"plazo"</span><span class="p">:</span> <span class="s">"30"</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -536,7 +536,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"forma_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -905,7 +905,7 @@ también se incluirá como parte de la respuesta.</p>
     {
       "forma_pago": "01",
       "total": 50.00,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -1009,7 +1009,7 @@ también se incluirá como parte de la respuesta.</p>
     <span class="p">{</span>
       <span class="s">"forma_pago"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">50.00</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span><span class="p">,</span>
       <span class="s">"plazo"</span><span class="p">:</span> <span class="s">"30"</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -1414,7 +1414,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"forma_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1561,7 +1561,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"forma_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">168.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -1826,7 +1826,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"forma_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -2023,7 +2023,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -2112,7 +2112,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     <span class="p">{</span>
       <span class="s">"forma_pago"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
       <span class="s">"total"</span><span class="p">:</span> <span class="mf">4882.68</span><span class="p">,</span>
-      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+      <span class="s">"unidad_tiempo"</span><span class="p">:</span> <span class="s">"dias"</span><span class="p">,</span>
       <span class="s">"plazo"</span><span class="p">:</span> <span class="s">"30"</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -2338,7 +2338,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"forma_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4882.68</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unidad_tiempo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dias"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"plazo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
