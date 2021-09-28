@@ -233,6 +233,11 @@
 <td>float</td>
 <td>Total tax amount.</td>
 </tr>
+<tr>
+<td>descuento_adicional</td>
+<td>float</td>
+<td>Global discount applied to the invoice, expressed in monetary value. It only applies to VAT type taxes.</td>
+</tr>
 </tbody></table>
 <h2 id='tax-item'>Tax item</h2>
 <table><thead>

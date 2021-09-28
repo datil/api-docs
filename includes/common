@@ -391,6 +391,11 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje.</td>
 </tr>
 <tr>
+<td>descuento_adicional</td>
+<td>float</td>
+<td>Descuento global aplicado en la factura, expresado en valor monetario. Solo aplica a impuestos de tipo IVA.</td>
+</tr>
+<tr>
 <td>valor</td>
 <td>float</td>
 <td>Resultado de aplicar el impuesto a la (<code>base_imponible</code> - <code>descuento_adicional</code>)</td>

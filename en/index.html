@@ -839,7 +839,7 @@
 <tr>
 <td>descuento_adicional</td>
 <td>float</td>
-<td>Additional discount applied to the invoice subtotal, expressed in monetary value.</td>
+<td>Additional discount applied to the invoice subtotal, expressed in monetary value. <span style="color: red"><strong>Obsoleto</strong></span> <em>utiliza el parámetro descuento_adicional de Total Impuesto</em></td>
 </tr>
 <tr>
 <td>descuento</td>
@@ -4081,6 +4081,11 @@ This information is sent to the Internal Revenue Service (SRI)
 <td>valor</td>
 <td>float</td>
 <td>Total tax amount.</td>
+</tr>
+<tr>
+<td>descuento_adicional</td>
+<td>float</td>
+<td>Global discount applied to the invoice, expressed in monetary value. It only applies to VAT type taxes.</td>
 </tr>
 </tbody></table>
 <h2 id='tax-item'>Tax item</h2>

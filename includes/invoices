@@ -517,7 +517,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>descuento_adicional</td>
 <td>float (hasta 2 cifras decimales)</td>
-<td>Descuento aplicado al subtotal de la factura expresado en valor monetario.</td>
+<td>Descuento aplicado al subtotal de la factura expresado en valor monetario. <span style="color: red"><strong>Obsoleto</strong></span> <em>utiliza el parámetro descuento_adicional incluído en Total Impuesto</em></td>
 </tr>
 <tr>
 <td>descuento</td>
@@ -1954,7 +1954,7 @@ comprobante en el cuerpo del requerimiento en formato JSON. El total de ítems d
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items. </p>
+<p>Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items.</p>
 
 <h3 id="totales-reembolso"> Totales </h3>
 
