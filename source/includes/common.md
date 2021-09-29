@@ -216,6 +216,55 @@ valor | float (hasta 2 cifras decimales) | Valor del impuesto.  __Requerido__
 
 ## Tipo de identificación
 
+### Operación
+
+`GET /catalog/id-types`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/id-types\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+      {
+      "count": 6,
+      "results": [
+        {
+          "nombre": "CEDULA",
+          "codigo": "05"
+        },
+        {
+          "nombre": "RUC",
+          "codigo": "04"
+        },
+        {
+          "nombre": "PASAPORTE",
+          "codigo": "06"
+        },
+        {
+          "nombre": "PLACA",
+          "codigo": "09"
+        },
+        {
+          "nombre": "IDENTIFICACION DEL EXTERIOR",
+          "codigo": "08"
+        },
+        {
+          "nombre": "CONSUMIDOR FINAL",
+          "codigo": "07"
+        }
+      ]
+    }
+```
+
+Consulta todos los tipos de identificaciones registrados en Datil que sean validos
+por el Servicios de Rentas Internas.
+
 Tipo de identificación      | Código
 --------------------------- | ------
 RUC                         | `04`
@@ -228,6 +277,45 @@ PLACA                       | `09`
 
 ## Tipos de impuesto
 
+### Operación
+
+`GET /catalog/taxes/sales`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/taxes/sales\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+  {
+  "count": 3,
+  "results": [
+    {
+      "impuesto": "ICE",
+      "codigo": "3"
+    },
+    {
+      "impuesto": "IRBPNR",
+      "codigo": "5"
+    },
+    {
+      "impuesto": "IVA",
+      "codigo": "2"
+    }
+  ]
+}
+```
+
+
+
+Consulta todos los impuestos validos en la emision de un comprobante de ventas
+acorde a los estándares que demanda el Servicio de Rentas Internas.
+
 Impuesto | Código
 -------- | ------
 IVA      | 2
@@ -236,20 +324,107 @@ IRBPNR   | 5
 
 ## Código de Porcentaje de IVA
 
+### Operación
+
+`GET /catalog/tax-rates?code=2`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/tax-rates?code=2\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+      {
+      "count": 4,
+      "results": [
+        {
+          "nombre": "IVA 0%",
+          "tarifa": "0.00",
+          "codigo_porcentaje": "0"
+        },
+        {
+          "nombre": "IVA 12%",
+          "tarifa": "12.00",
+          "codigo_porcentaje": "2"
+        },
+        {
+          "nombre": "IVA NO OBJETO DE IMPUESTO",
+          "tarifa": "0.00",
+          "codigo_porcentaje": "6"
+        },
+        {
+          "nombre": "IVA EXENTO DE IVA",
+          "tarifa": "0.00",
+          "codigo_porcentaje": "7"
+        }
+      ]
+    }
+```
+
+Consulta los porcentajes y tarifas del IVA acorde al Servicios de Rentas Internas.
+
+
 Porcentaje de IVA | Código | Tarifa
 -------- | ------ | ------
 0%     | 0 |  0
 12%      | 2 | 12
-14%   | 3 | 14
 No Objeto de Impuesto   | 6 | -
 Exento de IVA   | 7 | -
 
 ## Tipos de impuesto para la retención
 
+### Operación
+
+`GET /catalog/taxes/withholdings`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/taxes/withholdings\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+    {
+    "count": 4,
+    "results": [
+        {
+          "nombre": "RENTA",
+          "codigo": "1"
+        },
+        {
+          "nombre": "ISD",
+          "codigo": "6"
+        },
+        {
+          "nombre": "IVA PRESUNTIVO Y RENTA",
+          "codigo": "4"
+        },
+        {
+          "nombre": "IVA",
+          "codigo": "2"
+        }
+    ]
+}
+```
+
+Consulta todos los impuestos a retener acorde a la ficha técnica del Servicio
+de Rentas Internas.  
+
+
 Impuesto | Código
 -------- | ------
 RENTA    | 1
 IVA      | 2
+IVA PRESUNTIVO Y RENTA | 4
 ISD      | 6
 
 ## Tipos de impuesto para la retención en la factura
@@ -265,6 +440,66 @@ IVA PRESUNTIVO Y RENTA    | 4
 
 
 ## Retención de IVA
+
+### Operación
+
+`GET /catalog/withholdings-tax-rates?code=2`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/withholdings-tax-rates?code=2\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+    {
+    "count": 7,
+    "results": [
+        {
+          "nombre": "RETENCION DE IVA 30%",
+          "codigo": "1",
+          "porcentaje": "30.00"
+        },
+        {
+          "nombre": "RETENCION DE IVA 70%",
+          "codigo": "2",
+          "porcentaje": "70.00"
+        },
+        {
+          "nombre": "RETENCION DE IVA 100%",
+          "codigo": "3",
+          "porcentaje": "100.00"
+        },
+        {
+          "nombre": "RETENCION EN 0%",
+          "codigo": "7",
+          "porcentaje": "0.00"
+        },
+        {
+          "nombre": "RETENCION DE IVA 10%",
+          "codigo": "9",
+          "porcentaje": "10.00"
+        },
+        {
+          "nombre": "RETENCION DE IVA 20%",
+          "codigo": "10",
+          "porcentaje": "20.00"
+        },
+        {
+          "nombre": "NO PROCEDE RETENCION",
+          "codigo": "8",
+          "porcentaje": "0.00"
+        }
+      ]
+    }
+```
+
+Consulta los porcentajes de retencion del IVA. El codigo enviado en la ruta de
+la peticion corresponde al codigo del impuesto.
 
 Porcentaje IVA | Código
 -------------- | ------
@@ -288,6 +523,37 @@ Porcentaje IVA | Código
 
 ## Retención ISD
 
+### Operación
+
+`GET /catalog/withholdings-tax-rates?code=6`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/withholdings-tax-rates?code=6\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+
+  {
+  "count": 1,
+  "results": [
+      {
+        "nombre": "ISD",
+        "codigo": "4580",
+        "porcentaje": "5.00"
+      }
+    ]
+  }
+```
+
+Consulta los porcentajes de retencion del ISD. El codigo enviado en la ruta de
+la peticion corresponde al codigo del impuesto.
+
 Porcentaje IVA | Código
 -------------- | ------
 5%             | 4580
@@ -295,7 +561,75 @@ Porcentaje IVA | Código
 
 ## Retención a la Fuente (Renta)
 
-Consulta el catálogo vigente de códigos en:
+### Operación
+
+`GET /catalog/withholdings-tax-rates?code=1`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/withholdings-tax-rates?code=1\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+Actualmente tenemos registrado 323 retenciones por impuesto a la Renta registrados
+acorde al SRI, por efecto de este ejemplo solo se muestra 8 de ellos.
+
+```json
+
+{
+  "count": 8,
+  "results": [
+      {
+        "nombre": "HONORARIOS PROFESIONALES Y DEMAS PAGOS RELACIONADOS CON EL T\u00cdTULO PROFESIONAL",
+        "codigo": "303",
+        "porcentaje": "10.00"
+      },
+      {
+        "nombre": "SERVICIOS PREDOMINA EL INTELECTO NO RELACIONADOS CON EL TITULO PROFESIONAL",
+        "codigo": "304",
+        "porcentaje": "8.00"
+      },
+      {
+        "nombre": "SERVICIOS PREDOMINA LA MANO DE OBRA",
+        "codigo": "307",
+        "porcentaje": "2.00"
+      },
+      {
+        "nombre": "SERVICIOS PRESTADOS POR MEDIOS DE COMUNICACION Y AGENCIAS DE PUBLICIDAD",
+        "codigo": "309",
+        "porcentaje": "1.00"
+      },
+      {
+        "nombre": "SERVICIO TRANSPORTE PRIVADO DE PASAJEROS O SERVICIO PUBLICO O PRIVADO DE CARGA",
+        "codigo": "310",
+        "porcentaje": "1.00"
+      },
+      {
+        "nombre": "TRANSFERENCIA DE BIENES MUEBLES DE NATURALEZA CORPORAL",
+        "codigo": "312",
+        "porcentaje": "1.00"
+      },
+      {
+        "nombre": "CUOTAS POR ARRENDAMIENTO MERCANTIL, INCLUSIVE LA DE OPCION DE COMPRA ",
+        "codigo": "319",
+        "porcentaje": "1.00"
+      },
+      {
+        "nombre": "ARRENDAMIENTO BIENES INMUEBLES",
+        "codigo": "320",
+        "porcentaje": "8.00"
+      }
+    ]
+  }
+```
+
+Consulta los porcentajes de retencion del impuesto a la RENTA. El codigo enviado en la ruta de
+la peticion corresponde al codigo del impuesto.
+
+O tambien puedes realizar la consulta en el catálogo vigente de códigos en:
 
 [https://www.sri.gob.ec/web/guest/retenciones-en-la-fuente](https://www.sri.gob.ec/web/guest/retenciones-en-la-fuente)
 
@@ -327,6 +661,98 @@ Porcentaje Renta | Código
 
 
 ## Tipos de documentos
+
+### Operación
+
+`GET /catalog/document-types`
+
+> #### Ejemplo del requerimiento
+
+```shell
+  curl -v https://link.datil.co/catalog/document-types\
+  -H "Content-Type: application/json" \
+  -H "X-Key: <clave-del-api>"
+```
+
+> #### Ejemplo de la respuesta
+
+```json
+    {
+      "count": 17,
+      "results": [
+        {
+          "nombre": "FACTURA",
+          "codigo": "01"
+        },
+        {
+          "nombre": "NOTA DEBITO",
+          "codigo": "05"
+        },
+        {
+          "nombre": "LIQ. COMPRAS",
+          "codigo": "03"
+        },
+        {
+          "nombre": "COMPROBANTE DE PAGO APORTES",
+          "codigo": "19"
+        },
+        {
+          "nombre": "NOTA DE VENTA",
+          "codigo": "02"
+        },
+        {
+          "nombre": "NOTA DE CREDITO",
+          "codigo": "04"
+        },
+        {
+          "nombre": "RETENCION POR COMPRAS",
+          "codigo": "07"
+        },
+        {
+          "nombre": "BOLETOS O ENTRADAS A ESPECTACULOS PUBLICOS",
+          "codigo": "08"
+        },
+        {
+          "nombre": "TIQUETES O VALES EMITIDOS POR MAQ. REGISTR.",
+          "codigo": "09"
+        },
+        {
+          "nombre": "PASAJES EMITIDOS POR EMPRESAS DE AVIACION",
+          "codigo": "11"
+        },
+        {
+          "nombre": "DOCUMENTOS EMITIDOS POR INSTITUCIONES FINANCIERAS",
+          "codigo": "12"
+        },
+        {
+          "nombre": "COMPROBANTE DE VENTA EMITIDO EN EL EXTERIOR",
+          "codigo": "15"
+        },
+        {
+          "nombre": "FORMULARIO UNICO DE IMPORTACION",
+          "codigo": "17"
+        },
+        {
+          "nombre": "DOC. SERV. ADM. EMITIDOS POR INSTIT. DEL ESTADO",
+          "codigo": "20"
+        },
+        {
+          "nombre": "CARTA DE PORTE AEREO",
+          "codigo": "21"
+        },
+        {
+          "nombre": "RECAP",
+          "codigo": "22"
+        },
+        {
+          "nombre": "LIQUIDACION PARA EXPLOT. Y EXPLOR. HIDROCARBUROS",
+          "codigo": "43"
+        }
+      ]
+    }
+```
+Consulta los tipos de documentos registrados en Datil y validados
+por el Servicios de Rentas Internas
 
 Documento                | Código
 ------------------------ | ------
