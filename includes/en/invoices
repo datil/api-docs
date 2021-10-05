@@ -405,7 +405,7 @@
 <tr>
 <td>descuento_adicional</td>
 <td>float</td>
-<td>Additional discount applied to the invoice subtotal, expressed in monetary value. <span style="color: red"><strong>Obsoleto</strong></span> <em>utiliza el parámetro descuento_adicional de Total Impuesto</em></td>
+<td>Additional discount applied to the invoice subtotal, expressed in monetary value. <span style="color: red"><strong>Deprecated</strong></span> <em>uses the additional_discount parameter of Total Tax section</em></td>
 </tr>
 <tr>
 <td>descuento</td>
