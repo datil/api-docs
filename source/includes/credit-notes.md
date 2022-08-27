@@ -759,6 +759,11 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la nota de crédito que neces
             "punto_emision": "100"
         }
     },
+    "documento_sustento": {
+      "fecha_documento": "2015-05-10",
+      "numero_documento": "001-002-000073854",
+      "tipo_documento": "01"
+    },
     "estado": "AUTORIZADO",
     "correos_enviados": [
         {
@@ -840,11 +845,12 @@ Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | string | Número de secuencia de la nota de crédito.
 estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`, `ERROR`
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf).
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
 emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+documento_sustento | objeto tipo [documento sustento](#documento-sustento) | Información del documento de sustento asociado a la nota de crédito.
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
 totales | objeto tipo [totales](#totales-nota-de-crédito) | Listado de totales.
