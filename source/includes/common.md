@@ -212,6 +212,15 @@ codigo_porcentaje | string | Código del [porcentaje del impuesto](#retencion-de
 tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto.  __Requerido__
 valor | float (hasta 2 cifras decimales) | Valor del impuesto.  __Requerido__
 
+<h2 id="documento-sustento">Documento de Sustento</h2>
+
+Información de la factura asociada a las notas de créditos.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+numero_documento | string | Número completo de la factura asociada a la nota de crédito.
+tipo_documento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos).
+fecha_documento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 # Catálogo
 
 ## Tipo de identificación
