@@ -441,6 +441,9 @@
                   <li>
                     <a href="#retencion-de-factura" class="toc-h2 toc-link" data-title="Retención en factura ">Retención en factura </a>
                   </li>
+                  <li>
+                    <a href="#documento-sustento" class="toc-h2 toc-link" data-title="Documento de Sustento">Documento de Sustento</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -4928,6 +4931,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"fecha_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numero_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-000073854"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tipo_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"correos_enviados"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -5024,7 +5032,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf">ISO8601</a>.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
@@ -5045,6 +5053,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <td>emisor</td>
 <td>objeto tipo <a href="#emisor">emisor</a></td>
 <td>Información completa del emisor.</td>
+</tr>
+<tr>
+<td>documento_sustento</td>
+<td>objeto tipo <a href="#documento-sustento">documento sustento</a></td>
+<td>Información del documento de sustento asociado a la nota de crédito.</td>
 </tr>
 <tr>
 <td>moneda</td>
@@ -12589,6 +12602,34 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>valor</td>
 <td>float (hasta 2 cifras decimales)</td>
 <td>Valor del impuesto.  <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="documento-sustento">Documento de Sustento</h2>
+
+<p>Información de la factura asociada a las notas de créditos.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numero_documento</td>
+<td>string</td>
+<td>Número completo de la factura asociada a la nota de crédito.</td>
+</tr>
+<tr>
+<td>tipo_documento</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-documentos">tipos de documentos</a>.</td>
+</tr>
+<tr>
+<td>fecha_documento</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
 </tr>
 </tbody></table>
 <h1 id='catalogo'>Catálogo</h1><h2 id='tipo-de-identificacion'>Tipo de identificación</h2>

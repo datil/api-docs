@@ -812,6 +812,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             </span><span class="s2">"punto_emision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"documento_sustento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"fecha_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numero_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001-002-000073854"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tipo_documento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTORIZADO"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"correos_enviados"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -908,7 +913,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <tr>
 <td>fecha_emision</td>
 <td>string</td>
-<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf">ISO8601</a>.</td>
 </tr>
 <tr>
 <td>clave_acceso</td>
@@ -929,6 +934,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 <td>emisor</td>
 <td>objeto tipo <a href="#emisor">emisor</a></td>
 <td>Información completa del emisor.</td>
+</tr>
+<tr>
+<td>documento_sustento</td>
+<td>objeto tipo <a href="#documento-sustento">documento sustento</a></td>
+<td>Información del documento de sustento asociado a la nota de crédito.</td>
 </tr>
 <tr>
 <td>moneda</td>
