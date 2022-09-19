@@ -690,6 +690,7 @@ curl -v https://link.datil.co/invoices/issue/xml \
             <descripcion>Aceite Protector Madera</descripcion>
             <cantidad>1.000000</cantidad>
             <precioUnitario>12.000000</precioUnitario>
+            <unidadMedida>Litro</unidadMedida>
             <descuento>0.00</descuento>
             <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
             <impuestos>
