@@ -916,6 +916,7 @@ también se incluirá como parte de la respuesta.</p>
             &lt;descripcion&gt;Aceite Protector Madera&lt;/descripcion&gt;
             &lt;cantidad&gt;1.000000&lt;/cantidad&gt;
             &lt;precioUnitario&gt;12.000000&lt;/precioUnitario&gt;
+            &lt;unidadMedida&gt;Litro&lt;/unidadMedida&gt;
             &lt;descuento&gt;0.00&lt;/descuento&gt;
             &lt;precioTotalSinImpuesto&gt;12.00&lt;/precioTotalSinImpuesto&gt;
             &lt;impuestos&gt;
