@@ -649,7 +649,7 @@ periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/20
 Obtiene la información del vendedor de la retención ats
 
 ```sql
-invoice_seller = SELECT
+issuer = SELECT
   ruc,
   obligado_contabilidad,
   contribuyente_especial,
@@ -783,7 +783,7 @@ codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-i
 Obtiene la información de los impuestos retenidos de un documento de soporte.
 
 ```sql
-taxes_withheld = SELECT
+taxes_support_documents = SELECT
   codigo,
   codigo_porcentaje,
   base_imponible,
@@ -829,7 +829,7 @@ annio_fiscal | integer | Año en que se generaron las utilidades atribuibles al 
 Información del reembolso de un documento de soporte
 
 ```sql
-refund = SELECT
+reimbursement = SELECT
   codigo,
   subtotal,
   total,
@@ -853,7 +853,7 @@ total | float | Subtotal más total de impuestos. __Requerido__
 Información de los documentos de reembolso
 
 ```sql
-refund_documents = SELECT
+reimbursement_documents = SELECT
   codigo_establecimiento,
   codigo_punto_emision,
   secuencia,
@@ -889,7 +889,7 @@ tipo_proveedor  | string | Código de [tipo de proveedor](#tipo-de-proveedor) de
 Información de los impuestos de los reembolsos de un documento de soporte.
 
 ```sql
-refund_taxes = SELECT
+reimbursement_taxes = SELECT
   codigo,
   codigo_porcentaje,
   base_imponible,
@@ -914,7 +914,7 @@ codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-i
 Información de los pagos asociados a un documento de soporte.
 
 ```sql
-payments = SELECT
+support_documents_payments = SELECT
   tipo_pago,
   total
   FROM

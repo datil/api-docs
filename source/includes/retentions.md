@@ -45,11 +45,11 @@ curl -v https://link.datil.co/ats-retentions/issue \
     ],
     "documentos_soporte": [
         {
-            "codigo_sustento": "01",
-            "tipo_documento": "06",
+            "codigo_sustento": "10",
+            "tipo_documento": "41",
             "numero": "002-004-000248967",
-            "fecha_emision": "2022-01-20",
-            "fecha_registro_contable": "2022-01-20",
+            "fecha_emision": "2022-09-25",
+            "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
             "total_sin_impuestos": "84.04",
@@ -57,26 +57,39 @@ curl -v https://link.datil.co/ats-retentions/issue \
             "impuestos": [
                 {
                     "codigo": "2",
-                    "codigo_porcentaje": "6",
-                    "base_imponible": "546.74",
-                    "tarifa": "0.00",
-                    "valor": "0.00"
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "18.09",
+                    "tarifa": "12.00",
+                    "valor": "2.17"
                 }
             ],
             "retenciones": [
                 {
+                    "codigo": "2",
+                    "codigo_porcentaje": "10",
+                    "base_imponible": "2.17",
+                    "tarifa": "20",
+                    "valor_retenido": "0.43"
+                },
+                {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "546.74",
-                    "tarifa": "1",
-                    "valor_retenido": "5.46",
+                    "base_imponible": "18.09",
+                    "tarifa": "0",
+                    "valor_retenido": "0.00",
                     "dividendos": [
                         {
-                            "fecha_pago": "2022-01-31",
-                            "impuesto_renta": "12.21",
+                            "fecha_pago": "2022-01-25",
+                            "impuesto_renta": "0.21",
                             "annio_fiscal": 2022
                         }
                     ]
+                }
+            ],
+            "pagos": [
+                {
+                    "tipo_pago": "20",
+                    "total": "88.34"
                 }
             ],
             "reembolso": {
@@ -85,8 +98,14 @@ curl -v https://link.datil.co/ats-retentions/issue \
                     {
                         "codigo_establecimiento": "002",
                         "codigo_punto_emision": "003",
-                        "fecha_emision": "2022-01-31",
+                        "fecha_emision": "2022-09-20",
+                        "pais_origen_proveedor": "EC",
                         "identificacion_proveedor": "1790017478001",
+                        "tipo_identificacion_proveedor": "04",
+                        "numero_autorizacion": "1234567890",
+                        "secuencia": 2132,
+                        "tipo": "01",
+                        "tipo_proveedor": "02",
                         "impuestos": [
                             {
                                 "base_imponible": 300.00,
@@ -95,25 +114,13 @@ curl -v https://link.datil.co/ats-retentions/issue \
                                 "tarifa": 0.00,
                                 "valor": 0.00
                             }
-                        ],
-                        "numero_autorizacion": "1234567890",
-                        "pais_origen_proveedor": "EC",
-                        "secuencia": 2132,
-                        "tipo": "01",
-                        "tipo_identificacion_proveedor": "04",
-                        "tipo_proveedor": "02"
+                        ]
                     }
                 ],
                 "subtotal": 300.00,
                 "total": 300.00,
                 "total_impuestos": 0.00
-            },
-            "pagos": [
-                {
-                    "tipo_pago": "20",
-                    "total": "541.27"
-                }
-            ]
+            }
         }
     ],
     "sujeto": {
@@ -159,11 +166,11 @@ retencion = {
     ],
     "documentos_soporte": [
         {
-            "codigo_sustento": "01",
-            "tipo_documento": "06",
+            "codigo_sustento": "10",
+            "tipo_documento": "41",
             "numero": "002-004-000248967",
-            "fecha_emision": "2022-01-20",
-            "fecha_registro_contable": "2022-01-20",
+            "fecha_emision": "2022-09-25",
+            "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
             "total_sin_impuestos": "84.04",
@@ -171,26 +178,39 @@ retencion = {
             "impuestos": [
                 {
                     "codigo": "2",
-                    "codigo_porcentaje": "6",
-                    "base_imponible": "546.74",
-                    "tarifa": "0.00",
-                    "valor": "0.00"
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "18.09",
+                    "tarifa": "12.00",
+                    "valor": "2.17"
                 }
             ],
             "retenciones": [
                 {
+                    "codigo": "2",
+                    "codigo_porcentaje": "10",
+                    "base_imponible": "2.17",
+                    "tarifa": "20",
+                    "valor_retenido": "0.43"
+                },
+                {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "546.74",
-                    "tarifa": "1",
-                    "valor_retenido": "5.46",
+                    "base_imponible": "18.09",
+                    "tarifa": "0",
+                    "valor_retenido": "0.00",
                     "dividendos": [
                         {
-                            "fecha_pago": "2022-01-31",
-                            "impuesto_renta": "12.21",
+                            "fecha_pago": "2022-01-25",
+                            "impuesto_renta": "0.21",
                             "annio_fiscal": 2022
                         }
                     ]
+                }
+            ],
+            "pagos": [
+                {
+                    "tipo_pago": "20",
+                    "total": "88.34"
                 }
             ],
             "reembolso": {
@@ -199,8 +219,14 @@ retencion = {
                     {
                         "codigo_establecimiento": "002",
                         "codigo_punto_emision": "003",
-                        "fecha_emision": "2022-01-31",
+                        "fecha_emision": "2022-09-20",
+                        "pais_origen_proveedor": "EC",
                         "identificacion_proveedor": "1790017478001",
+                        "tipo_identificacion_proveedor": "04",
+                        "numero_autorizacion": "1234567890",
+                        "secuencia": 2132,
+                        "tipo": "01",
+                        "tipo_proveedor": "02",
                         "impuestos": [
                             {
                                 "base_imponible": 300.00,
@@ -209,25 +235,13 @@ retencion = {
                                 "tarifa": 0.00,
                                 "valor": 0.00
                             }
-                        ],
-                        "numero_autorizacion": "1234567890",
-                        "pais_origen_proveedor": "EC",
-                        "secuencia": 2132,
-                        "tipo": "01",
-                        "tipo_identificacion_proveedor": "04",
-                        "tipo_proveedor": "02"
+                        ]
                     }
                 ],
                 "subtotal": 300.00,
                 "total": 300.00,
                 "total_impuestos": 0.00
-            },
-            "pagos": [
-                {
-                    "tipo_pago": "20",
-                    "total": "541.27"
-                }
-            ]
+            }
         }
     ],
     "sujeto": {
@@ -295,13 +309,13 @@ namespace DatilClient {
             ""Envíada al correo electónico"":""contabilidad@xyz.com""
           }
         ],
-        ""documentos_soporte"":[
+        ""documentos_soporte"": [
           {
-            ""codigo_sustento"": ""01"",
-            ""tipo_documento"": ""06"",
+            ""codigo_sustento"": ""10"",
+            ""tipo_documento"": ""41"",
             ""numero"": ""002-004-000248967"",
-            ""fecha_emision"": ""2022-01-20"",
-            ""fecha_registro_contable"": ""2022-01-20"",
+            ""fecha_emision"": ""2022-09-25"",
+            ""fecha_registro_contable"": ""2022-09-20"",
             ""numero_autorizacion"": ""2005201901"",
             ""tipo_pago"": ""01"",
             ""total_sin_impuestos"": ""84.04"",
@@ -309,26 +323,39 @@ namespace DatilClient {
             ""impuestos"": [
                 {
                     ""codigo"": ""2"",
-                    ""codigo_porcentaje"": ""6"",
-                    ""base_imponible"": ""546.74"",
-                    ""tarifa"": ""0.00"",
-                    ""valor"": ""0.00""
+                    ""codigo_porcentaje"": ""2"",
+                    ""base_imponible"": ""18.09"",
+                    ""tarifa"": ""12.00"",
+                    ""valor"": ""2.17""
                 }
             ],
             ""retenciones"": [
                 {
+                    ""codigo"": ""2"",
+                    ""codigo_porcentaje"": ""10"",
+                    ""base_imponible"": ""2.17"",
+                    ""tarifa"": ""20"",
+                    ""valor_retenido"": ""0.43""
+                },
+                {
                     ""codigo"": ""1"",
                     ""codigo_porcentaje"": ""327"",
-                    ""base_imponible"": ""546.74"",
-                    ""tarifa"": ""1"",
-                    ""valor_retenido"": ""5.46"",
+                    ""base_imponible"": ""18.09"",
+                    ""tarifa"": ""0"",
+                    ""valor_retenido"": ""0.00"",
                     ""dividendos"": [
                         {
-                            ""fecha_pago"": ""2022-01-31"",
-                            ""impuesto_renta"": ""12.21"",
+                            ""fecha_pago"": ""2022-01-25"",
+                            ""impuesto_renta"": ""0.21"",
                             ""annio_fiscal"": 2022
                         }
                     ]
+                }
+            ],
+            ""pagos"": [
+                {
+                    ""tipo_pago"": ""20"",
+                    ""total"": ""88.34""
                 }
             ],
             ""reembolso"": {
@@ -337,8 +364,14 @@ namespace DatilClient {
                     {
                         ""codigo_establecimiento"": ""002"",
                         ""codigo_punto_emision"": ""003"",
-                        ""fecha_emision"": ""2022-01-31"",
+                        ""fecha_emision"": ""2022-09-20"",
+                        ""pais_origen_proveedor"": ""EC"",
                         ""identificacion_proveedor"": ""1790017478001"",
+                        ""tipo_identificacion_proveedor"": ""04"",
+                        ""numero_autorizacion"": ""1234567890"",
+                        ""secuencia"": 2132,
+                        ""tipo"": ""01"",
+                        ""tipo_proveedor"": ""02"",
                         ""impuestos"": [
                             {
                                 ""base_imponible"": 300.00,
@@ -347,27 +380,15 @@ namespace DatilClient {
                                 ""tarifa"": 0.00,
                                 ""valor"": 0.00
                             }
-                        ],
-                        ""numero_autorizacion"": ""1234567890"",
-                        ""pais_origen_proveedor"": ""EC"",
-                        ""secuencia"": 2132,
-                        ""tipo"": ""01"",
-                        ""tipo_identificacion_proveedor"": ""04"",
-                        ""tipo_proveedor"": ""02""
+                        ]
                     }
                 ],
                 ""subtotal"": 300.00,
                 ""total"": 300.00,
                 ""total_impuestos"": 0.00
-            },
-            ""pagos"": [
-                {
-                    ""tipo_pago"": ""20"",
-                    ""total"": ""541.27""
-                }
-            ]
-          }
-        ],
+            }
+        }
+      ],
         ""sujeto"":{
           ""email"":""contabilidad@email.com"",
           ""identificacion"":""0987654321"",
@@ -439,11 +460,11 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
   ],
   "documentos_soporte": [
       {
-          "codigo_sustento": "01",
-          "tipo_documento": "06",
+          "codigo_sustento": "10",
+          "tipo_documento": "41",
           "numero": "002-004-000248967",
-          "fecha_emision": "2022-01-20",
-          "fecha_registro_contable": "2022-01-20",
+          "fecha_emision": "2022-09-25",
+          "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
           "total_sin_impuestos": "84.04",
@@ -451,26 +472,39 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           "impuestos": [
               {
                   "codigo": "2",
-                  "codigo_porcentaje": "6",
-                  "base_imponible": "546.74",
-                  "tarifa": "0.00",
-                  "valor": "0.00"
+                  "codigo_porcentaje": "2",
+                  "base_imponible": "18.09",
+                  "tarifa": "12.00",
+                  "valor": "2.17"
               }
           ],
           "retenciones": [
               {
+                  "codigo": "2",
+                  "codigo_porcentaje": "10",
+                  "base_imponible": "2.17",
+                  "tarifa": "20",
+                  "valor_retenido": "0.43"
+              },
+              {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "546.74",
-                  "tarifa": "1",
-                  "valor_retenido": "5.46",
+                  "base_imponible": "18.09",
+                  "tarifa": "0",
+                  "valor_retenido": "0.00",
                   "dividendos": [
                       {
-                          "fecha_pago": "2022-01-31",
-                          "impuesto_renta": "12.21",
+                          "fecha_pago": "2022-01-25",
+                          "impuesto_renta": "0.21",
                           "annio_fiscal": 2022
                       }
                   ]
+              }
+          ],
+          "pagos": [
+              {
+                  "tipo_pago": "20",
+                  "total": "88.34"
               }
           ],
           "reembolso": {
@@ -479,8 +513,14 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
                   {
                       "codigo_establecimiento": "002",
                       "codigo_punto_emision": "003",
-                      "fecha_emision": "2022-01-31",
+                      "fecha_emision": "2022-09-20",
+                      "pais_origen_proveedor": "EC",
                       "identificacion_proveedor": "1790017478001",
+                      "tipo_identificacion_proveedor": "04",
+                      "numero_autorizacion": "1234567890",
+                      "secuencia": 2132,
+                      "tipo": "01",
+                      "tipo_proveedor": "02",
                       "impuestos": [
                           {
                               "base_imponible": 300.00,
@@ -489,27 +529,15 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
                               "tarifa": 0.00,
                               "valor": 0.00
                           }
-                      ],
-                      "numero_autorizacion": "1234567890",
-                      "pais_origen_proveedor": "EC",
-                      "secuencia": 2132,
-                      "tipo": "01",
-                      "tipo_identificacion_proveedor": "04",
-                      "tipo_proveedor": "02"
+                      ]
                   }
               ],
               "subtotal": 300.00,
               "total": 300.00,
               "total_impuestos": 0.00
-          },
-          "pagos": [
-              {
-                  "tipo_pago": "20",
-                  "total": "541.27"
-              }
-          ]
+          }
       }
-  ],
+    ],
   "sujeto": {
       "email": "contabilidad@email.com",
       "identificacion": "0987654321",
@@ -844,6 +872,7 @@ curl -v https://link.datil.co/retentions/issue/xml \
     <contribuyenteEspecial>12345</contribuyenteEspecial>
     <obligadoContabilidad>SI</obligadoContabilidad>
     <tipoIdentificacionSujetoRetenido>05</tipoIdentificacionSujetoRetenido>
+    <parteRel>SI</parteRel>
     <razonSocialSujetoRetenido>Juan Pérez</razonSocialSujetoRetenido>
     <identificacionSujetoRetenido>0987654321</identificacionSujetoRetenido>
     <periodoFiscal>01/2022</periodoFiscal>
@@ -953,14 +982,15 @@ retencion = {
       <contribuyenteEspecial>12345</contribuyenteEspecial>
       <obligadoContabilidad>SI</obligadoContabilidad>
       <tipoIdentificacionSujetoRetenido>05</tipoIdentificacionSujetoRetenido>
+      <parteRel>NO</parteRel>
       <razonSocialSujetoRetenido>Juan Pérez</razonSocialSujetoRetenido>
       <identificacionSujetoRetenido>0987654321</identificacionSujetoRetenido>
       <periodoFiscal>01/2022</periodoFiscal>
     </infoCompRetencion>
     <docsSustento>
       <docSustento>
-        <codSustento>{{ doc.tipo.codigo }}</codSustento>
-        <codDocSustento>{{ doc.codigo.codigo }}</codDocSustento>
+        <codSustento>10</codSustento>
+        <codDocSustento>41</codDocSustento>
         <numDocSustento>002-004-000248967</numDocSustento>
         <fechaEmisionDocSustento>2022-01-20</fechaEmisionDocSustento>
         <fechaRegistroContable>2022-01-20</fechaRegistroContable>
@@ -987,10 +1017,10 @@ retencion = {
         </impuestosDocSustento>
         <retenciones>
           <retencion>
-            <codigo>{{ ret.tipo.codigo }}</codigo>
-            <codigoRetencion>{{ ret.codigo }}</codigoRetencion>
+            <codigo>2</codigo>
+            <codigoRetencion>10</codigoRetencion>
             <baseImponible>546.74</baseImponible>
-            <porcentajeRetener>{{ ret.porcentaje_retencion }}</porcentajeRetener>
+            <porcentajeRetener>20</porcentajeRetener>
             <valorRetenido>5.46</valorRetenido>
             <dividendos>
               <fechaPagoDiv>2022-01-31</fechaPagoDiv>
@@ -1081,11 +1111,11 @@ respuesta = requests.post(
   ],
   "documentos_soporte": [
       {
-          "codigo_sustento": "01",
-          "tipo_documento": "06",
+          "codigo_sustento": "10",
+          "tipo_documento": "41",
           "numero": "002-004-000248967",
-          "fecha_emision": "2022-01-20",
-          "fecha_registro_contable": "2022-01-20",
+          "fecha_emision": "2022-09-25",
+          "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
           "total_sin_impuestos": "84.04",
@@ -1093,26 +1123,39 @@ respuesta = requests.post(
           "impuestos": [
               {
                   "codigo": "2",
-                  "codigo_porcentaje": "6",
-                  "base_imponible": "546.74",
-                  "tarifa": "0.00",
-                  "valor": "0.00"
+                  "codigo_porcentaje": "2",
+                  "base_imponible": "18.09",
+                  "tarifa": "12.00",
+                  "valor": "2.17"
               }
           ],
           "retenciones": [
               {
+                  "codigo": "2",
+                  "codigo_porcentaje": "10",
+                  "base_imponible": "2.17",
+                  "tarifa": "20",
+                  "valor_retenido": "0.43"
+              },
+              {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "546.74",
-                  "tarifa": "1",
-                  "valor_retenido": "5.46",
+                  "base_imponible": "18.09",
+                  "tarifa": "0",
+                  "valor_retenido": "0.00",
                   "dividendos": [
                       {
-                          "fecha_pago": "2022-01-31",
-                          "impuesto_renta": "12.21",
+                          "fecha_pago": "2022-01-25",
+                          "impuesto_renta": "0.21",
                           "annio_fiscal": 2022
                       }
                   ]
+              }
+          ],
+          "pagos": [
+              {
+                  "tipo_pago": "20",
+                  "total": "88.34"
               }
           ],
           "reembolso": {
@@ -1121,8 +1164,14 @@ respuesta = requests.post(
                   {
                       "codigo_establecimiento": "002",
                       "codigo_punto_emision": "003",
-                      "fecha_emision": "2022-01-31",
+                      "fecha_emision": "2022-09-20",
+                      "pais_origen_proveedor": "EC",
                       "identificacion_proveedor": "1790017478001",
+                      "tipo_identificacion_proveedor": "04",
+                      "numero_autorizacion": "1234567890",
+                      "secuencia": 2132,
+                      "tipo": "01",
+                      "tipo_proveedor": "02",
                       "impuestos": [
                           {
                               "base_imponible": 300.00,
@@ -1131,25 +1180,13 @@ respuesta = requests.post(
                               "tarifa": 0.00,
                               "valor": 0.00
                           }
-                      ],
-                      "numero_autorizacion": "1234567890",
-                      "pais_origen_proveedor": "EC",
-                      "secuencia": 2132,
-                      "tipo": "01",
-                      "tipo_identificacion_proveedor": "04",
-                      "tipo_proveedor": "02"
+                      ]
                   }
               ],
               "subtotal": 300.00,
               "total": 300.00,
               "total_impuestos": 0.00
-          },
-          "pagos": [
-              {
-                  "tipo_pago": "20",
-                  "total": "541.27"
-              }
-          ]
+          }
       }
   ],
   "sujeto": {
@@ -1434,77 +1471,84 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
     "fecha": ""
   },
   "documentos_soporte": [
-    {
-      "codigo_sustento": "01",
-      "tipo_documento": "06",
-      "numero": "002-004-000248967",
-      "fecha_emision": "2022-01-20",
-      "fecha_registro_contable": "2022-01-20",
-      "numero_autorizacion": "2005201901",
-      "tipo_pago": "01",
-      "total_sin_impuestos": "84.04",
-      "total": "88.34",
-      "impuestos": [
-        {
-          "codigo": "2",
-          "codigo_porcentaje": "6",
-          "base_imponible": "546.74",
-          "tarifa": "0.00",
-          "valor": "0.00"
-        }
-      ],
-      "retenciones": [
-        {
-          "codigo": "1",
-          "codigo_porcentaje": "327",
-          "base_imponible": "546.74",
-          "tarifa": "1",
-          "valor_retenido": "5.46",
-          "dividendos": [
-            {
-              "fecha_pago": "2022-01-31",
-              "impuesto_renta": "12.21",
-              "annio_fiscal": 2022
-            }
-          ]
-        }
-      ],
-      "reembolso": {
-        "codigo": "41",
-        "documentos": [
-          {
-            "codigo_establecimiento": "002",
-            "codigo_punto_emision": "003",
-            "fecha_emision": "2022-01-31",
-            "identificacion_proveedor": "1790017478001",
-            "impuestos": [
+      {
+          "codigo_sustento": "10",
+          "tipo_documento": "41",
+          "numero": "002-004-000248967",
+          "fecha_emision": "2022-09-25",
+          "fecha_registro_contable": "2022-09-20",
+          "numero_autorizacion": "2005201901",
+          "tipo_pago": "01",
+          "total_sin_impuestos": "84.04",
+          "total": "88.34",
+          "impuestos": [
               {
-                "base_imponible": 300.00,
-                "codigo": "2",
-                "codigo_porcentaje": "0",
-                "tarifa": 0.00,
-                "valor": 0.00
+                  "codigo": "2",
+                  "codigo_porcentaje": "2",
+                  "base_imponible": "18.09",
+                  "tarifa": "12.00",
+                  "valor": "2.17"
               }
-            ],
-            "numero_autorizacion": "1234567890",
-            "pais_origen_proveedor": "EC",
-            "secuencia": 2132,
-            "tipo": "01",
-            "tipo_identificacion_proveedor": "04",
-            "tipo_proveedor": "02"
+          ],
+          "retenciones": [
+              {
+                  "codigo": "2",
+                  "codigo_porcentaje": "10",
+                  "base_imponible": "2.17",
+                  "tarifa": "20",
+                  "valor_retenido": "0.43"
+              },
+              {
+                  "codigo": "1",
+                  "codigo_porcentaje": "327",
+                  "base_imponible": "18.09",
+                  "tarifa": "0",
+                  "valor_retenido": "0.00",
+                  "dividendos": [
+                      {
+                          "fecha_pago": "2022-01-25",
+                          "impuesto_renta": "0.21",
+                          "annio_fiscal": 2022
+                      }
+                  ]
+              }
+          ],
+          "pagos": [
+              {
+                  "tipo_pago": "20",
+                  "total": "88.34"
+              }
+          ],
+          "reembolso": {
+              "codigo": "41",
+              "documentos": [
+                  {
+                      "codigo_establecimiento": "002",
+                      "codigo_punto_emision": "003",
+                      "fecha_emision": "2022-09-20",
+                      "pais_origen_proveedor": "EC",
+                      "identificacion_proveedor": "1790017478001",
+                      "tipo_identificacion_proveedor": "04",
+                      "numero_autorizacion": "1234567890",
+                      "secuencia": 2132,
+                      "tipo": "01",
+                      "tipo_proveedor": "02",
+                      "impuestos": [
+                          {
+                              "base_imponible": 300.00,
+                              "codigo": "2",
+                              "codigo_porcentaje": "0",
+                              "tarifa": 0.00,
+                              "valor": 0.00
+                          }
+                      ]
+                  }
+              ],
+              "subtotal": 300.00,
+              "total": 300.00,
+              "total_impuestos": 0.00
           }
-        ],
-        "subtotal": 300.00,
-        "total": 300.00,
-        "total_impuestos": 0.00
-      },
-      "pagos": [
-        {
-          "tipo_pago": "20",
-          "total": "541.27"
-        }
-      ]
-    }
+      }
   ],
   "sujeto": {
     "email": "contabilidad@email.com",
@@ -1590,11 +1634,11 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
     ],
     "documentos_soporte": [
         {
-            "codigo_sustento": "01",
-            "tipo_documento": "06",
+            "codigo_sustento": "10",
+            "tipo_documento": "41",
             "numero": "002-004-000248967",
-            "fecha_emision": "2022-01-20",
-            "fecha_registro_contable": "2022-01-20",
+            "fecha_emision": "2022-09-25",
+            "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
             "total_sin_impuestos": "84.04",
@@ -1602,26 +1646,39 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
             "impuestos": [
                 {
                     "codigo": "2",
-                    "codigo_porcentaje": "6",
-                    "base_imponible": "546.74",
-                    "tarifa": "0.00",
-                    "valor": "0.00"
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "18.09",
+                    "tarifa": "12.00",
+                    "valor": "2.17"
                 }
             ],
             "retenciones": [
                 {
+                    "codigo": "2",
+                    "codigo_porcentaje": "10",
+                    "base_imponible": "2.17",
+                    "tarifa": "20",
+                    "valor_retenido": "0.43"
+                },
+                {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "546.74",
-                    "tarifa": "1",
-                    "valor_retenido": "5.46",
+                    "base_imponible": "18.09",
+                    "tarifa": "0",
+                    "valor_retenido": "0.00",
                     "dividendos": [
                         {
-                            "fecha_pago": "2022-01-31",
-                            "impuesto_renta": "12.21",
+                            "fecha_pago": "2022-01-25",
+                            "impuesto_renta": "0.21",
                             "annio_fiscal": 2022
                         }
                     ]
+                }
+            ],
+            "pagos": [
+                {
+                    "tipo_pago": "20",
+                    "total": "88.34"
                 }
             ],
             "reembolso": {
@@ -1630,8 +1687,14 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
                     {
                         "codigo_establecimiento": "002",
                         "codigo_punto_emision": "003",
-                        "fecha_emision": "2022-01-31",
+                        "fecha_emision": "2022-09-20",
+                        "pais_origen_proveedor": "EC",
                         "identificacion_proveedor": "1790017478001",
+                        "tipo_identificacion_proveedor": "04",
+                        "numero_autorizacion": "1234567890",
+                        "secuencia": 2132,
+                        "tipo": "01",
+                        "tipo_proveedor": "02",
                         "impuestos": [
                             {
                                 "base_imponible": 300.00,
@@ -1640,25 +1703,13 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
                                 "tarifa": 0.00,
                                 "valor": 0.00
                             }
-                        ],
-                        "numero_autorizacion": "1234567890",
-                        "pais_origen_proveedor": "EC",
-                        "secuencia": 2132,
-                        "tipo": "01",
-                        "tipo_identificacion_proveedor": "04",
-                        "tipo_proveedor": "02"
+                        ]
                     }
                 ],
                 "subtotal": 300.00,
                 "total": 300.00,
                 "total_impuestos": 0.00
-            },
-            "pagos": [
-                {
-                    "tipo_pago": "20",
-                    "total": "541.27"
-                }
-            ]
+            }
         }
     ],
     "sujeto": {
@@ -1704,11 +1755,11 @@ retencion = {
     ],
     "documentos_soporte": [
         {
-            "codigo_sustento": "01",
-            "tipo_documento": "06",
+            "codigo_sustento": "10",
+            "tipo_documento": "41",
             "numero": "002-004-000248967",
-            "fecha_emision": "2022-01-20",
-            "fecha_registro_contable": "2022-01-20",
+            "fecha_emision": "2022-09-25",
+            "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
             "total_sin_impuestos": "84.04",
@@ -1716,26 +1767,39 @@ retencion = {
             "impuestos": [
                 {
                     "codigo": "2",
-                    "codigo_porcentaje": "6",
-                    "base_imponible": "546.74",
-                    "tarifa": "0.00",
-                    "valor": "0.00"
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "18.09",
+                    "tarifa": "12.00",
+                    "valor": "2.17"
                 }
             ],
             "retenciones": [
                 {
+                    "codigo": "2",
+                    "codigo_porcentaje": "10",
+                    "base_imponible": "2.17",
+                    "tarifa": "20",
+                    "valor_retenido": "0.43"
+                },
+                {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "546.74",
-                    "tarifa": "1",
-                    "valor_retenido": "5.46",
+                    "base_imponible": "18.09",
+                    "tarifa": "0",
+                    "valor_retenido": "0.00",
                     "dividendos": [
                         {
-                            "fecha_pago": "2022-01-31",
-                            "impuesto_renta": "12.21",
+                            "fecha_pago": "2022-01-25",
+                            "impuesto_renta": "0.21",
                             "annio_fiscal": 2022
                         }
                     ]
+                }
+            ],
+            "pagos": [
+                {
+                    "tipo_pago": "20",
+                    "total": "88.34"
                 }
             ],
             "reembolso": {
@@ -1744,8 +1808,14 @@ retencion = {
                     {
                         "codigo_establecimiento": "002",
                         "codigo_punto_emision": "003",
-                        "fecha_emision": "2022-01-31",
+                        "fecha_emision": "2022-09-20",
+                        "pais_origen_proveedor": "EC",
                         "identificacion_proveedor": "1790017478001",
+                        "tipo_identificacion_proveedor": "04",
+                        "numero_autorizacion": "1234567890",
+                        "secuencia": 2132,
+                        "tipo": "01",
+                        "tipo_proveedor": "02",
                         "impuestos": [
                             {
                                 "base_imponible": 300.00,
@@ -1754,25 +1824,13 @@ retencion = {
                                 "tarifa": 0.00,
                                 "valor": 0.00
                             }
-                        ],
-                        "numero_autorizacion": "1234567890",
-                        "pais_origen_proveedor": "EC",
-                        "secuencia": 2132,
-                        "tipo": "01",
-                        "tipo_identificacion_proveedor": "04",
-                        "tipo_proveedor": "02"
+                        ]
                     }
                 ],
                 "subtotal": 300.00,
                 "total": 300.00,
                 "total_impuestos": 0.00
-            },
-            "pagos": [
-                {
-                    "tipo_pago": "20",
-                    "total": "541.27"
-                }
-            ]
+            }
         }
     ],
     "sujeto": {
@@ -1840,87 +1898,94 @@ namespace DatilClient {
             ""Envíada al correo electónico"":""contabilidad@xyz.com""
           }
         ],
-        ""documentos_soporte"":[
+        ""documentos_soporte"": [
           {
-            ""codigo_sustento"": ""01"",
-            ""tipo_documento"": ""06"",
-            ""numero"": ""002-004-000248967"",
-            ""fecha_emision"": ""2022-01-20"",
-            ""fecha_registro_contable"": ""2022-01-20"",
-            ""numero_autorizacion"": ""2005201901"",
-            ""tipo_pago"": ""01"",
-            ""total_sin_impuestos"": ""84.04"",
-            ""total"": ""88.34"",
-            ""impuestos"": [
-                {
-                    ""codigo"": ""2"",
-                    ""codigo_porcentaje"": ""6"",
-                    ""base_imponible"": ""546.74"",
-                    ""tarifa"": ""0.00"",
-                    ""valor"": ""0.00""
-                }
-            ],
-            ""retenciones"": [
-                {
-                    ""codigo"": ""1"",
-                    ""codigo_porcentaje"": ""327"",
-                    ""base_imponible"": ""546.74"",
-                    ""tarifa"": ""1"",
-                    ""valor_retenido"": ""5.46"",
-                    ""dividendos"": [
-                        {
-                            ""fecha_pago"": ""2022-01-31"",
-                            ""impuesto_renta"": ""12.21"",
-                            ""annio_fiscal"": 2022
-                        }
-                    ]
-                }
-            ],
-            ""reembolso"": {
-                ""codigo"": ""41"",
-                ""documentos"": [
-                    {
-                        ""codigo_establecimiento"": ""002"",
-                        ""codigo_punto_emision"": ""003"",
-                        ""fecha_emision"": ""2022-01-31"",
-                        ""identificacion_proveedor"": ""1790017478001"",
-                        ""impuestos"": [
-                            {
-                                ""base_imponible"": 300.00,
-                                ""codigo"": ""2"",
-                                ""codigo_porcentaje"": ""0"",
-                                ""tarifa"": 0.00,
-                                ""valor"": 0.00
-                            }
-                        ],
-                        ""numero_autorizacion"": ""1234567890"",
-                        ""pais_origen_proveedor"": ""EC"",
-                        ""secuencia"": 2132,
-                        ""tipo"": ""01"",
-                        ""tipo_identificacion_proveedor"": ""04"",
-                        ""tipo_proveedor"": ""02""
-                    }
-                ],
-                ""subtotal"": 300.00,
-                ""total"": 300.00,
-                ""total_impuestos"": 0.00
-            },
-            ""pagos"": [
-                {
-                    ""tipo_pago"": ""20"",
-                    ""total"": ""541.27""
-                }
-            ]
+              ""codigo_sustento"": ""10"",
+              ""tipo_documento"": ""41"",
+              ""numero"": ""002-004-000248967"",
+              ""fecha_emision"": ""2022-09-25"",
+              ""fecha_registro_contable"": ""2022-09-20"",
+              ""numero_autorizacion"": ""2005201901"",
+              ""tipo_pago"": ""01"",
+              ""total_sin_impuestos"": ""84.04"",
+              ""total"": ""88.34"",
+              ""impuestos"": [
+                  {
+                      ""codigo"": ""2"",
+                      ""codigo_porcentaje"": ""2"",
+                      ""base_imponible"": ""18.09"",
+                      ""tarifa"": ""12.00"",
+                      ""valor"": ""2.17""
+                  }
+              ],
+              ""retenciones"": [
+                  {
+                      ""codigo"": ""2"",
+                      ""codigo_porcentaje"": ""10"",
+                      ""base_imponible"": ""2.17"",
+                      ""tarifa"": ""20"",
+                      ""valor_retenido"": ""0.43""
+                  },
+                  {
+                      ""codigo"": ""1"",
+                      ""codigo_porcentaje"": ""327"",
+                      ""base_imponible"": ""18.09"",
+                      ""tarifa"": ""0"",
+                      ""valor_retenido"": ""0.00"",
+                      ""dividendos"": [
+                          {
+                              ""fecha_pago"": ""2022-01-25"",
+                              ""impuesto_renta"": ""0.21"",
+                              ""annio_fiscal"": 2022
+                          }
+                      ]
+                  }
+              ],
+              ""pagos"": [
+                  {
+                      ""tipo_pago"": ""20"",
+                      ""total"": ""88.34""
+                  }
+              ],
+              ""reembolso"": {
+                  ""codigo"": ""41"",
+                  ""documentos"": [
+                      {
+                          ""codigo_establecimiento"": ""002"",
+                          ""codigo_punto_emision"": ""003"",
+                          ""fecha_emision"": ""2022-09-20"",
+                          ""pais_origen_proveedor"": ""EC"",
+                          ""identificacion_proveedor"": ""1790017478001"",
+                          ""tipo_identificacion_proveedor"": ""04"",
+                          ""numero_autorizacion"": ""1234567890"",
+                          ""secuencia"": 2132,
+                          ""tipo"": ""01"",
+                          ""tipo_proveedor"": ""02"",
+                          ""impuestos"": [
+                              {
+                                  ""base_imponible"": 300.00,
+                                  ""codigo"": ""2"",
+                                  ""codigo_porcentaje"": ""0"",
+                                  ""tarifa"": 0.00,
+                                  ""valor"": 0.00
+                              }
+                          ]
+                      }
+                  ],
+                  ""subtotal"": 300.00,
+                  ""total"": 300.00,
+                  ""total_impuestos"": 0.00
+              }
           }
-        ],
-        ""sujeto"":{
-          ""email"":""contabilidad@email.com"",
-          ""identificacion"":""0987654321"",
-          ""tipo_identificacion"":""05"",
-          ""razon_social"":""Juan Pérez"",
-          ""direccion"":""Calle única Numero 987"",
-          ""telefono"":""046029400""
-        }
+      ],
+      ""sujeto"":{
+        ""email"":""contabilidad@email.com"",
+        ""identificacion"":""0987654321"",
+        ""tipo_identificacion"":""05"",
+        ""razon_social"":""Juan Pérez"",
+        ""direccion"":""Calle única Numero 987"",
+        ""telefono"":""046029400""
+      }
       }");
 
       IRestResponse response = client.Execute(request);
@@ -1974,11 +2039,11 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
   ],
   "documentos_soporte": [
       {
-          "codigo_sustento": "01",
-          "tipo_documento": "06",
+          "codigo_sustento": "10",
+          "tipo_documento": "41",
           "numero": "002-004-000248967",
-          "fecha_emision": "2022-01-20",
-          "fecha_registro_contable": "2022-01-20",
+          "fecha_emision": "2022-09-25",
+          "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
           "total_sin_impuestos": "84.04",
@@ -1986,26 +2051,39 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
           "impuestos": [
               {
                   "codigo": "2",
-                  "codigo_porcentaje": "6",
-                  "base_imponible": "546.74",
-                  "tarifa": "0.00",
-                  "valor": "0.00"
+                  "codigo_porcentaje": "2",
+                  "base_imponible": "18.09",
+                  "tarifa": "12.00",
+                  "valor": "2.17"
               }
           ],
           "retenciones": [
               {
+                  "codigo": "2",
+                  "codigo_porcentaje": "10",
+                  "base_imponible": "2.17",
+                  "tarifa": "20",
+                  "valor_retenido": "0.43"
+              },
+              {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "546.74",
-                  "tarifa": "1",
-                  "valor_retenido": "5.46",
+                  "base_imponible": "18.09",
+                  "tarifa": "0",
+                  "valor_retenido": "0.00",
                   "dividendos": [
                       {
-                          "fecha_pago": "2022-01-31",
-                          "impuesto_renta": "12.21",
+                          "fecha_pago": "2022-01-25",
+                          "impuesto_renta": "0.21",
                           "annio_fiscal": 2022
                       }
                   ]
+              }
+          ],
+          "pagos": [
+              {
+                  "tipo_pago": "20",
+                  "total": "88.34"
               }
           ],
           "reembolso": {
@@ -2014,8 +2092,14 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
                   {
                       "codigo_establecimiento": "002",
                       "codigo_punto_emision": "003",
-                      "fecha_emision": "2022-01-31",
+                      "fecha_emision": "2022-09-20",
+                      "pais_origen_proveedor": "EC",
                       "identificacion_proveedor": "1790017478001",
+                      "tipo_identificacion_proveedor": "04",
+                      "numero_autorizacion": "1234567890",
+                      "secuencia": 2132,
+                      "tipo": "01",
+                      "tipo_proveedor": "02",
                       "impuestos": [
                           {
                               "base_imponible": 300.00,
@@ -2024,25 +2108,13 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
                               "tarifa": 0.00,
                               "valor": 0.00
                           }
-                      ],
-                      "numero_autorizacion": "1234567890",
-                      "pais_origen_proveedor": "EC",
-                      "secuencia": 2132,
-                      "tipo": "01",
-                      "tipo_identificacion_proveedor": "04",
-                      "tipo_proveedor": "02"
+                      ]
                   }
               ],
               "subtotal": 300.00,
               "total": 300.00,
               "total_impuestos": 0.00
-          },
-          "pagos": [
-              {
-                  "tipo_pago": "20",
-                  "total": "541.27"
-              }
-          ]
+          }
       }
   ],
   "sujeto": {
