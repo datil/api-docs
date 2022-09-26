@@ -67,7 +67,7 @@ serie | string | Máximo 300 caracteres. __Requerido__
 
 ## Reembolso
 
-Datos de una factura o liquidación de compras de reembolso.
+Datos de una factura, liquidación de compras o retención ats de reembolso.
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
@@ -118,6 +118,23 @@ email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono.
 direccion | string | Dirección
 
+## Documentos Soporte
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo_sustento | string | Ver [tabla](#tipos-de-sustento-de-comprobantes) de tipos de sustento de los comprobantes. __Requerido__
+tipo_documento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+numero | string | Número completo del documento asociado a la retención ATS. __Requerido__
+fecha_emision | string |  Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+fecha_registro_contable | string | Fecha de registro contable del comprobante de venta en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+numero_autorización | string | Número de autorización del comprobante de venta. __Requerido__
+tipo_pago | string | Ver códigos de [tipos de pagos](#tipos-de-pago). __Requerido__
+total_sin_impuestos | string | Total antes de los impuestos. __Requerido__
+total | string | Total incluyendo impuestos. __Requerido__
+impuestos | listado de objetos [impuesto](#impuesto-item) | Impuestos totales del documento. __Requerido__
+retenciones | listado de objetos [retenciones ats](#impuestos-retenidos-en-retencion-ats) | Listado de impuestos retenidos __Requerido__
+reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso.
+pagos | listado de objetos tipo [pagos](#pagos-de-documentos-de-soporte) | Información de los pagos __Requerido__
 
 ## Receptor
 
@@ -242,6 +259,56 @@ Impuesto | Código
 IVA      | 2
 ICE      | 3
 IRBPNR   | 5
+
+## Tipos de Sustento de Comprobantes
+
+Código | Tipo de Sustento
+-------- | ----------
+01 | Crédito Tributario para declaración de IVA (servicios y bienes distintos de inventarios y activos fijos)
+02 | Costo o Gasto para declaración de IR (servicios y bienes distintos de inventarios y activos fijos)
+03 | Activo Fijo - Crédito Tributario para declaración de IVA
+04 | Activo Fijo - Costo o Gasto para declaración de IR
+05 | Liquidación Gastos de Viaje, hospedaje y alimentación Gastos IR (a nombre de empleados y no de la empresa)
+06 | Inventario - Crédito Tributario para declaración de IVA
+07 | Inventario - Costo o Gasto para declaración de IR
+08 | Valor pagado para solicitar Reembolso de Gasto (intermediario)
+09 | Reembolso por Siniestros
+10 | Distribución de Dividendos, Beneficios o Utilidades
+11 | Convenios de débito o recaudación para IFI ́s
+12 | Impuestos y retenciones presuntivos
+13 | Valores reconocidos por entidades del sector público a favor de sujetos pasivos
+14 | Valores facturados por socios a operadoras de transporte (que no constituyen gasto de dicha operadora)
+15 | Pagos efectuados por consumos propios y de terceros de servicios digitales
+00 | Casos especiales cuyo sustento no aplica en las opciones anteriores
+
+## Tipos de Pago
+Código | Pago residente o no residente
+------- | -------------------
+01 | Pago a residente / Establecimiento permanente
+02 | Pago a no residente
+
+## Impuestos Retenidos en Retención ATS
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retencion-en-la-factura).  __Requerido__
+codigo_porcentaje | string | Código del [porcentaje del impuesto](#retencion-de-iva-presuntivo-y-renta). __Requerido__
+base_imponible | float | Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje. __Requerido__
+tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto.  __Requerido__
+valor_retenido | float (hasta 2 cifras decimales) | Valor del impuesto.  __Requerido__
+dividendos | Listado de objetos [dividendo](#dividendo) | Participaciones en utilidades, excedentes, beneficios o similares que se obtienen en razón de los derechos representativos de capital que el beneficiario mantiene, de manera directa o indirecta.
+
+## Dividendo
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+fecha_pago | string | Fecha de pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+impuesto_renta | string | Impuesto a la Renta pagado por la sociedad correspondiente al dividendo __Requerido__
+annio_fiscal | integer | Año en que se generaron las utilidades atribuibles al dividendo. __Requerido__
+
+## Pagos de Documentos de Soporte
+Parámetro | Tipo | Descripción
+---------- | ----- | --------------
+tipo_pago | string | Código de [forma de pago](#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri) del SRI equivalente en Dátil __Requerido__
+total | string | Total del pago. __Requerido__
 
 ## Código de Porcentaje de IVA
 
