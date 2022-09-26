@@ -921,6 +921,572 @@ total               | float                   | Total aplicable a la forma de pa
     <span class="p">[</span><span class="n">total_otros_gastos_transporte</span><span class="p">]</span> <span class="p">[</span><span class="n">decimal</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span>
 </code></pre>
+<h2 id="retenciones-ats-advanced">Comprobantes de Retención ATS</h2>
+
+<p>Los queries para la emisión electrónica de <strong>comprobantes de retención ats</strong> se guardan en el archivo de configuración
+<code>ats_retention.ini</code>.</p>
+
+<p><a href="/link-app#credit_note-ini">Ejemplo de archivo ats_retention.ini</a></p>
+<h3 id='retencion-ats'>Retención ATS</h3>
+<p>Obtiene información de la información principal de la retención ats.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">headers</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">id</span> <span class="n">id_local</span><span class="p">,</span>
+  <span class="n">tipo_emision</span><span class="p">,</span>
+  <span class="n">secuencial</span><span class="p">,</span>
+  <span class="n">fecha_emision</span><span class="p">,</span>
+  <span class="n">clave_acceso</span><span class="p">,</span>
+  <span class="n">periodo_fiscal</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">retencion_ats</span>
+  <span class="k">WHERE</span> <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">retencion_ats</span><span class="p">.</span><span class="n">id</span> <span class="k">in</span> <span class="p">(:</span><span class="n">sequence</span><span class="p">)</span>
+  <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">fecha_emision</span> <span class="p">:</span><span class="k">order</span>
+
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valor de ejemplo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_local</td>
+<td>integer</td>
+<td>Identifica de manera única la retención ats. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencial</td>
+<td>string</td>
+<td>Número de secuencia de la retención ats. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>datetime</td>
+<td>Fecha de emisión   <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>clave_acceso</td>
+<td>string</td>
+<td>La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo <a href="#clave-de-acceso">generar</a> la clave de acceso?</td>
+</tr>
+<tr>
+<td>tipo_emision</td>
+<td>integer</td>
+<td>Emisión normal: <code>1</code>.<br>Emisión por indisponibilidad: <code>2</code><br><strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>periodo_fiscal</td>
+<td>string</td>
+<td>Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='emisor-2'>Emisor</h3>
+<p>Obtiene la información del vendedor de la retención ats</p>
+<pre class="highlight sql tab-sql"><code><span class="n">issuer</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">ruc</span><span class="p">,</span>
+  <span class="n">obligado_contabilidad</span><span class="p">,</span>
+  <span class="n">contribuyente_especial</span><span class="p">,</span>
+  <span class="n">nombre_comercial</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_establecimiento</span><span class="p">,</span>
+  <span class="n">direccion_matriz</span><span class="p">,</span>
+  <span class="n">codigo_establecimiento</span><span class="p">,</span>
+  <span class="n">punto_emision</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">retencion_ats</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ruc</td>
+<td>string</td>
+<td>Número de RUC de 13 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>obligado_contabilidad</td>
+<td>string</td>
+<td><code>&#39;SI&#39;</code> si está obligado a llevar contabilidad. <code>&#39;NO&#39;</code> si no lo está.</td>
+</tr>
+<tr>
+<td>contribuyente_especial</td>
+<td>string</td>
+<td>Número de resolución. En blanco <code>&#39;&#39;</code> si no es contribuyente especial.</td>
+</tr>
+<tr>
+<td>nombre_comercial</td>
+<td>string</td>
+<td>Nombre comercial. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_establecimiento</td>
+<td>string</td>
+<td>Dirección registrada en el SRI. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_matriz</td>
+<td>string</td>
+<td>Dirección del punto de emisión. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_establecimiento</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: <code>001</code> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: <code>001</code>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='sujeto'>Sujeto</h3>
+<p>Obtiene información del sujeto retenido en la retención</p>
+<pre class="highlight sql tab-sql"><code><span class="n">retention_recipient</span>  <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">identificacion_sujeto</span><span class="p">,</span>
+  <span class="n">tipo_identificacion</span><span class="p">,</span>
+  <span class="n">razon_social</span><span class="p">,</span>
+  <span class="n">direccion_sujeto</span><span class="p">,</span>
+  <span class="n">email_sujeto</span><span class="p">,</span>
+  <span class="n">telefono_sujeto</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">retencion_ats</span>
+  <span class="k">WHERE</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identificacion_sujeto</td>
+<td>string</td>
+<td>De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>razon_social</td>
+<td>string</td>
+<td>Razón social. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>direccion_sujeto</td>
+<td>string</td>
+<td>Dirección</td>
+</tr>
+<tr>
+<td>email_sujeto</td>
+<td>string</td>
+<td>Correo electrónico. Máximo 300 caracteres.</td>
+</tr>
+<tr>
+<td>telefono_sujeto</td>
+<td>string</td>
+<td>Teléfono</td>
+</tr>
+</tbody></table>
+<h3 id='informacion-adicional-de-la-retencion-ats'>Información Adicional de la Retención ATS</h3>
+<p>Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
+que no pueda ser descrito con los elementos que son parte del documento.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">additional_information</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">nombre</span><span class="p">,</span>
+  <span class="n">valor</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">info_adicional</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_retencion_ats</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>nombre</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>string</td>
+<td>Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='documentos-soporte'>Documentos Soporte</h3>
+<p>Obtiene toda la información de los documentos de soporte de una retención ats</p>
+<pre class="highlight sql tab-sql"><code><span class="n">support_documents</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo_sustento</span><span class="p">,</span>
+  <span class="n">tipo_documento</span><span class="p">,</span>
+  <span class="n">numero</span><span class="p">,</span>
+  <span class="n">fecha_emision</span><span class="p">,</span>
+  <span class="n">numero_autorizacion</span><span class="p">,</span>
+  <span class="n">total_sin_impuestos</span><span class="p">,</span>
+  <span class="n">total</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_retencion_ats</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_sustento</td>
+<td>string</td>
+<td>Ver (tabla)(#tipos-de-sustento-de-comprobantes) de tipos de sustento de los comprobantes. Máximo 2 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. Máximo 2 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero</td>
+<td>string</td>
+<td>Número completo del documento asociado a la retención ATS. Máximo 17 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorización</td>
+<td>string</td>
+<td>Número de autorización del comprobante de venta. Máximo 300 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total_sin_impuestos</td>
+<td>string</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>string</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='impuestos-de-documentos-de-soporte'>Impuestos de Documentos de Soporte</h3>
+<p>Obtiene la información de los impuestos de un documento de soporte. Este query es <strong>opcional</strong></p>
+<pre class="highlight sql tab-sql"><code><span class="n">taxes</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span><span class="p">,</span>
+  <span class="n">tarifa</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">impuestos_documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_documento_soporte</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='retenciones-de-documentos-de-soporte'>Retenciones de Documentos de Soporte</h3>
+<p>Obtiene la información de los impuestos retenidos de un documento de soporte.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">taxes_support_documents</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">tarifa</span><span class="p">,</span>
+  <span class="n">valor_retenido</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">retenciones_documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_documento_soporte</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor_retenido</td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Valor del impuesto.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Porcentaje actual del impuesto.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto-para-la-retencion-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#retencion-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='dividendos-de-documentos-de-soporte'>Dividendos de Documentos de Soporte</h3>
+<p>Obtiene la información de los dividendos asociados a un documento de soporte.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">dividends</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">impuesto_renta</span><span class="p">,</span>
+  <span class="n">fecha_pago</span><span class="p">,</span>
+  <span class="n">annio_fiscal</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">dividendos_retenciones</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_documento_soporte</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fecha_pago</td>
+<td>string</td>
+<td>Fecha de pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuesto_renta</td>
+<td>string</td>
+<td>Impuesto a la Renta pagado por la sociedad correspondiente al dividendo <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>annio_fiscal</td>
+<td>integer</td>
+<td>Año en que se generaron las utilidades atribuibles al dividendo. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='reembolso-de-documentos-de-soportes'>Reembolso de Documentos de Soportes</h3>
+<p>Información del reembolso de un documento de soporte</p>
+<pre class="highlight sql tab-sql"><code><span class="n">reimbursement</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">subtotal</span><span class="p">,</span>
+  <span class="n">total</span><span class="p">,</span>
+  <span class="n">total_impuestos</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_retencion_ats</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del tipo de documento de reembolso equivalente a 41. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>float</td>
+<td>Sumatoria de los subtotales de los documentos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total_impuestos</td>
+<td>float</td>
+<td>Sumatoria de los totales de impuestos de los documentos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>Subtotal más total de impuestos. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='documentos-de-reembolso'>Documentos de Reembolso</h3>
+<p>Información de los documentos de reembolso</p>
+<pre class="highlight sql tab-sql"><code><span class="n">reimbursement_documents</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo_establecimiento</span><span class="p">,</span>
+  <span class="n">codigo_punto_emision</span><span class="p">,</span>
+  <span class="n">secuencia</span><span class="p">,</span>
+  <span class="n">fecha_emision</span><span class="p">,</span>
+  <span class="n">identificacion_proveedor</span><span class="p">,</span>
+  <span class="n">tipo_identificacion_proveedor</span><span class="p">,</span>
+  <span class="n">numero_autorizacion</span><span class="p">,</span>
+  <span class="n">pais_origen_proveedor</span><span class="p">,</span>
+  <span class="n">tipo</span><span class="p">,</span>
+  <span class="n">tipo_proveedor</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">reembolsos_documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_reembolso</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_establecimiento</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: 001. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_punto_emision</td>
+<td>string</td>
+<td>Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: 001.. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>secuencia</td>
+<td>integer (min. 1 - max. 999999999 )</td>
+<td>Número de secuencia del documento. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>identificacion_proveedor</td>
+<td>string</td>
+<td>Identificación del proveedor. De 5 a 20 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_identificacion_proveedor</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-identificacion">tabla</a> de tipos de identificación <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero_autorizacion</td>
+<td>string</td>
+<td>Número de autorización del documento. 10, 37 o 49 caracteres. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>pais_origen_proveedor</td>
+<td>string</td>
+<td>Código  de dos caracteres del país origen según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>string</td>
+<td>Código de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_proveedor</td>
+<td>string</td>
+<td>Código de <a href="#tipo-de-proveedor">tipo de proveedor</a> de reembolso. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='impuestos-de-reembolsos-de-los-documentos-de-soporte'>Impuestos de Reembolsos de los Documentos de Soporte</h3>
+<p>Información de los impuestos de los reembolsos de un documento de soporte.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">reimbursement_taxes</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">codigo</span><span class="p">,</span>
+  <span class="n">codigo_porcentaje</span><span class="p">,</span>
+  <span class="n">base_imponible</span><span class="p">,</span>
+  <span class="n">valor</span><span class="p">,</span>
+  <span class="n">tarifa</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">impuestos_reembolsos</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_reembolso_documentos</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Base imponible. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>float</td>
+<td>Valor del total. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float</td>
+<td>Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto">tipo de impuesto</a> <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#codigo-de-porcentaje-de-iva">porcentaje</a>. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h3 id='pagos-de-documentos-de-soporte'>Pagos de Documentos de Soporte</h3>
+<p>Información de los pagos asociados a un documento de soporte.</p>
+<pre class="highlight sql tab-sql"><code><span class="n">support_documents_payments</span> <span class="o">=</span> <span class="k">SELECT</span>
+  <span class="n">tipo_pago</span><span class="p">,</span>
+  <span class="n">total</span>
+  <span class="k">FROM</span>
+  <span class="n">retenciones_ats</span><span class="p">.</span><span class="n">pagos_documentos_soporte</span>
+  <span class="k">WHERE</span>
+  <span class="n">id_documento_soporte</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre>
 <h2 id="notas-credito-advanced">Notas de crédito</h2>
 
 <p>Los queries para la emisión electrónica de <strong>notas de crédito</strong> se guardan en el archivo de configuración <code>credit_note.ini</code>.</p>
@@ -1627,7 +2193,7 @@ una columna tiene los nombres y otra los valores.</p>
 <td>Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h3 id='emisor-2'>Emisor</h3>
+<h3 id='emisor-3'>Emisor</h3>
 <p>Obtiene información del vendedor en la retención</p>
 <pre class="highlight sql tab-sql"><code><span class="n">retention_seller</span>  <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">ruc</span><span class="p">,</span>
@@ -2524,7 +3090,7 @@ una columna tiene los nombres y otra los valores.</p>
 <td>Emisión normal: <code>1</code>.<br>Emisión por indisponibilidad: <code>2</code><br><strong>Requerido</strong></td>
 </tr>
 </tbody></table>
-<h3 id='emisor-3'>Emisor</h3>
+<h3 id='emisor-4'>Emisor</h3>
 <p>Obitiene información del emisor de la liquidación de compra</p>
 <pre class="highlight sql tab-sql"><code><span class="n">purchase_settlement_buyer</span>  <span class="o">=</span> <span class="k">SELECT</span>
   <span class="n">ruc</span><span class="p">,</span>

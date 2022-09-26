@@ -167,7 +167,7 @@ estar estructurada la clave de acceso.</p>
 </tr>
 </tbody></table>
 <h2 id='reembolso'>Reembolso</h2>
-<p>Datos de una factura o liquidación de compras de reembolso.</p>
+<p>Datos de una factura, liquidación de compras o retención ats de reembolso.</p>
 
 <table><thead>
 <tr>
@@ -329,6 +329,80 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>direccion</td>
 <td>string</td>
 <td>Dirección</td>
+</tr>
+</tbody></table>
+<h2 id='documentos-soporte'>Documentos Soporte</h2>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo_sustento</td>
+<td>string</td>
+<td>Ver <a href="#tipos-de-sustento-de-comprobantes">tabla</a> de tipos de sustento de los comprobantes. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_documento</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-documentos">tipos de documentos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>numero</td>
+<td>string</td>
+<td>Número completo del documento asociado a la retención ATS. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_emision</td>
+<td>string</td>
+<td>Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>fecha_registro_contable</td>
+<td>string</td>
+<td>Fecha de registro contable del comprobante de venta en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>.</td>
+</tr>
+<tr>
+<td>numero_autorización</td>
+<td>string</td>
+<td>Número de autorización del comprobante de venta. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tipo_pago</td>
+<td>string</td>
+<td>Ver códigos de <a href="#tipos-de-pago">tipos de pagos</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total_sin_impuestos</td>
+<td>string</td>
+<td>Total antes de los impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>string</td>
+<td>Total incluyendo impuestos. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuestos</td>
+<td>listado de objetos <a href="#impuesto-item">impuesto</a></td>
+<td>Impuestos totales del documento. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>retenciones</td>
+<td>listado de objetos <a href="#impuestos-retenidos-en-retencion-ats">retenciones ats</a></td>
+<td>Listado de impuestos retenidos <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>reembolso</td>
+<td>objeto tipo <a href="#reembolso">reembolso</a></td>
+<td>Información de reembolso.</td>
+</tr>
+<tr>
+<td>pagos</td>
+<td>listado de objetos tipo <a href="#pagos-de-documentos-de-soporte">pagos</a></td>
+<td>Información de los pagos <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h2 id='receptor'>Receptor</h2>
@@ -695,6 +769,176 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>IRBPNR</td>
 <td>5</td>
+</tr>
+</tbody></table>
+<h2 id='tipos-de-sustento-de-comprobantes'>Tipos de Sustento de Comprobantes</h2>
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Tipo de Sustento</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>01</td>
+<td>Crédito Tributario para declaración de IVA (servicios y bienes distintos de inventarios y activos fijos)</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Costo o Gasto para declaración de IR (servicios y bienes distintos de inventarios y activos fijos)</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Activo Fijo - Crédito Tributario para declaración de IVA</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Activo Fijo - Costo o Gasto para declaración de IR</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Liquidación Gastos de Viaje, hospedaje y alimentación Gastos IR (a nombre de empleados y no de la empresa)</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Inventario - Crédito Tributario para declaración de IVA</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Inventario - Costo o Gasto para declaración de IR</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Valor pagado para solicitar Reembolso de Gasto (intermediario)</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Reembolso por Siniestros</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Distribución de Dividendos, Beneficios o Utilidades</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Convenios de débito o recaudación para IFI ́s</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Impuestos y retenciones presuntivos</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Valores reconocidos por entidades del sector público a favor de sujetos pasivos</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Valores facturados por socios a operadoras de transporte (que no constituyen gasto de dicha operadora)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Pagos efectuados por consumos propios y de terceros de servicios digitales</td>
+</tr>
+<tr>
+<td>00</td>
+<td>Casos especiales cuyo sustento no aplica en las opciones anteriores</td>
+</tr>
+</tbody></table>
+<h2 id='tipos-de-pago'>Tipos de Pago</h2>
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Pago residente o no residente</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>01</td>
+<td>Pago a residente / Establecimiento permanente</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Pago a no residente</td>
+</tr>
+</tbody></table>
+<h2 id='impuestos-retenidos-en-retencion-ats'>Impuestos Retenidos en Retención ATS</h2>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>codigo</td>
+<td>string</td>
+<td>Código del <a href="#tipos-de-impuesto-para-la-retencion-en-la-factura">tipo de impuesto para la retención en la factura</a>.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>codigo_porcentaje</td>
+<td>string</td>
+<td>Código del <a href="#retencion-de-iva-presuntivo-y-renta">porcentaje del impuesto</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>base_imponible</td>
+<td>float</td>
+<td>Suma de las bases imponibles de cada item para el tipo de impuesto y porcentaje. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>tarifa</td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Porcentaje actual del impuesto.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>valor_retenido</td>
+<td>float (hasta 2 cifras decimales)</td>
+<td>Valor del impuesto.  <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>dividendos</td>
+<td>Listado de objetos <a href="#dividendo">dividendo</a></td>
+<td>Participaciones en utilidades, excedentes, beneficios o similares que se obtienen en razón de los derechos representativos de capital que el beneficiario mantiene, de manera directa o indirecta.</td>
+</tr>
+</tbody></table>
+<h2 id='dividendo'>Dividendo</h2>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fecha_pago</td>
+<td>string</td>
+<td>Fecha de pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar <a href="http://tools.ietf.org/html/rfc3339#section-5.6">ISO8601</a>. <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>impuesto_renta</td>
+<td>string</td>
+<td>Impuesto a la Renta pagado por la sociedad correspondiente al dividendo <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>annio_fiscal</td>
+<td>integer</td>
+<td>Año en que se generaron las utilidades atribuibles al dividendo. <strong>Requerido</strong></td>
+</tr>
+</tbody></table>
+<h2 id='pagos-de-documentos-de-soporte'>Pagos de Documentos de Soporte</h2>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tipo_pago</td>
+<td>string</td>
+<td>Código de <a href="#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri">forma de pago</a> del SRI equivalente en Dátil <strong>Requerido</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>string</td>
+<td>Total del pago. <strong>Requerido</strong></td>
 </tr>
 </tbody></table>
 <h2 id='codigo-de-porcentaje-de-iva'>Código de Porcentaje de IVA</h2>
