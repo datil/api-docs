@@ -933,7 +933,7 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>tipo_pago</td>
 <td>string</td>
-<td>Código de <a href="#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri">forma de pago</a> del SRI equivalente en Dátil <strong>Requerido</strong></td>
+<td>Código de <a href="#tipos-de-forma-de-pago-del-sri">forma de pago</a> del SRI. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>total</td>

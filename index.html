@@ -5482,7 +5482,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
 el cual identifica de manera única a la nota de crédito. El campo <code>clave_acceso</code>
 generado también se incluirá como parte de la respuesta. Sí la nota de crédito ya está autorizada se retornará un error.</p>
 <h1 id='comprobantes-de-retencion'>Comprobantes de Retención</h1><h2 id='emision-de-una-retencion-ats'>Emisión de una retención ATS</h2><h3 id='operacion'>Operación</h3>
-<p><code>POST /retentions-ats/issue</code></p>
+<p><code>POST /ats-retentions/issue</code></p>
 
 <h3 id="requerimiento-retencion-ats">Requerimiento</h3>
 
@@ -14688,7 +14688,7 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>tipo_pago</td>
 <td>string</td>
-<td>Código de <a href="#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri">forma de pago</a> del SRI equivalente en Dátil <strong>Requerido</strong></td>
+<td>Código de <a href="#tipos-de-forma-de-pago-del-sri">forma de pago</a> del SRI. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>total</td>

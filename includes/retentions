@@ -1,5 +1,5 @@
 <h1 id='comprobantes-de-retencion'>Comprobantes de Retención</h1><h2 id='emision-de-una-retencion-ats'>Emisión de una retención ATS</h2><h3 id='operacion'>Operación</h3>
-<p><code>POST /retentions-ats/issue</code></p>
+<p><code>POST /ats-retentions/issue</code></p>
 
 <h3 id="requerimiento-retencion-ats">Requerimiento</h3>
 
