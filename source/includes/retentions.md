@@ -4,7 +4,7 @@
 
 ### Operación
 
-`POST /retentions-ats/issue`
+`POST /ats-retentions/issue`
 
 <h3 id="requerimiento-retencion-ats">Requerimiento</h3>
 

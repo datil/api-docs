@@ -307,7 +307,7 @@ annio_fiscal | integer | Año en que se generaron las utilidades atribuibles al 
 ## Pagos de Documentos de Soporte
 Parámetro | Tipo | Descripción
 ---------- | ----- | --------------
-tipo_pago | string | Código de [forma de pago](#equivalencia-entre-formas-de-pago-datil-y-formas-de-pago-del-sri) del SRI equivalente en Dátil __Requerido__
+tipo_pago | string | Código de [forma de pago](#tipos-de-forma-de-pago-del-sri) del SRI. __Requerido__
 total | string | Total del pago. __Requerido__
 
 ## Código de Porcentaje de IVA
