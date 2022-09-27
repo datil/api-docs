@@ -134,7 +134,7 @@ total | string | Total incluyendo impuestos. __Requerido__
 impuestos | listado de objetos [impuesto](#impuesto-item) | Impuestos totales del documento. __Requerido__
 retenciones | listado de objetos [retenciones ats](#impuestos-retenidos-en-retencion-ats) | Listado de impuestos retenidos __Requerido__
 reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso.
-pagos | listado de objetos tipo [pagos](#pagos-de-documentos-de-soporte) | Información de los pagos __Requerido__
+pagos | listado de objetos tipo [pagos](#tipos-de-forma-de-pago-del-sri) | Información de los pagos __Requerido__
 
 ## Receptor
 
