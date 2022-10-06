@@ -19,7 +19,7 @@ curl -v https://link.datil.co/ats-retentions/issue \
 -d '{
     "ambiente": 1,
     "tipo_emision": 1,
-    "secuencial": 14,
+    "secuencia": 14,
     "fecha_emision": "2022-01-25",
     "periodo_fiscal": "01/2022",
     "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -52,14 +52,14 @@ curl -v https://link.datil.co/ats-retentions/issue \
             "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
-            "total_sin_impuestos": "84.04",
-            "total": "88.34",
+            "total_sin_impuestos": 84.04,
+            "total": 88.34,
             "impuestos": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "2",
-                    "base_imponible": "18.09",
-                    "tarifa": "12.00",
+                    "base_imponible": 18.09,
+                    "tarifa": 12.00,
                     "valor": "2.17"
                 }
             ],
@@ -67,20 +67,20 @@ curl -v https://link.datil.co/ats-retentions/issue \
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "10",
-                    "base_imponible": "2.17",
-                    "tarifa": "20",
-                    "valor_retenido": "0.43"
+                    "base_imponible": 2.17,
+                    "tarifa": 20,
+                    "valor_retenido": 0.43
                 },
                 {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "18.09",
-                    "tarifa": "0",
-                    "valor_retenido": "0.00",
+                    "base_imponible": 18.09,
+                    "tarifa": 0,
+                    "valor_retenido": 0.00,
                     "dividendos": [
                         {
                             "fecha_pago": "2022-01-25",
-                            "impuesto_renta": "0.21",
+                            "impuesto_renta": 0.21,
                             "annio_fiscal": 2022
                         }
                     ]
@@ -89,7 +89,7 @@ curl -v https://link.datil.co/ats-retentions/issue \
             "pagos": [
                 {
                     "tipo_pago": "20",
-                    "total": "88.34"
+                    "total": 88.34
                 }
             ],
             "reembolso": {
@@ -140,7 +140,7 @@ import requests, json
 retencion = {
     "ambiente": 1,
     "tipo_emision": 1,
-    "secuencial": 14,
+    "secuencia": 14,
     "fecha_emision": "2022-01-25",
     "periodo_fiscal": "01/2022",
     "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -173,35 +173,35 @@ retencion = {
             "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
-            "total_sin_impuestos": "84.04",
-            "total": "88.34",
+            "total_sin_impuestos": 84.04,
+            "total": 88.34,
             "impuestos": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "2",
-                    "base_imponible": "18.09",
-                    "tarifa": "12.00",
-                    "valor": "2.17"
+                    "base_imponible": 18.09,
+                    "tarifa": 12.00,
+                    "valor": 2.17
                 }
             ],
             "retenciones": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "10",
-                    "base_imponible": "2.17",
-                    "tarifa": "20",
-                    "valor_retenido": "0.43"
+                    "base_imponible": 2.17,
+                    "tarifa": 20,
+                    "valor_retenido": 0.43
                 },
                 {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "18.09",
-                    "tarifa": "0",
-                    "valor_retenido": "0.00",
+                    "base_imponible": 18.09,
+                    "tarifa": 0,
+                    "valor_retenido": 0.00,
                     "dividendos": [
                         {
                             "fecha_pago": "2022-01-25",
-                            "impuesto_renta": "0.21",
+                            "impuesto_renta": 0.21,
                             "annio_fiscal": 2022
                         }
                     ]
@@ -210,7 +210,7 @@ retencion = {
             "pagos": [
                 {
                     "tipo_pago": "20",
-                    "total": "88.34"
+                    "total": 88.34
                 }
             ],
             "reembolso": {
@@ -286,7 +286,7 @@ namespace DatilClient {
       request.AddBody(@"{
         ""ambiente"":1,
         ""tipo_emision"":1,
-        ""secuencial"":14,
+        ""secuencia"":14,
         ""fecha_emision"":""2022-01-25T11:28:56.782Z"",
         ""periodo_fiscal"":""12/2015"",
         ""clave_acceso"": ""2802201501091000000000120010010000100451993736618"",
@@ -318,35 +318,35 @@ namespace DatilClient {
             ""fecha_registro_contable"": ""2022-09-20"",
             ""numero_autorizacion"": ""2005201901"",
             ""tipo_pago"": ""01"",
-            ""total_sin_impuestos"": ""84.04"",
-            ""total"": ""88.34"",
+            ""total_sin_impuestos"": 84.04,
+            ""total"": 88.34,
             ""impuestos"": [
                 {
                     ""codigo"": ""2"",
                     ""codigo_porcentaje"": ""2"",
-                    ""base_imponible"": ""18.09"",
-                    ""tarifa"": ""12.00"",
-                    ""valor"": ""2.17""
+                    ""base_imponible"": 18.09,
+                    ""tarifa"": 12.00,
+                    ""valor"": 2.17
                 }
             ],
             ""retenciones"": [
                 {
                     ""codigo"": ""2"",
                     ""codigo_porcentaje"": ""10"",
-                    ""base_imponible"": ""2.17"",
-                    ""tarifa"": ""20"",
-                    ""valor_retenido"": ""0.43""
+                    ""base_imponible"": 2.17,
+                    ""tarifa"": 20,
+                    ""valor_retenido"": 0.43
                 },
                 {
                     ""codigo"": ""1"",
                     ""codigo_porcentaje"": ""327"",
-                    ""base_imponible"": ""18.09"",
-                    ""tarifa"": ""0"",
-                    ""valor_retenido"": ""0.00"",
+                    ""base_imponible"": 18.09,
+                    ""tarifa"": 0,
+                    ""valor_retenido"": 0.00,
                     ""dividendos"": [
                         {
                             ""fecha_pago"": ""2022-01-25"",
-                            ""impuesto_renta"": ""0.21"",
+                            ""impuesto_renta"": 0.21,
                             ""annio_fiscal"": 2022
                         }
                     ]
@@ -355,7 +355,7 @@ namespace DatilClient {
             ""pagos"": [
                 {
                     ""tipo_pago"": ""20"",
-                    ""total"": ""88.34""
+                    ""total"": 88.34
                 }
             ],
             ""reembolso"": {
@@ -434,7 +434,7 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
   "id": "abcdef09876123cea56784f01",
   "ambiente": 1,
   "tipo_emision": 1,
-  "secuencial": 14,
+  "secuencia": 14,
   "fecha_emision": "2022-01-25",
   "periodo_fiscal": "01/2022",
   "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -467,35 +467,35 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
-          "total_sin_impuestos": "84.04",
-          "total": "88.34",
+          "total_sin_impuestos": 84.04,
+          "total": 88.34,
           "impuestos": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "2",
-                  "base_imponible": "18.09",
-                  "tarifa": "12.00",
-                  "valor": "2.17"
+                  "base_imponible": 18.09,
+                  "tarifa": 12.00,
+                  "valor": 2.17
               }
           ],
           "retenciones": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "10",
-                  "base_imponible": "2.17",
-                  "tarifa": "20",
-                  "valor_retenido": "0.43"
+                  "base_imponible": 2.17,
+                  "tarifa": 20,
+                  "valor_retenido": 0.43
               },
               {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "18.09",
-                  "tarifa": "0",
-                  "valor_retenido": "0.00",
+                  "base_imponible": 18.09,
+                  "tarifa": 0,
+                  "valor_retenido": 0.00,
                   "dividendos": [
                       {
                           "fecha_pago": "2022-01-25",
-                          "impuesto_renta": "0.21",
+                          "impuesto_renta": 0.21,
                           "annio_fiscal": 2022
                       }
                   ]
@@ -504,7 +504,7 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           "pagos": [
               {
                   "tipo_pago": "20",
-                  "total": "88.34"
+                  "total": 88.34
               }
           ],
           "reembolso": {
@@ -1085,7 +1085,7 @@ respuesta = requests.post(
   "id": "abcdef09876123cea56784f01",
   "ambiente": 1,
   "tipo_emision": 1,
-  "secuencial": 14,
+  "secuencia": 14,
   "fecha_emision": "2022-01-25",
   "periodo_fiscal": "01/2022",
   "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -1118,35 +1118,35 @@ respuesta = requests.post(
           "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
-          "total_sin_impuestos": "84.04",
-          "total": "88.34",
+          "total_sin_impuestos": 84.04,
+          "total": 88.34,
           "impuestos": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "2",
-                  "base_imponible": "18.09",
-                  "tarifa": "12.00",
-                  "valor": "2.17"
+                  "base_imponible": 18.09,
+                  "tarifa": 12.00,
+                  "valor": 2.17
               }
           ],
           "retenciones": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "10",
-                  "base_imponible": "2.17",
-                  "tarifa": "20",
-                  "valor_retenido": "0.43"
+                  "base_imponible": 2.17,
+                  "tarifa": 20,
+                  "valor_retenido": 0.43
               },
               {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "18.09",
-                  "tarifa": "0",
-                  "valor_retenido": "0.00",
+                  "base_imponible": 18.09,
+                  "tarifa": 0,
+                  "valor_retenido": 0.00,
                   "dividendos": [
                       {
                           "fecha_pago": "2022-01-25",
-                          "impuesto_renta": "0.21",
+                          "impuesto_renta": 0.21,
                           "annio_fiscal": 2022
                       }
                   ]
@@ -1155,7 +1155,7 @@ respuesta = requests.post(
           "pagos": [
               {
                   "tipo_pago": "20",
-                  "total": "88.34"
+                  "total": 88.34
               }
           ],
           "reembolso": {
@@ -1434,7 +1434,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
   "id": "abcdef09876123cea56784f01",
   "ambiente": 1,
   "tipo_emision": 1,
-  "secuencial": 14,
+  "secuencia": 14,
   "fecha_emision": "2022-01-25",
   "periodo_fiscal": "01/2022",
   "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -1479,35 +1479,35 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
           "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
-          "total_sin_impuestos": "84.04",
-          "total": "88.34",
+          "total_sin_impuestos": 84.04,
+          "total": 88.34,
           "impuestos": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "2",
-                  "base_imponible": "18.09",
-                  "tarifa": "12.00",
-                  "valor": "2.17"
+                  "base_imponible": 18.09,
+                  "tarifa": 12.00,
+                  "valor": 2.17
               }
           ],
           "retenciones": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "10",
-                  "base_imponible": "2.17",
-                  "tarifa": "20",
-                  "valor_retenido": "0.43"
+                  "base_imponible": 2.17,
+                  "tarifa": 20,
+                  "valor_retenido": 0.43
               },
               {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "18.09",
-                  "tarifa": "0",
-                  "valor_retenido": "0.00",
+                  "base_imponible": 18.09,
+                  "tarifa": 0,
+                  "valor_retenido": 0.00,
                   "dividendos": [
                       {
                           "fecha_pago": "2022-01-25",
-                          "impuesto_renta": "0.21",
+                          "impuesto_renta": 0.21,
                           "annio_fiscal": 2022
                       }
                   ]
@@ -1516,7 +1516,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
           "pagos": [
               {
                   "tipo_pago": "20",
-                  "total": "88.34"
+                  "total": 88.34
               }
           ],
           "reembolso": {
@@ -1608,7 +1608,7 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
 -d '{
     "ambiente": 1,
     "tipo_emision": 1,
-    "secuencial": 14,
+    "secuencia": 14,
     "fecha_emision": "2022-01-25",
     "periodo_fiscal": "01/2022",
     "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -1641,35 +1641,35 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
             "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
-            "total_sin_impuestos": "84.04",
-            "total": "88.34",
+            "total_sin_impuestos": 84.04,
+            "total": 88.34,
             "impuestos": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "2",
-                    "base_imponible": "18.09",
-                    "tarifa": "12.00",
-                    "valor": "2.17"
+                    "base_imponible": 18.09,
+                    "tarifa": 12.00,
+                    "valor": 2.17
                 }
             ],
             "retenciones": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "10",
-                    "base_imponible": "2.17",
-                    "tarifa": "20",
-                    "valor_retenido": "0.43"
+                    "base_imponible": 2.17,
+                    "tarifa": 20,
+                    "valor_retenido": 0.43
                 },
                 {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "18.09",
-                    "tarifa": "0",
-                    "valor_retenido": "0.00",
+                    "base_imponible": 18.09,
+                    "tarifa": 0,
+                    "valor_retenido": 0.00,
                     "dividendos": [
                         {
                             "fecha_pago": "2022-01-25",
-                            "impuesto_renta": "0.21",
+                            "impuesto_renta": 0.21,
                             "annio_fiscal": 2022
                         }
                     ]
@@ -1678,7 +1678,7 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
             "pagos": [
                 {
                     "tipo_pago": "20",
-                    "total": "88.34"
+                    "total": 88.34
                 }
             ],
             "reembolso": {
@@ -1729,7 +1729,7 @@ import requests, json
 retencion = {
     "ambiente": 1,
     "tipo_emision": 1,
-    "secuencial": 14,
+    "secuencia": 14,
     "fecha_emision": "2022-01-25",
     "periodo_fiscal": "01/2022",
     "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -1762,35 +1762,35 @@ retencion = {
             "fecha_registro_contable": "2022-09-20",
             "numero_autorizacion": "2005201901",
             "tipo_pago": "01",
-            "total_sin_impuestos": "84.04",
-            "total": "88.34",
+            "total_sin_impuestos": 84.04,
+            "total": 88.34,
             "impuestos": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "2",
-                    "base_imponible": "18.09",
-                    "tarifa": "12.00",
-                    "valor": "2.17"
+                    "base_imponible": 18.09,
+                    "tarifa": 12.00,
+                    "valor": 2.17
                 }
             ],
             "retenciones": [
                 {
                     "codigo": "2",
                     "codigo_porcentaje": "10",
-                    "base_imponible": "2.17",
-                    "tarifa": "20",
-                    "valor_retenido": "0.43"
+                    "base_imponible": 2.17,
+                    "tarifa": 20,
+                    "valor_retenido": 0.43
                 },
                 {
                     "codigo": "1",
                     "codigo_porcentaje": "327",
-                    "base_imponible": "18.09",
-                    "tarifa": "0",
-                    "valor_retenido": "0.00",
+                    "base_imponible": 18.09,
+                    "tarifa": 0,
+                    "valor_retenido": 0.00,
                     "dividendos": [
                         {
                             "fecha_pago": "2022-01-25",
-                            "impuesto_renta": "0.21",
+                            "impuesto_renta": 0.21,
                             "annio_fiscal": 2022
                         }
                     ]
@@ -1799,7 +1799,7 @@ retencion = {
             "pagos": [
                 {
                     "tipo_pago": "20",
-                    "total": "88.34"
+                    "total": 88.34
                 }
             ],
             "reembolso": {
@@ -1875,7 +1875,7 @@ namespace DatilClient {
       request.AddBody(@"{
         ""ambiente"":1,
         ""tipo_emision"":1,
-        ""secuencial"":14,
+        ""secuencia"":14,
         ""fecha_emision"":""2022-01-25T11:28:56.782Z"",
         ""periodo_fiscal"":""12/2015"",
         ""clave_acceso"": ""2802201501091000000000120010010000100451993736618"",
@@ -1907,35 +1907,35 @@ namespace DatilClient {
               ""fecha_registro_contable"": ""2022-09-20"",
               ""numero_autorizacion"": ""2005201901"",
               ""tipo_pago"": ""01"",
-              ""total_sin_impuestos"": ""84.04"",
-              ""total"": ""88.34"",
+              ""total_sin_impuestos"": 84.04,
+              ""total"": 88.34,
               ""impuestos"": [
                   {
                       ""codigo"": ""2"",
                       ""codigo_porcentaje"": ""2"",
-                      ""base_imponible"": ""18.09"",
-                      ""tarifa"": ""12.00"",
-                      ""valor"": ""2.17""
+                      ""base_imponible"": 18.09,
+                      ""tarifa"": 12.00,
+                      ""valor"": 2.17
                   }
               ],
               ""retenciones"": [
                   {
                       ""codigo"": ""2"",
                       ""codigo_porcentaje"": ""10"",
-                      ""base_imponible"": ""2.17"",
-                      ""tarifa"": ""20"",
-                      ""valor_retenido"": ""0.43""
+                      ""base_imponible"": 2.17,
+                      ""tarifa"": 20,
+                      ""valor_retenido"": 0.43
                   },
                   {
                       ""codigo"": ""1"",
                       ""codigo_porcentaje"": ""327"",
-                      ""base_imponible"": ""18.09"",
-                      ""tarifa"": ""0"",
-                      ""valor_retenido"": ""0.00"",
+                      ""base_imponible"": 18.09,
+                      ""tarifa"": 0,
+                      ""valor_retenido"": 0.00,
                       ""dividendos"": [
                           {
                               ""fecha_pago"": ""2022-01-25"",
-                              ""impuesto_renta"": ""0.21"",
+                              ""impuesto_renta"": 0.21,
                               ""annio_fiscal"": 2022
                           }
                       ]
@@ -1944,7 +1944,7 @@ namespace DatilClient {
               ""pagos"": [
                   {
                       ""tipo_pago"": ""20"",
-                      ""total"": ""88.34""
+                      ""total"": 88.34
                   }
               ],
               ""reembolso"": {
@@ -2013,7 +2013,7 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
   "id": "abcdef09876123cea56784f01",
   "ambiente": 1,
   "tipo_emision": 1,
-  "secuencial": 14,
+  "secuencia": 14,
   "fecha_emision": "2022-01-25",
   "periodo_fiscal": "01/2022",
   "clave_acceso": "2802201501091000000000120010010000100451993736618",
@@ -2046,35 +2046,35 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
           "fecha_registro_contable": "2022-09-20",
           "numero_autorizacion": "2005201901",
           "tipo_pago": "01",
-          "total_sin_impuestos": "84.04",
-          "total": "88.34",
+          "total_sin_impuestos": 84.04,
+          "total": 88.34,
           "impuestos": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "2",
-                  "base_imponible": "18.09",
-                  "tarifa": "12.00",
-                  "valor": "2.17"
+                  "base_imponible": 18.09,
+                  "tarifa": 12.00,
+                  "valor": 2.17
               }
           ],
           "retenciones": [
               {
                   "codigo": "2",
                   "codigo_porcentaje": "10",
-                  "base_imponible": "2.17",
-                  "tarifa": "20",
-                  "valor_retenido": "0.43"
+                  "base_imponible": 2.17,
+                  "tarifa": 20,
+                  "valor_retenido": 0.43
               },
               {
                   "codigo": "1",
                   "codigo_porcentaje": "327",
-                  "base_imponible": "18.09",
-                  "tarifa": "0",
-                  "valor_retenido": "0.00",
+                  "base_imponible": 18.09,
+                  "tarifa": 0,
+                  "valor_retenido": 0.00,
                   "dividendos": [
                       {
                           "fecha_pago": "2022-01-25",
-                          "impuesto_renta": "0.21",
+                          "impuesto_renta": 0.21,
                           "annio_fiscal": 2022
                       }
                   ]
@@ -2083,7 +2083,7 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
           "pagos": [
               {
                   "tipo_pago": "20",
-                  "total": "88.34"
+                  "total": 88.34
               }
           ],
           "reembolso": {
