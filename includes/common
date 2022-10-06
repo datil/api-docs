@@ -106,7 +106,7 @@ estar estructurada la clave de acceso.</p>
 <tr>
 <td>obligado_contabilidad</td>
 <td>boolean</td>
-<td><code>true</code> si está obligado a llevar contabilidad.</td>
+<td><code>true</code> si está obligado a llevar contabilidad. <strong>Requerido</strong></td>
 </tr>
 <tr>
 <td>establecimiento</td>
