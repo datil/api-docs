@@ -42,7 +42,7 @@ razon_social | string | Razón social. Máximo 300 caracteres
 nombre_comercial | string| Nombre comercial. Máximo 300 caracteres
 direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres.
 contribuyente_especial | string | Número de resolución. En blanco si no es contribuyente especial.
-obligado_contabilidad | boolean | `true` si está obligado a llevar contabilidad.
+obligado_contabilidad | boolean | `true` si está obligado a llevar contabilidad. __Requerido__
 establecimiento | [establecimiento](#establecimiento) | Establecimiento que emite la factura.
 
 ## Establecimiento
