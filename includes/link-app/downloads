@@ -1,11 +1,18 @@
 <h1 id='descargas'>Descargas</h1>
 <p>Integra Dátil a tu sistema en minutos.</p>
-<h3 id='mas-reciente-6-2-4'>Más reciente (6.2.4)</h3>
+<h3 id='mas-reciente-6-4-0'>Más reciente (6.4.0)</h3>
+<ul>
+<li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.4.0_32bit.exe">Windows 32 bits</a></li>
+<li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.4.0_64bit.exe">Windows 64 bits</a></li>
+</ul>
+<h4 id='notas-de-la-version'>Notas de la versión</h4><h4 id='6-4-0noviembre-15-2022'><strong>6.4.0</strong><br><small><strong>Noviembre 15, 2022</strong></small></h4><h5 id='nuevo'>Nuevo</h5>
+<p>Emitir Comprobantes de Retención versión 2.0.0</p>
+<h4 id='6-2-4'>6.2.4</h4>
 <ul>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version'>Notas de la versión</h4><h4 id='6-2-4enero-31-2020'><strong>6.2.4</strong><br><small><strong>Enero 31, 2020</strong></small></h4><h5 id='nuevo'>Nuevo</h5>
+<h4 id='notas-de-la-version-2'>Notas de la versión</h4><h4 id='6-2-4enero-31-2020'><strong>6.2.4</strong><br><small><strong>Enero 31, 2020</strong></small></h4><h5 id='nuevo-2'>Nuevo</h5>
 <p>Emitir liquidaciones de compra a través de archivos XML</p>
 <h5 id='corregido'>Corregido</h5>
 <p>Error al emitir documentos a través de archivos XML</p>
@@ -14,35 +21,35 @@
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.3_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.3_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-2'>Notas de la versión</h4><h4 id='6-2-3enero-15-2020'><strong>6.2.3</strong><br><small><strong>Enero 15, 2020</strong></small></h4><h5 id='corregido-2'>Corregido</h5>
+<h4 id='notas-de-la-version-3'>Notas de la versión</h4><h4 id='6-2-3enero-15-2020'><strong>6.2.3</strong><br><small><strong>Enero 15, 2020</strong></small></h4><h5 id='corregido-2'>Corregido</h5>
 <p>Error al momento de emitir una liquidación de compra.</p>
 <h4 id='6-2-2'>6.2.2</h4>
 <ul>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.2_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.2_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-3'>Notas de la versión</h4><h4 id='6-2-2enero-3-2020'><strong>6.2.2</strong><br><small><strong>Enero 3, 2020</strong></small></h4><h5 id='corregido-3'>Corregido</h5>
+<h4 id='notas-de-la-version-4'>Notas de la versión</h4><h4 id='6-2-2enero-3-2020'><strong>6.2.2</strong><br><small><strong>Enero 3, 2020</strong></small></h4><h5 id='corregido-3'>Corregido</h5>
 <p>Mejora en información de pagos para compatibilidad con Oracle.</p>
 <h4 id='6-2-1'>6.2.1</h4>
 <ul>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-4'>Notas de la versión</h4><h4 id='6-2-1diciembre-24-2019'><strong>6.2.1</strong><br><small><strong>Diciembre 24, 2019</strong></small></h4><h5 id='corregido-4'>Corregido</h5>
+<h4 id='notas-de-la-version-5'>Notas de la versión</h4><h4 id='6-2-1diciembre-24-2019'><strong>6.2.1</strong><br><small><strong>Diciembre 24, 2019</strong></small></h4><h5 id='corregido-4'>Corregido</h5>
 <p>Error al momento de obtener información de una liquidación de compras sin que ésta tenga registrada una máquina fiscal.</p>
 <h4 id='6-2-0'>6.2.0</h4>
 <ul>
 <li>Windows 32 bits</li>
 <li>Windows 64 bits</li>
 </ul>
-<h4 id='notas-de-la-version-5'>Notas de la versión</h4><h4 id='6-2-0octubre-30-2019'><strong>6.2.0</strong><br><small><strong>Octubre 30, 2019</strong></small></h4><h5 id='nuevo-2'>Nuevo</h5>
+<h4 id='notas-de-la-version-6'>Notas de la versión</h4><h4 id='6-2-0octubre-30-2019'><strong>6.2.0</strong><br><small><strong>Octubre 30, 2019</strong></small></h4><h5 id='nuevo-3'>Nuevo</h5>
 <p>Soporte para Microsoft Access. </p>
 <h4 id='6-1-0'>6.1.0</h4>
 <ul>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_32bit_generic.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_64bit_generic.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-6'>Notas de la versión</h4><h4 id='6-1-0octubre-24-2019'><strong>6.1.0</strong><br><small><strong>Octubre 24, 2019</strong></small></h4><h5 id='nuevo-3'>Nuevo</h5>
+<h4 id='notas-de-la-version-7'>Notas de la versión</h4><h4 id='6-1-0octubre-24-2019'><strong>6.1.0</strong><br><small><strong>Octubre 24, 2019</strong></small></h4><h5 id='nuevo-4'>Nuevo</h5>
 <p>Soporte para poder liquidaciones de compra</p>
 <h5 id='corregido-5'>Corregido</h5>
 <p>Corrige error de regresión en la tarea <code>sync_company_resources</code></p>
@@ -51,7 +58,7 @@
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-7'>Notas de la versión</h4><h4 id='5-0-1enero-5-2018'><strong>5.0.1</strong><br><small><strong>Enero 5, 2018</strong></small></h4><h5 id='corregido-6'>Corregido</h5>
+<h4 id='notas-de-la-version-8'>Notas de la versión</h4><h4 id='5-0-1enero-5-2018'><strong>5.0.1</strong><br><small><strong>Enero 5, 2018</strong></small></h4><h5 id='corregido-6'>Corregido</h5>
 <p>La longitud máxima para el nombre de una columna en versiones de ORACLE menores
 a la 12 es de 30 caracteres. Por esto agregamos alias más cortos para parámetros
 que exceden esta longitud, como <code>fecha_emision_documento_sustento -&gt; fecha_emi_doc_sustento</code>,
@@ -61,7 +68,7 @@ que exceden esta longitud, como <code>fecha_emision_documento_sustento -&gt; fec
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.0_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.0_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-8'>Notas de la versión</h4><h4 id='5-0-0enero-5-2018'><strong>5.0.0</strong><br><small><strong>Enero 5, 2018</strong></small></h4><h5 id='nuevo-4'>Nuevo</h5>
+<h4 id='notas-de-la-version-9'>Notas de la versión</h4><h4 id='5-0-0enero-5-2018'><strong>5.0.0</strong><br><small><strong>Enero 5, 2018</strong></small></h4><h5 id='nuevo-5'>Nuevo</h5>
 <p>Soporte para ORACLE.<br/>
 Personalización del formato de fecha utilizado como literal de fecha utilizando
 la nueva entrada de configuración <code>datetime_format</code>.<br/></p>
@@ -73,7 +80,7 @@ reciente <code>resource_sync</code>.</p>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_32bit.exe">Windows 32 bits</a></li>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_64bit.exe">Windows 64 bits</a></li>
 </ul>
-<h4 id='notas-de-la-version-9'>Notas de la versión</h4><h4 id='4-7-0octubre-19-2017'><strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small></h4><h5 id='nuevo-5'>Nuevo</h5>
+<h4 id='notas-de-la-version-10'>Notas de la versión</h4><h4 id='4-7-0octubre-19-2017'><strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small></h4><h5 id='nuevo-6'>Nuevo</h5>
 <p>Emisión de facturas de reembolso. Se agregaron tres nuevas entradas al archivo
 de configuración <code>config/receipts/invoice.ini</code>: invoice_reimbursement,
 invoice_reimbursement_document, invoice_reimbursement_document_tax</p>

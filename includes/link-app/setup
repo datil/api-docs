@@ -298,7 +298,7 @@ retenciones_ats.retencion_ats, retenciones_ats.documentos_soporte</p>
     <span class="c1">-- DATOS REEMBOLSO</span>
     <span class="p">[</span><span class="n">codigo</span><span class="p">]</span> <span class="p">[</span><span class="n">varchar</span><span class="p">](</span><span class="mi">2</span><span class="p">)</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">subtotal</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">total</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">total_reembolso</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
     <span class="p">[</span><span class="n">total_impuestos</span><span class="p">]</span> <span class="p">[</span><span class="n">DECIMAL</span><span class="p">](</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span>
 
