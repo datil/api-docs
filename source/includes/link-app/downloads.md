@@ -3,7 +3,19 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (6.2.4)
+### Más reciente (6.4.0)
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.4.0_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.4.0_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>6.4.0</strong><br><small><strong>Noviembre 15, 2022</strong></small>
+
+##### Nuevo
+Emitir Comprobantes de Retención versión 2.0.0
+
+#### 6.2.4
 
 - [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_32bit.exe)
 - [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_64bit.exe)

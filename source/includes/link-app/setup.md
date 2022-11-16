@@ -316,7 +316,7 @@ CREATE TABLE [retenciones_ats].[documentos_soporte](
     -- DATOS REEMBOLSO
     [codigo] [varchar](2) NULL,
     [subtotal] [DECIMAL](14,2) NOT NULL,
-    [total] [DECIMAL](14,2) NOT NULL,
+    [total_reembolso] [DECIMAL](14,2) NOT NULL,
     [total_impuestos] [DECIMAL](14,2) NOT NULL
 )
 

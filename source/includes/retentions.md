@@ -863,7 +863,7 @@ curl -v https://link.datil.co/retentions/issue/xml \
     <codDoc>07</codDoc>
     <estab>001</estab>
     <ptoEmi>002</ptoEmi>
-    <secuencial>14</secuencial>
+    <secuencia>14</secuencia>
     <dirMatriz>Av. Primera 234 y calle 5ta</dirMatriz>
   </infoTributaria>
   <infoCompRetencion>
@@ -973,7 +973,7 @@ retencion = {
       <codDoc>07</codDoc>
       <estab>001</estab>
       <ptoEmi>002</ptoEmi>
-      <secuencial>14</secuencial>
+      <secuencia>14</secuencia>
       <dirMatriz>Av. Primera 234 y calle 5ta</dirMatriz>
     </infoTributaria>
     <infoCompRetencion>
