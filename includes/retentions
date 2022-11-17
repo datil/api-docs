@@ -950,7 +950,7 @@ generado también se incluirá como parte de la respuesta.</p>
 
 <blockquote>
 <h4 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h4></blockquote>
-<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/retentions/issue/xml <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/ats-retentions/issue/xml <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"X-Password: &lt;clave-certificado-firma&gt;"</span> <span class="se">\</span>
