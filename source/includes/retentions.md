@@ -847,7 +847,7 @@ xml                 | string  | Contenido del archivo xml. __Requerido__
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/retentions/issue/xml \
+curl -v https://link.datil.co/ats-retentions/issue/xml \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
