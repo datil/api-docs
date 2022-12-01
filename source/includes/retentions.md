@@ -488,6 +488,11 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           "tipo_pago": "01",
           "total_sin_impuestos": 84.04,
           "total": 88.34,
+          "tipo_regimen_fiscal": "01",
+          "pais": "AR",
+          "aplica_convenio": true,
+          "pago_exterior": true,
+          "pago_regimen_fiscal": true,
           "impuestos": [
               {
                   "codigo": "2",
@@ -557,6 +562,7 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           }
       }
     ],
+  "tipo_sujeto_retenido": "01",
   "sujeto": {
       "email": "contabilidad@email.com",
       "identificacion": "0987654321",
