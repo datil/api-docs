@@ -54,6 +54,11 @@ curl -v https://link.datil.co/ats-retentions/issue \
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -123,6 +128,7 @@ curl -v https://link.datil.co/ats-retentions/issue \
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -175,6 +181,11 @@ retencion = {
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -244,6 +255,7 @@ retencion = {
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -320,6 +332,11 @@ namespace DatilClient {
             ""tipo_pago"": ""01"",
             ""total_sin_impuestos"": 84.04,
             ""total"": 88.34,
+            ""tipo_regimen_fiscal"": ""01"",
+            ""pais"": ""AR"",
+            ""aplica_convenio"":true,
+            ""pago_exterior"":true,
+            ""pago_regimen_fiscal"":true,
             ""impuestos"": [
                 {
                     ""codigo"": ""2"",
@@ -389,6 +406,7 @@ namespace DatilClient {
             }
         }
       ],
+        ""tipo_sujeto_retenido"": ""01"",
         ""sujeto"":{
           ""email"":""contabilidad@email.com"",
           ""identificacion"":""0987654321"",
@@ -422,6 +440,7 @@ periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/20
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 info_adicional | Listado de objetos | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>`[{"Email": "contabilidad@empresa.com"}, {"Dirección": "Avenida Amazonas"}]`
 documentos_soporte | Listado de objetos tipo [documentos soporte](#documentos-soporte) | Información. __Requerido__
+tipo_sujeto_retenido | string | Ver [tabla](#tipo-de-sujeto-retenido) (Requerido si la identificación del sujeto retenido es Identificación del exterior)
 sujeto | objeto tipo [persona](#persona) | Información de la persona a quién va dirigida la retención. __Requerido__
 
 ### Respuesta

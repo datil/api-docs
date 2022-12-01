@@ -131,6 +131,11 @@ numero_autorización | string | Número de autorización del comprobante de vent
 tipo_pago | string | Ver códigos de [tipos de pagos](#tipos-de-pago). __Requerido__
 total_sin_impuestos | string | Total antes de los impuestos. __Requerido__
 total | string | Total incluyendo impuestos. __Requerido__
+tipo_regimen_fiscal | string | Ver [tabla](#tipo-de-régimen-fiscal) de tipos de régimen fiscal (Requerido si la identificación del sujeto retenido es Identificación del exterior)
+pais | string | Código de dos caracteres del país según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) (Requerido si la identificación del sujeto retenido es Identificación del exterior)
+aplica_convenio | boolean | `true` si el pago está sujeto a algún convenio de doble tributación (Requerido si la identificación del sujeto retenido es Identificación del exterior)
+pago_exterior | boolean | `true` si el pago realizado al exterior aplica retención (Requerido si la identificación del sujeto retenido es Identificación del exterior)
+pago_regimen_fiscal | boolean | `true` si el pago realizado a un no residente se encuentra en un régimen fiscal preferente o de menor imposición (Requerido si la identificación del sujeto retenido es Identificación del exterior)
 impuestos | listado de objetos [impuesto](#impuesto-item) | Impuestos totales del documento. __Requerido__
 retenciones | listado de objetos [retenciones ats](#impuestos-retenidos-en-retencion-ats) | Listado de impuestos retenidos __Requerido__
 reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso.
@@ -251,6 +256,19 @@ VENTA A CONSUMIDOR FINAL*   | `07`
 IDENTIFICACION DELEXTERIOR* | `08`
 PLACA                       | `09`
 
+## Tipo de régimen fiscal
+
+Código | Tipo de régimen fiscal
+-------- | ---------------------
+01 | Régimen general 
+02 | Paraíso fiscal
+03 | Regimen fiscal preferente o jurisdicción de menor imposición
+
+## Tipo de sujeto retenido
+
+Código | Tipo de sujeto retenido
+01 | Persona natural
+02 | Sociedad
 
 ## Tipos de impuesto
 
