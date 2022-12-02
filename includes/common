@@ -385,6 +385,31 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <td>Total incluyendo impuestos. <strong>Requerido</strong></td>
 </tr>
 <tr>
+<td>tipo_regimen_fiscal</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-regimen-fiscal">tabla</a> de tipos de régimen fiscal (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
+<td>pais</td>
+<td>string</td>
+<td>Código de dos caracteres del país según <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO_3166</a> (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
+<td>aplica_convenio</td>
+<td>boolean</td>
+<td><code>true</code> si el pago está sujeto a algún convenio de doble tributación (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
+<td>pago_exterior</td>
+<td>boolean</td>
+<td><code>true</code> si el pago realizado al exterior aplica retención (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
+<td>pago_regimen_fiscal</td>
+<td>boolean</td>
+<td><code>true</code> si el pago realizado a un no residente se encuentra en un régimen fiscal preferente o de menor imposición (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
 <td>impuestos</td>
 <td>listado de objetos <a href="#impuesto-item">impuesto</a></td>
 <td>Impuestos totales del documento. <strong>Requerido</strong></td>
@@ -749,6 +774,42 @@ que no pueda ser descrito con los elementos que son parte del documento.</p>
 <tr>
 <td>PLACA</td>
 <td><code>09</code></td>
+</tr>
+</tbody></table>
+<h2 id='tipo-de-regimen-fiscal'>Tipo de régimen fiscal</h2>
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Tipo de régimen fiscal</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>01</td>
+<td>Régimen general</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Paraíso fiscal</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Regimen fiscal preferente o jurisdicción de menor imposición</td>
+</tr>
+</tbody></table>
+<h2 id='tipo-de-sujeto-retenido'>Tipo de sujeto retenido</h2>
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Tipo de sujeto</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>01</td>
+<td>Persona natural</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Sociedad</td>
 </tr>
 </tbody></table>
 <h2 id='tipos-de-impuesto'>Tipos de impuesto</h2>

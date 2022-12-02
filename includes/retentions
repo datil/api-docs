@@ -47,6 +47,11 @@
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -116,6 +121,7 @@
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -165,6 +171,11 @@
             <span class="s">"tipo_pago"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
             <span class="s">"total_sin_impuestos"</span><span class="p">:</span> <span class="mf">84.04</span><span class="p">,</span>
             <span class="s">"total"</span><span class="p">:</span> <span class="mf">88.34</span><span class="p">,</span>
+            <span class="s">"tipo_regimen_fiscal"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
+            <span class="s">"pais"</span><span class="p">:</span> <span class="s">"AR"</span><span class="p">,</span>
+            <span class="s">"aplica_convenio"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s">"pago_exterior"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s">"pago_regimen_fiscal"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
             <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
@@ -234,6 +245,7 @@
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
+    <span class="s">"tipo_sujeto_retenido"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
     <span class="s">"sujeto"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"email"</span><span class="p">:</span> <span class="s">"contabilidad@email.com"</span><span class="p">,</span>
         <span class="s">"identificacion"</span><span class="p">:</span> <span class="s">"0987654321"</span><span class="p">,</span>
@@ -307,6 +319,11 @@
             <span class="s">""</span><span class="n">tipo_pago</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
             <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">84.04</span><span class="p">,</span>
             <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">88.34</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">tipo_regimen_fiscal</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">pais</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">AR</span><span class="s">""</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">aplica_convenio</span><span class="s">""</span><span class="p">:</span><span class="k">true</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">pago_exterior</span><span class="s">""</span><span class="p">:</span><span class="k">true</span><span class="p">,</span>
+            <span class="s">""</span><span class="n">pago_regimen_fiscal</span><span class="s">""</span><span class="p">:</span><span class="k">true</span><span class="p">,</span>
             <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
@@ -376,6 +393,7 @@
             <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">],</span>
+        <span class="s">""</span><span class="n">tipo_sujeto_retenido</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
         <span class="s">""</span><span class="n">sujeto</span><span class="s">""</span><span class="p">:{</span>
           <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">contabilidad@email</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
           <span class="s">""</span><span class="n">identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0987654321</span><span class="s">""</span><span class="p">,</span>
@@ -450,6 +468,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <td>Información. <strong>Requerido</strong></td>
 </tr>
 <tr>
+<td>tipo_sujeto_retenido</td>
+<td>string</td>
+<td>Ver <a href="#tipo-de-sujeto-retenido">tabla</a> (Requerido si la identificación del sujeto retenido es Identificación del exterior)</td>
+</tr>
+<tr>
 <td>sujeto</td>
 <td>objeto tipo <a href="#persona">persona</a></td>
 <td>Información de la persona a quién va dirigida la retención. <strong>Requerido</strong></td>
@@ -498,6 +521,11 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
           </span><span class="s2">"tipo_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">84.04</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">88.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tipo_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pais"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aplica_convenio"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_exterior"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                   </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -567,6 +595,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
           </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tipo_sujeto_retenido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sujeto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contabilidad@email.com"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
@@ -999,6 +1028,11 @@ generado también se incluirá como parte de la respuesta.</p>
       &lt;totalImpuestoReembolso&gt;0.00&lt;/totalImpuestoReembolso&gt;
       &lt;totalSinImpuestos&gt;84.04&lt;/totalSinImpuestos&gt;
       &lt;importeTotal&gt;88.34&lt;/importeTotal&gt;
+      &lt;tipoRegimenFiscal&gt;01&lt;/tipoRegimenFiscal&gt;
+      &lt;pais&gt;AR&lt;/pais&gt;
+      &lt;aplicaConvenio&gt;SI&lt;/aplicaconvenio&gt;
+      &lt;pagoExterior&gt;SI&lt;/pagoExterior&gt;
+      &lt;pagoRegimenFiscal&gt;SI&lt;/pagoRegimenFiscal&gt;
       &lt;impuestosDocSustento&gt;
         &lt;impuestoDocSustento&gt;
           &lt;codImpuestoDocSustento&gt;2&lt;/codImpuestoDocSustento&gt;
@@ -1053,6 +1087,7 @@ generado también se incluirá como parte de la respuesta.</p>
       &lt;/Pagos&gt;
     &lt;/docSustento&gt;
   &lt;/docsSustento&gt;
+  &lt;tipoSujetoRetenido&gt;01&lt;/tipoSujetoRetenido&gt;
   &lt;infoAdicional&gt;
     &lt;campoAdicional nombre="nombre"&gt;Enviada al correo electónico&lt;/campoAdicional&gt;
     &lt;campoAdicional nombre="descripcion"&gt;contabilidad@xyz.com&lt;/campoAdicional&gt;
@@ -1106,6 +1141,11 @@ generado también se incluirá como parte de la respuesta.</p>
         &lt;totalImpuestoReembolso&gt;0.00&lt;/totalImpuestoReembolso&gt;
         &lt;totalSinImpuestos&gt;84.04&lt;/totalSinImpuestos&gt;
         &lt;importeTotal&gt;88.34&lt;/importeTotal&gt;
+        &lt;tipoRegimenFiscal&gt;01&lt;/tipoRegimenFiscal&gt;
+        &lt;pais&gt;AR&lt;/pais&gt;
+        &lt;aplicaConvenio&gt;SI&lt;/aplicaconvenio&gt;
+        &lt;pagoExterior&gt;SI&lt;/pagoExterior&gt;
+        &lt;pagoRegimenFiscal&gt;SI&lt;/pagoRegimenFiscal&gt;
         &lt;impuestosDocSustento&gt;
           &lt;impuestoDocSustento&gt;
               &lt;codImpuestoDocSustento&gt;2&lt;/codImpuestoDocSustento&gt;
@@ -1160,6 +1200,7 @@ generado también se incluirá como parte de la respuesta.</p>
         &lt;/Pagos&gt;
       &lt;/docSustento&gt;
     &lt;/docsSustento&gt;
+    &lt;tipoSujetoRetenido&gt;01&lt;/tipoSujetoRetenido&gt;
     &lt;infoAdicional&gt;
       &lt;campoAdicional nombre=</span><span class="se">\"</span><span class="s">nombre</span><span class="se">\"</span><span class="s">&gt;Enviada al correo electónico&lt;/campoAdicional&gt;
       &lt;campoAdicional nombre=</span><span class="se">\"</span><span class="s">descripcion</span><span class="se">\"</span><span class="s">&gt;contabilidad@xyz.com&lt;/campoAdicional&gt;
@@ -1217,6 +1258,11 @@ generado también se incluirá como parte de la respuesta.</p>
           </span><span class="s2">"tipo_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">84.04</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">88.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tipo_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pais"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aplica_convenio"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_exterior"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                   </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -1286,6 +1332,7 @@ generado también se incluirá como parte de la respuesta.</p>
           </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tipo_sujeto_retenido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sujeto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contabilidad@email.com"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
@@ -1560,6 +1607,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
           </span><span class="s2">"tipo_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">84.04</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">88.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tipo_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pais"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aplica_convenio"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_exterior"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                   </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -1629,6 +1681,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
           </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tipo_sujeto_retenido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sujeto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contabilidad@email.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
@@ -1772,6 +1825,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -1841,6 +1899,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -1890,6 +1949,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             <span class="s">"tipo_pago"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
             <span class="s">"total_sin_impuestos"</span><span class="p">:</span> <span class="mf">84.04</span><span class="p">,</span>
             <span class="s">"total"</span><span class="p">:</span> <span class="mf">88.34</span><span class="p">,</span>
+            <span class="s">"tipo_regimen_fiscal"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
+            <span class="s">"pais"</span><span class="p">:</span> <span class="s">"AR"</span><span class="p">,</span>
+            <span class="s">"aplica_convenio"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s">"pago_exterior"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s">"pago_regimen_fiscal"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
             <span class="s">"impuestos"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s">"codigo"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
@@ -1959,6 +2023,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
+    <span class="s">"tipo_sujeto_retenido"</span><span class="p">:</span> <span class="s">"01"</span><span class="p">,</span>
     <span class="s">"sujeto"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"email"</span><span class="p">:</span> <span class="s">"contabilidad@email.com"</span><span class="p">,</span>
         <span class="s">"identificacion"</span><span class="p">:</span> <span class="s">"0987654321"</span><span class="p">,</span>
@@ -2032,6 +2097,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
               <span class="s">""</span><span class="n">tipo_pago</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
               <span class="s">""</span><span class="n">total_sin_impuestos</span><span class="s">""</span><span class="p">:</span> <span class="m">84.04</span><span class="p">,</span>
               <span class="s">""</span><span class="n">total</span><span class="s">""</span><span class="p">:</span> <span class="m">88.34</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">tipo_regimen_fiscal</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">pais</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="n">AR</span><span class="s">""</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">aplica_convenio</span><span class="s">""</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">pago_exterior</span><span class="s">""</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+              <span class="s">""</span><span class="n">pago_regimen_fiscal</span><span class="s">""</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
               <span class="s">""</span><span class="n">impuestos</span><span class="s">""</span><span class="p">:</span> <span class="p">[</span>
                   <span class="p">{</span>
                       <span class="s">""</span><span class="n">codigo</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">2</span><span class="s">""</span><span class="p">,</span>
@@ -2101,6 +2171,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
               <span class="p">}</span>
           <span class="p">}</span>
       <span class="p">],</span>
+      <span class="s">""</span><span class="n">tipo_sujeto_retenido</span><span class="s">""</span><span class="p">:</span> <span class="s">""</span><span class="m">01</span><span class="s">""</span><span class="p">,</span>
       <span class="s">""</span><span class="n">sujeto</span><span class="s">""</span><span class="p">:{</span>
         <span class="s">""</span><span class="n">email</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="n">contabilidad@email</span><span class="p">.</span><span class="n">com</span><span class="s">""</span><span class="p">,</span>
         <span class="s">""</span><span class="n">identificacion</span><span class="s">""</span><span class="p">:</span><span class="s">""</span><span class="m">0987654321</span><span class="s">""</span><span class="p">,</span>
@@ -2167,6 +2238,11 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
           </span><span class="s2">"tipo_pago"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total_sin_impuestos"</span><span class="p">:</span><span class="w"> </span><span class="mf">84.04</span><span class="p">,</span><span class="w">
           </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">88.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tipo_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pais"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aplica_convenio"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_exterior"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"pago_regimen_fiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"impuestos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                   </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
@@ -2236,6 +2312,7 @@ se debe examinar los parámetros <code>envio_sri</code> y <code>autorizacion_sri
           </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tipo_sujeto_retenido"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sujeto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contabilidad@email.com"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"identificacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
