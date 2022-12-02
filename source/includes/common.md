@@ -266,7 +266,7 @@ Código | Tipo de régimen fiscal
 
 ## Tipo de sujeto retenido
 
-Código | Tipo de sujeto retenido
+Código | Tipo de sujeto
 -------- | ---------------------
 01 | Persona natural
 02 | Sociedad
