@@ -54,6 +54,11 @@ curl -v https://link.datil.co/ats-retentions/issue \
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -123,6 +128,7 @@ curl -v https://link.datil.co/ats-retentions/issue \
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -175,6 +181,11 @@ retencion = {
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -244,6 +255,7 @@ retencion = {
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -320,6 +332,11 @@ namespace DatilClient {
             ""tipo_pago"": ""01"",
             ""total_sin_impuestos"": 84.04,
             ""total"": 88.34,
+            ""tipo_regimen_fiscal"": ""01"",
+            ""pais"": ""AR"",
+            ""aplica_convenio"":true,
+            ""pago_exterior"":true,
+            ""pago_regimen_fiscal"":true,
             ""impuestos"": [
                 {
                     ""codigo"": ""2"",
@@ -389,6 +406,7 @@ namespace DatilClient {
             }
         }
       ],
+        ""tipo_sujeto_retenido"": ""01"",
         ""sujeto"":{
           ""email"":""contabilidad@email.com"",
           ""identificacion"":""0987654321"",
@@ -422,6 +440,7 @@ periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/20
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 info_adicional | Listado de objetos | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>`[{"Email": "contabilidad@empresa.com"}, {"Dirección": "Avenida Amazonas"}]`
 documentos_soporte | Listado de objetos tipo [documentos soporte](#documentos-soporte) | Información. __Requerido__
+tipo_sujeto_retenido | string | Ver [tabla](#tipo-de-sujeto-retenido) (Requerido si la identificación del sujeto retenido es Identificación del exterior)
 sujeto | objeto tipo [persona](#persona) | Información de la persona a quién va dirigida la retención. __Requerido__
 
 ### Respuesta
@@ -469,6 +488,11 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           "tipo_pago": "01",
           "total_sin_impuestos": 84.04,
           "total": 88.34,
+          "tipo_regimen_fiscal": "01",
+          "pais": "AR",
+          "aplica_convenio": true,
+          "pago_exterior": true,
+          "pago_regimen_fiscal": true,
           "impuestos": [
               {
                   "codigo": "2",
@@ -538,6 +562,7 @@ sujeto | objeto tipo [persona](#persona) | Información de la persona a quién v
           }
       }
     ],
+  "tipo_sujeto_retenido": "01",
   "sujeto": {
       "email": "contabilidad@email.com",
       "identificacion": "0987654321",
@@ -896,6 +921,11 @@ curl -v https://link.datil.co/ats-retentions/issue/xml \
       <totalImpuestoReembolso>0.00</totalImpuestoReembolso>
       <totalSinImpuestos>84.04</totalSinImpuestos>
       <importeTotal>88.34</importeTotal>
+      <tipoRegimenFiscal>01</tipoRegimenFiscal>
+      <pais>AR</pais>
+      <aplicaConvenio>SI</aplicaconvenio>
+      <pagoExterior>SI</pagoExterior>
+      <pagoRegimenFiscal>SI</pagoRegimenFiscal>
       <impuestosDocSustento>
         <impuestoDocSustento>
           <codImpuestoDocSustento>2</codImpuestoDocSustento>
@@ -950,6 +980,7 @@ curl -v https://link.datil.co/ats-retentions/issue/xml \
       </Pagos>
     </docSustento>
   </docsSustento>
+  <tipoSujetoRetenido>01</tipoSujetoRetenido>
   <infoAdicional>
     <campoAdicional nombre="nombre">Enviada al correo electónico</campoAdicional>
     <campoAdicional nombre="descripcion">contabilidad@xyz.com</campoAdicional>
@@ -1006,6 +1037,11 @@ retencion = {
         <totalImpuestoReembolso>0.00</totalImpuestoReembolso>
         <totalSinImpuestos>84.04</totalSinImpuestos>
         <importeTotal>88.34</importeTotal>
+        <tipoRegimenFiscal>01</tipoRegimenFiscal>
+        <pais>AR</pais>
+        <aplicaConvenio>SI</aplicaconvenio>
+        <pagoExterior>SI</pagoExterior>
+        <pagoRegimenFiscal>SI</pagoRegimenFiscal>
         <impuestosDocSustento>
           <impuestoDocSustento>
               <codImpuestoDocSustento>2</codImpuestoDocSustento>
@@ -1060,6 +1096,7 @@ retencion = {
         </Pagos>
       </docSustento>
     </docsSustento>
+    <tipoSujetoRetenido>01</tipoSujetoRetenido>
     <infoAdicional>
       <campoAdicional nombre=\"nombre\">Enviada al correo electónico</campoAdicional>
       <campoAdicional nombre=\"descripcion\">contabilidad@xyz.com</campoAdicional>
@@ -1120,6 +1157,11 @@ respuesta = requests.post(
           "tipo_pago": "01",
           "total_sin_impuestos": 84.04,
           "total": 88.34,
+          "tipo_regimen_fiscal": "01",
+          "pais": "AR",
+          "aplica_convenio": true,
+          "pago_exterior": true,
+          "pago_regimen_fiscal": true,
           "impuestos": [
               {
                   "codigo": "2",
@@ -1189,6 +1231,7 @@ respuesta = requests.post(
           }
       }
   ],
+  "tipo_sujeto_retenido": "01",
   "sujeto": {
       "email": "contabilidad@email.com",
       "identificacion": "0987654321",
@@ -1481,6 +1524,11 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
           "tipo_pago": "01",
           "total_sin_impuestos": 84.04,
           "total": 88.34,
+          "tipo_regimen_fiscal": "01",
+          "pais": "AR",
+          "aplica_convenio": true,
+          "pago_exterior": true,
+          "pago_regimen_fiscal": true,
           "impuestos": [
               {
                   "codigo": "2",
@@ -1550,6 +1598,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
           }
       }
   ],
+  "tipo_sujeto_retenido": "01",
   "sujeto": {
     "email": "contabilidad@email.com",
     "identificacion": "0987654321",
@@ -1643,6 +1692,11 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -1712,6 +1766,7 @@ curl -v https://link.datil.co/ats-retentions/<id-retencion-ats>/reissue \
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -1764,6 +1819,11 @@ retencion = {
             "tipo_pago": "01",
             "total_sin_impuestos": 84.04,
             "total": 88.34,
+            "tipo_regimen_fiscal": "01",
+            "pais": "AR",
+            "aplica_convenio": true,
+            "pago_exterior": true,
+            "pago_regimen_fiscal": true,
             "impuestos": [
                 {
                     "codigo": "2",
@@ -1833,6 +1893,7 @@ retencion = {
             }
         }
     ],
+    "tipo_sujeto_retenido": "01",
     "sujeto": {
         "email": "contabilidad@email.com",
         "identificacion": "0987654321",
@@ -1909,6 +1970,11 @@ namespace DatilClient {
               ""tipo_pago"": ""01"",
               ""total_sin_impuestos"": 84.04,
               ""total"": 88.34,
+              ""tipo_regimen_fiscal"": ""01"",
+              ""pais"": ""AR"",
+              ""aplica_convenio"": true,
+              ""pago_exterior"": true,
+              ""pago_regimen_fiscal"": true,
               ""impuestos"": [
                   {
                       ""codigo"": ""2"",
@@ -1978,6 +2044,7 @@ namespace DatilClient {
               }
           }
       ],
+      ""tipo_sujeto_retenido"": ""01"",
       ""sujeto"":{
         ""email"":""contabilidad@email.com"",
         ""identificacion"":""0987654321"",
@@ -2048,6 +2115,11 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
           "tipo_pago": "01",
           "total_sin_impuestos": 84.04,
           "total": 88.34,
+          "tipo_regimen_fiscal": "01",
+          "pais": "AR",
+          "aplica_convenio": true,
+          "pago_exterior": true,
+          "pago_regimen_fiscal": true,
           "impuestos": [
               {
                   "codigo": "2",
@@ -2117,6 +2189,7 @@ El cuerpo del requerimiento es un objeto retención ATS con los datos corregidos
           }
       }
   ],
+  "tipo_sujeto_retenido": "01",
   "sujeto": {
       "email": "contabilidad@email.com",
       "identificacion": "0987654321",
