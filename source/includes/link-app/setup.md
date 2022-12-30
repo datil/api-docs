@@ -272,6 +272,7 @@ CREATE TABLE [retenciones_ats].[retencion_ats](
     [fecha_emision] [datetime] NULL,
     [clave_acceso] [varchar](49) NULL,
     [periodo_fiscal] [varchar](7),
+    [tipo_sujeto_retenido] [varchar](2) NULL,
     -- EMISOR
     [ruc] [varchar](13) NULL,
     [obligado_contabilidad] [varchar](2) NULL,
@@ -312,7 +313,12 @@ CREATE TABLE [retenciones_ats].[documentos_soporte](
     [numero_autorizacion] [varchar](300) NULL,
     [tipo_pago] [varchar](2) NULL,
     [total_sin_impuestos] [DECIMAL](14,2) NOT NULL,
-    [total] [DECIMAL](14,2) NOT NULL
+    [total] [DECIMAL](14,2) NOT NULL,
+    [tipo_regimen_fiscal] [varchar](2) NULL,
+    [pais] [varchar](2) NULL,
+    [aplica_convenio] [varchar](2) NULL,
+    [pago_exterior] [varchar](2) NULL,
+    [pago_regimen_fiscal] [varchar](2),
     -- DATOS REEMBOLSO
     [codigo] [varchar](2) NULL,
     [subtotal] [DECIMAL](14,2) NOT NULL,
