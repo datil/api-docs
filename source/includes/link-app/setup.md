@@ -318,7 +318,7 @@ CREATE TABLE [retenciones_ats].[documentos_soporte](
     [pais] [varchar](2) NULL,
     [aplica_convenio] [varchar](2) NULL,
     [pago_exterior] [varchar](2) NULL,
-    [pago_regimen_fiscal] [varchar](2),
+    [pago_regimen_fiscal] [varchar](2) NULL,
     -- DATOS REEMBOLSO
     [codigo] [varchar](2) NULL,
     [subtotal] [DECIMAL](14,2) NOT NULL,
