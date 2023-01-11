@@ -6,7 +6,15 @@
 <li><a href="https://linkapp-installers.s3.us-west-2.amazonaws.com/Datil+LinkApp_6.4.1_64bit.exe">Windows 64 bits</a></li>
 </ul>
 <h4 id='notas-de-la-version'>Notas de la versión</h4><h4 id='6-4-1enero-11-2023'><strong>6.4.1</strong><br><small><strong>Enero 11, 2023</strong></small></h4><h5 id='corregido'>Corregido</h5>
-<p>Error al emitir Comprobantes de Retención versión 2.0.0: Se agregaron nuevos datos para emitir el documento.</p>
+<p>Se agregaron nuevas entradas a la configuración de ats_retention.ini que permite emitir Comprobantes de Retención versión 2.0.0 de Exportaciones y otros Ingresos del Exterior:
+<ul>
+    <li>Tipo de Sujeto Retenido</li>
+    <li>Tipo de Régimen Fiscal</li>
+    <li>País</li>
+    <li>Aplica Convenio de Doble Tributación</li>
+    <li>Pago Exterior</li>
+    <li>Pago Régimen Fiscal</li>
+</ul></p>
 <h4 id='6-4-0'>6.4.0</h4>
 <ul>
 <li><a href="https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.4.0_32bit.exe">Windows 32 bits</a></li>
