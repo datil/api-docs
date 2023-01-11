@@ -13,7 +13,15 @@ Integra Dátil a tu sistema en minutos.
 #### <strong>6.4.1</strong><br><small><strong>Enero 11, 2023</strong></small>
 
 ##### Corregido
-Error al emitir Comprobantes de Retención versión 2.0.0: Se agregaron nuevos datos para emitir el documento.
+Se agregaron nuevas entradas a la configuración de ats_retention.ini que permite emitir Comprobantes de Retención versión 2.0.0 de Exportaciones y otros Ingresos del Exterior:
+<ul>
+    <li>Tipo de Sujeto Retenido</li>
+    <li>Tipo de Régimen Fiscal</li>
+    <li>País</li>
+    <li>Aplica Convenio de Doble Tributación</li>
+    <li>Pago Exterior</li>
+    <li>Pago Régimen Fiscal</li>
+</ul>
 
 #### 6.4.0
 
