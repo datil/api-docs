@@ -119,12 +119,47 @@ del motor de base de datos que utilizas.
 
 ## environment.ini
 
-Parámetros generales del ambiente. Contiene las siguientes secciones.
+La configuración general de la aplicación __Link-App__ se guardan en el archivo de configuración `environment.ini`.
+A continuación se describen las configuraciones de ambiente necesarias para el correcto funcionamiento de Link-app.
+
+### [General]
+
+Parámetros | &nbsp;
+------------------- | ----------------------- | ----------
+timezone<p class="dt-data-param-required">requerido</p> | Zona horaria
+issue_receipts_from_database<p class="dt-data-param-required">requerido</p> | Habilitar la emisión de documentos desde la base de datos
+issue_receipts_from_xml<p class="dt-data-param-required">requerido</p> | Habilitar la emisión de documentos desde archivos en formato xml
+update_control_table<p class="dt-data-param-required">requerido</p> | Habilitar el control de los documentos emitidos desde la tabla de Control
 
 ### [DatabaseSource]
 
 Revisa la sección de configuración de [base de datos](#base-de-datos) para más
 información
+
+### [Log]
+Esta configuración permite el registro de actividades dentro de la aplicación.
+
+Parámetros | &nbsp;
+------------------- | ----------
+level<p class="dt-data-param-required">requerido</p> | Nivel de los registros (En el caso de que se esté configurando por primera vez la aplicación se recomienda mantener el nivel de `DEBUG`)<br>Valores posibles: `INFO`, `DEBUG` y `ERROR`. 
+interval<p class="dt-data-param-required">requerido</p> | Intervalo de tiempo en horas que se genera un nuevo archivo de registros
+backup_count<p class="dt-data-param-required">requerido</p> | Cantidad de archivos de registros guardados
+
+### [Sync] 
+Esta configuración hace referencia a la sincronización de documentos de forma general en la aplicación.
+
+Parámetro | &nbsp;
+------------------- | ----------
+enabled<p class="dt-data-param-required">requerido</p> | Habilitar la sincronización de documentos
+update_tables | Habilitar la actualización de tablas cuando se sincronicen los documentos
+download_files | Habilitar la descarga de archivos cuando se sincronicen los documentos
+
+### [EventTypeCodes]
+Para esta configuración se debe especificar el nombre del documento con el evento y como valor se le asigna el código numérico del evento.<br>
+Ejemplo:<br>
+`invoice.issued = 21`<br>
+`invoice.received = 11`<br>
+<p class="dt-data-param-required">requerido</p>
 
 ### [Scheduler]
 
@@ -167,25 +202,36 @@ Utiliza sólo letras, números, guiones o sub-guiones para el nombre del archivo
 Ejemplo: `acme_inc`
 
 ### [General]
-
 En la sección `[General]` configura el parámetro `ruc` con el ruc de la empresa.
+
+Parámetros | &nbsp;
+-------------------  | ----------
+enabled<p class="dt-data-param-required">requerido</p> | Habilitar la emisión de documentos para la compañía
+ruc<p class="dt-data-param-required">requerido</p> | RUC de la compañía que emitirá los documentos
 
 ### [Api]
 
-En la sección `[Api]` configura el parámetro `xkey` con el _API key_ de Dátil y
-`xpassword` con la clave del certificado de firma electrónica, `environment`
-con el valor `1` para emisión en modo de pruebas o `2` para emitir en producción.
+En la sección `[Api]` configuran los siguientes parámetros:
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- | ----------
+xkey<p class="dt-data-param-required">requerido</p> | string | API Key para emitir documentos. Esta información se encuentra en la configuración de la compañía en el portal web
+xpassword<p class="dt-data-param-required">requerido</p> | string | Contraseña del certificado de firma electrónica
+environment<p class="dt-data-param-required">requerido</p> | integer | Pruebas: `1`.<br>Producción `2`.
 
 ### [IssueFromDatabase]
 
 Los parámetros de esta sección te permiten encender o apagar la *tarea de emisión*
 desde la base de datos para cada tipo de comprobante para esta compañía. Los
 posibles valores para estos parámetros son `yes` o `no`. El valor `yes` le
-indica a Link que debe encender la tarea y `no` que debe apagarla.
+indica a Link que debe encender la tarea y `no` que debe apagarla.<br>
+Ejemplo: `credit_note = yes`
 
 ### [IssueFromXml]
 
-Estos parámetros permiten encender o apagar la *tarea de emisión por xml*.
+Estos parámetros permiten encender o apagar la *tarea de emisión por xml* desde archivos con el formato XML para cada tipo de comprobante para esta compañía. Los posibles valores para estos parámetros son `yes` o `no`. El valor `yes` le
+indica a Link que debe encender la tarea y `no` que debe apagarla.<br>
+Ejemplo: `invoice = yes`
 
 ### [Read]
 Estos parámetros permiten encender o apagar la *tarea de consulta* de
@@ -199,7 +245,13 @@ información.
 ### [XmlSource]
 
 Configuración de las rutas de los directorios donde se encuentran los archivos
-XML. Esto aplica para la emisión por XML.
+XML. Esto aplica para la emisión por XML. Para esta configuración se debe especificar el nombre del documento y como valor se le asigna la ruta en la que se encuentra el tipo de documento.<br>
+Ejemplo: `invoice = C:\\Program Files\Facturas`
+
+### [XmlSourcePattern]
+
+Configuración del patrón del nombre de los archivos XML que contienen la información de los documentos a emitirse. Para esta configuración se debe especificar el nombre del documento y como valor la asignación del prefijo asociado al archivo XML.<br>
+Ejemplo: `invoice = FA`
 
 ### Sincronización y Eventos
 
