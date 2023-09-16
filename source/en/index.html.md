@@ -58,7 +58,7 @@ All operations receive and return data in [JSON](http://www.json.org/) format. Y
 To get an API key, sign in to your account at
 [app.datil.co](https://app.datil.co) and look for "API key" in "_Configuración_".
 
-<img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
+<img src="/images/datil-py-blurred-api-key.png">
 
 Include your API key as an HTTP header in all your requests:
 

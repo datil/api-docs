@@ -94,7 +94,7 @@ Para obtener la clave del API, inicia sesión con tu cuenta en
 [app.datil.co](https://app.datil.co), ve a la opción _Configuración_ la
 sección "API Key".
 
-<img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
+<img src="/images/datil-py-blurred-api-key.png">
 
 Dátil utiliza claves para autorizar el acceso al API. La clave debe estar
 incluída en todos los requerimientos en una cabecera:
