@@ -28,7 +28,7 @@ All API operations are done via POST requests to the following URL:
 Get an API key by logging in into your Datil account at
 [app.datil.co](https://app.datil.co), go to the _Configuration_ and look for the "API Key" section.
 
-<img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
+<img src="/images/datil-py-blurred-api-key.png">
 
 Datil uses the following headers to authenticate your requests:
 
