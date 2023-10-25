@@ -431,6 +431,39 @@ Nota de Crédito          | 04
 Nota de Débito           | 05
 Guía de Remisión         | 06
 Comprobante de Retención | 07
+Boletos o entradas a espectáculos públicos | 08
+Tiquetes o vales emitidos por máquinas registradoras | 09
+Pasajes expedidos por empresas de aviación | 11
+Documentos emitidos por instituciones financieras | 12
+Comprobante de venta emitido en el Exterior | 15
+Formulario Único de Exportación (FUE) o Declaración Aduanera Única (DAU) o Declaración Andina de Valor (DAV) | 16
+Documentos autorizados utilizados en ventas excepto N/C N/D | 18
+Comprobantes de Pago de Cuotas o Aportes | 19
+Documentos por Servicios Administrativos emitidos por Inst. del Estado | 20
+Carta de Porte Aéreo | 21
+RECAP | 22
+Nota de Crédito TC | 23
+Nota de Débito TC | 24
+Comprobante de venta emitido por reembolso | 41
+Documento retención presuntiva y retención emitida por propio vendedor o por intermediario | 42
+Liquidación para Explotación y Exploración de Hidrocarburos | 43
+Comprobante de Contribuciones y Aportes | 44
+Liquidación por reclamos de aseguradoras | 45
+Nota de Crédito por Reembolso Emitida por Intermediario | 47
+Nota de Débito por Reembolso Emitida por Intermediario | 48
+Proveedor Directo de Exportador Bajo Régimen Especial | 49
+A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta | 50
+N/C A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta | 51
+N/D A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta | 52
+Liquidación de compra de Bienes Muebles Usados | 294
+Liquidación de compra de vehículos usados | 344
+Acta Entrega-Recepción PET | 364
+Factura operadora transporte / socio | 370
+Comprobante socio a operadora de transporte | 371
+Nota de crédito operadora transporte / socio | 372
+Nota de débito operadora transporte / socio | 373
+Nota de débito operadora transporte / socio | 374
+Liquidación de compra RISE de bienes o prestación de servicios | 375
 
 ## Tipos de forma de pago
 
