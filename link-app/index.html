@@ -1490,10 +1490,85 @@ conexión.</p>
 <a href="https://www.connectionstrings.com">www.connectionstrings.com</a> la documentación
 del motor de base de datos que utilizas.</p>
 <h2 id='environment-ini'>environment.ini</h2>
-<p>Parámetros generales del ambiente. Contiene las siguientes secciones.</p>
+<p>La configuración general de la aplicación <strong>Link-App</strong> se guardan en el archivo de configuración <code>environment.ini</code>.
+A continuación se describen las configuraciones de ambiente necesarias para el correcto funcionamiento de Link-app.</p>
+<h3 id='general'>[General]</h3>
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timezone<p class="dt-data-param-required">requerido</p></td>
+<td>Zona horaria</td>
+</tr>
+<tr>
+<td>issue_receipts_from_database<p class="dt-data-param-required">requerido</p></td>
+<td>Habilitar la emisión de documentos desde la base de datos</td>
+</tr>
+<tr>
+<td>issue_receipts_from_xml<p class="dt-data-param-required">requerido</p></td>
+<td>Habilitar la emisión de documentos desde archivos en formato xml</td>
+</tr>
+<tr>
+<td>update_control_table<p class="dt-data-param-required">requerido</p></td>
+<td>Habilitar el control de los documentos emitidos desde la tabla de Control</td>
+</tr>
+</tbody></table>
 <h3 id='databasesource'>[DatabaseSource]</h3>
 <p>Revisa la sección de configuración de <a href="#base-de-datos">base de datos</a> para más
 información</p>
+<h3 id='log'>[Log]</h3>
+<p>Esta configuración permite el registro de actividades dentro de la aplicación.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>level<p class="dt-data-param-required">requerido</p></td>
+<td>Nivel de los registros (En el caso de que se esté configurando por primera vez la aplicación se recomienda mantener el nivel de <code>DEBUG</code>)<br>Valores posibles: <code>INFO</code>, <code>DEBUG</code> y <code>ERROR</code>.</td>
+</tr>
+<tr>
+<td>interval<p class="dt-data-param-required">requerido</p></td>
+<td>Intervalo de tiempo en horas que se genera un nuevo archivo de registros</td>
+</tr>
+<tr>
+<td>backup_count<p class="dt-data-param-required">requerido</p></td>
+<td>Cantidad de archivos de registros guardados</td>
+</tr>
+</tbody></table>
+<h3 id='sync'>[Sync]</h3>
+<p>Esta configuración hace referencia a la sincronización de documentos de forma general en la aplicación.</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled<p class="dt-data-param-required">requerido</p></td>
+<td>Habilitar la sincronización de documentos</td>
+</tr>
+<tr>
+<td>update_tables</td>
+<td>Habilitar la actualización de tablas cuando se sincronicen los documentos</td>
+</tr>
+<tr>
+<td>download_files</td>
+<td>Habilitar la descarga de archivos cuando se sincronicen los documentos</td>
+</tr>
+</tbody></table>
+<h3 id='eventtypecodes'>[EventTypeCodes]</h3>
+<p>Para esta configuración se debe especificar el nombre del documento con el evento y como valor se le asigna el código numérico del evento.<br>
+Ejemplo:<br>
+<code>invoice.issued = 21</code><br>
+<code>invoice.received = 11</code><br>
+<p class="dt-data-param-required">requerido</p></p>
 <h3 id='scheduler'>[Scheduler]</h3>
 <p>Las tareas de emisión, consulta y sincronización se ejecutan al iniciar el
 servicio y luego esperan el tiempo establecido por estos parámetros antes de
@@ -1573,19 +1648,60 @@ que verás en el campo <code>company_name</code> una vez que Link empiece a func
 inserte registros en la tabla de control.
 Utiliza sólo letras, números, guiones o sub-guiones para el nombre del archivo.
 Ejemplo: <code>acme_inc</code></p>
-<h3 id='general'>[General]</h3>
+<h3 id='general-2'>[General]</h3>
 <p>En la sección <code>[General]</code> configura el parámetro <code>ruc</code> con el ruc de la empresa.</p>
+
+<table><thead>
+<tr>
+<th>Parámetros</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled<p class="dt-data-param-required">requerido</p></td>
+<td>Habilitar la emisión de documentos para la compañía</td>
+</tr>
+<tr>
+<td>ruc<p class="dt-data-param-required">requerido</p></td>
+<td>RUC de la compañía que emitirá los documentos</td>
+</tr>
+</tbody></table>
 <h3 id='api'>[Api]</h3>
-<p>En la sección <code>[Api]</code> configura el parámetro <code>xkey</code> con el <em>API key</em> de Dátil y
-<code>xpassword</code> con la clave del certificado de firma electrónica, <code>environment</code>
-con el valor <code>1</code> para emisión en modo de pruebas o <code>2</code> para emitir en producción.</p>
+<p>En la sección <code>[Api]</code> configuran los siguientes parámetros:</p>
+
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>xkey<p class="dt-data-param-required">requerido</p></td>
+<td>string</td>
+<td>API Key para emitir documentos. Esta información se encuentra en la configuración de la compañía en el portal web</td>
+</tr>
+<tr>
+<td>xpassword<p class="dt-data-param-required">requerido</p></td>
+<td>string</td>
+<td>Contraseña del certificado de firma electrónica</td>
+</tr>
+<tr>
+<td>environment<p class="dt-data-param-required">requerido</p></td>
+<td>integer</td>
+<td>Pruebas: <code>1</code>.<br>Producción <code>2</code>.</td>
+</tr>
+</tbody></table>
 <h3 id='issuefromdatabase'>[IssueFromDatabase]</h3>
 <p>Los parámetros de esta sección te permiten encender o apagar la <em>tarea de emisión</em>
 desde la base de datos para cada tipo de comprobante para esta compañía. Los
 posibles valores para estos parámetros son <code>yes</code> o <code>no</code>. El valor <code>yes</code> le
-indica a Link que debe encender la tarea y <code>no</code> que debe apagarla.</p>
+indica a Link que debe encender la tarea y <code>no</code> que debe apagarla.<br>
+Ejemplo: <code>credit_note = yes</code></p>
 <h3 id='issuefromxml'>[IssueFromXml]</h3>
-<p>Estos parámetros permiten encender o apagar la <em>tarea de emisión por xml</em>.</p>
+<p>Estos parámetros permiten encender o apagar la <em>tarea de emisión por xml</em> desde archivos con el formato XML para cada tipo de comprobante para esta compañía. Los posibles valores para estos parámetros son <code>yes</code> o <code>no</code>. El valor <code>yes</code> le
+indica a Link que debe encender la tarea y <code>no</code> que debe apagarla.<br>
+Ejemplo: <code>invoice = yes</code></p>
 <h3 id='read'>[Read]</h3>
 <p>Estos parámetros permiten encender o apagar la <em>tarea de consulta</em> de
 autorización.</p>
@@ -1594,7 +1710,11 @@ autorización.</p>
 información.</p>
 <h3 id='xmlsource'>[XmlSource]</h3>
 <p>Configuración de las rutas de los directorios donde se encuentran los archivos
-XML. Esto aplica para la emisión por XML.</p>
+XML. Esto aplica para la emisión por XML. Para esta configuración se debe especificar el nombre del documento y como valor se le asigna la ruta en la que se encuentra el tipo de documento.<br>
+Ejemplo: <code>invoice = C:\\Program Files\Facturas</code></p>
+<h3 id='xmlsourcepattern'>[XmlSourcePattern]</h3>
+<p>Configuración del patrón del nombre de los archivos XML que contienen la información de los documentos a emitirse. Para esta configuración se debe especificar el nombre del documento y como valor la asignación del prefijo asociado al archivo XML.<br>
+Ejemplo: <code>invoice = FA</code></p>
 <h3 id='sincronizacion-y-eventos'>Sincronización y Eventos</h3>
 <p>Link tiene la habilidad de suscribirse a <a href="https://datil.dev/next/events">eventos</a>
 emitidos por Datil y ejecutar sentencias SQL y descargar archivos. Cualquier

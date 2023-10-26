@@ -406,7 +406,7 @@
 </tr>
 <tr>
 <td>impuestos</td>
-<td>listado list of <a href="#tax-line-item">tax line item</a> objects</td>
+<td>listado list of <a href="#tax-item">tax line item</a> objects</td>
 <td>Taxes for the item. <strong>Required</strong></td>
 </tr>
 <tr>

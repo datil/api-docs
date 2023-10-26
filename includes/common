@@ -1227,6 +1227,138 @@ participan en la comercialización de periódicos y/o revistas.</p>
 <td>Comprobante de Retención</td>
 <td>07</td>
 </tr>
+<tr>
+<td>Boletos o entradas a espectáculos públicos</td>
+<td>08</td>
+</tr>
+<tr>
+<td>Tiquetes o vales emitidos por máquinas registradoras</td>
+<td>09</td>
+</tr>
+<tr>
+<td>Pasajes expedidos por empresas de aviación</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Documentos emitidos por instituciones financieras</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Comprobante de venta emitido en el Exterior</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Formulario Único de Exportación (FUE) o Declaración Aduanera Única (DAU) o Declaración Andina de Valor (DAV)</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Documentos autorizados utilizados en ventas excepto N/C N/D</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Comprobantes de Pago de Cuotas o Aportes</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Documentos por Servicios Administrativos emitidos por Inst. del Estado</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Carta de Porte Aéreo</td>
+<td>21</td>
+</tr>
+<tr>
+<td>RECAP</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Nota de Crédito TC</td>
+<td>23</td>
+</tr>
+<tr>
+<td>Nota de Débito TC</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Comprobante de venta emitido por reembolso</td>
+<td>41</td>
+</tr>
+<tr>
+<td>Documento retención presuntiva y retención emitida por propio vendedor o por intermediario</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Liquidación para Explotación y Exploración de Hidrocarburos</td>
+<td>43</td>
+</tr>
+<tr>
+<td>Comprobante de Contribuciones y Aportes</td>
+<td>44</td>
+</tr>
+<tr>
+<td>Liquidación por reclamos de aseguradoras</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Nota de Crédito por Reembolso Emitida por Intermediario</td>
+<td>47</td>
+</tr>
+<tr>
+<td>Nota de Débito por Reembolso Emitida por Intermediario</td>
+<td>48</td>
+</tr>
+<tr>
+<td>Proveedor Directo de Exportador Bajo Régimen Especial</td>
+<td>49</td>
+</tr>
+<tr>
+<td>A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta</td>
+<td>50</td>
+</tr>
+<tr>
+<td>N/C A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta</td>
+<td>51</td>
+</tr>
+<tr>
+<td>N/D A Inst. Estado y Empr. Públicas que percibe ingreso exento de Imp. Renta</td>
+<td>52</td>
+</tr>
+<tr>
+<td>Liquidación de compra de Bienes Muebles Usados</td>
+<td>294</td>
+</tr>
+<tr>
+<td>Liquidación de compra de vehículos usados</td>
+<td>344</td>
+</tr>
+<tr>
+<td>Acta Entrega-Recepción PET</td>
+<td>364</td>
+</tr>
+<tr>
+<td>Factura operadora transporte / socio</td>
+<td>370</td>
+</tr>
+<tr>
+<td>Comprobante socio a operadora de transporte</td>
+<td>371</td>
+</tr>
+<tr>
+<td>Nota de crédito operadora transporte / socio</td>
+<td>372</td>
+</tr>
+<tr>
+<td>Nota de débito operadora transporte / socio</td>
+<td>373</td>
+</tr>
+<tr>
+<td>Nota de débito operadora transporte / socio</td>
+<td>374</td>
+</tr>
+<tr>
+<td>Liquidación de compra RISE de bienes o prestación de servicios</td>
+<td>375</td>
+</tr>
 </tbody></table>
 <h2 id='tipos-de-forma-de-pago'>Tipos de forma de pago</h2>
 <table><thead>
