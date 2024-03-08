@@ -31,8 +31,12 @@ Porcentaje de IVA | Código | Tarifa
 0%     | 0 |  0
 12%      | 2 | 12
 14%   | 3 | 14
+15%     | 4 | 15
+5%      | 5 | 5
 No Objeto de Impuesto   | 6 | -
 Exento de IVA   | 7 | -
+IVA diferenciado | 8 | -
+13%     | 10 | 13
 
 
 ## Tipos de impuesto para la retención
