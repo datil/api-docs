@@ -89,3 +89,11 @@ Para emitir o re-emitir un comprobante se requiere también la clave del certifi
 de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 `X-Password: <clave-certificado-firma>`
+
+# Idempotencia
+
+La emisión y re-emisión de facturas admite la idempotencia para reintentar el envío de manera segura y así evitar la duplicación de facturas.
+Para enviar una petición idempotente se debe agregar el encabezado `Idempotency-key`. 
+
+El key de idempotencia es almacenado y todas las peticiones subsecuentes retornan la misma respuesta. El key de idempotencia debe ser
+una cadena de texto de 16 a 48 caracteres el cual puede ser un UUID v4 o un nano-id.

@@ -22,6 +22,7 @@ includes:
   - next/es/ec/sales
   - next/es/ec/sales/invoices
   - next/es/ec/sales/credit-notes
+  - next/es/ec/sales/withholdings
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
   - next/es/ec/purchases/credit-notes

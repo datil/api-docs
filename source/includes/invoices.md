@@ -407,7 +407,8 @@ Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la factura. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. Revisar las [monedas permitidas](#monedas) __Requerido__
+tasa_cambio | float | Tasa de cambio a USD de la moneda enviada. Requerido cuando la moneda no sea `USD`
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 guia_remision | string (17 caracteres) | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
@@ -426,6 +427,7 @@ pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago apli
 credito | Objeto de tipo [credito](#credito) | Información del crédito directo otorgado al cliente.
 compensaciones | Objeto de tipo [compensación solidaria](#compensacion-solidaria) | __Solo__ para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana
 exportacion | Objeto de tipo [exportacion](#exportacion) | __Solo__ para facturas de exportación
+negociable | boolean | `true` si la factura es negociable. 
 
 #### Totales
 
