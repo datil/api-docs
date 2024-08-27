@@ -428,6 +428,7 @@ credito | Objeto de tipo [credito](#credito) | Información del crédito directo
 compensaciones | Objeto de tipo [compensación solidaria](#compensacion-solidaria) | __Solo__ para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana
 exportacion | Objeto de tipo [exportacion](#exportacion) | __Solo__ para facturas de exportación
 negociable | boolean | `true` si la factura es negociable. 
+enviar_recordatorio_pago | boolean | `true` si se desea enviar recordatorios de pago. Solo se envían recordatorios de pago para facturas a crédito
 
 #### Totales
 
@@ -1660,6 +1661,194 @@ total_sin_impuestos | float | Total antes de los impuestos sin incluir el descue
 descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
 importe_total       | float | Total incluyendo impuestos. __Requerido__
 impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
+
+## Emisión de una factura de exportación a partir del XML
+
+### Operación
+
+`POST /invoices/issue/xml`
+
+### Requerimiento a partir de XML
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/invoices/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<factura id= \"comprobante\" version= \"1.1.0\">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Angel Arreaga</razonSocial>
+        <nombreComercial>XYZ</nombreComercial>
+        <ruc>0953239092002</ruc>
+        <claveAcceso>None</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>002</estab>
+        <ptoEmi>003</ptoEmi>
+        <secuencial>000098431</secuencial>
+        <dirMatriz>Mucho Lote 1</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>17/10/2019</fechaEmision>
+        <dirEstablecimiento>Mucho Lote 1</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>DATILMEDIA S.A.</razonSocialComprador>
+        <identificacionComprador>0992712554001</identificacionComprador>
+        <direccionComprador>Entre Guayacanes e Higueras, Guayaquil, Ecuador</direccionComprador>
+        <totalSinImpuestos>12.00</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <baseImponible>12.00</baseImponible>
+                <valor>1.44</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>13.44</importeTotal>
+        <moneda>DOLAR</moneda>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>105AP1</codigoPrincipal>
+            <descripcion>Aceite Protector Madera</descripcion>
+            <cantidad>1.000000</cantidad>
+            <precioUnitario>12.000000</precioUnitario>
+            <unidadMedida>Litro</unidadMedida>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12.00</tarifa>
+                    <baseImponible>12.00</baseImponible>
+                    <valor>1.44</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+   <exportacion>
+        <incoTerm>CIF</incoTerm>
+        <incoTermLugar>Guayaquil - Ecuador</incoTermLugar>
+        <paisOrigen>EC</paisOrigen>
+        <puertoOrigen>Guayaquil - Ecuador</puertoOrigen>
+        <paisDestino>PE</paisDestino>
+        <incoTermTotalSinImpuestos>CIF</incoTermTotalSinImpuestos>
+        <puertoDestino>CHIMBOTE - PERU</puertoDestino>
+        <paisAdquisicion>EC</paisAdquisicion>
+        <fleteInternacional>1000.00</fleteInternacional>
+        <seguroInternacional>200.00</seguroInternacional>
+        <gastosAduaneros>100</gastosAduaneros>
+        <gastosTransporteOtros>350.00</gastosTransporteOtros>
+    </exportacion>
+</factura>"}'
+```
+
+```python
+import requests, json
+
+factura = {
+    "xml" : '''<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+  <factura id= \"comprobante\" version= \"1.1.0\">
+      <infoTributaria>
+          <ambiente>1</ambiente>
+          <tipoEmision>1</tipoEmision>
+          <razonSocial>Angel Arreaga</razonSocial>
+          <nombreComercial>XYZ</nombreComercial>
+          <ruc>0953239092002</ruc>
+          <claveAcceso>None</claveAcceso>
+          <codDoc>01</codDoc>
+          <estab>002</estab>
+          <ptoEmi>003</ptoEmi>
+          <secuencial>000098431</secuencial>
+          <dirMatriz>Mucho Lote 1</dirMatriz>
+      </infoTributaria>
+      <infoFactura>
+          <fechaEmision>17/10/2019</fechaEmision>
+          <dirEstablecimiento>Mucho Lote 1</dirEstablecimiento>
+          <obligadoContabilidad>NO</obligadoContabilidad>
+          <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+          <razonSocialComprador>DATILMEDIA S.A.</razonSocialComprador>
+          <identificacionComprador>0992712554001</identificacionComprador>
+          <direccionComprador>Entre Guayacanes e Higueras, Guayaquil, Ecuador</direccionComprador>
+          <totalSinImpuestos>12.00</totalSinImpuestos>
+          <totalDescuento>0.00</totalDescuento>
+          <totalConImpuestos>
+              <totalImpuesto>
+                  <codigo>2</codigo>
+                  <codigoPorcentaje>2</codigoPorcentaje>
+                  <baseImponible>12.00</baseImponible>
+                  <valor>1.44</valor>
+              </totalImpuesto>
+          </totalConImpuestos>
+          <propina>0.00</propina>
+          <importeTotal>13.44</importeTotal>
+          <moneda>DOLAR</moneda>
+      </infoFactura>
+      <detalles>
+          <detalle>
+              <codigoPrincipal>105AP1</codigoPrincipal>
+              <descripcion>Aceite Protector Madera</descripcion>
+              <cantidad>1.000000</cantidad>
+              <precioUnitario>12.000000</precioUnitario>
+              <unidadMedida>Litro</unidadMedida>
+              <descuento>0.00</descuento>
+              <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
+              <impuestos>
+                  <impuesto>
+                      <codigo>2</codigo>
+                      <codigoPorcentaje>2</codigoPorcentaje>
+                      <tarifa>12.00</tarifa>
+                      <baseImponible>12.00</baseImponible>
+                      <valor>1.44</valor>
+                  </impuesto>
+              </impuestos>
+          </detalle>
+      </detalles>
+    <exportacion>
+          <incoTerm>CIF</incoTerm>
+          <incoTermLugar>Guayaquil - Ecuador</incoTermLugar>
+          <paisOrigen>EC</paisOrigen>
+          <puertoOrigen>Guayaquil - Ecuador</puertoOrigen>
+          <paisDestino>PE</paisDestino>
+          <incoTermTotalSinImpuestos>CIF</incoTermTotalSinImpuestos>
+          <puertoDestino>CHIMBOTE - PERU</puertoDestino>
+          <paisAdquisicion>EC</paisAdquisicion>
+          <fleteInternacional>1000.00</fleteInternacional>
+          <seguroInternacional>200.00</seguroInternacional>
+          <gastosAduaneros>100</gastosAduaneros>
+          <gastosTransporteOtros>350.00</gastosTransporteOtros>
+      </exportacion>
+  </factura>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/invoices/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(factura))
+```
+
+```csharp
+```
+
+Para la emisión de una factura a partir de un XML se debe enviar el XML como parámetro en el cuerpo del requerimiento en formato JSON.
+Este XML debe cumplir con la especificación del SRI
+
+
+Parámetro   | Tipo    | Descripción
+----------- | ------- | ----------
+xml         | string  | Contenido del archivo xml. __Requerido__
 
 ## Consulta de una factura
 
