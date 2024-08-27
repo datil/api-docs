@@ -625,7 +625,7 @@ CREATE TABLE [notas_de_debito].[totales_impuestos] (
     [codigo_porcentaje] [varchar](2) NOT NULL,
     [base_imponible] [decimal](14,2) NOT NULL,
     [valor] [decimal](14,2) NOT NULL,
-    [tarida] [decimal](14,2) NOT NULL,
+    [tarifa] [decimal](14,2) NOT NULL,
     CONSTRAINT PK_total_impuesto PRIMARY KEY (id_nota_debito, codigo, codigo_porcentaje)
 )
 

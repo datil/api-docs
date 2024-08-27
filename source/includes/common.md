@@ -523,3 +523,213 @@ Tipo | Código
 ---- |-----------
 Personal natural |  01
 Sociedad |  02
+
+## Monedas
+
+Nombre | Código
+-------|---------
+DOLAR  | USD
+EURO   | EUR
+
+# Consulta de catálogo
+
+## Tipos de identificación
+Consulta el catálogo de tipos de identificación disponibles.
+
+### Operación
+
+`GET /catalog/id-types`
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/catalog/id-types \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" 
+```
+
+### Respuesta
+Retorna una lista con el código y nombre de cada tipo de identificación
+
+> #### Respuesta de ejemplo 
+
+``` json
+{
+  "count": 6,
+  "results": [
+    {
+      "nombre": "PLACA",
+      "codigo": "09"
+    },
+    {
+      "nombre": "CONSUMIDOR FINAL",
+      "codigo": "07"
+    },
+    {
+      "nombre": "RUC",
+      "codigo": "04"
+    },
+    {
+      "nombre": "IDENTIFICACIONDELEXTERIOR",
+      "codigo": "08"
+    },
+    {
+      "nombre": "CEDULA",
+      "codigo": "05"
+    },
+    {
+      "nombre": "PASAPORTE",
+      "codigo": "06"
+    }
+  ]
+}
+```
+
+## Códigos de retención
+Consulta el catálogo de códigos de porcentaje de retención disponibles para el código enviado
+
+### Operación 
+
+`GET /catalog/withholdings-tax-rates/<tipo_impuesto>`
+
+### Requerimiento
+
+Reemplaza en la ruta `<tipo_impuesto>` por el código de **[tipo de impuesto](#tipos-de-impuesto)**
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/withholdings-tax-rates/2 \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" 
+```
+
+### Respuesta
+Retorna una lista de códigos de porcentajes de retención en base al código enviado.
+
+> #### Respuesta de ejemplo 
+
+``` json
+{
+  "count": 6,
+  "results": [
+    {
+      "nombre": "RETENCIÓN DE IVA 70%",
+      "codigo": "2",
+      "porcentaje": "70.00"
+    },
+    {
+      "nombre": "RETENCIÓN DE IVA 30%",
+      "codigo": "1",
+      "porcentaje": "30.00"
+    },
+    {
+      "nombre": "RETENCIÓN EN 0%",
+      "codigo": "7",
+      "porcentaje": "0.00"
+    },
+    {
+      "nombre": "RETENCIÓN DE IVA 10%",
+      "codigo": "9",
+      "porcentaje": "10.00"
+    },
+    {
+      "nombre": "RETENCIÓN DE IVA 20%",
+      "codigo": "10",
+      "porcentaje": "20.00"
+    },
+    {
+      "nombre": "NO PROCEDE RETENCIÓN",
+      "codigo": "8",
+      "porcentaje": "0.00"
+    }
+  ]
+}
+```
+
+## Tipos de documento
+Consulta el catálogo de tipos de documento disponibles.
+
+### Operación 
+
+`GET /catalog/document-types`
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/catalog/document-types \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" 
+```
+
+### Respuesta
+Retorna una lista de **[tipos de documento](#tipos-de-documentos)**
+
+> #### Respuesta de ejemplo 
+
+``` json
+{
+  "count": 3,
+  "results": [
+    {
+      "nombre": "FACTURA",
+      "codigo": "01"
+    },
+    {
+      "nombre": "NOTA DEBITO",
+      "codigo": "05"
+    },
+    {
+      "nombre": "LIQ. COMPRAS",
+      "codigo": "03"
+    }
+  ]
+}
+```
+
+## Porcentajes de impuesto
+Consulta los porcentajes del impuesto enviado.
+
+### Operación 
+
+`GET /catalog/sales-tax-rates/<tipo_impuesto>`
+
+### Requerimiento
+
+Reemplaza en la ruta `<tipo_impuesto>` por el código de **[tipo de impuesto](#tipos-de-impuesto)**
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/catalog/sales-tax-rates/2 \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" 
+```
+
+### Respuesta
+Retorna una lista con los códigos de porcentaje del impuesto enviado
+
+> #### Respuesta de ejemplo 
+
+``` json
+{
+  "count": 3,
+  "results": [
+    {
+      "nombre": "IVA 15%",
+      "tarifa": "15.00",
+      "codigo_porcentaje": "4"
+    },
+    {
+      "nombre": "IVA 0%",
+      "tarifa": "0.00",
+      "codigo_porcentaje": "0"
+    },
+    {
+      "nombre": "IVA NO OBJETO DE IMPUESTO",
+      "tarifa": "0.00",
+      "codigo_porcentaje": "6"
+    }
+  ]
+}
+```
