@@ -490,16 +490,6 @@
 <td>14</td>
 </tr>
 <tr>
-<td>15%</td>
-<td>4</td>
-<td>15</td>
-</tr>
-<tr>
-<td>5%</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
 <td>Not subject to tax</td>
 <td>6</td>
 <td>-</td>
@@ -508,16 +498,6 @@
 <td>Exempt from VAT</td>
 <td>7</td>
 <td>-</td>
-</tr>
-<tr>
-<td>Differentiated VAT</td>
-<td>8</td>
-<td>-</td>
-</tr>
-<tr>
-<td>13%</td>
-<td>10</td>
-<td>13</td>
 </tr>
 </tbody></table>
 <h2 id='withholding-tax-types'>Withholding tax types</h2>

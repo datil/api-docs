@@ -1567,3 +1567,185 @@ las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con ut
 <td>02</td>
 </tr>
 </tbody></table>
+<h2 id='monedas'>Monedas</h2>
+<table><thead>
+<tr>
+<th>Nombre</th>
+<th>Código</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DOLAR</td>
+<td>USD</td>
+</tr>
+<tr>
+<td>EURO</td>
+<td>EUR</td>
+</tr>
+</tbody></table>
+<h1 id='consulta-de-catalogo'>Consulta de catálogo</h1><h2 id='tipos-de-identificacion'>Tipos de identificación</h2>
+<p>Consulta el catálogo de tipos de identificación disponibles.</p>
+<h3 id='operacion'>Operación</h3>
+<p><code>GET /catalog/id-types</code></p>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/catalog/id-types <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> 
+</code></pre><h3 id='respuesta'>Respuesta</h3>
+<p>Retorna una lista con el código y nombre de cada tipo de identificación</p>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLACA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONSUMIDOR FINAL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDENTIFICACIONDELEXTERIOR"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CEDULA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PASAPORTE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='codigos-de-retencion'>Códigos de retención</h2>
+<p>Consulta el catálogo de códigos de porcentaje de retención disponibles para el código enviado</p>
+<h3 id='operacion-2'>Operación</h3>
+<p><code>GET /catalog/withholdings-tax-rates/&lt;tipo_impuesto&gt;</code></p>
+<h3 id='requerimiento'>Requerimiento</h3>
+<p>Reemplaza en la ruta <code>&lt;tipo_impuesto&gt;</code> por el código de <strong><a href="#tipos-de-impuesto">tipo de impuesto</a></strong></p>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-2'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/withholdings-tax-rates/2 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> 
+</code></pre><h3 id='respuesta-2'>Respuesta</h3>
+<p>Retorna una lista de códigos de porcentajes de retención en base al código enviado.</p>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo-2'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETENCIÓN DE IVA 70%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETENCIÓN DE IVA 30%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETENCIÓN EN 0%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETENCIÓN DE IVA 10%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETENCIÓN DE IVA 20%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO PROCEDE RETENCIÓN"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='tipos-de-documento'>Tipos de documento</h2>
+<p>Consulta el catálogo de tipos de documento disponibles.</p>
+<h3 id='operacion-3'>Operación</h3>
+<p><code>GET /catalog/document-types</code></p>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-3'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/catalog/document-types <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> 
+</code></pre><h3 id='respuesta-3'>Respuesta</h3>
+<p>Retorna una lista de <strong><a href="#tipos-de-documentos">tipos de documento</a></strong></p>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo-3'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTURA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOTA DEBITO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIQ. COMPRAS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='porcentajes-de-impuesto'>Porcentajes de impuesto</h2>
+<p>Consulta los porcentajes del impuesto enviado.</p>
+<h3 id='operacion-4'>Operación</h3>
+<p><code>GET /catalog/sales-tax-rates/&lt;tipo_impuesto&gt;</code></p>
+<h3 id='requerimiento-2'>Requerimiento</h3>
+<p>Reemplaza en la ruta <code>&lt;tipo_impuesto&gt;</code> por el código de <strong><a href="#tipos-de-impuesto">tipo de impuesto</a></strong></p>
+
+<blockquote>
+<h4 id='requerimiento-de-ejemplo-4'>Requerimiento de ejemplo</h4></blockquote>
+<pre class="highlight shell tab-shell"><code>curl -v https://link.datil.co/catalog/sales-tax-rates/2 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Key: &lt;API-key&gt;"</span> 
+</code></pre><h3 id='respuesta-4'>Respuesta</h3>
+<p>Retorna una lista con los códigos de porcentaje del impuesto enviado</p>
+
+<blockquote>
+<h4 id='respuesta-de-ejemplo-4'>Respuesta de ejemplo</h4></blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 15%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA 0%"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IVA NO OBJETO DE IMPUESTO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tarifa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codigo_porcentaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
