@@ -244,10 +244,10 @@ Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | string | Número de secuencia de la guía de remisión. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-direccion_partida | string | Dirección de partida
-transportista | objeto tipo [transportista](#transportista) | Información de la persona que transporta la carga
+fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+direccion_partida | string | Dirección de partida. __Requerido__
+transportista | objeto tipo [transportista](#transportista) | Información de la persona que transporta la carga. __Requerido__
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
@@ -264,23 +264,23 @@ identificacion | string | De 5 a 20 caracteres. __Requerido__
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
 email | string | Correo electrónico del destinatario.
 telefono | string | Teléfono.
-direccion | string | Dirección
+direccion | string | Dirección. __Requerido__
 ruta | string | Ruta de transporte. Máximo 300 caracteres.
 documento_aduanero_unico | string | Máximo 20 caracteres.
-fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
-codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega. Ejm: 002 __Requerido__
-tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098
+codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega. Ejm: 002
+tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos).
 motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
 numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
-items | arreglo de objetos tipo [item destinatario](#item-destinatario) | Items transportados
+items | arreglo de objetos tipo [item destinatario](#item-destinatario) | Items transportados. __Requerido__
 
 #### Item destinatario
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 descripcion | string | Descripción del ítem. __Requerido__
-codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres. __Requerido__
 codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
 cantidad | float (hasta 6 cifras decimales) | Cantidad de items. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
@@ -292,10 +292,10 @@ Parámetro | Tipo | Descripción
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono.
 direccion | string | Dirección
-placa | string | Placa del vehículo
+placa | string | Placa del vehículo. __Requerido__
 
 ### Respuesta
 

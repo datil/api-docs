@@ -169,8 +169,12 @@ Percentage| Code | Rate
 0%     | 0 |  0
 12%      | 2 | 12
 14%   | 3 | 14
+15%     | 4 | 15
+5%      | 5 | 5
 Not subject to tax   | 6 | -
 Exempt from VAT  | 7 | -
+Differentiated VAT | 8 | -
+13%     | 10 | 13
 
 ## Withholding tax types
 
