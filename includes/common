@@ -1550,7 +1550,8 @@ participan en la comercialización de periódicos y/o revistas.</p>
 </tbody></table>
 
 <p>Debido a que el Servicio de Rentas Internas exige incluir información del pago,
-las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;.</p>
+las facturas a crédito se enviarán al SRI con forma de pago &quot;Otros con utilización del sistema financiero&quot;,
+a menos que se envíe otro código de tipo de pago.</p>
 <h2 id='tipo-de-proveedor'>Tipo de proveedor</h2>
 <table><thead>
 <tr>
