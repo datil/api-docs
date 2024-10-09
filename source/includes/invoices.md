@@ -457,6 +457,7 @@ Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
 fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 monto               | float   | Monto otorgado de crédito. __Requerido__
+medio               | string  | Ver [tabla](#tipos-de-forma-de-pago) de tipos de forma de pago
 
 #### Compensación solidaria
 
@@ -510,7 +511,8 @@ otros_gastos_transporte   | float  | Total de otros gastos de transporte.
 
 <aside class="notice">
 La información de crédito será enviada como forma de pago al Servicio de
-Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
+Rentas Internas (SRI) con el código 20, Con utilización del sistema financiero, en
+caso que no se especifíque un código de tipo de pago en el crédito de la factura
 </aside>
 
 ### Respuesta

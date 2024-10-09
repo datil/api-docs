@@ -515,7 +515,8 @@ Otros | otros | Otros con utilización del sistema financiero | 20
 Endoso de títulos | endoso_titulos | Endoso de títulos | 21
 
 Debido a que el Servicio de Rentas Internas exige incluir información del pago,
-las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero".
+las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero",
+a menos que se envíe otro código de tipo de pago.
 
 ## Tipo de proveedor
 
