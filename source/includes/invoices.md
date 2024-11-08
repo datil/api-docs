@@ -1680,77 +1680,97 @@ curl -v https://link.datil.co/invoices/issue/xml \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{"xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<factura id= \"comprobante\" version= \"1.1.0\">
-    <infoTributaria>
-        <ambiente>1</ambiente>
-        <tipoEmision>1</tipoEmision>
-        <razonSocial>Angel Arreaga</razonSocial>
-        <nombreComercial>XYZ</nombreComercial>
-        <ruc>0953239092002</ruc>
-        <claveAcceso>None</claveAcceso>
-        <codDoc>01</codDoc>
-        <estab>002</estab>
-        <ptoEmi>003</ptoEmi>
-        <secuencial>000098431</secuencial>
-        <dirMatriz>Mucho Lote 1</dirMatriz>
-    </infoTributaria>
-    <infoFactura>
-        <fechaEmision>17/10/2019</fechaEmision>
-        <dirEstablecimiento>Mucho Lote 1</dirEstablecimiento>
-        <obligadoContabilidad>NO</obligadoContabilidad>
-        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
-        <razonSocialComprador>DATILMEDIA S.A.</razonSocialComprador>
-        <identificacionComprador>0992712554001</identificacionComprador>
-        <direccionComprador>Entre Guayacanes e Higueras, Guayaquil, Ecuador</direccionComprador>
-        <totalSinImpuestos>12.00</totalSinImpuestos>
-        <totalDescuento>0.00</totalDescuento>
-        <totalConImpuestos>
-            <totalImpuesto>
-                <codigo>2</codigo>
-                <codigoPorcentaje>2</codigoPorcentaje>
-                <baseImponible>12.00</baseImponible>
-                <valor>1.44</valor>
-            </totalImpuesto>
-        </totalConImpuestos>
-        <propina>0.00</propina>
-        <importeTotal>13.44</importeTotal>
-        <moneda>DOLAR</moneda>
-    </infoFactura>
-    <detalles>
-        <detalle>
-            <codigoPrincipal>105AP1</codigoPrincipal>
-            <descripcion>Aceite Protector Madera</descripcion>
-            <cantidad>1.000000</cantidad>
-            <precioUnitario>12.000000</precioUnitario>
-            <unidadMedida>Litro</unidadMedida>
-            <descuento>0.00</descuento>
-            <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
-            <impuestos>
-                <impuesto>
+<factura id=\"comprobante\" version=\"1.1.0\">
+        <infoTributaria>
+            <ambiente>1</ambiente>
+            <tipoEmision>1</tipoEmision>
+            <razonSocial>XYZ</razonSocial>
+            <nombreComercial>XYZ</nombreComercial>
+            <ruc>0999999999001</ruc>
+            <codDoc>01</codDoc>
+            <estab>001</estab>
+            <ptoEmi>001</ptoEmi>
+            <secuencial>000000001</secuencial>
+            <dirMatriz>Dummy street 123</dirMatriz>
+        </infoTributaria>
+        <infoFactura>
+            <fechaEmision>17/10/2024</fechaEmision>
+            <dirEstablecimiento>Dummy street 123</dirEstablecimiento>
+            <obligadoContabilidad>SI</obligadoContabilidad>
+            <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+            <razonSocialComprador>Juan Perez xyz</razonSocialComprador>
+            <identificacionComprador>0911223344001</identificacionComprador>
+            <direccionComprador>Dummy street 321</direccionComprador>
+            <totalSinImpuestos> 25930.34</totalSinImpuestos>
+            <totalDescuento>0.00</totalDescuento>
+            <codDocReembolso>41</codDocReembolso>
+            <totalComprobantesReembolso> 1380.00</totalComprobantesReembolso>
+            <totalBaseImponibleReembolso> 1200.00</totalBaseImponibleReembolso>
+            <totalImpuestoReembolso> 180.00</totalImpuestoReembolso>
+            <totalConImpuestos>
+                <totalImpuesto>
                     <codigo>2</codigo>
-                    <codigoPorcentaje>2</codigoPorcentaje>
-                    <tarifa>12.00</tarifa>
-                    <baseImponible>12.00</baseImponible>
-                    <valor>1.44</valor>
-                </impuesto>
-            </impuestos>
-        </detalle>
-    </detalles>
-   <exportacion>
-        <incoTerm>CIF</incoTerm>
-        <incoTermLugar>Guayaquil - Ecuador</incoTermLugar>
-        <paisOrigen>EC</paisOrigen>
-        <puertoOrigen>Guayaquil - Ecuador</puertoOrigen>
-        <paisDestino>PE</paisDestino>
-        <incoTermTotalSinImpuestos>CIF</incoTermTotalSinImpuestos>
-        <puertoDestino>CHIMBOTE - PERU</puertoDestino>
-        <paisAdquisicion>EC</paisAdquisicion>
-        <fleteInternacional>1000.00</fleteInternacional>
-        <seguroInternacional>200.00</seguroInternacional>
-        <gastosAduaneros>100</gastosAduaneros>
-        <gastosTransporteOtros>350.00</gastosTransporteOtros>
-    </exportacion>
-</factura>"}'
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <baseImponible> 25930.34</baseImponible>
+                    <tarifa> 15</tarifa>
+                    <valor> 3889.55</valor>
+                </totalImpuesto>
+            </totalConImpuestos>
+            <propina>0.00</propina>
+            <importeTotal> 29819.89</importeTotal>
+            <moneda>DOLAR</moneda>
+            <pagos>
+                <pago>
+                    <formaPago>20</formaPago>
+                    <total> 29819.89</total>
+                    <plazo> 0</plazo>
+                    <unidadTiempo>DIAS</unidadTiempo>
+                </pago>
+            </pagos>
+        </infoFactura>
+        <detalles>
+            <detalle>
+                <codigoPrincipal>ABC</codigoPrincipal>
+                <descripcion>Reembolso</descripcion>
+                <cantidad> 1.000</cantidad>
+                <precioUnitario> 25930.34</precioUnitario>
+                <descuento>0.00</descuento>
+                <precioTotalSinImpuesto> 25930.34</precioTotalSinImpuesto>
+                <impuestos>
+                    <impuesto>
+                        <codigo>2</codigo>
+                        <codigoPorcentaje>4</codigoPorcentaje>
+                        <tarifa>15</tarifa>
+                        <baseImponible> 25930.34</baseImponible>
+                        <valor> 3889.55</valor>
+                    </impuesto>
+                </impuestos>
+            </detalle>
+        </detalles>
+        <reembolsos>
+            <reembolsoDetalle>
+                <tipoIdentificacionProveedorReembolso>04</tipoIdentificacionProveedorReembolso>
+                <identificacionProveedorReembolso>0993258997001</identificacionProveedorReembolso>
+                <codPaisPagoProveedorReembolso>593</codPaisPagoProveedorReembolso>
+                <tipoProveedorReembolso>02</tipoProveedorReembolso>
+                <codDocReembolso>01</codDocReembolso>
+                <estabDocReembolso>001</estabDocReembolso>
+                <ptoEmiDocReembolso>001</ptoEmiDocReembolso>
+                <secuencialDocReembolso>000000542</secuencialDocReembolso>
+                <fechaEmisionDocReembolso>17/10/2024</fechaEmisionDocReembolso>
+                <numeroautorizacionDocReemb>2108202407099000124300120250200000246860000000017</numeroautorizacionDocReemb>
+                <detalleImpuestos>
+                    <detalleImpuesto>
+                        <codigo>2</codigo>
+                        <codigoPorcentaje>4</codigoPorcentaje>
+                        <tarifa>15</tarifa>
+                        <baseImponibleReembolso> 1200.00</baseImponibleReembolso>
+                        <impuestoReembolso> 180</impuestoReembolso>
+                    </detalleImpuesto>
+                </detalleImpuestos>
+            </reembolsoDetalle>
+        </reembolsos>
+    </factura>"}'
 ```
 
 ```python
