@@ -6,7 +6,7 @@ Obtener un listado de Retenciones</li>
 </ul>
 
 <h2 id="lista-retenciones-venta">Lista Retenciones</h2>
-<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/sales/withholding?issuer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -v https://api.datil.co/sales/withholdings?issuer_tax_identification<span class="o">=</span>0900800712001 <span class="se">\</span>
 -H <span class="s2">"X-Api-Key: &lt;API-key&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Accept: application/json"</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -14,7 +14,7 @@ Obtener un listado de Retenciones</li>
   <span class="s">'x-api-key'</span><span class="p">:</span> <span class="s">'&lt;API-key&gt;'</span><span class="p">,</span>
   <span class="s">'accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
 <span class="p">}</span>
-<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/sales/withholding?issuer_tax_identification=0900800712001"</span>
+<span class="n">datil_api_url</span> <span class="o">=</span> <span class="s">"https://api.datil.co/sales/withholdings?issuer_tax_identification=0900800712001"</span>
 <span class="n">withholdings</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">datil_api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <p>Obtén el listado completo de Retenciones recibidas, o filtra los resultados
