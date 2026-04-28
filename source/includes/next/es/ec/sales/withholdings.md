@@ -8,7 +8,7 @@ Obtener un listado de Retenciones
 <h2 id="lista-retenciones-venta">Lista Retenciones</h2>
 
 ```shell
-curl -v https://api.datil.co/sales/withholding?issuer_tax_identification=0900800712001 \
+curl -v https://api.datil.co/sales/withholdings?issuer_tax_identification=0900800712001 \
 -H "X-Api-Key: <API-key>" \
 -H "Accept: application/json"
 ```
@@ -19,7 +19,7 @@ headers = {
   'x-api-key': '<API-key>',
   'accept': 'application/json'
 }
-datil_api_url = "https://api.datil.co/sales/withholding?issuer_tax_identification=0900800712001"
+datil_api_url = "https://api.datil.co/sales/withholdings?issuer_tax_identification=0900800712001"
 withholdings = requests.get(datil_api_url, headers=headers).json()
 ```
 
