@@ -462,7 +462,7 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 </tr>
 <tr>
 <td>info_adicional</td>
-<td>Listado de objectos de tipo <a href="#info-adicional">información adicional</a></td>
+<td>Listado de objetos de tipo <a href="#info-adicional">información adicional</a></td>
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>[{&quot;nombre&quot;:&quot;plan&quot;, &quot;valor&quot;:&quot;Inicial&quot;, &quot;nombre&quot;:&quot;vigencia&quot;, &quot;valor&quot;:&quot;1 mes&quot;}]</code></td>
 </tr>
 <tr>
@@ -1557,7 +1557,7 @@ comprobante en el cuerpo del requerimiento en formato JSON. El total de ítems d
 </tr>
 <tr>
 <td>info_adicional</td>
-<td>Listado de objectos de tipo <a href="#info-adicional">información adicional</a></td>
+<td>Listado de objetos de tipo <a href="#info-adicional">información adicional</a></td>
 <td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>[{&quot;nombre&quot;:&quot;plan&quot;, &quot;valor&quot;:&quot;Inicial&quot;, &quot;nombre&quot;:&quot;vigencia&quot;, &quot;valor&quot;:&quot;1 mes&quot;}]</code></td>
 </tr>
 <tr>

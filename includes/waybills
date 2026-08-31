@@ -292,7 +292,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.</p>
 <tr>
 <td>informacion_adicional</td>
 <td>objeto</td>
-<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>{&quot;email&quot;: &quot;juan@empresa.com&quot;, &quot;Carga asegurada por&quot;: &quot;Securitas&quot;}</code>  <span style="color: red"><strong>Obsoleto</strong></span> <em>utiliza el parámetro info_adicional</em></td>
+</tr>
+<tr>
+<td>info_adicional</td>
+<td>Listado de objetos de tipo <a href="#info-adicional">información adicional</a></td>
+<td>Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br><code>[{&quot;nombre&quot;:&quot;plan&quot;, &quot;valor&quot;:&quot;Inicial&quot;, &quot;nombre&quot;:&quot;vigencia&quot;, &quot;valor&quot;:&quot;1 mes&quot;}]</code></td>
 </tr>
 </tbody></table>
 <h4 id='destinatario'>Destinatario</h4>
