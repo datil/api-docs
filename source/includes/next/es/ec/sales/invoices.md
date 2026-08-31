@@ -240,7 +240,7 @@ items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendid
 uuid | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties | Información adicional adjunta al comprobante. Listado de objetos tipo [property](#property)
 payments | Pagos realizados a la factura. Listado de objetos tipo [payment](#payment)
-payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito. Listado de objectos tipo [payment_method](#payment-method)
+payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito. Listado de objetos tipo [payment_method](#payment-method)
 
 ### Respuesta
 
