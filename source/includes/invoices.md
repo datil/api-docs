@@ -418,7 +418,7 @@ tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad:
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string (49 caracteres) | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-info_adicional | Listado de objectos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
+info_adicional | Listado de objetos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}` <span style="color: red">__Obsoleto__</span> *utiliza el parámetro info_adicional*
 valor_retenido_iva | float | Valor retenido por IVA
 valor_retenido_renta | float | Valor retenido por renta
@@ -1281,7 +1281,7 @@ tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad:
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. Para facturas de reembolso el impuesto del ítem es No Objeto de Impuesto __Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string (49 caracteres) | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-info_adicional | Listado de objectos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
+info_adicional | Listado de objetos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}` <span style="color: red">__Obsoleto__</span> *utiliza el parámetro info_adicional*
 pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
 reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso. __Requerido__
